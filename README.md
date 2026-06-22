@@ -1,14 +1,12 @@
 # OpenDemo
 
-OpenDemo is an agent-native tool that generates beautiful, polished product demo videos without you lifting a finger.
+OpenDemo is an agent-native tool that generates beautiful, polished product demo videos. No humans required. It runs headless, so you can work while it builds your demo in the background.
 
 ### What can I accomplish with OpenDemo?
 * 🎬 Build high-quality product videos for YouTube
 * 🎯 Make demos for finished  hackathon projects
 * 🌿 Bring life to your MVP and Landing page
 * ✨ Create ProductHunt launch videos
-
-With no editing or human intervention required. It runs headless, so you can keep working while it builds your demo in the background.
 
 ### Demo
 Watch OpenDemo fully execute a local login flow from a tiny JSON instruction file:
@@ -22,9 +20,11 @@ Watch OpenDemo fully execute a local login flow from a tiny JSON instruction fil
 Just ask your AI assistant to build the demo for you.
 
 **Example:**
-> "Make a demo of our new AI recipe app, ChefBot, showing the user onboarding flow. Use OpenDemo to create the video."
+```bash
+> Use OpenDemo to generate a video of my new AI recipe app, ChefBot, showing the user onboarding flow.
+```
 
-The AI will automatically generate the config, plan the video flow, and hand you a cinematic video .mp4
+The AI will automatically generate the config, plan the video edits, and hand you a polished .mp4
 
 
 ## Installation & Setup
