@@ -12,7 +12,7 @@ With no editing or human intervention required. It runs headless, so you can kee
 
 ### Demo
 Watch OpenDemo fully execute a local login flow from a tiny JSON instruction file:
-https://github.com/user-attachments/assets/c9438dd9-8ff7-4862-bb1e-ab354ce05e95
+<img src="./examples/login-demo.gif" width="100%"/>
 
 
 ## Usage
