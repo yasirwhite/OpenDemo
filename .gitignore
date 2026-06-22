@@ -46,6 +46,9 @@ release/**
 test-results
 playwright-report/
 
+# AutoScreen Outputs
+recordings/
+
 
 # Vitest browser mode screenshots
 __screenshots__/
