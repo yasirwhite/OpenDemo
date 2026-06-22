@@ -1,0 +1,20 @@
+{
+  "success": true,
+  "videoPath": "C:\\Users\\Yasir\\Desktop\\Code\\DA\\openscreen\\recordings\\page@48c9c26986bab08787a4f6dc8fcea16f.webm",
+  "projectPath": "C:\\Users\\Yasir\\Desktop\\Code\\DA\\openscreen\\recordings\\page@48c9c26986bab08787a4f6dc8fcea16f.openscreen",
+  "zoomRegions": [
+    {
+      "id": "zoom-1782147310254-u49an",
+      "startMs": 6613,
+      "endMs": 10113,
+      "depth": 3,
+      "customScale": 1.8,
+      "focus": {
+        "cx": 0.5,
+        "cy": 0.6277126736111112
+      },
+      "focusMode": "manual",
+      "source": "auto"
+    }
+  ]
+}

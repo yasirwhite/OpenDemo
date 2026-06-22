@@ -1,0 +1,15 @@
+{
+  "baseUrl": "https://twitter.com",
+  "recording": {
+    "width": 1280,
+    "height": 720,
+    "fps": 60
+  },
+  "steps": [
+    { "action": "goto", "target": "/login" },
+    { "action": "type", "target": "input[autocomplete='username']", "value": "elonmusk" },
+    { "action": "click", "target": "div[role='button']:has-text('Next')" },
+    { "action": "type", "target": "input[name='password']", "value": "super_secret_password" },
+    { "action": "click-zoom", "target": "div[data-testid='LoginForm_Login_Button']" }
+  ]
+}
