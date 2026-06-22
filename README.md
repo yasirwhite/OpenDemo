@@ -1,6 +1,6 @@
 # OpenDemo
 
-OpenDemo is an agent-native tool that generates beautiful, polished product demo videos entirely from code.
+OpenDemo is an agent-native tool that generates beautiful, polished product demo videos without you lifting a finger.
 
 ### What can I accomplish with OpenDemo?
 * 🎬 Build high-quality product videos for YouTube
@@ -12,7 +12,7 @@ With no editing or human intervention required. It runs headless, so you can kee
 
 ### Demo
 Watch OpenDemo fully execute a local login flow from a tiny JSON instruction file:
-https://github.com/yasirwhite/OpenDemo/raw/main/examples/login-demo.mp4
+<img src="./examples/login-demo.gif" width="100%"/>
 
 ## Usage
 
