@@ -11,8 +11,6 @@ OpenDemo is an agent-native tool that generates beautiful, polished product demo
 ### Demo
 Watch OpenDemo fully execute a local login flow from a tiny JSON instruction file:
 ![Demo](./examples/login-demo.gif)
-![login-demo](https://github.com/user-attachments/assets/2ac157ca-901d-4d4e-9d52-4778fa39b76f)
-
 
 
 ## Usage
