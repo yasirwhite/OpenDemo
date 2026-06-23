@@ -17,7 +17,7 @@ Watch OpenDemo fully execute a local login flow from a tiny JSON instruction fil
 
 Just ask your AI assistant to build the demo for you.
 
-**Example:**
+**Example Prompt:**
 ```bash
 > Use OpenDemo to generate a video of my new AI recipe app, ChefBot, showing the user onboarding flow.
 ```

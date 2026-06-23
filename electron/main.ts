@@ -541,7 +541,7 @@ ipcMain.once("headless-export-done", (_, result: { outputPath?: string; error?: 
 		<div class="title">✨ Your demo is ready!</div>
 		<div class="close" id="closeBtn">&times;</div>
 	</div>
-	<video src="${videoUrl}" autoplay loop muted style="width: 100%; border-radius: 6px; border: 1px solid #222; margin-bottom: 12px; background: #000; height: 160px; object-fit: cover;"></video>
+	<video id="previewVideo" src="${videoUrl}" autoplay loop muted style="width: 100%; border-radius: 6px; border: 1px solid #222; margin-bottom: 12px; background: #000; height: 160px; object-fit: cover; cursor: pointer;"></video>
 	<div class="actions">
 		<button class="btn btn-primary" id="openBtn">Edit in OpenScreen</button>
 		<div style="display: flex; gap: 6px;">
@@ -551,6 +551,7 @@ ipcMain.once("headless-export-done", (_, result: { outputPath?: string; error?: 
 	</div>
 	<script>
 		const { ipcRenderer } = require('electron');
+		document.getElementById('previewVideo').addEventListener('click', () => ipcRenderer.send('toast-action', 'view'));
 		document.getElementById('openBtn').addEventListener('click', () => ipcRenderer.send('toast-action', 'open'));
 		document.getElementById('viewBtn').addEventListener('click', () => ipcRenderer.send('toast-action', 'view'));
 		document.getElementById('saveBtn').addEventListener('click', () => ipcRenderer.send('toast-action', 'save'));

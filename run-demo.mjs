@@ -23,7 +23,7 @@
  */
 
 import { chromium } from "playwright";
-import { mkdirSync, existsSync, writeFileSync } from "node:fs";
+import { mkdirSync, existsSync, writeFileSync, readdirSync, rmSync } from "node:fs";
 import { resolve, dirname, join, basename } from "node:path";
 import { fileURLToPath } from "node:url";
 import { homedir } from "node:os";
@@ -101,57 +101,7 @@ async function animatedMouseMove(page, fromX, fromY, toX, toY, durationMs = 500)
   }
 }
 
-// ────────────────────────────────────────────────
-// Cinematic click with zoom (records ZoomRegion metadata)
-// ────────────────────────────────────────────────
-async function cinematicClickZoom(page, selector, zoomRegions, currentTimeMs) {
-  // Resolve element position
-  const selectors = selector.split(",").map((s) => s.trim());
-  let el = null;
-  let box = null;
-
-  for (const sel of selectors) {
-    try {
-      el = await page.waitForSelector(sel, { state: "visible", timeout: 5000 });
-      box = await el.boundingBox();
-      if (box) break;
-    } catch {
-      // try next
-    }
-  }
-
-  if (!box) throw new Error(`No element found for click-zoom: ${selector}`);
-
-  const vp = page.viewportSize() ?? { width: 1280, height: 720 };
-  const targetX = box.x + box.width / 2;
-  const targetY = box.y + box.height / 2;
-
-  // Animate mouse from current position (start somewhere plausible)
-  const currentPos = page._lastMousePos ?? { x: vp.width / 2, y: 80 };
-  log(`   🖱️  Moving cursor: (${Math.round(currentPos.x)},${Math.round(currentPos.y)}) → (${Math.round(targetX)},${Math.round(targetY)})`);
-
-  await animatedMouseMove(page, currentPos.x, currentPos.y, targetX, targetY, 600);
-  page._lastMousePos = { x: targetX, y: targetY };
-
-  // Pause briefly on target
-  await page.waitForTimeout(150);
-
-
-
-  // Record this as a ZoomRegion for the OpenScreen project file.
-  // clickTimeMs is the wall-clock offset when the actual click fires.
-  const clickTimeMs = currentTimeMs();
-  const vp2 = page.viewportSize() ?? { width: 1280, height: 720 };
-  const focusCx = targetX / vp2.width;
-  const focusCy = targetY / vp2.height;
-  zoomRegions.push(makeClickZoomRegion(clickTimeMs, focusCx, focusCy));
-
-  // Click!
-  await page.mouse.click(targetX, targetY);
-  await page.evaluate(([x, y]) => window.showClickRipple?.(x, y), [targetX, targetY]).catch(()=>{});
-
-
-}
+// Cinematic click with zoom removed in favor of attachable zoom property.
 
 // ────────────────────────────────────────────────
 // Step executor
@@ -179,6 +129,32 @@ async function executeStep(page, step, flow, zoomRegions, currentTimeMs) {
       }
     }
     return null;
+  }
+
+  if (step.zoom && step.target) {
+    const resolved = await resolveSelector(step.target);
+    if (resolved) {
+      const box = await resolved.el.boundingBox();
+      if (box) {
+        const focusCx = (box.x + box.width / 2) / vp.width;
+        const focusCy = (box.y + box.height / 2) / vp.height;
+        const duration = typeof step.zoom === 'object' && step.zoom.durationMs ? step.zoom.durationMs : 1000;
+        zoomRegions.push(makeZoomRegion(currentTimeMs(), focusCx, focusCy, duration));
+      }
+    }
+  }
+
+  if (step.zoom && step.target) {
+    const resolved = await resolveSelector(step.target);
+    if (resolved) {
+      const box = await resolved.el.boundingBox();
+      if (box) {
+        const focusCx = (box.x + box.width / 2) / vp.width;
+        const focusCy = (box.y + box.height / 2) / vp.height;
+        const duration = typeof step.zoom === 'object' && step.zoom.durationMs ? step.zoom.durationMs : 1000;
+        zoomRegions.push(makeZoomRegion(currentTimeMs(), focusCx, focusCy, duration));
+      }
+    }
   }
 
   switch (step.action) {
@@ -253,13 +229,20 @@ async function executeStep(page, step, flow, zoomRegions, currentTimeMs) {
       break;
     }
 
-    case "click-zoom": {
-      if (!step.target) throw new Error("click-zoom requires target");
-      await cinematicClickZoom(page, step.target, zoomRegions, currentTimeMs);
-      await page.waitForTimeout(1000);
+
+
+    case "press": {
+      if (!step.value) throw new Error("press requires 'value' (e.g. 'Escape', 'Enter')");
+      if (step.target) {
+        const resolved = await resolveSelector(step.target, "visible", 3000);
+        if (!resolved) throw new Error(`No element for press: ${step.target}`);
+        await page.press(resolved.sel, step.value);
+      } else {
+        await page.keyboard.press(step.value);
+      }
+      await page.waitForTimeout(step.timeoutMs || 500);
       break;
     }
-
     case "press-enter": {
       if (!step.target) throw new Error("press-enter requires target");
       const resolved = await resolveSelector(step.target, "visible", 3000);
@@ -325,6 +308,52 @@ async function executeStep(page, step, flow, zoomRegions, currentTimeMs) {
           throw new Error(`Assertion failed: expected "${step.value}", got "${text}"`);
         }
       }
+      break;
+    }
+
+    case "scroll": {
+      const distance = step.value || "bottom";
+      if (step.zoom) {
+        const clickTimeMs = currentTimeMs();
+        zoomRegions.push(makeClickZoomRegion(clickTimeMs, 0.5, 0.5));
+      }
+      
+      const mode = step.mode || "smooth"; // "smooth" or "linear"
+      if (distance === "bottom") {
+        const viewportSize = page.viewportSize();
+        if (viewportSize) {
+          await page.mouse.move(viewportSize.width / 2, viewportSize.height / 2);
+        }
+        
+        const totalScrolls = step.scrolls || 60;
+        const totalDistance = step.totalDistance || 6000;
+        
+        if (mode === "linear") {
+          const dy = Math.round(totalDistance / totalScrolls);
+          for (let i = 0; i < totalScrolls; i++) {
+            await page.mouse.wheel(0, dy);
+            await page.waitForTimeout(30);
+          }
+        } else if (mode === "smooth") {
+          // Easing function: cubic ease in-out
+          const easeInOutCubic = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+          
+          let accumulatedDistance = 0;
+          for (let i = 1; i <= totalScrolls; i++) {
+            const t = i / totalScrolls;
+            const currentTotalDistance = Math.round(easeInOutCubic(t) * totalDistance);
+            const dy = currentTotalDistance - accumulatedDistance;
+            accumulatedDistance = currentTotalDistance;
+            
+            await page.mouse.wheel(0, dy);
+            // Wait ~16ms (1 frame at 60fps) to make the scrolling smooth and continuous
+            await page.waitForTimeout(16);
+          }
+        }
+      } else {
+        await page.mouse.wheel(0, parseInt(distance));
+      }
+      await page.waitForTimeout(1000);
       break;
     }
 
@@ -418,14 +447,11 @@ function generateOpenScreenProject(videoPath, zoomRegions, flow) {
 //   - Start 500ms before the click (approach / pre-zoom)
 //   - Hold for ~3000ms after (long enough to see the result)
 //   = total ~3500ms window, centered on the click
-function makeClickZoomRegion(clickTimeMs, focusCx, focusCy) {
-  const PRE_MS  = 500;   // zoom starts before click so user sees it coming
-  const POST_MS = 3000;  // hold zoomed-in through result loading
-
+function makeZoomRegion(clickTimeMs, focusCx, focusCy, durationMs = 1000) {
   return {
     id: `zoom-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
-    startMs: Math.max(0, clickTimeMs - PRE_MS),
-    endMs: clickTimeMs + POST_MS,
+    startMs: clickTimeMs,
+    endMs: clickTimeMs + durationMs,
     depth: 3,          // OpenScreen depth 3 = 1.8x scale (ZOOM_DEPTH_SCALES)
     customScale: 1.8,  // explicit override matches depth:3 exactly
     focus: {
@@ -445,6 +471,12 @@ async function runFlow(flow) {
   const recordingsDir = resolve(__dirname, "recordings");
   if (!existsSync(recordingsDir)) {
     mkdirSync(recordingsDir, { recursive: true });
+  } else {
+    for (const file of readdirSync(recordingsDir)) {
+      if (file.endsWith(".webm") || file.endsWith(".json") || file.endsWith(".mp4") || file.endsWith(".openscreen") || file.endsWith(".gif")) {
+        try { rmSync(join(recordingsDir, file), { recursive: true, force: true }); } catch {}
+      }
+    }
   }
 
   const executablePath = getFullChromiumPath();
@@ -560,6 +592,7 @@ async function runFlow(flow) {
   const currentTimeMs = () => Date.now() - startWallClock;
 
   const zoomRegions = [];
+  const speedupSegments = [];
   let failedStep = -1;
 
   page._lastMousePos = await page.evaluate(() => {
@@ -573,7 +606,18 @@ async function runFlow(flow) {
     const desc = [step.action, step.target, step.value].filter(Boolean).join(" → ");
     log(`▶  Step ${i}: ${desc}`);
 
+    const isWait = step.action === "wait" || step.action === "wait-for-search-results";
+    const waitStartMs = isWait ? currentTimeMs() : 0;
+
     const ok = await executeStepWithRetry(page, i, step, flow, zoomRegions, currentTimeMs);
+    
+    if (isWait && ok) {
+      const waitEndMs = currentTimeMs();
+      if (waitEndMs - waitStartMs > 500) {
+        speedupSegments.push({ startMs: waitStartMs, endMs: waitEndMs });
+      }
+    }
+
     if (!ok) {
       failedStep = i;
       break;
@@ -589,29 +633,90 @@ async function runFlow(flow) {
   await context.close(); // video written here
   await browser.close();
 
-  if (failedStep >= 0) {
+  if (failedStep !== -1) {
     log(`\n💥 Demo FAILED at step ${failedStep}`);
     if (videoPath) log(`🎥 Partial video: ${videoPath}`);
-    return { success: false, failedStep, videoPath, zoomRegions };
+    return { success: false, videoPath, failedStep };
+  }
+
+  let finalVideoPath = videoPath;
+
+  if (flow.recording?.timeLapseWaitSegments && speedupSegments.length > 0 && finalVideoPath) {
+    log(`\n⏩ Post-processing video to speed up ${speedupSegments.length} wait segment(s)...`);
+    const { execSync } = await import("node:child_process");
+    
+    let filter = "";
+    let concatParts = "";
+    let lastTimeSec = 0;
+    let partIdx = 0;
+    const speedFactor = flow.recording?.timeLapseSpeedFactor || 4.0;
+    
+    
+    for (const seg of speedupSegments) {
+      const segStart = (seg.startMs / 1000).toFixed(3);
+      const segEnd = (seg.endMs / 1000).toFixed(3);
+      
+      if (parseFloat(segStart) > lastTimeSec) {
+        filter += `[0:v]trim=start=${lastTimeSec}:end=${segStart},setpts=PTS-STARTPTS[v${partIdx}]; `;
+        concatParts += `[v${partIdx}]`;
+        partIdx++;
+      }
+      filter += `[0:v]trim=start=${segStart}:end=${segEnd},setpts=${(1/speedFactor).toFixed(3)}*(PTS-STARTPTS)[v${partIdx}]; `;
+      concatParts += `[v${partIdx}]`;
+      partIdx++;
+      lastTimeSec = parseFloat(segEnd);
+    }
+    filter += `[0:v]trim=start=${lastTimeSec},setpts=PTS-STARTPTS[v${partIdx}]; `;
+    concatParts += `[v${partIdx}]`;
+    partIdx++;
+    filter += `${concatParts}concat=n=${partIdx}:v=1:a=0[out]`;
+
+    const compressedVideoPath = finalVideoPath.replace(".webm", "-spedup.webm");
+    
+    try {
+      execSync(`ffmpeg -y -i "${finalVideoPath}" -filter_complex "${filter}" -map "[out]" -c:v libvpx -crf 10 -b:v 2M "${compressedVideoPath}"`, { stdio: 'ignore' });
+      // Adjust zoom regions timestamps
+      for (const zr of zoomRegions) {
+        let originalMs = zr.startMs;
+        let compressedMs = originalMs;
+        for (const seg of speedupSegments) {
+          if (originalMs <= seg.startMs) continue;
+          else if (originalMs <= seg.endMs) {
+            const timeInSeg = originalMs - seg.startMs;
+            const compressedTimeInSeg = timeInSeg / speedFactor;
+            compressedMs -= (timeInSeg - compressedTimeInSeg);
+          } else {
+            const segDuration = seg.endMs - seg.startMs;
+            compressedMs -= (segDuration - (segDuration / speedFactor));
+          }
+        }
+        zr.startMs = compressedMs;
+        zr.endMs = zr.startMs + (zr.endMs - zr.startMs); // Adjust endMs similarly
+      }
+      finalVideoPath = compressedVideoPath;
+      log(`   ✅ Video sped up and ${zoomRegions.length} zoom timestamps adjusted.`);
+    } catch (e) {
+      log(`   ⚠️ FFmpeg speedup failed, falling back to original video. ${e.message}`);
+    }
   }
 
   // Write OpenScreen project file alongside the video
   let projectPath;
-  if (videoPath) {
-    const project = generateOpenScreenProject(videoPath, zoomRegions, flow);
-    const projectFile = videoPath.replace(/\.webm$/, ".openscreen");
+  if (finalVideoPath) {
+    const project = generateOpenScreenProject(finalVideoPath, zoomRegions, flow);
+    const projectFile = finalVideoPath.replace(/\.webm$/, ".openscreen");
     writeFileSync(projectFile, JSON.stringify(project, null, 2), "utf8");
     projectPath = projectFile;
     log(`📄 OpenScreen project: ${projectFile}\n`);
   }
 
   log(`\n🎉 Demo completed!`);
-  log(`🎥 Video: ${videoPath}`);
+  log(`🎥 Video: ${finalVideoPath}`);
   if (zoomRegions.length > 0) {
     log(`🔍 ${zoomRegions.length} zoom region(s) authored for OpenScreen editor`);
   }
 
-  return { success: true, videoPath, projectPath, zoomRegions };
+  return { success: true, videoPath: finalVideoPath, projectPath, zoomRegions };
 }
 
 // ────────────────────────────────────────────────

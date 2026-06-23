@@ -139,6 +139,7 @@ export function LaunchWindow() {
 	const [isWebcamFocused, setIsWebcamFocused] = useState(false);
 	const webcamExpanded = isWebcamHovered || isWebcamFocused;
 	const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
+	const [isMinimized, setIsMinimized] = useState(false);
 	const [trayLayout, setTrayLayout] = useState<"horizontal" | "vertical">(
 		() => loadUserPreferences().trayLayout,
 	);
@@ -314,7 +315,7 @@ export function LaunchWindow() {
 		const SIDE_MARGIN = 24;
 		const TOP_MARGIN = 24;
 		// Wide enough that the language menu (11rem) never clips, even when the bar is narrow.
-		const MIN_WIDTH = 220;
+		const MIN_WIDTH = isMinimized ? 80 : 220;
 
 		const viewportHeight = window.innerHeight;
 		const centerX = window.innerWidth / 2;
@@ -360,7 +361,7 @@ export function LaunchWindow() {
 		}
 		lastHudSizeRef.current = { width, height };
 		window.electronAPI.setHudOverlaySize(width, height);
-	}, [trayLayout]);
+	}, [trayLayout, isMinimized]);
 
 	// One persistent observer; elements wire themselves up via callback refs as they
 	// mount/unmount so measurement re-runs without recreating it or threading mount state through deps.
@@ -715,7 +716,17 @@ export function LaunchWindow() {
 					}
 				}}
 			>
-				{/* Drag handle */}
+				{isMinimized ? (
+					<button
+						className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-[#07080a]/90 border border-white/[0.15] text-white hover:bg-white/10 transition-all shadow-[0_4px_12px_rgba(0,0,0,0.5)] pointer-events-auto"
+						onClick={() => setIsMinimized(false)}
+						title={t("tooltips.showHUD") || "Show HUD"}
+					>
+						<Clapperboard size={20} className="text-white/80" />
+					</button>
+				) : (
+					<>
+						{/* Drag handle */}
 				<div
 					className={`flex ${trayLayout === "vertical" ? "h-6 w-8" : "h-8 w-7"} cursor-grab items-center justify-center active:cursor-grabbing ${styles.electronNoDrag}`}
 					onPointerDown={handleHudDragPointerDown}
@@ -991,7 +1002,7 @@ export function LaunchWindow() {
 						<button
 							className={windowBtnClasses}
 							title={t("tooltips.hideHUD")}
-							onClick={sendHudOverlayHide}
+							onClick={() => setIsMinimized(true)}
 						>
 							{getIcon("minimize", "text-white")}
 						</button>
@@ -1003,7 +1014,8 @@ export function LaunchWindow() {
 							{getIcon("close", "text-white")}
 						</button>
 					</div>
-				</div>
+					</>
+				)}
 			</div>
 		</div>
 	);
