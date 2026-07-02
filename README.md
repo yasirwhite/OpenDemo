@@ -1,16 +1,18 @@
 # OpenDemo
 
-OpenDemo is an agent-native tool that generates beautiful, polished product demo videos. No humans required. It runs headless, so you can work while it builds your demo in the background.
+OpenDemo gives your LLM the ability to create product demo videos.
 
-### What can I accomplish with OpenDemo?
-* 🎬 Build high-quality product videos for YouTube
-* 🎯 Make demos for finished  hackathon projects
-* 🌿 Bring life to your MVP and Landing page
-* ✨ Create ProductHunt launch videos
+***No cloud services or API keys |*** Just clone `OpenDemo` and prompt the model you already use.
 
 ### Demo
 Watch OpenDemo fully execute a local login flow from a tiny JSON instruction file:
 ![Demo](./examples/login-demo.gif)
+
+### What can I accomplish with OpenDemo?
+* 🎬 Build high-quality product videos for YouTube
+* 🎯 Make demos for finished hackathon projects
+* 🌿 Bring life to your Landing page
+* ✨ Create ProductHunt launch videos
 
 
 ## Usage
@@ -24,6 +26,15 @@ Just ask your AI assistant to build the demo for you.
 
 The AI will automatically generate the config, plan the video edits, and hand you a polished .mp4
 
+---
+
+If you (the human) want to make changes:
+1) Ask your model to edit the video, or
+2) manually edit your video with OpenDemo's built-in editor. 
+
+To use the editor, run the demo command, which you can get by asking your model for it. It will look something like `node OpenDemo/run-demo.mjs <DEMO.json>`
+
+---
 
 ## Installation & Setup
 Because OpenDemo's cinematic video rendering engine is heavily powered by a compiled React application running invisibly in the background, you **must** build the project once before the engine can function.
