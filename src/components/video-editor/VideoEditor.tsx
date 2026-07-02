@@ -679,7 +679,7 @@ export default function VideoEditor() {
 					videoUrl: videoPath!,
 					width: exportWidth,
 					height: exportHeight,
-					frameRate: 60,
+					frameRate: 80,
 					bitrate,
 					codec: "avc1.640033",
 					wallpaper,

@@ -1,5 +1,7 @@
 # Agent Instructions for OpenDemo
 
+**For exact JSON syntax, supported actions, and code usage, refer to: [USAGE.md](file:///C:/Users/Yasir/Desktop/Code/OpenDemo/USAGE.md)**
+
 Welcome! If you are an AI agent tasked with creating a product demo video, you will use the OpenDemo engine.
 
 **⚠️ CRITICAL NOTE:** The current functionality of OpenDemo is strictly intended for **web demos** only. It uses Playwright to automate headless browsers. It cannot interact with the operating system or native desktop applications. 
@@ -19,43 +21,13 @@ To keep the OpenDemo repository clean, you must **always** create your JSON conf
 
 *(If you need a template, you can view the examples provided in the `autoscreen/examples/` directory, such as the `local-demo.json` and `dummy-login.html` files!)*
 
-Create a simple `.json` file with the following structure:
-```json
-{
-  "baseUrl": "https://example.com",
-  "recording": {
-    "width": 1280,
-    "height": 720,
-    "fps": 60,
-    "timeLapseWaitSegments": true,
-    "timeLapseSpeedFactor": 4.0
-  },
-  "steps": [
-    { "action": "goto", "target": "/login" },
-    { "action": "type", "target": "#username", "value": "test_user" },
-    { "action": "click", "target": "#submit_btn" },
-    { "action": "click", "target": ".important-element", "zoom": { "durationMs": 1500 } }
-  ]
-}
-```
+### 2. Zooming & Cinematic Rules
+- **Selective Zooming (Avoid Zoom Fatigue):** Do NOT attach zooms to every single action. Only use zooms on major focal points or core feature demonstrations (e.g., primary CTA buttons, form inputs, step toggles). Avoid zooming on utility interactions like navbar switches, back/backspace buttons, or minor edit icons, as excessive zooming disorients viewers and dilutes cinematic impact.
+- **Zoom should be used sparingly**, on the MOST IMPORTANT elements that communicate an idea. I.e. creating a campaign. the smaller stuff like tweaking settings doesnt really matter. Things that people need to actually accomplish should be the focus. 
+- **Cinematic Timing Recommendation:** Zooms should be timed dynamically around the target action (starting right before interaction and releasing right after completion) rather than triggering while the mouse is moving across offscreen space. Configure durations (e.g. `800` to `1200`) to match the action flow smoothly.
+- **MOST IMPORTANT NOTE:** If you press a button to interact with a feature of the app, explore that feature until the deepest action you can perform within feature, tweak settings, make edits etc, and save or send or perform final actions before going back and demonstrating other features.
 
-**Supported Actions:**
-- `goto`: Navigates to the given target URL (appended to `baseUrl` if relative).
-- `type`: Types the `value` into the `target` CSS selector.
-- `click`: Clicks the element at the `target` CSS selector.
-- `scroll`: Scrolls the page. Supports a `mode: "smooth"` parameter for interpolated smooth scrolling.
-
-**Attachable Configurations:**
-- `zoom` (boolean | object): Can be attached to **any** action that targets an element (e.g., `click`, `type`, `hover`). It automatically creates a cinematic zoom region centered on the target element.
-  - Example: `"zoom": true` (defaults to 1000ms duration)
-  - Example: `"zoom": { "durationMs": 1500 }`
-  - **Recommendation:** It is highly recommended to explicitly configure zooms to be longer than 1 second (e.g. `1500` or `2000`) for the best visual experience.
-
-**Recording Options:**
-- `timeLapseWaitSegments` (boolean): Set to `true` to post-process the video via FFmpeg to speed up any `wait` segments, giving a fast-forward effect instead of jump cuts.
-- `timeLapseSpeedFactor` (number): The speed multiplier for wait segments (e.g., `4.0` for 4x speed). Default is 4.0.
-
-### 2. Run the Engine (REQUIRED)
+### 3. Run the Engine (REQUIRED)
 Do **NOT** just stop after writing the JSON configuration! It is your responsibility to execute the engine yourself on behalf of the user to generate the video. Run the engine using Node.js and pass your JSON file as the argument from outside the directory:
 ```bash
 node autoscreen/run-demo.mjs my-demo.json
@@ -65,7 +37,7 @@ The engine will automatically spin up a headless browser, execute your instructi
 
 **⚠️ IMPORTANT:** Do NOT kill the background task (e.g., `node run-demo.mjs`) once it finishes generating the video. The process must stay alive so the user can interact with the mini UI toast notification that pops up on their screen.
 
-### 3. Copy the Video and Notify the User (REQUIRED)
+### 4. Copy the Video and Notify the User (REQUIRED)
 After the final `.mp4` video has been exported in the `OpenDemo/recordings` directory:
 1. **Copy the final `.mp4` video** from `recordings/` into the user's target source directory (the project you are currently operating in).
 2. **Explicitly tell the user the exact absolute file path** of the newly generated video (e.g., `C:\Users\...` or wherever you saved it in their project directory). Never just share a broken markdown link without pointing out exactly where the real `.mp4` file lives on their machine!
@@ -74,6 +46,18 @@ After the final `.mp4` video has been exported in the `OpenDemo/recordings` dire
 To save time during complex workflows, be aware of the following:
 
 - **Architecture Map**: The actual Playwright execution loop and recording logic lives in `run-demo.mjs`, while the overlay Toast UI and video preview functionality lives in `electron/main.ts` and the `src/` React folder.
-- **Cross-Project Selector Discovery**: You cannot simply command OpenDemo to "close the note" or "click the last outfit." When creating a JSON flow for a target app, you must read that app's DOM/React source code first to formulate exact, reliable Playwright selectors (like `aria-label`, `text=✕`, or `nth=-1`).
+- **Deep, Realistic Workflows (AVOID LAZY SHORTCUTS)**: Never produce superficial demos that open a view or form, perform a single minor action, and immediately cancel/back out. A compelling demo must feel authentic and complete:
+  - If filling a form (e.g. creating a resource, adding a new item, or configuring parameters), fill in multiple relevant fields/toggles and **actually hit Save/Submit** to complete the action.
+  - If opening an interactive tool (e.g. chat console, reply dialog, or feedback form), type a realistic response, click Send/Submit, and wait for the message state to update or a response animation to trigger.
+  - Spend time interacting with settings, pagination, filters, and other controls so the viewer sees the application reacting realistically.
 - **Recordings Auto-Cleanup**: The `run-demo.mjs` script automatically deletes the contents of the `recordings/` directory when it starts a new run. If a previous run was not explicitly exported/saved, it will be lost.
 - **HUD Minimization**: The OpenScreen UI allows minimizing the HUD bar into a small clapperboard icon using the `-` button on the overlay.
+
+Finally...
+After you complete your first JSON instruction, re-review your work and be pessimistic about how it actually accomplishes the workflow.
+
+Question yourself, does this actually demonstrate the most important and core features of the work?
+Am I walking through the entire flow and zooming in ONLY on important segments?
+Are the actions I'm performing too simple and high level?
+
+After you question yourself and act as a pessimist. Debate potential improvements. And cite for yourself a rule from the above instructions that you are leaning on to further improve the video directing.

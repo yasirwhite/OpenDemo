@@ -454,11 +454,6 @@ export function LaunchWindow() {
 		}
 	};
 
-	const sendHudOverlayHide = () => {
-		if (window.electronAPI && window.electronAPI.hudOverlayHide) {
-			window.electronAPI.hudOverlayHide();
-		}
-	};
 	const sendHudOverlayClose = () => {
 		if (window.electronAPI && window.electronAPI.hudOverlayClose) {
 			window.electronAPI.hudOverlayClose();
@@ -1014,6 +1009,7 @@ export function LaunchWindow() {
 							{getIcon("close", "text-white")}
 						</button>
 					</div>
+				</div>
 					</>
 				)}
 			</div>

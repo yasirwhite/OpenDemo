@@ -8,7 +8,7 @@
  *   node run-demo.mjs                    — run the built-in Bing demo
  *
  * Cinematic features:
- *   - action: "type"       → character-by-character typewriter effect
+ *   - action: "type"       → typewriter effect completing within durationMs window (default 1500ms)
  *   - action: "click"      → animated cursor movement to target
  *   - action: "click-zoom" → animated cursor + CSS zoom around target before click + ZoomRegion metadata
  *   - action: "press-enter"→ animated cursor to target, then Enter key
@@ -61,8 +61,8 @@ const BING_DEMO_FLOW = {
     { action: "wait", target: "#sb_form_q, input[name='q']", timeoutMs: 8000 },
     { action: "type", target: "#sb_form_q, input[name='q']", value: "chicken wing" },
     { action: "wait", timeoutMs: 800 },
-    // click-zoom on the search button — agent deems this worth zooming
-    { action: "click-zoom", target: "#search_icon, [aria-label='Search'], button[type='submit']", timeoutMs: 5000 },
+    // click on the search button with attached zoom — agent deems this worth zooming
+    { action: "click", target: "#search_icon, [aria-label='Search'], button[type='submit']", timeoutMs: 5000, zoom: true },
     { action: "wait-for-search-results" },
     { action: "wait", timeoutMs: 2500 },
   ],
@@ -80,11 +80,13 @@ function easeOutCubic(t) {
   return 1 - Math.pow(1 - t, 3);
 }
 
+
+
 // ────────────────────────────────────────────────
 // Mouse animation
 // ────────────────────────────────────────────────
 async function animatedMouseMove(page, fromX, fromY, toX, toY, durationMs = 500) {
-  const fps = 60;
+  const fps = 80;
   const frameMs = 1000 / fps;
   const steps = Math.max(1, Math.ceil(durationMs / frameMs));
 
@@ -94,7 +96,7 @@ async function animatedMouseMove(page, fromX, fromY, toX, toY, durationMs = 500)
     const y = fromY + (toY - fromY) * t;
     await page.mouse.move(x, y);
     // Do NOT await the evaluate call, otherwise the CDP round-trip latency will destroy the 60fps loop timing
-    page.evaluate(([cx, cy]) => window.updateVisibleCursor?.(cx, cy), [x, y]).catch(()=>{});
+    page.evaluate(([cx, cy]) => window.updateVisibleCursor?.(cx, cy), [x, y]).catch(() => { });
     if (i < steps) {
       await page.waitForTimeout(frameMs);
     }
@@ -131,29 +133,59 @@ async function executeStep(page, step, flow, zoomRegions, currentTimeMs) {
     return null;
   }
 
-  if (step.zoom && step.target) {
-    const resolved = await resolveSelector(step.target);
-    if (resolved) {
-      const box = await resolved.el.boundingBox();
-      if (box) {
-        const focusCx = (box.x + box.width / 2) / vp.width;
-        const focusCy = (box.y + box.height / 2) / vp.height;
-        const duration = typeof step.zoom === 'object' && step.zoom.durationMs ? step.zoom.durationMs : 1000;
-        zoomRegions.push(makeZoomRegion(currentTimeMs(), focusCx, focusCy, duration));
+  async function smoothScrollToElement(page, el) {
+    const boxBefore = await el.boundingBox();
+    if (!boxBefore) return;
+    
+    const vp = page.viewportSize();
+    if (boxBefore.y < 50 || boxBefore.y + boxBefore.height > vp.height - 50) {
+      const targetY = vp.height / 2;
+      const currentY = boxBefore.y + boxBefore.height / 2;
+      const dy = currentY - targetY;
+      
+      // Move physical mouse into the column to ensure wheel events hit the correct container
+      const safeX = Math.max(0, Math.min(boxBefore.x + boxBefore.width / 2, vp.width - 1));
+      const safeY = dy > 0 ? vp.height - 10 : 10;
+      await page.mouse.move(safeX, safeY);
+      
+      // Cap the total scrolls at 80 frames (~1.3s) so long distances just scroll faster instead of taking forever
+      const totalScrolls = Math.max(20, Math.min(80, Math.round(Math.abs(dy) / 15)));
+      const easeInOutCubic = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      
+      let accumulatedDistance = 0;
+      for (let i = 1; i <= totalScrolls; i++) {
+        const t = i / totalScrolls;
+        const currentTotalDistance = Math.round(easeInOutCubic(t) * dy);
+        const stepDy = currentTotalDistance - accumulatedDistance;
+        accumulatedDistance = currentTotalDistance;
+        await page.mouse.wheel(0, stepDy);
+        await page.waitForTimeout(16);
       }
+      
+      // Wait for any trailing scroll momentum or layouts to settle
+      await page.waitForTimeout(150);
+      
+      // We don't need to update page._lastMousePos! The virtual cursor on the screen 
+      // remained physically stationary while the page scrolled under it.
     }
   }
 
-  if (step.zoom && step.target) {
-    const resolved = await resolveSelector(step.target);
-    if (resolved) {
-      const box = await resolved.el.boundingBox();
-      if (box) {
-        const focusCx = (box.x + box.width / 2) / vp.width;
-        const focusCy = (box.y + box.height / 2) / vp.height;
-        const duration = typeof step.zoom === 'object' && step.zoom.durationMs ? step.zoom.durationMs : 1000;
-        zoomRegions.push(makeZoomRegion(currentTimeMs(), focusCx, focusCy, duration));
+  function pushZoom(box, startMs = currentTimeMs(), durationMs = 1200) {
+    if (step.zoom && box) {
+      // If the element takes up >80% of viewport dimensions, skip zoom to avoid awkward wide clipping
+      if (box.width > vp.width * 0.8 || box.height > vp.height * 0.8) {
+        return;
       }
+
+      // Calculate maximum safe scale so the element fits inside viewport with a 100px padding buffer
+      const maxScaleX = vp.width / (box.width + 100);
+      const maxScaleY = vp.height / (box.height + 100);
+      const safeScale = Math.min(1.8, Math.max(1.15, maxScaleX, maxScaleY));
+
+      const focusCx = (box.x + box.width / 2) / vp.width;
+      const focusCy = (box.y + box.height / 2) / vp.height;
+      const customDuration = typeof step.zoom === 'object' && step.zoom.durationMs ? step.zoom.durationMs : durationMs;
+      zoomRegions.push(makeZoomRegion(startMs, focusCx, focusCy, customDuration, safeScale));
     }
   }
 
@@ -165,7 +197,7 @@ async function executeStep(page, step, flow, zoomRegions, currentTimeMs) {
       await page.goto(url, { waitUntil: "load", timeout });
       // Wait an extra 0.5s to let the page settle visually before starting movements
       await page.waitForTimeout(500);
-      
+
       // Update Node's mouse pos because the new page might have picked a new random start!
       page._lastMousePos = await page.evaluate(() => {
         return { x: window.__lastCursorX || (window.innerWidth / 2), y: window.__lastCursorY || 80 };
@@ -179,31 +211,44 @@ async function executeStep(page, step, flow, zoomRegions, currentTimeMs) {
       const resolved = await resolveSelector(step.target);
       if (!resolved) throw new Error(`No typeable element: ${step.target}`);
 
-      // Click to focus
+      // Click to focus (smooth scroll to element)
+      await smoothScrollToElement(page, resolved.el);
+
       const box = await resolved.el.boundingBox();
+      let zoomStartMs = currentTimeMs();
       if (box) {
         // Animate cursor to element
         const currentPos = page._lastMousePos ?? { x: vp.width / 2, y: 80 };
         const targetX = box.x + box.width / 2;
         const targetY = box.y + box.height / 2;
-        await animatedMouseMove(page, currentPos.x, currentPos.y, targetX, targetY, 400);
+        await animatedMouseMove(page, currentPos.x, currentPos.y, targetX, targetY, flow.recording?.mouseSpeedMs || 400);
         page._lastMousePos = { x: targetX, y: targetY };
+        zoomStartMs = Math.max(0, currentTimeMs() - 200);
       }
-      await resolved.el.click();
+      await resolved.el.click({ force: true });
       const lastMouse = page._lastMousePos || { x: vp.width / 2, y: 80 };
-      await page.evaluate(([x, y]) => window.showClickRipple?.(x, y), [lastMouse.x, lastMouse.y]).catch(()=>{});
+      await page.evaluate(([x, y]) => window.showClickRipple?.(x, y), [lastMouse.x, lastMouse.y]).catch(() => { });
       await page.waitForTimeout(100);
 
       // Clear existing value
       await page.keyboard.press("Control+a");
       await page.keyboard.press("Delete");
 
-      // Typewriter effect — character by character
-      for (const char of step.value) {
-        await page.keyboard.type(char, { delay: 0 });
-        // Natural typing speed: 50-110ms per character (~80-120wpm)
-        const delay = 50 + Math.random() * 60;
-        await page.waitForTimeout(delay);
+      // Typewriter effect — finishes text within a given window (durationMs or 1000ms default)
+      const windowMs = step.durationMs ?? 1000;
+      const charCount = step.value.length;
+      if (charCount > 0) {
+        const baseDelay = windowMs / charCount;
+        for (const char of step.value) {
+          await page.keyboard.type(char, { delay: 0 });
+          // Natural jitter (+/- 20%) around baseDelay to maintain authentic feel while fitting the window
+          const delay = Math.max(4, baseDelay * (0.8 + Math.random() * 0.4));
+          await page.waitForTimeout(delay);
+        }
+      }
+      if (box && step.zoom) {
+        const zoomDuration = typeof step.zoom === "object" && step.zoom.durationMs ? step.zoom.durationMs : 1400;
+        pushZoom(box, zoomStartMs, Math.max(zoomDuration, currentTimeMs() - zoomStartMs + 400));
       }
       break;
     }
@@ -212,20 +257,29 @@ async function executeStep(page, step, flow, zoomRegions, currentTimeMs) {
       if (!step.target) throw new Error("click requires target");
       const resolved = await resolveSelector(step.target, "visible", timeout);
       if (!resolved) throw new Error(`No clickable element: ${step.target}`);
+
+      await smoothScrollToElement(page, resolved.el);
+
       const box = await resolved.el.boundingBox();
+      let zoomStartMs = currentTimeMs();
       if (box) {
         const targetX = box.x + box.width / 2;
         const targetY = box.y + box.height / 2;
         const currentPos = page._lastMousePos ?? { x: vp.width / 2, y: 80 };
-        await animatedMouseMove(page, currentPos.x, currentPos.y, targetX, targetY, 500);
+        await animatedMouseMove(page, currentPos.x, currentPos.y, targetX, targetY, flow.recording?.mouseSpeedMs || 500);
         page._lastMousePos = { x: targetX, y: targetY };
+        zoomStartMs = Math.max(0, currentTimeMs() - 200);
         await page.waitForTimeout(100);
         await page.mouse.click(targetX, targetY);
-        await page.evaluate(([x, y]) => window.showClickRipple?.(x, y), [targetX, targetY]).catch(()=>{});
+        await page.evaluate(([x, y]) => window.showClickRipple?.(x, y), [targetX, targetY]).catch(() => { });
+        if (step.zoom) {
+          const zoomDuration = typeof step.zoom === "object" && step.zoom.durationMs ? step.zoom.durationMs : 1400;
+          pushZoom(box, zoomStartMs, Math.max(zoomDuration, currentTimeMs() - zoomStartMs + 400));
+        }
       } else {
-        await page.click(resolved.sel);
+        await page.click(resolved.sel, { force: true });
       }
-      await page.waitForTimeout(1200);
+      await page.waitForTimeout(300);
       break;
     }
 
@@ -262,7 +316,7 @@ async function executeStep(page, step, flow, zoomRegions, currentTimeMs) {
             page
               .waitForSelector(sel, { state: "visible", timeout })
               .then(() => { found = true; })
-              .catch(() => {})
+              .catch(() => { })
           )
         );
         await page.waitForTimeout(200);
@@ -312,48 +366,47 @@ async function executeStep(page, step, flow, zoomRegions, currentTimeMs) {
     }
 
     case "scroll": {
-      const distance = step.value || "bottom";
+      const distanceStr = step.value || "bottom";
       if (step.zoom) {
         const clickTimeMs = currentTimeMs();
         zoomRegions.push(makeClickZoomRegion(clickTimeMs, 0.5, 0.5));
       }
-      
+
       const mode = step.mode || "smooth"; // "smooth" or "linear"
-      if (distance === "bottom") {
-        const viewportSize = page.viewportSize();
-        if (viewportSize) {
-          await page.mouse.move(viewportSize.width / 2, viewportSize.height / 2);
+      const totalDistance = distanceStr === "bottom" ? (step.totalDistance || 6000) : parseInt(distanceStr);
+      // Cap the total scrolls at 80 frames (~1.3s) so it doesn't take 15 seconds!
+      const totalScrolls = step.scrolls || Math.max(15, Math.min(80, Math.round(Math.abs(totalDistance) / 10)));
+
+      const viewportSize = page.viewportSize();
+      if (viewportSize) {
+        // Move mouse to center of screen before scrolling so it doesn't accidentally scroll a side-panel
+        await page.mouse.move(viewportSize.width / 2, viewportSize.height / 2);
+      }
+
+      if (mode === "linear") {
+        const dy = Math.round(totalDistance / totalScrolls);
+        for (let i = 0; i < totalScrolls; i++) {
+          await page.mouse.wheel(0, dy);
+          await page.waitForTimeout(16);
         }
-        
-        const totalScrolls = step.scrolls || 60;
-        const totalDistance = step.totalDistance || 6000;
-        
-        if (mode === "linear") {
-          const dy = Math.round(totalDistance / totalScrolls);
-          for (let i = 0; i < totalScrolls; i++) {
-            await page.mouse.wheel(0, dy);
-            await page.waitForTimeout(30);
-          }
-        } else if (mode === "smooth") {
-          // Easing function: cubic ease in-out
-          const easeInOutCubic = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-          
-          let accumulatedDistance = 0;
-          for (let i = 1; i <= totalScrolls; i++) {
-            const t = i / totalScrolls;
-            const currentTotalDistance = Math.round(easeInOutCubic(t) * totalDistance);
-            const dy = currentTotalDistance - accumulatedDistance;
-            accumulatedDistance = currentTotalDistance;
-            
-            await page.mouse.wheel(0, dy);
-            // Wait ~16ms (1 frame at 60fps) to make the scrolling smooth and continuous
-            await page.waitForTimeout(16);
-          }
+      } else if (mode === "smooth") {
+        // Easing function: cubic ease in-out
+        const easeInOutCubic = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+        let accumulatedDistance = 0;
+        for (let i = 1; i <= totalScrolls; i++) {
+          const t = i / totalScrolls;
+          const currentTotalDistance = Math.round(easeInOutCubic(t) * totalDistance);
+          const dy = currentTotalDistance - accumulatedDistance;
+          accumulatedDistance = currentTotalDistance;
+
+          await page.mouse.wheel(0, dy);
+          // Wait ~16ms (1 frame at 60fps) to make the scrolling smooth and continuous
+          await page.waitForTimeout(16);
         }
       } else {
-        await page.mouse.wheel(0, parseInt(distance));
+        await page.mouse.wheel(0, totalDistance);
       }
-      await page.waitForTimeout(1000);
       break;
     }
 
@@ -386,7 +439,7 @@ async function executeStepWithRetry(page, stepIndex, step, flow, zoomRegions, cu
 // Produces the exact format consumed by projectPersistence.normalizeProjectEditor()
 // The raw .webm is the source; OpenScreen applies background, padding, zoom easing on export.
 // ────────────────────────────────────────────────
-function generateOpenScreenProject(videoPath, zoomRegions, flow) {
+function generateOpenScreenProject(videoPath, zoomRegions, flow, firstActionTimeMs) {
   return {
     // v2 schema expected by projectPersistence.ts
     version: 2,
@@ -413,7 +466,7 @@ function generateOpenScreenProject(videoPath, zoomRegions, flow) {
       autoFocusAll: false,
 
       // Empty regions
-      trimRegions: [],
+      trimRegions: firstActionTimeMs > 0 ? [{ id: "trim-flash", startMs: 0, endMs: firstActionTimeMs }] : [],
       speedRegions: [],
       annotationRegions: [],
 
@@ -447,13 +500,14 @@ function generateOpenScreenProject(videoPath, zoomRegions, flow) {
 //   - Start 500ms before the click (approach / pre-zoom)
 //   - Hold for ~3000ms after (long enough to see the result)
 //   = total ~3500ms window, centered on the click
-function makeZoomRegion(clickTimeMs, focusCx, focusCy, durationMs = 1000) {
+function makeZoomRegion(clickTimeMs, focusCx, focusCy, durationMs = 1000, scale = 1.8) {
+  const roundedScale = Math.round(scale * 100) / 100;
   return {
     id: `zoom-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
     startMs: clickTimeMs,
     endMs: clickTimeMs + durationMs,
-    depth: 3,          // OpenScreen depth 3 = 1.8x scale (ZOOM_DEPTH_SCALES)
-    customScale: 1.8,  // explicit override matches depth:3 exactly
+    depth: roundedScale >= 1.7 ? 3 : roundedScale >= 1.4 ? 2 : 1,
+    customScale: roundedScale,
     focus: {
       cx: Math.max(0.05, Math.min(0.95, focusCx)),
       cy: Math.max(0.05, Math.min(0.95, focusCy)),
@@ -474,7 +528,7 @@ async function runFlow(flow) {
   } else {
     for (const file of readdirSync(recordingsDir)) {
       if (file.endsWith(".webm") || file.endsWith(".json") || file.endsWith(".mp4") || file.endsWith(".openscreen") || file.endsWith(".gif")) {
-        try { rmSync(join(recordingsDir, file), { recursive: true, force: true }); } catch {}
+        try { rmSync(join(recordingsDir, file), { recursive: true, force: true }); } catch { }
       }
     }
   }
@@ -496,7 +550,7 @@ async function runFlow(flow) {
       "--disable-setuid-sandbox",
       "--disable-dev-shm-usage",
       "--disable-gpu",
-      "--max-gum-fps=60", // hint Chromium to capture at up to 60fps
+      "--max-gum-fps=80", // hint Chromium to capture at up to 80fps
     ],
   });
 
@@ -566,7 +620,7 @@ async function runFlow(flow) {
     window.updateVisibleCursor = (x, y) => {
       window.__lastCursorX = x;
       window.__lastCursorY = y;
-      try { localStorage.setItem('__cursorX', x); localStorage.setItem('__cursorY', y); } catch(e){}
+      try { localStorage.setItem('__cursorX', x); localStorage.setItem('__cursorY', y); } catch (e) { }
       if (window.__visibleCursor) {
         window.__visibleCursor.style.transform = `translate(${x}px, ${y}px)`;
       }
@@ -594,6 +648,7 @@ async function runFlow(flow) {
   const zoomRegions = [];
   const speedupSegments = [];
   let failedStep = -1;
+  let firstActionTimeMs = 0;
 
   page._lastMousePos = await page.evaluate(() => {
     return { x: window.__lastCursorX || (window.innerWidth / 2), y: window.__lastCursorY || 80 };
@@ -610,12 +665,16 @@ async function runFlow(flow) {
     const waitStartMs = isWait ? currentTimeMs() : 0;
 
     const ok = await executeStepWithRetry(page, i, step, flow, zoomRegions, currentTimeMs);
-    
+
     if (isWait && ok) {
       const waitEndMs = currentTimeMs();
       if (waitEndMs - waitStartMs > 500) {
         speedupSegments.push({ startMs: waitStartMs, endMs: waitEndMs });
       }
+    }
+
+    if (step.action === "goto" && i === 0 && ok) {
+      firstActionTimeMs = currentTimeMs();
     }
 
     if (!ok) {
@@ -644,24 +703,24 @@ async function runFlow(flow) {
   if (flow.recording?.timeLapseWaitSegments && speedupSegments.length > 0 && finalVideoPath) {
     log(`\n⏩ Post-processing video to speed up ${speedupSegments.length} wait segment(s)...`);
     const { execSync } = await import("node:child_process");
-    
+
     let filter = "";
     let concatParts = "";
     let lastTimeSec = 0;
     let partIdx = 0;
     const speedFactor = flow.recording?.timeLapseSpeedFactor || 4.0;
-    
-    
+
+
     for (const seg of speedupSegments) {
       const segStart = (seg.startMs / 1000).toFixed(3);
       const segEnd = (seg.endMs / 1000).toFixed(3);
-      
+
       if (parseFloat(segStart) > lastTimeSec) {
         filter += `[0:v]trim=start=${lastTimeSec}:end=${segStart},setpts=PTS-STARTPTS[v${partIdx}]; `;
         concatParts += `[v${partIdx}]`;
         partIdx++;
       }
-      filter += `[0:v]trim=start=${segStart}:end=${segEnd},setpts=${(1/speedFactor).toFixed(3)}*(PTS-STARTPTS)[v${partIdx}]; `;
+      filter += `[0:v]trim=start=${segStart}:end=${segEnd},setpts=${(1 / speedFactor).toFixed(3)}*(PTS-STARTPTS)[v${partIdx}]; `;
       concatParts += `[v${partIdx}]`;
       partIdx++;
       lastTimeSec = parseFloat(segEnd);
@@ -672,7 +731,7 @@ async function runFlow(flow) {
     filter += `${concatParts}concat=n=${partIdx}:v=1:a=0[out]`;
 
     const compressedVideoPath = finalVideoPath.replace(".webm", "-spedup.webm");
-    
+
     try {
       execSync(`ffmpeg -y -i "${finalVideoPath}" -filter_complex "${filter}" -map "[out]" -c:v libvpx -crf 10 -b:v 2M "${compressedVideoPath}"`, { stdio: 'ignore' });
       // Adjust zoom regions timestamps
@@ -703,7 +762,7 @@ async function runFlow(flow) {
   // Write OpenScreen project file alongside the video
   let projectPath;
   if (finalVideoPath) {
-    const project = generateOpenScreenProject(finalVideoPath, zoomRegions, flow);
+    const project = generateOpenScreenProject(finalVideoPath, zoomRegions, flow, firstActionTimeMs);
     const projectFile = finalVideoPath.replace(/\.webm$/, ".openscreen");
     writeFileSync(projectFile, JSON.stringify(project, null, 2), "utf8");
     projectPath = projectFile;
@@ -775,7 +834,17 @@ async function main() {
   // The result marker file the main process writes on export-done
   const resultMarkerPath = resolve(__dirname, "recordings", ".headless-export-result.json");
   // Remove any stale marker from a previous run
-  try { const { unlinkSync } = await import("node:fs"); unlinkSync(resultMarkerPath); } catch {}
+  try { const { unlinkSync } = await import("node:fs"); unlinkSync(resultMarkerPath); } catch { }
+
+  const childEnv = {
+    ...process.env,
+    HEADLESS: "true",
+    HEADLESS_EXPORT_PROJECT: result.projectPath,
+    HEADLESS_EXPORT_OUT: outputPath,
+    // Suppress GPU errors in headless mode
+    ELECTRON_DISABLE_SECURITY_WARNINGS: "true",
+  };
+  delete childEnv.ELECTRON_RUN_AS_NODE;
 
   const electronProc = spawn(
     electronExe,
@@ -783,34 +852,51 @@ async function main() {
     {
       cwd: __dirname,
       shell: process.platform === "win32",
-      env: {
-        ...process.env,
-        HEADLESS: "true",
-        HEADLESS_EXPORT_PROJECT: result.projectPath,
-        HEADLESS_EXPORT_OUT: outputPath,
-        // Suppress GPU errors in headless mode
-        ELECTRON_DISABLE_SECURITY_WARNINGS: "true",
-      },
+      env: childEnv,
       stdio: ["ignore", "pipe", "pipe"],
     }
   );
 
-  // Wait for OpenScreen to finish (max 3 minutes — enough for typical demos)
-  const TIMEOUT_MS = 3 * 60 * 1000;
+  // Wait for OpenScreen to finish (max 8 minutes — enough for rich interactive demos)
+  const TIMEOUT_MS = 8 * 60 * 1000;
   await new Promise((resolve, reject) => {
     const timer = setTimeout(() => {
       electronProc.kill();
-      reject(new Error("OpenScreen render timed out after 3 minutes"));
+      reject(new Error("OpenScreen render timed out after 8 minutes"));
     }, TIMEOUT_MS);
 
-    // Because OpenScreen now transitions to UI mode instead of quitting, we resolve
-    // when we see the success marker rather than waiting for process exit.
+    let lastWasRenderProgress = false;
     electronProc.stdout.on("data", (d) => {
-      const line = d.toString().trim();
-      if (line) log(`   ${line}`);
-      if (line.includes("✅ Export complete")) {
-        clearTimeout(timer);
-        resolve();
+      const lines = d.toString().split("\n");
+      for (const rawLine of lines) {
+        const line = rawLine.trim();
+        if (!line) continue;
+
+        if (line.includes("Rendering...")) {
+          if (process.stdout.clearLine && process.stdout.cursorTo) {
+            process.stdout.clearLine(0);
+            process.stdout.cursorTo(0);
+            process.stdout.write(`   ${line}`);
+          } else {
+            process.stdout.write(`\r   ${line}      `);
+          }
+          lastWasRenderProgress = true;
+        } else {
+          if (lastWasRenderProgress) {
+            process.stdout.write("\n");
+            lastWasRenderProgress = false;
+          }
+          log(`   ${line}`);
+        }
+        
+        if (line.includes("✅ Export complete")) {
+          if (lastWasRenderProgress) {
+            process.stdout.write("\n");
+            lastWasRenderProgress = false;
+          }
+          clearTimeout(timer);
+          resolve();
+        }
       }
     });
 
@@ -834,7 +920,7 @@ async function main() {
     const { readFileSync } = await import("node:fs");
     const marker = JSON.parse(readFileSync(resultMarkerPath, "utf8"));
     if (marker.success) exportedPath = marker.outputPath;
-  } catch {}
+  } catch { }
 
   if (exportedPath && existsSync(exportedPath)) {
     const sizeMb = (statSync(exportedPath).size / 1024 / 1024).toFixed(1);
@@ -848,11 +934,18 @@ async function main() {
     log(`   (Open the project in OpenScreen to apply visual treatment manually)`);
   }
 
-  log(`\n🛎️ OpenScreen is waiting for your next move!`);
-  log(`   (A mini window has popped up in the bottom right corner of your screen)`);
-  
-  // We do NOT call process.exit(0) here because we want to leave the Node script alive
-  // to keep the Electron child process alive (which is now hosting the tray/editor).
+  if (!process.stdout.isTTY || process.env.CI) {
+    log(`\n🛎️ OpenScreen video is fully baked!`);
+    log(`   (Non-interactive environment detected. Suppressing hidden UI Toast and exiting cleanly.)`);
+    electronProc.kill();
+    process.exit(0);
+  } else {
+    log(`\n🛎️ OpenScreen is waiting for your next move!`);
+    log(`   (A mini window has popped up in the bottom right corner of your screen)`);
+
+    // We do NOT call process.exit(0) here because we want to leave the Node script alive
+    // to keep the Electron child process alive (which is now hosting the tray/editor).
+  }
 }
 
 main();

@@ -500,7 +500,7 @@ ipcMain.once("headless-export-done", (_, result: { outputPath?: string; error?: 
 				frame: false,
 				transparent: true,
 				alwaysOnTop: true,
-				skipTaskbar: true,
+				skipTaskbar: false, // Don't skip taskbar so user can find it if it gets hidden
 				resizable: false,
 				webPreferences: {
 					nodeIntegration: true,
@@ -561,6 +561,14 @@ ipcMain.once("headless-export-done", (_, result: { outputPath?: string; error?: 
 </html>`;
 
 			toastWin.loadURL(`data:text/html;charset=utf-8,${encodeURIComponent(html)}`);
+			toastWin.show();
+
+			// Fallback: auto-close the toast after 2 minutes so it doesn't linger forever
+			setTimeout(() => {
+				if (!toastWin.isDestroyed()) {
+					toastWin.close();
+				}
+			}, 120000);
 
 			ipcMain.on('toast-action', async (_event, action) => {
 				const finalPath = result.outputPath;
