@@ -12,10 +12,13 @@ const VERTEX_SHADER = `#version 300 es
 in vec2 aPos;
 in vec2 aUV;
 out vec2 vUV;
+out vec2 vScreenPos;
 uniform mat4 uMvp;
 uniform vec2 uSize;
+
 void main() {
 	vUV = aUV;
+	vScreenPos = aPos;
 	vec2 px = (aPos - 0.5) * uSize;
 	vec4 clip = uMvp * vec4(px, 0.0, 1.0);
 	clip.y = -clip.y;
@@ -26,10 +29,119 @@ void main() {
 const FRAGMENT_SHADER = `#version 300 es
 precision highp float;
 in vec2 vUV;
+in vec2 vScreenPos;
 out vec4 fragColor;
+
 uniform sampler2D uTex;
+uniform vec2 uSize;
+uniform int uDeviceFrame; // 0: none, 1: glass, 2: macbook, 3: browser, 4: phone
+uniform float uGlareIntensity;
+uniform vec3 uRotAngles;
+
 void main() {
-	fragColor = texture(uTex, vUV);
+	vec2 uv = vUV;
+	vec4 videoColor = texture(uTex, uv);
+
+	// Specular Glare sweep calculation based on 3D rotation
+	float glareProgress = clamp((uv.x + uv.y) * 0.5 + (uRotAngles.y * 0.015) - (uRotAngles.x * 0.015), 0.0, 1.0);
+	float glareWidth = 0.28;
+	float glareDist = abs(glareProgress - 0.5);
+	float glareFactor = smoothstep(glareWidth, 0.0, glareDist) * uGlareIntensity * 0.45;
+	vec3 glareColor = vec3(1.0, 1.0, 1.0) * glareFactor;
+
+	if (uDeviceFrame == 1) {
+		// Glass Card Frame: Glass border edge & vignette
+		float edgeDistX = min(uv.x, 1.0 - uv.x);
+		float edgeDistY = min(uv.y, 1.0 - uv.y);
+		float edge = min(edgeDistX, edgeDistY);
+		
+		float vignette = smoothstep(0.0, 0.08, edge);
+		videoColor.rgb *= mix(0.88, 1.0, vignette);
+
+		if (edge < 0.012) {
+			float borderAlpha = smoothstep(0.012, 0.002, edge);
+			vec3 borderColor = mix(vec3(1.0), vec3(0.5, 0.7, 1.0), uv.y);
+			videoColor.rgb = mix(videoColor.rgb, borderColor, borderAlpha * 0.6);
+		}
+		videoColor.rgb += glareColor;
+
+	} else if (uDeviceFrame == 2) {
+		// MacBook Pro Mockup Frame
+		float bezelX = 0.035;
+		float bezelY = 0.055;
+		
+		if (uv.x < bezelX || uv.x > (1.0 - bezelX) || uv.y < bezelY || uv.y > (1.0 - bezelY)) {
+			videoColor = vec4(0.07, 0.08, 0.09, 1.0);
+			vec2 notchCenter = vec2(0.5, bezelY * 0.5);
+			vec2 notchDist = abs(uv - notchCenter);
+			if (notchDist.x < 0.04 && notchDist.y < bezelY * 0.4) {
+				videoColor = vec4(0.02, 0.02, 0.02, 1.0);
+				if (length(uv - notchCenter) < 0.005) {
+					videoColor = vec4(0.1, 0.2, 0.4, 1.0);
+				}
+			}
+		} else {
+			vec2 innerUV = vec2(
+				(uv.x - bezelX) / (1.0 - 2.0 * bezelX),
+				(uv.y - bezelY) / (1.0 - 2.0 * bezelY)
+			);
+			videoColor = texture(uTex, innerUV);
+			videoColor.rgb += glareColor * 0.7;
+		}
+
+	} else if (uDeviceFrame == 3) {
+		// Browser Window Frame (Safari / Arc style)
+		float headerHeight = 0.07;
+		if (uv.y < headerHeight) {
+			videoColor = vec4(0.15, 0.16, 0.18, 1.0);
+			
+			vec2 redDot = vec2(0.03, headerHeight * 0.5);
+			vec2 yellowDot = vec2(0.05, headerHeight * 0.5);
+			vec2 greenDot = vec2(0.07, headerHeight * 0.5);
+
+			float r = 0.008;
+			vec2 aspectUV = (uv - redDot) * vec2(1.0, uSize.y / uSize.x);
+			if (length(aspectUV) < r) {
+				videoColor = vec4(1.0, 0.38, 0.34, 1.0);
+			} else if (length((uv - yellowDot) * vec2(1.0, uSize.y / uSize.x)) < r) {
+				videoColor = vec4(1.0, 0.76, 0.18, 1.0);
+			} else if (length((uv - greenDot) * vec2(1.0, uSize.y / uSize.x)) < r) {
+				videoColor = vec4(0.16, 0.79, 0.28, 1.0);
+			} else {
+				vec2 addrCenter = vec2(0.5, headerHeight * 0.5);
+				vec2 addrDist = abs(uv - addrCenter);
+				if (addrDist.x < 0.25 && addrDist.y < headerHeight * 0.28) {
+					videoColor = vec4(0.22, 0.24, 0.27, 1.0);
+				}
+			}
+		} else {
+			vec2 contentUV = vec2(uv.x, (uv.y - headerHeight) / (1.0 - headerHeight));
+			videoColor = texture(uTex, contentUV);
+			videoColor.rgb += glareColor * 0.5;
+		}
+
+	} else if (uDeviceFrame == 4) {
+		// Phone Mockup Frame
+		float bezel = 0.04;
+		if (uv.x < bezel || uv.x > (1.0 - bezel) || uv.y < bezel || uv.y > (1.0 - bezel)) {
+			videoColor = vec4(0.05, 0.05, 0.06, 1.0);
+		} else {
+			vec2 phoneUV = vec2((uv.x - bezel)/(1.0 - 2.0*bezel), (uv.y - bezel)/(1.0 - 2.0*bezel));
+			videoColor = texture(uTex, phoneUV);
+			
+			vec2 islandCenter = vec2(0.5, bezel + 0.025);
+			vec2 islandDist = abs(uv - islandCenter);
+			if (islandDist.x < 0.06 && islandDist.y < 0.012) {
+				videoColor = vec4(0.0, 0.0, 0.0, 1.0);
+			} else {
+				videoColor.rgb += glareColor;
+			}
+		}
+	} else {
+		videoColor.rgb += glareColor * 0.4;
+	}
+
+	fragColor = videoColor;
 }
 `;
 
@@ -172,6 +284,9 @@ export function createThreeDPass(width: number, height: number): ThreeDPass {
 	const uMvp = gl.getUniformLocation(program, "uMvp");
 	const uSize = gl.getUniformLocation(program, "uSize");
 	const uTex = gl.getUniformLocation(program, "uTex");
+	const uDeviceFrame = gl.getUniformLocation(program, "uDeviceFrame");
+	const uGlareIntensity = gl.getUniformLocation(program, "uGlareIntensity");
+	const uRotAngles = gl.getUniformLocation(program, "uRotAngles");
 
 	const vao = gl.createVertexArray();
 	gl.bindVertexArray(vao);
@@ -242,6 +357,14 @@ export function createThreeDPass(width: number, height: number): ThreeDPass {
 
 	let currentSize = { width, height };
 
+	const frameMap: Record<string, number> = {
+		none: 0,
+		glass: 1,
+		macbook: 2,
+		browser: 3,
+		phone: 4,
+	};
+
 	const apply = (
 		srcCanvas: HTMLCanvasElement | OffscreenCanvas,
 		rot: Rotation3D,
@@ -255,10 +378,6 @@ export function createThreeDPass(width: number, height: number): ThreeDPass {
 		gl.activeTexture(gl.TEXTURE0);
 		gl.bindTexture(gl.TEXTURE_2D, texture);
 		gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
-		// Premultiply on upload. The source 2D canvas is non-premultiplied (alpha=0 areas
-		// have RGB=0), so bilinear filtering across a shape edge in that space gives
-		// half-strength color, showing as a dark halo on rounded corners and grimy shadows.
-		// Premultiplying makes the filter math match compositing, so edges stay crisp.
 		gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true);
 		gl.texImage2D(
 			gl.TEXTURE_2D,
@@ -278,6 +397,11 @@ export function createThreeDPass(width: number, height: number): ThreeDPass {
 			: buildMvpMatrix(rot, currentSize.width, currentSize.height);
 		gl.uniformMatrix4fv(uMvp, false, mvp);
 		gl.uniform2f(uSize, currentSize.width, currentSize.height);
+
+		const frameStyleCode = frameMap[rot.deviceFrame ?? "none"] ?? 0;
+		gl.uniform1i(uDeviceFrame, frameStyleCode);
+		gl.uniform1f(uGlareIntensity, rot.glareIntensity ?? 0.3);
+		gl.uniform3f(uRotAngles, rot.rotationX, rot.rotationY, rot.rotationZ);
 
 		gl.drawArrays(gl.TRIANGLES, 0, 6);
 		return canvas;

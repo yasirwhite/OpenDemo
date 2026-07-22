@@ -31,27 +31,34 @@ export interface ZoomFocus {
 	cy: number; // normalized vertical center (0-1)
 }
 
+export type DeviceFrameStyle = "none" | "glass" | "macbook" | "browser" | "phone";
+
 export interface Rotation3D {
 	rotationX: number;
 	rotationY: number;
 	rotationZ: number;
+	deviceFrame?: DeviceFrameStyle;
+	glareIntensity?: number;
 }
 
 export const DEFAULT_ROTATION_3D: Rotation3D = {
 	rotationX: 0,
 	rotationY: 0,
 	rotationZ: 0,
+	deviceFrame: "none",
+	glareIntensity: 0.3,
 };
 
-export type Rotation3DPreset = "iso" | "left" | "right";
+export type Rotation3DPreset = "iso" | "left" | "right" | "dramatic";
 
 export const ROTATION_3D_PRESETS: Record<Rotation3DPreset, Rotation3D> = {
-	iso: { rotationX: -10, rotationY: -16, rotationZ: 0 },
-	left: { rotationX: 0, rotationY: -22, rotationZ: 0 },
-	right: { rotationX: 0, rotationY: 22, rotationZ: 0 },
+	iso: { rotationX: -10, rotationY: -16, rotationZ: 0, deviceFrame: "glass", glareIntensity: 0.4 },
+	left: { rotationX: 0, rotationY: -22, rotationZ: 0, deviceFrame: "browser", glareIntensity: 0.35 },
+	right: { rotationX: 0, rotationY: 22, rotationZ: 0, deviceFrame: "browser", glareIntensity: 0.35 },
+	dramatic: { rotationX: -14, rotationY: -28, rotationZ: 4, deviceFrame: "macbook", glareIntensity: 0.5 },
 };
 
-export const ROTATION_3D_PRESET_ORDER: Rotation3DPreset[] = ["iso", "left", "right"];
+export const ROTATION_3D_PRESET_ORDER: Rotation3DPreset[] = ["iso", "left", "right", "dramatic"];
 
 /** Perspective distance in CSS px is this factor times min(viewport w, h). Same
  * factor in preview and export so the look matches at any canvas resolution. */

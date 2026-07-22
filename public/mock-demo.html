@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kite Analytics - 3D Mockup Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0a0c10;
+      --card-bg: rgba(22, 27, 34, 0.75);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --accent-purple: #8b5cf6;
+      --accent-blue: #3b82f6;
+      --accent-cyan: #06b6d4;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Ambient Background Glow */
+    .glow-blob {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.25;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .blob-1 { top: -100px; left: -100px; background: var(--accent-purple); }
+    .blob-2 { bottom: -100px; right: -100px; background: var(--accent-cyan); }
+
+    /* Header Nav */
+    header {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 2.5rem;
+      border-bottom: 1px solid var(--card-border);
+      backdrop-filter: blur(16px);
+      background: rgba(10, 12, 16, 0.6);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      background: linear-gradient(135deg, #a78bfa, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-icon {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a.active, nav a:hover {
+      color: var(--text-main);
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      cursor: pointer;
+    }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ec4899, #8b5cf6);
+    }
+
+    /* Dashboard Grid */
+    main {
+      position: relative;
+      z-index: 10;
+      flex: 1;
+      padding: 2.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .hero-title h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .cta-btn {
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(139, 92, 246, 0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(139, 92, 246, 0.5);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      backdrop-filter: blur(12px);
+      transition: border-color 0.3s;
+    }
+
+    .stat-card:hover {
+      border-color: rgba(139, 92, 246, 0.4);
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-value {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-trend {
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .trend-up { color: #10b981; }
+    .trend-down { color: #f43f5e; }
+
+    /* Chart Section */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .chart-card, .activity-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .chart-box {
+      height: 260px;
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+      gap: 1rem;
+      padding-top: 1rem;
+    }
+
+    .bar-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      height: 100%;
+      justify-content: flex-end;
+    }
+
+    .bar {
+      width: 100%;
+      border-radius: 6px 6px 0 0;
+      background: linear-gradient(180deg, var(--accent-purple), rgba(59, 130, 246, 0.4));
+      transition: height 1s ease-out;
+    }
+
+    .bar-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .activity-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .activity-item:last-child {
+      border-bottom: none;
+    }
+
+    .act-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(139, 92, 246, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-purple);
+      font-weight: bold;
+    }
+
+    .act-info h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .act-info p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow-blob blob-1"></div>
+  <div class="glow-blob blob-2"></div>
+
+  <header>
+    <div class="brand">
+      <div class="brand-icon">K</div>
+      <span>Kite Studio</span>
+    </div>
+    <nav>
+      <a href="#" class="active">Overview</a>
+      <a href="#">Analytics</a>
+      <a href="#">3D Renders</a>
+      <a href="#">Settings</a>
+    </nav>
+    <div class="user-profile">
+      <div class="avatar"></div>
+      <span style="font-size: 0.9rem; font-weight: 500;">Yasir</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero-banner">
+      <div class="hero-title">
+        <h1>Product Demo Dashboard</h1>
+        <p>Interactive 3D viewport & dynamic scene rendering preview</p>
+      </div>
+      <button class="cta-btn" onclick="triggerAnimate()">Export 3D Video</button>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Render Time</div>
+        <div class="stat-value">12.4s</div>
+        <div class="stat-trend trend-up">↑ 42% faster (GPU accelerated)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">3D Tilt Angle</div>
+        <div class="stat-value">22.5°</div>
+        <div class="stat-trend trend-up">Isometric Glare Active</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Device Frame</div>
+        <div class="stat-value">MacBook Pro</div>
+        <div class="stat-trend trend-up">PBR Glass Reflection</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">FPS Smoothness</div>
+        <div class="stat-value">60 FPS</div>
+        <div class="stat-trend trend-up">WebGL 2.0 Shader</div>
+      </div>
+    </div>
+
+    <div class="content-grid">
+      <div class="chart-card">
+        <div class="card-header">
+          <div class="card-title">Performance Metrics</div>
+          <span style="font-size: 0.85rem; color: var(--text-muted);">Real-time frame telemetry</span>
+        </div>
+        <div class="chart-box">
+          <div class="bar-col"><div class="bar" style="height: 65%;"></div><span class="bar-label">Mon</span></div>
+          <div class="bar-col"><div class="bar" style="height: 80%;"></div><span class="bar-label">Tue</span></div>
+          <div class="bar-col"><div class="bar" style="height: 45%;"></div><span class="bar-label">Wed</span></div>
+          <div class="bar-col"><div class="bar" style="height: 95%;"></div><span class="bar-label">Thu</span></div>
+          <div class="bar-col"><div class="bar" style="height: 75%;"></div><span class="bar-label">Fri</span></div>
+          <div class="bar-col"><div class="bar" style="height: 90%;"></div><span class="bar-label">Sat</span></div>
+          <div class="bar-col"><div class="bar" style="height: 85%;"></div><span class="bar-label">Sun</span></div>
+        </div>
+      </div>
+
+      <div class="activity-card">
+        <div class="card-header">
+          <div class="card-title">Recent 3D Scenes</div>
+        </div>
+        <div class="activity-item">
+          <div class="act-icon">3D</div>
+          <div class="act-info">
+            <h4>Glass Card Isometric</h4>
+            <p>2 mins ago • 4K Render</p>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="act-icon">💻</div>
+          <div class="act-info">
+            <h4>MacBook Pro Tilt</h4>
+            <p>15 mins ago • 60 FPS</p>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="act-icon">🌐</div>
+          <div class="act-info">
+            <h4>Browser Arc Frame</h4>
+            <p>1 hour ago • Specular Glare</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function triggerAnimate() {
+      const bars = document.querySelectorAll('.bar');
+      bars.forEach(bar => {
+        const currentH = parseInt(bar.style.height);
+        const newH = Math.floor(Math.random() * 50) + 45;
+        bar.style.height = newH + '%';
+      });
+    }
+  </script>
+</body>
+</html>

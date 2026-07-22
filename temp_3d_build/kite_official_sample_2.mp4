@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <title>Kite – Screen recorder for stunning demo videos</title>
+    <meta
+      name="description"
+      content="Create professional app demo videos in minutes. Auto cursor follow, zooms, text scenes, 3D mockups, AI voiceover, music, and more."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://kite.video" />
+    <meta
+      property="og:title"
+      content="Kite – Screen recorder for stunning demo videos"
+    />
+    <meta
+      property="og:description"
+      content="Create professional app demo videos in minutes. Auto cursor follow, zooms, text scenes, 3D mockups, AI voiceover, music, and more."
+    />
+    <meta property="og:image" content="/opengraph.jpg" />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:domain" content="kite.io" />
+    <meta name="twitter:url" content="https://kite.video" />
+    <meta
+      name="twitter:title"
+      content="Kite – Screen recorder for stunning demo videos"
+    />
+    <meta
+      name="twitter:description"
+      content="Create professional app demo videos in minutes. Auto cursor follow, zooms, text scenes, 3D mockups, AI voiceover, music, and more."
+    />
+    <meta name="twitter:image" content="https://kite.video/opengraph.jpg" />
+    <!-- <link rel="apple-touch-icon" href="/logo192.png" /> -->
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="/manifest.json" />
+    <!--
+      Notice the use of  in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <script src="/blur.js"></script>
+    <!-- iubenda Privacy Controls and Cookie Solution -->
+    <script type="text/javascript">
+      // Google Consent Mode v2 defaults — must be set synchronously before
+      // gtag.js loads; iubenda updates these on consent via googleConsentMode
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("consent", "default", {
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+        analytics_storage: "denied",
+        // iubenda_cs loads on window load, so give early gtag hits time to
+        // wait for the consent update instead of firing as denied
+        wait_for_update: 8000,
+      });
+
+      var _iub = _iub || [];
+      _iub.csConfiguration = {
+        siteId: 3846428,
+        cookiePolicyId: 24275151,
+        cookiePolicyUrl: "https://kite.video/cookies",
+        storage: { useSiteId: true },
+        lang: "en",
+        countryDetection: true,
+        // We run no on-site programmatic ads, so the IAB TCF is unnecessary;
+        // it also injects the "1188 third parties" disclosure into the banner.
+        // Explicitly off here in case the dashboard-side setting re-enables it.
+        enableTcf: false,
+        perPurposeConsent: true,
+        consentOnContinuedBrowsing: false,
+        // NOTE: do not set googleConsentMode: "template" here — it disables
+        // the autoblocking engine (see the init gate in
+        // cs.iubenda.com/autoblocking/3846428.js). That engine pushes its own
+        // Google Consent Mode update, but its purpose mapping is unreliable
+        // (observed granting/denying the wrong flags), so the callback below
+        // pushes an explicit update afterwards — last update wins per flag.
+        callback: {
+          // iubenda purposes: 3 = experience, 4 = measurement, 5 = advertising
+          onPreferenceExpressedOrNotNeeded: function (preference) {
+            var granted = function (g) {
+              return g ? "granted" : "denied";
+            };
+            var purposes = preference && preference.purposes;
+            var measurement, marketing;
+            if (purposes) {
+              // GDPR-style per-purpose consent
+              measurement = preference.consent === true || !!purposes[4];
+              marketing = preference.consent === true || !!purposes[5];
+            } else {
+              // Consent not required (or US opt-out framework): granted
+              // unless the visitor opted out
+              var optedOut = false;
+              try {
+                optedOut = window._iub.cs.api.isCcpaOptedOut();
+              } catch (e) {}
+              measurement = !optedOut;
+              marketing = !optedOut;
+            }
+            gtag("consent", "update", {
+              analytics_storage: granted(measurement),
+              ad_storage: granted(marketing),
+              ad_user_data: granted(marketing),
+              ad_personalization: granted(marketing),
+            });
+          },
+        },
+        banner: {
+          position: "float-bottom-center",
+          acceptButtonDisplay: true,
+          rejectButtonDisplay: true,
+          customizeButtonDisplay: true,
+          acceptButtonColor: "#FFFFFF",
+          acceptButtonCaptionColor: "#000000",
+          rejectButtonColor: "#1F1F1F",
+          rejectButtonCaptionColor: "#FFFFFF",
+          customizeButtonColor: "#1F1F1F",
+          customizeButtonCaptionColor: "#FFFFFF",
+          textColor: "white",
+          backgroundColor: "#010101",
+        },
+      };
+    </script>
+    <script
+      type="text/javascript"
+      src="https://cs.iubenda.com/autoblocking/3846428.js"
+    ></script>
+    <script type="text/javascript" src="//cdn.iubenda.com/cs/gpp/stub.js"></script>
+    <script type="text/javascript">
+      // Load the banner UI only after the app has rendered, so it doesn't
+      // flash on the empty page before React mounts. Tracker blocking is
+      // unaffected: the autoblocking script above runs synchronously and
+      // keeps trackers gated until consent is given.
+      window.addEventListener("load", function () {
+        var s = document.createElement("script");
+        s.src = "https://cdn.iubenda.com/cs/iubenda_cs.js";
+        s.charset = "UTF-8";
+        s.async = true;
+        document.head.appendChild(s);
+      });
+    </script>
+    <style>
+      /* Match iubenda banner buttons to the site's pill buttons (Inter 600,
+         100px radius). Colors come from _iub.csConfiguration.banner; iubenda
+         applies them inline, so only shape/typography live here. */
+      /* iubenda injects its own stylesheet at runtime with !important rules
+         up to (1,2,0) specificity — the body prefix + extra class keep these
+         at (1,2,1) so they win regardless of injection order. */
+      body #iubenda-cs-banner .iubenda-cs-opt-group .iubenda-cs-accept-btn,
+      body #iubenda-cs-banner .iubenda-cs-opt-group .iubenda-cs-reject-btn,
+      body #iubenda-cs-banner .iubenda-cs-opt-group .iubenda-cs-customize-btn {
+        border-radius: 100px !important;
+        font-family: "Inter", sans-serif !important;
+        font-weight: 600 !important;
+        font-size: 14px !important;
+        padding: 10px 20px !important;
+      }
+    </style>
+    <!-- End iubenda Privacy Controls and Cookie Solution -->
+    <!-- Twitter conversion tracking base code -->
+    <!-- Stub queues events; remote loader below is consent-gated via iubenda
+         manual tagging -->
+    <script>
+      !(function (e, s) {
+        e.twq ||
+          ((s = e.twq =
+            function () {
+              s.exe ? s.exe.apply(s, arguments) : s.queue.push(arguments);
+            }),
+          (s.version = "1.1"),
+          (s.queue = []));
+      })(window);
+      window.X_ADS_PIXEL_ID = window.X_ADS_PIXEL_ID || "qpz0j";
+      twq("config", window.X_ADS_PIXEL_ID);
+    </script>
+    <script type="text/plain" class="_iub_cs_activate" data-iub-purposes="5">
+      (function (t) {
+        var u = t.createElement("script");
+        u.async = true;
+        // ads-twitter.com is also in the iubenda autoblocking blocklist, and
+        // its US-framework check wrongly re-blocks it after activation.
+        // data-cmp-ab="2" marks it as already consent-approved so the
+        // autoblocker skips it — safe because this script only runs once
+        // iubenda has activated it (consent given or not required). Must be
+        // set BEFORE src: the autoblocker wraps the src setter.
+        u.setAttribute("data-cmp-ab", "2");
+        u.src = "https://static.ads-twitter.com/uwt.js";
+        var a = t.getElementsByTagName("script")[0];
+        a.parentNode.insertBefore(u, a);
+      })(document);
+    </script>
+    <!-- End Twitter conversion tracking base code -->
+    <!-- Reddit Pixel -->
+    <!-- The stub queues events; the remote loader below is consent-gated via
+         iubenda manual tagging (activated on consent, or immediately where
+         consent isn't required) -->
+    <script>
+      !function(w){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[]}}(window);rdt('init','a2_j1ajqrb3b9if');rdt('track', 'PageVisit');
+    </script>
+    <script type="text/plain" class="_iub_cs_activate" data-iub-purposes="5">
+      (function(d){var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js?pixel_id=a2_j1ajqrb3b9if";t.async=true;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s);})(document);
+    </script>
+    <!-- DO NOT MODIFY UNLESS TO REPLACE A USER IDENTIFIER -->
+    <!-- TODO: Consider adding Reddit advanced matching later to improve ad performance once privacy and consent requirements are confirmed. -->
+    <!-- End Reddit Pixel -->
+    <!-- OpenAI Ads Measurement Pixel -->
+    <!-- Stub queues events; remote loader below is consent-gated via iubenda
+         manual tagging -->
+    <script>
+      (function (w) {
+        if (w.oaiq) return;
+        var q = function () {
+          q.q.push(arguments);
+        };
+        q.q = [];
+        w.oaiq = q;
+      })(window);
+
+      window.OPENAI_ADS_PIXEL_ID =
+        window.OPENAI_ADS_PIXEL_ID || "YG59t983QJt5fthXPitEJV";
+      oaiq("init", {
+        pixelId: window.OPENAI_ADS_PIXEL_ID,
+      });
+    </script>
+    <script type="text/plain" class="_iub_cs_activate" data-iub-purposes="5">
+      (function (d) {
+        var js = d.createElement("script");
+        js.async = true;
+        js.src = "https://bzrcdn.openai.com/sdk/oaiq.min.js";
+        var f = d.getElementsByTagName("script")[0];
+        f.parentNode.insertBefore(js, f);
+      })(document);
+    </script>
+    <!-- End OpenAI Ads Measurement Pixel -->
+    <script type="module" crossorigin src="/assets/index-CW_PBD6d.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CUkL3H2C.css">
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <div id="spotlights-root"></div>
+
+
+    <script>
+      /**
+       * Configuration Variables - CHANGE THESE!
+       */
+      // const MIXPANEL_PROJECT_TOKEN = YOUR_MIXPANEL_PROJECT_TOKEN; // e.g. "67e8bfdec29d84ab2d36ae18c57b8535"
+      const MIXPANEL_PROXY_DOMAIN =
+        window.location.origin + "/.netlify/functions/m"; // e.g. "https://proxy-eoca2pin3q-uc.a.run.app"
+
+      /**
+       * Set the MIXPANEL_CUSTOM_LIB_URL - No need to change this
+       */
+      // const MIXPANEL_CUSTOM_LIB_URL = MIXPANEL_PROXY_DOMAIN + "/client";
+
+      (function (f, b) {
+        if (!b.__SV) {
+          var e, g, i, h;
+          window.mixpanel = b;
+          b._i = [];
+          b.init = function (e, f, c) {
+            function g(a, d) {
+              var b = d.split(".");
+              2 == b.length && ((a = a[b[0]]), (d = b[1]));
+              a[d] = function () {
+                a.push([d].concat(Array.prototype.slice.call(arguments, 0)));
+              };
+            }
+            var a = b;
+            "undefined" !== typeof c ? (a = b[c] = []) : (c = "mixpanel");
+            a.people = a.people || [];
+            a.toString = function (a) {
+              var d = "mixpanel";
+              "mixpanel" !== c && (d += "." + c);
+              a || (d += " (stub)");
+              return d;
+            };
+            a.people.toString = function () {
+              return a.toString(1) + ".people (stub)";
+            };
+            i =
+              "disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(
+                " "
+              );
+            for (h = 0; h < i.length; h++) g(a, i[h]);
+            var j = "set set_once union unset remove delete".split(" ");
+            a.get_group = function () {
+              function b(c) {
+                d[c] = function () {
+                  call2_args = arguments;
+                  call2 = [c].concat(Array.prototype.slice.call(call2_args, 0));
+                  a.push([e, call2]);
+                };
+              }
+              for (
+                var d = {},
+                  e = ["get_group"].concat(
+                    Array.prototype.slice.call(arguments, 0)
+                  ),
+                  c = 0;
+                c < j.length;
+                c++
+              )
+                b(j[c]);
+              return d;
+            };
+            b._i.push([e, f, c]);
+          };
+          b.__SV = 1.2;
+        }
+      })(document, window.mixpanel || []);
+    </script>
+    <!-- Mixpanel library load is consent-gated via iubenda manual tagging;
+         the stub above queues init/track calls until it loads -->
+    <script type="text/plain" class="_iub_cs_activate" data-iub-purposes="4">
+      (function (f) {
+        var e = f.createElement("script");
+        e.type = "text/javascript";
+        e.async = true;
+        e.src = "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";
+        var g = f.getElementsByTagName("script")[0];
+        g.parentNode.insertBefore(e, g);
+      })(document);
+    </script>
+
+    <!-- <script
+      defer
+      data-domain="mockrocket.io,rollup.mockrocket.io"
+      data-api="/p/api/event"
+      src="/p/js/script.js"
+    ></script>
+    <script>
+      window.plausible =
+        window.plausible ||
+        function () {
+          (window.plausible.q = window.plausible.q || []).push(arguments);
+        };
+
+      window.plausible("View landing page");
+    </script> -->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-2JWHBG87VC"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", isQA ? "G-05520JB102" : "G-2JWHBG87VC");
+    </script> -->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-VLNNZY9D89"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-VLNNZY9D89", { send_page_view: false }); //old mockrocket io GA account
+      gtag("config", "G-F8JDK9XB9Z", { send_page_view: false }); // new kite GA account
+    </script>
+
+    <script type="text/javascript">
+      window.$crisp = [];
+      window.CRISP_WEBSITE_ID = "47ed84bf-781a-424e-93f9-a1ef7ae59c3a";
+    </script>
+    <!-- Crisp loader is consent-gated via iubenda manual tagging. iubenda may
+         activate this after the load event has fired, hence the readyState
+         check -->
+    <script type="text/plain" class="_iub_cs_activate" data-iub-purposes="3">
+      (function () {
+        function loadCrisp() {
+          setTimeout(function () {
+            if (window.DO_NOT_SHOW_CRISP_CHAT_AGAIN) {
+              return;
+            }
+
+            var d = document;
+            var s = d.createElement("script");
+            s.src = "https://client.crisp.chat/l.js";
+            s.async = 1;
+            d.getElementsByTagName("head")[0].appendChild(s);
+          }, 2000); // 2 second delay after page load
+        }
+        if (document.readyState === "complete") {
+          loadCrisp();
+        } else {
+          window.addEventListener("load", loadCrisp);
+        }
+      })();
+    </script>
+  </body>
+</html>

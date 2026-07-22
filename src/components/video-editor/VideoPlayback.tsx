@@ -1720,7 +1720,15 @@ const VideoPlayback = forwardRef<VideoPlaybackRef, VideoPlaybackProps>(
 							wrapperH,
 							persp,
 						);
+						const frameFilters: Record<string, string> = {
+							glass: "drop-shadow(0 25px 45px rgba(0,0,0,0.65)) brightness(1.02)",
+							macbook: "drop-shadow(0 32px 64px rgba(0,0,0,0.75))",
+							browser: "drop-shadow(0 20px 40px rgba(0,0,0,0.6))",
+							phone: "drop-shadow(0 18px 36px rgba(0,0,0,0.55))",
+						};
+						const activeFrameFilter = frameFilters[effectiveRotation.deviceFrame ?? "none"] ?? "";
 						composite3D.style.transform = `scale(${containScale}) rotateX(${effectiveRotation.rotationX}deg) rotateY(${effectiveRotation.rotationY}deg) rotateZ(${effectiveRotation.rotationZ}deg)`;
+						composite3D.style.filter = activeFrameFilter;
 						composite3D.style.willChange = "transform";
 						if (nativeCursorClipRef.current) {
 							nativeCursorClipRef.current.style.transform = composite3D.style.transform;
