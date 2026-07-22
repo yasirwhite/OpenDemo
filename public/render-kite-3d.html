@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kite 3D WebGL MacBook Pro Renderer</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0a0b12;
+      overflow: hidden;
+    }
+    #canvas-container {
+      width: 1280px;
+      height: 720px;
+      position: relative;
+    }
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  </style>
+  <script src="/three.min.js"></script>
+</head>
+<body>
+  <div id="canvas-container"></div>
+
+  <script>
+    let scene, camera, renderer, laptopGroup, lidGroup, baseGroup;
+    let videoTexture, appCanvas, appCtx;
+    let clock = new THREE.Clock();
+
+    function init() {
+      const container = document.getElementById('canvas-container');
+
+      // 1. Scene with gradient-like dark background
+      scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x0a0b12);
+      // Subtle fog gives depth without looking empty
+      scene.fog = new THREE.FogExp2(0x0a0b12, 0.035);
+
+      // 2. Camera
+      camera = new THREE.PerspectiveCamera(36, 1280 / 720, 0.1, 200);
+      camera.position.set(0, 2.2, 10.5);
+
+      // 3. Renderer
+      renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+      renderer.setSize(1280, 720);
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      renderer.physicallyCorrectLights = true;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.1;
+      container.appendChild(renderer.domElement);
+
+      // 4. Background gradient plane (behind everything)
+      const bgGeo = new THREE.PlaneGeometry(80, 45);
+      const bgCanvas = document.createElement('canvas');
+      bgCanvas.width = 1024; bgCanvas.height = 576;
+      const bgCtx = bgCanvas.getContext('2d');
+      const bgGrad = bgCtx.createRadialGradient(512, 288, 0, 512, 288, 700);
+      bgGrad.addColorStop(0,   '#16183a'); // dark blue-purple center
+      bgGrad.addColorStop(0.5, '#0e1028');
+      bgGrad.addColorStop(1,   '#06060f'); // near black edges
+      bgCtx.fillStyle = bgGrad;
+      bgCtx.fillRect(0, 0, 1024, 576);
+      const bgTex = new THREE.CanvasTexture(bgCanvas);
+      const bgMat = new THREE.MeshBasicMaterial({ map: bgTex, fog: false });
+      const bgMesh = new THREE.Mesh(bgGeo, bgMat);
+      bgMesh.position.z = -25;
+      scene.add(bgMesh);
+
+      // Subtle coloured accent glow spheres in background (large, blurred-looking)
+      const addGlow = (color, x, y, z, size) => {
+        const g = new THREE.SphereGeometry(size, 16, 16);
+        const m = new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.12, fog: false });
+        const mesh = new THREE.Mesh(g, m);
+        mesh.position.set(x, y, z);
+        scene.add(mesh);
+      };
+      addGlow(0x4f46e5, -8, 4, -18, 9);   // indigo left
+      addGlow(0x7c3aed,  9, -3, -20, 10);  // purple right
+      addGlow(0x0ea5e9, -2, 8, -22, 7);    // sky top
+
+      // 5. Lighting — key, fill, rim
+      scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+
+      const keyLight = new THREE.DirectionalLight(0xffffff, 2.5);
+      keyLight.position.set(5, 14, 10);
+      keyLight.castShadow = true;
+      keyLight.shadow.mapSize.width = 2048;
+      keyLight.shadow.mapSize.height = 2048;
+      keyLight.shadow.camera.near = 1;
+      keyLight.shadow.camera.far = 50;
+      keyLight.shadow.camera.top = 15;
+      keyLight.shadow.camera.bottom = -10;
+      keyLight.shadow.camera.left = -15;
+      keyLight.shadow.camera.right = 15;
+      scene.add(keyLight);
+
+      // Rim light from behind-left (purple, matches background accent)
+      const rimLight = new THREE.PointLight(0x6d28d9, 3.5, 25);
+      rimLight.position.set(-8, 3, -5);
+      scene.add(rimLight);
+
+      // Screen glow fill — soft blue from front to illuminate screen face
+      const fillLight = new THREE.PointLight(0x93c5fd, 1.5, 12);
+      fillLight.position.set(0, 3, 6);
+      scene.add(fillLight);
+
+      // 6. App canvas texture
+      appCanvas = document.createElement('canvas');
+      appCanvas.width = 1920;
+      appCanvas.height = 1080;
+      appCtx = appCanvas.getContext('2d');
+      // Draw once immediately so texture is never blank
+      drawWebsiteUI(appCtx, 0);
+
+      videoTexture = new THREE.CanvasTexture(appCanvas);
+      videoTexture.minFilter = THREE.LinearFilter;
+      videoTexture.magFilter = THREE.LinearFilter;
+      videoTexture.generateMipmaps = false;
+
+      // 7. Build MacBook Pro 3D model
+      laptopGroup = new THREE.Group();
+
+      const aluminumMat = new THREE.MeshStandardMaterial({
+        color: 0x1e2028,
+        roughness: 0.22,
+        metalness: 0.88,
+        envMapIntensity: 1.2,
+      });
+      const darkMat = new THREE.MeshStandardMaterial({
+        color: 0x090a0d,
+        roughness: 0.5,
+        metalness: 0.1,
+      });
+
+      // --- LID ---
+      lidGroup = new THREE.Group();
+      const sw = 7.8, sh = 4.9;
+
+      // Bezel (back box — clear separation from screen)
+      const bezelW = 8.3, bezelH = 5.3;
+      const bezelGeo = new THREE.BoxGeometry(bezelW, bezelH, 0.12);
+      const bezelMesh = new THREE.Mesh(bezelGeo, aluminumMat);
+      bezelMesh.position.set(0, 0, 0);
+      bezelMesh.castShadow = true;
+      bezelMesh.receiveShadow = true;
+      lidGroup.add(bezelMesh);
+
+      // Screen plane — sits 0.07 units in front of bezel face (z = 0.06 + 0.07 = 0.13)
+      // This gives a clear physical gap: no Z-fighting possible.
+      const screenGeo = new THREE.PlaneGeometry(sw, sh);
+      const screenMat = new THREE.MeshStandardMaterial({
+        map: videoTexture,
+        roughness: 0.08,
+        metalness: 0.0,
+        emissive: 0x000000,
+      });
+      const screenMesh = new THREE.Mesh(screenGeo, screenMat);
+      screenMesh.position.set(0, 0, 0.13); // well in front of the 0.12-thick bezel
+      lidGroup.add(screenMesh);
+
+      // Thin black border around screen (inner bezel)
+      const innerBezel = new THREE.Mesh(
+        new THREE.BoxGeometry(bezelW - 0.02, bezelH - 0.02, 0.01),
+        new THREE.MeshStandardMaterial({ color: 0x000000, roughness: 0.4 })
+      );
+      innerBezel.position.set(0, 0, 0.065); // between bezel and screen
+      lidGroup.add(innerBezel);
+
+      // Camera notch
+      const notchMesh = new THREE.Mesh(
+        new THREE.BoxGeometry(0.48, 0.15, 0.14),
+        darkMat
+      );
+      notchMesh.position.set(0, (bezelH / 2) - 0.1, 0.06);
+      lidGroup.add(notchMesh);
+
+      // Lid is pivoted at hinge (y = 0), pivot upward by half screen height
+      lidGroup.position.set(0, sh / 2 + 0.15, 0);
+      lidGroup.rotation.x = -0.18; // Lid angle open ~100°
+      laptopGroup.add(lidGroup);
+
+      // --- BASE ---
+      baseGroup = new THREE.Group();
+      const deckW = 8.3, deckD = 5.6, deckH = 0.14;
+
+      const deckMesh = new THREE.Mesh(new THREE.BoxGeometry(deckW, deckH, deckD), aluminumMat);
+      deckMesh.position.set(0, -deckH / 2, deckD / 2);
+      deckMesh.castShadow = true;
+      deckMesh.receiveShadow = true;
+      baseGroup.add(deckMesh);
+
+      // Keyboard well (slightly recessed dark rectangle)
+      const wellMesh = new THREE.Mesh(new THREE.BoxGeometry(7.0, 0.016, 2.4), darkMat);
+      wellMesh.position.set(0, 0.002, deckD * 0.4);
+      baseGroup.add(wellMesh);
+
+      // Individual key caps (5 rows × 14 cols)
+      const keyMat = new THREE.MeshStandardMaterial({ color: 0x18191f, roughness: 0.3, metalness: 0.05 });
+      const kRows = 5, kCols = 14;
+      const kTW = 6.8, kTD = 2.2;
+      for (let r = 0; r < kRows; r++) {
+        for (let c = 0; c < kCols; c++) {
+          const kw = kTW / kCols, kd = kTD / kRows;
+          const km = new THREE.Mesh(
+            new THREE.BoxGeometry(kw * 0.84, 0.028, kd * 0.82),
+            keyMat
+          );
+          km.position.set(
+            -kTW / 2 + kw * (c + 0.5),
+            0.014,
+            deckD * 0.4 - kTD / 2 + kd * (r + 0.5)
+          );
+          baseGroup.add(km);
+        }
+      }
+
+      // Trackpad (glass look)
+      const padMat = new THREE.MeshStandardMaterial({ color: 0x1c1e28, roughness: 0.12, metalness: 0.5 });
+      const padMesh2 = new THREE.Mesh(new THREE.BoxGeometry(2.4, 0.008, 1.65), padMat);
+      padMesh2.position.set(0, 0.006, deckD * 0.79);
+      baseGroup.add(padMesh2);
+
+      // Hinge bar
+      const hingeBar = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.11, 0.11, 7.8, 20),
+        new THREE.MeshStandardMaterial({ color: 0x101114, metalness: 0.92, roughness: 0.18 })
+      );
+      hingeBar.rotation.z = Math.PI / 2;
+      baseGroup.add(hingeBar);
+
+      // Thin rubber feet
+      [[-3.6, 0.5], [3.6, 0.5], [-3.6, deckD - 0.5], [3.6, deckD - 0.5]].forEach(([fx, fz]) => {
+        const foot = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.18, 0.18, 0.05, 12),
+          new THREE.MeshStandardMaterial({ color: 0x080809, roughness: 0.9 })
+        );
+        foot.position.set(fx, -deckH - 0.025, fz);
+        baseGroup.add(foot);
+      });
+
+      laptopGroup.add(baseGroup);
+      laptopGroup.position.set(0, -1.2, 0);
+      scene.add(laptopGroup);
+
+      // 8. Ground shadow plane
+      const shadowPlane = new THREE.Mesh(
+        new THREE.PlaneGeometry(40, 40),
+        new THREE.ShadowMaterial({ opacity: 0.5 })
+      );
+      shadowPlane.rotation.x = -Math.PI / 2;
+      shadowPlane.position.y = -1.4;
+      shadowPlane.receiveShadow = true;
+      scene.add(shadowPlane);
+
+      animate();
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const t = clock.getElapsedTime();
+
+      drawWebsiteUI(appCtx, t);
+      videoTexture.needsUpdate = true;
+
+      // Camera choreography (smooth lerp, never zooms inside the laptop)
+      let cx = 0, cy = 2.2, cz = 10.5;
+      let ry = -0.30, rx = 0.18; // slight yaw left, slight pitch down to show keyboard
+
+      if (t >= 4 && t < 9) {
+        // Slow gentle zoom toward screen — never closer than z=6
+        cx = 0.3; cy = 1.4; cz = 7.8;
+        ry = -0.28; rx = 0.14;
+      } else if (t >= 9) {
+        // Pan right to show the other side
+        cx = -0.5; cy = 2.0; cz = 10.0;
+        ry = 0.20; rx = 0.14;
+      }
+
+      const s = 0.04; // smooth factor
+      camera.position.x += (cx - camera.position.x) * s;
+      camera.position.y += (cy - camera.position.y) * s;
+      camera.position.z += (cz - camera.position.z) * s;
+      camera.lookAt(0, 0.8, 0);
+
+      laptopGroup.rotation.y += (ry - laptopGroup.rotation.y) * s;
+      laptopGroup.rotation.x += (rx - laptopGroup.rotation.x) * s;
+
+      renderer.render(scene, camera);
+    }
+
+    function drawWebsiteUI(ctx, t) {
+      const W = 1920, H = 1080;
+
+      // ── Background ──────────────────────────────────────────────────────────
+      ctx.fillStyle = '#0f1117';
+      ctx.fillRect(0, 0, W, H);
+
+      // Subtle radial glow in bg
+      const bgGlow = ctx.createRadialGradient(960, 300, 0, 960, 300, 900);
+      bgGlow.addColorStop(0, 'rgba(99, 102, 241, 0.06)');
+      bgGlow.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = bgGlow;
+      ctx.fillRect(0, 0, W, H);
+
+      // ── macOS window chrome ──────────────────────────────────────────────────
+      ctx.fillStyle = '#16182a';
+      ctx.fillRect(0, 0, W, 52);
+      // traffic lights
+      const tlc = ['#ff5f56', '#ffbd2e', '#27c93f'];
+      tlc.forEach((c, i) => {
+        ctx.fillStyle = c;
+        ctx.beginPath(); ctx.arc(24 + i * 24, 26, 7, 0, Math.PI * 2); ctx.fill();
+      });
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 19px system-ui, sans-serif';
+      ctx.fillText('Kite Studio  —  Product Analytics', 100, 33);
+      ctx.fillStyle = '#555e7a';
+      ctx.font = '15px system-ui';
+      ctx.fillText('Dashboard   Analytics   3D Renders   Settings', 1480, 33);
+
+      // ── Hero header ─────────────────────────────────────────────────────────
+      ctx.fillStyle = '#e2e8f0';
+      ctx.font = 'bold 52px system-ui, sans-serif';
+      ctx.fillText('Product Analytics Dashboard', 72, 148);
+
+      ctx.fillStyle = '#64748b';
+      ctx.font = '22px system-ui';
+      ctx.fillText('Real-time metrics with smooth 3D visualization powered by WebGL', 72, 190);
+
+      // CTA pill button
+      const btnX = 1530, btnY = 120, btnW = 310, btnH = 58;
+      const btnGr = ctx.createLinearGradient(btnX, 0, btnX + btnW, 0);
+      btnGr.addColorStop(0, '#6366f1');
+      btnGr.addColorStop(1, '#a855f7');
+      ctx.fillStyle = btnGr;
+      roundRect(ctx, btnX, btnY, btnW, btnH, 14);
+      ctx.fill();
+      ctx.fillStyle = '#fff';
+      ctx.font = 'bold 18px system-ui';
+      ctx.fillText('↗  Export 3D Video', btnX + 58, btnY + 36);
+
+      // ── Stat cards ──────────────────────────────────────────────────────────
+      const stats = [
+        { label: 'ACTIVE USERS',    val: '28,941',    delta: '+12.4%',  color: '#818cf8' },
+        { label: 'REVENUE TODAY',   val: '$84,302',   delta: '+8.7%',   color: '#34d399' },
+        { label: 'CONVERSION RATE', val: '4.82%',     delta: '+1.2%',   color: '#f59e0b' },
+        { label: 'AVG SESSION',     val: '3m 41s',    delta: '+5.3%',   color: '#38bdf8' },
+      ];
+      stats.forEach((s, i) => {
+        const cx = 72 + i * 455, cy = 226;
+        ctx.fillStyle = '#16192a';
+        ctx.strokeStyle = 'rgba(255,255,255,0.07)';
+        ctx.lineWidth = 1;
+        roundRect(ctx, cx, cy, 425, 168, 16); ctx.fill(); ctx.stroke();
+
+        // Left accent bar
+        ctx.fillStyle = s.color;
+        ctx.fillRect(cx + 0, cy, 4, 168);
+        // Round left edge of bar
+        ctx.beginPath(); ctx.arc(cx + 2, cy + 2, 2, 0, Math.PI * 2); ctx.fill();
+
+        ctx.fillStyle = '#475569';
+        ctx.font = '600 13px system-ui';
+        ctx.fillText(s.label, cx + 22, cy + 36);
+
+        ctx.fillStyle = '#f1f5f9';
+        ctx.font = 'bold 46px system-ui';
+        ctx.fillText(s.val, cx + 22, cy + 112);
+
+        ctx.fillStyle = '#22c55e';
+        ctx.font = '600 14px system-ui';
+        ctx.fillText('▲ ' + s.delta + ' vs yesterday', cx + 22, cy + 148);
+      });
+
+      // ── Chart area ──────────────────────────────────────────────────────────
+      const chartX = 72, chartY = 420, chartW = 1776, chartH = 590;
+      ctx.fillStyle = '#13162a';
+      ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+      ctx.lineWidth = 1;
+      roundRect(ctx, chartX, chartY, chartW, chartH, 20); ctx.fill(); ctx.stroke();
+
+      ctx.fillStyle = '#e2e8f0';
+      ctx.font = 'bold 26px system-ui';
+      ctx.fillText('Weekly Revenue Trend', chartX + 36, chartY + 52);
+
+      // Chart grid lines
+      ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+      ctx.lineWidth = 1;
+      for (let g = 1; g <= 4; g++) {
+        const gy = chartY + 80 + (chartH - 110) * (g / 5);
+        ctx.beginPath(); ctx.moveTo(chartX + 20, gy); ctx.lineTo(chartX + chartW - 20, gy); ctx.stroke();
+      }
+
+      // Bars (animated)
+      const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+      const barAreaH = chartH - 130;
+      const barW = 140, barGap = (chartW - 80 - days.length * barW) / (days.length + 1);
+      days.forEach((day, i) => {
+        const barX = chartX + 40 + barGap * (i + 1) + barW * i;
+        const hf = 0.32 + 0.46 * Math.abs(Math.sin(t * 1.8 + i * 0.75));
+        const barH2 = barAreaH * hf;
+        const barY = chartY + 80 + (barAreaH - barH2);
+
+        const gr = ctx.createLinearGradient(barX, barY, barX, barY + barH2);
+        gr.addColorStop(0, '#818cf8');
+        gr.addColorStop(0.5, '#6366f1');
+        gr.addColorStop(1, '#4f46e5');
+        ctx.fillStyle = gr;
+        roundRect(ctx, barX, barY, barW, barH2, [10, 10, 0, 0]); ctx.fill();
+
+        // Glow under bar
+        const glow = ctx.createLinearGradient(barX, barY + barH2 - 20, barX, barY + barH2 + 40);
+        glow.addColorStop(0, 'rgba(99,102,241,0.35)');
+        glow.addColorStop(1, 'rgba(99,102,241,0)');
+        ctx.fillStyle = glow;
+        ctx.fillRect(barX - 10, barY + barH2 - 10, barW + 20, 50);
+
+        // Value label on bar
+        const val = Math.round(24000 * hf + 8000);
+        ctx.fillStyle = '#f1f5f9';
+        ctx.font = 'bold 18px system-ui';
+        ctx.textAlign = 'center';
+        ctx.fillText('$' + (val / 1000).toFixed(1) + 'k', barX + barW / 2, barY - 12);
+
+        ctx.fillStyle = '#64748b';
+        ctx.font = '17px system-ui';
+        ctx.fillText(day, barX + barW / 2, chartY + chartH - 18);
+        ctx.textAlign = 'left';
+      });
+
+      // ── Animated cursor ──────────────────────────────────────────────────────
+      const mx = 960 + Math.sin(t * 1.3) * 480;
+      const my = 620 + Math.cos(t * 1.0) * 220;
+      drawCursor(ctx, mx, my);
+    }
+
+    function drawCursor(ctx, x, y) {
+      ctx.save();
+      ctx.strokeStyle = '#ffffff';
+      ctx.fillStyle = '#6366f1';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(x + 24, y + 26);
+      ctx.lineTo(x + 12, y + 27);
+      ctx.lineTo(x + 18, y + 42);
+      ctx.lineTo(x + 11, y + 44);
+      ctx.lineTo(x + 5, y + 29);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function roundRect(ctx, x, y, w, h, r) {
+      const rArr = Array.isArray(r) ? r : [r, r, r, r];
+      const [tl, tr, br, bl] = rArr;
+      ctx.beginPath();
+      ctx.moveTo(x + tl, y);
+      ctx.lineTo(x + w - tr, y);
+      ctx.quadraticCurveTo(x + w, y, x + w, y + tr);
+      ctx.lineTo(x + w, y + h - br);
+      ctx.quadraticCurveTo(x + w, y + h, x + w - br, y + h);
+      ctx.lineTo(x + bl, y + h);
+      ctx.quadraticCurveTo(x, y + h, x, y + h - bl);
+      ctx.lineTo(x, y + tl);
+      ctx.quadraticCurveTo(x, y, x + tl, y);
+      ctx.closePath();
+    }
+
+    window.onload = init;
+  </script>
+</body>
+</html>
