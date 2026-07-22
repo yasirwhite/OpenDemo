@@ -16,7 +16,7 @@ async function main() {
 
   const browser = await chromium.launch({
     headless: true,
-    args: ['--use-gl=angle', '--use-angle=default']
+    args: ['--use-gl=swiftshader']
   });
 
   const context = await browser.newContext({
@@ -29,9 +29,9 @@ async function main() {
 
   const page = await context.newPage();
   await page.goto('http://localhost:8080/render-kite-3d.html', { waitUntil: 'domcontentloaded', timeout: 30000 });
-  // Wait for Three.js to initialize and render first frame (~2 seconds)
-  await page.waitForTimeout(2000);
-  console.log('3D WebGL Canvas loaded. Recording 12s of camera orbit...');
+  console.log('Waiting for mac.glb 3D mesh to load...');
+  await page.waitForFunction(() => window.modelLoaded === true, { timeout: 15000 });
+  console.log('mac.glb 3D Mesh loaded! Recording 12s of camera orbit...');
 
   // Record 14 seconds total (first 2s are init, then 12s of smooth 3D animation)
   await page.waitForTimeout(14000);

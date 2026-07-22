@@ -22,23 +22,28 @@
     }
   </style>
   <script src="/three.min.js"></script>
+  <script src="/DRACOLoader.js"></script>
+  <script src="/GLTFLoader.js"></script>
 </head>
 <body>
   <div id="canvas-container"></div>
 
   <script>
-    let scene, camera, renderer, laptopGroup, lidGroup, baseGroup;
+    let scene, camera, renderer, laptopGroup;
     let videoTexture, appCanvas, appCtx;
     let clock = new THREE.Clock();
+    window.modelLoaded = false;
+
+    // Get background wallpaper choice from URL param ?bg=3 (default to 3)
+    const urlParams = new URLSearchParams(window.location.search);
+    const bgNum = urlParams.get('bg') || '3';
+    const bgPath = `/wallpapers/wallpaper${bgNum}.jpg`;
 
     function init() {
       const container = document.getElementById('canvas-container');
 
-      // 1. Scene with gradient-like dark background
+      // 1. Scene
       scene = new THREE.Scene();
-      scene.background = new THREE.Color(0x0a0b12);
-      // Subtle fog gives depth without looking empty
-      scene.fog = new THREE.FogExp2(0x0a0b12, 0.035);
 
       // 2. Camera
       camera = new THREE.PerspectiveCamera(36, 1280 / 720, 0.1, 200);
@@ -52,43 +57,26 @@
       renderer.shadowMap.type = THREE.PCFSoftShadowMap;
       renderer.physicallyCorrectLights = true;
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.1;
+      renderer.toneMappingExposure = 1.2;
       container.appendChild(renderer.domElement);
 
-      // 4. Background gradient plane (behind everything)
-      const bgGeo = new THREE.PlaneGeometry(80, 45);
-      const bgCanvas = document.createElement('canvas');
-      bgCanvas.width = 1024; bgCanvas.height = 576;
-      const bgCtx = bgCanvas.getContext('2d');
-      const bgGrad = bgCtx.createRadialGradient(512, 288, 0, 512, 288, 700);
-      bgGrad.addColorStop(0,   '#16183a'); // dark blue-purple center
-      bgGrad.addColorStop(0.5, '#0e1028');
-      bgGrad.addColorStop(1,   '#06060f'); // near black edges
-      bgCtx.fillStyle = bgGrad;
-      bgCtx.fillRect(0, 0, 1024, 576);
-      const bgTex = new THREE.CanvasTexture(bgCanvas);
-      const bgMat = new THREE.MeshBasicMaterial({ map: bgTex, fog: false });
-      const bgMesh = new THREE.Mesh(bgGeo, bgMat);
-      bgMesh.position.z = -25;
-      scene.add(bgMesh);
+      // 4. OpenScreen 2D Wallpaper Background
+      const textureLoader = new THREE.TextureLoader();
+      textureLoader.load(bgPath, (bgTexture) => {
+        bgTexture.encoding = THREE.sRGBEncoding;
+        const bgGeo = new THREE.PlaneGeometry(75, 42);
+        const bgMat = new THREE.MeshBasicMaterial({ map: bgTexture, fog: false });
+        const bgMesh = new THREE.Mesh(bgGeo, bgMat);
+        bgMesh.position.z = -22;
+        scene.add(bgMesh);
+      });
 
-      // Subtle coloured accent glow spheres in background (large, blurred-looking)
-      const addGlow = (color, x, y, z, size) => {
-        const g = new THREE.SphereGeometry(size, 16, 16);
-        const m = new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.12, fog: false });
-        const mesh = new THREE.Mesh(g, m);
-        mesh.position.set(x, y, z);
-        scene.add(mesh);
-      };
-      addGlow(0x4f46e5, -8, 4, -18, 9);   // indigo left
-      addGlow(0x7c3aed,  9, -3, -20, 10);  // purple right
-      addGlow(0x0ea5e9, -2, 8, -22, 7);    // sky top
+      // 5. Studio Product Lighting
+      scene.add(new THREE.AmbientLight(0xffffff, 1.2));
 
-      // 5. Lighting — key, fill, rim
-      scene.add(new THREE.AmbientLight(0xffffff, 0.6));
-
-      const keyLight = new THREE.DirectionalLight(0xffffff, 2.5);
-      keyLight.position.set(5, 14, 10);
+      // Key light from top right
+      const keyLight = new THREE.DirectionalLight(0xfff8f0, 3.5);
+      keyLight.position.set(6, 15, 12);
       keyLight.castShadow = true;
       keyLight.shadow.mapSize.width = 2048;
       keyLight.shadow.mapSize.height = 2048;
@@ -100,14 +88,14 @@
       keyLight.shadow.camera.right = 15;
       scene.add(keyLight);
 
-      // Rim light from behind-left (purple, matches background accent)
-      const rimLight = new THREE.PointLight(0x6d28d9, 3.5, 25);
-      rimLight.position.set(-8, 3, -5);
+      // Rim light for metallic chamfer edges
+      const rimLight = new THREE.PointLight(0xa5b4fc, 4.5, 30);
+      rimLight.position.set(-9, 5, -4);
       scene.add(rimLight);
 
-      // Screen glow fill — soft blue from front to illuminate screen face
-      const fillLight = new THREE.PointLight(0x93c5fd, 1.5, 12);
-      fillLight.position.set(0, 3, 6);
+      // Front fill light
+      const fillLight = new THREE.PointLight(0xffffff, 1.8, 18);
+      fillLight.position.set(0, 4, 8);
       scene.add(fillLight);
 
       // 6. App canvas texture
@@ -115,143 +103,57 @@
       appCanvas.width = 1920;
       appCanvas.height = 1080;
       appCtx = appCanvas.getContext('2d');
-      // Draw once immediately so texture is never blank
       drawWebsiteUI(appCtx, 0);
 
       videoTexture = new THREE.CanvasTexture(appCanvas);
       videoTexture.minFilter = THREE.LinearFilter;
       videoTexture.magFilter = THREE.LinearFilter;
       videoTexture.generateMipmaps = false;
+      videoTexture.encoding = THREE.sRGBEncoding;
 
-      // 7. Build MacBook Pro 3D model
+      // 7. Load Genuine MacBook Pro 3D Mesh (.glb) with DRACOLoader
       laptopGroup = new THREE.Group();
-
-      const aluminumMat = new THREE.MeshStandardMaterial({
-        color: 0x1e2028,
-        roughness: 0.22,
-        metalness: 0.88,
-        envMapIntensity: 1.2,
-      });
-      const darkMat = new THREE.MeshStandardMaterial({
-        color: 0x090a0d,
-        roughness: 0.5,
-        metalness: 0.1,
-      });
-
-      // --- LID ---
-      lidGroup = new THREE.Group();
-      const sw = 7.8, sh = 4.9;
-
-      // Bezel (back box — clear separation from screen)
-      const bezelW = 8.3, bezelH = 5.3;
-      const bezelGeo = new THREE.BoxGeometry(bezelW, bezelH, 0.12);
-      const bezelMesh = new THREE.Mesh(bezelGeo, aluminumMat);
-      bezelMesh.position.set(0, 0, 0);
-      bezelMesh.castShadow = true;
-      bezelMesh.receiveShadow = true;
-      lidGroup.add(bezelMesh);
-
-      // Screen plane — sits 0.07 units in front of bezel face (z = 0.06 + 0.07 = 0.13)
-      // This gives a clear physical gap: no Z-fighting possible.
-      const screenGeo = new THREE.PlaneGeometry(sw, sh);
-      const screenMat = new THREE.MeshStandardMaterial({
-        map: videoTexture,
-        roughness: 0.08,
-        metalness: 0.0,
-        emissive: 0x000000,
-      });
-      const screenMesh = new THREE.Mesh(screenGeo, screenMat);
-      screenMesh.position.set(0, 0, 0.13); // well in front of the 0.12-thick bezel
-      lidGroup.add(screenMesh);
-
-      // Thin black border around screen (inner bezel)
-      const innerBezel = new THREE.Mesh(
-        new THREE.BoxGeometry(bezelW - 0.02, bezelH - 0.02, 0.01),
-        new THREE.MeshStandardMaterial({ color: 0x000000, roughness: 0.4 })
-      );
-      innerBezel.position.set(0, 0, 0.065); // between bezel and screen
-      lidGroup.add(innerBezel);
-
-      // Camera notch
-      const notchMesh = new THREE.Mesh(
-        new THREE.BoxGeometry(0.48, 0.15, 0.14),
-        darkMat
-      );
-      notchMesh.position.set(0, (bezelH / 2) - 0.1, 0.06);
-      lidGroup.add(notchMesh);
-
-      // Lid is pivoted at hinge (y = 0), pivot upward by half screen height
-      lidGroup.position.set(0, sh / 2 + 0.15, 0);
-      lidGroup.rotation.x = -0.18; // Lid angle open ~100°
-      laptopGroup.add(lidGroup);
-
-      // --- BASE ---
-      baseGroup = new THREE.Group();
-      const deckW = 8.3, deckD = 5.6, deckH = 0.14;
-
-      const deckMesh = new THREE.Mesh(new THREE.BoxGeometry(deckW, deckH, deckD), aluminumMat);
-      deckMesh.position.set(0, -deckH / 2, deckD / 2);
-      deckMesh.castShadow = true;
-      deckMesh.receiveShadow = true;
-      baseGroup.add(deckMesh);
-
-      // Keyboard well (slightly recessed dark rectangle)
-      const wellMesh = new THREE.Mesh(new THREE.BoxGeometry(7.0, 0.016, 2.4), darkMat);
-      wellMesh.position.set(0, 0.002, deckD * 0.4);
-      baseGroup.add(wellMesh);
-
-      // Individual key caps (5 rows × 14 cols)
-      const keyMat = new THREE.MeshStandardMaterial({ color: 0x18191f, roughness: 0.3, metalness: 0.05 });
-      const kRows = 5, kCols = 14;
-      const kTW = 6.8, kTD = 2.2;
-      for (let r = 0; r < kRows; r++) {
-        for (let c = 0; c < kCols; c++) {
-          const kw = kTW / kCols, kd = kTD / kRows;
-          const km = new THREE.Mesh(
-            new THREE.BoxGeometry(kw * 0.84, 0.028, kd * 0.82),
-            keyMat
-          );
-          km.position.set(
-            -kTW / 2 + kw * (c + 0.5),
-            0.014,
-            deckD * 0.4 - kTD / 2 + kd * (r + 0.5)
-          );
-          baseGroup.add(km);
-        }
-      }
-
-      // Trackpad (glass look)
-      const padMat = new THREE.MeshStandardMaterial({ color: 0x1c1e28, roughness: 0.12, metalness: 0.5 });
-      const padMesh2 = new THREE.Mesh(new THREE.BoxGeometry(2.4, 0.008, 1.65), padMat);
-      padMesh2.position.set(0, 0.006, deckD * 0.79);
-      baseGroup.add(padMesh2);
-
-      // Hinge bar
-      const hingeBar = new THREE.Mesh(
-        new THREE.CylinderGeometry(0.11, 0.11, 7.8, 20),
-        new THREE.MeshStandardMaterial({ color: 0x101114, metalness: 0.92, roughness: 0.18 })
-      );
-      hingeBar.rotation.z = Math.PI / 2;
-      baseGroup.add(hingeBar);
-
-      // Thin rubber feet
-      [[-3.6, 0.5], [3.6, 0.5], [-3.6, deckD - 0.5], [3.6, deckD - 0.5]].forEach(([fx, fz]) => {
-        const foot = new THREE.Mesh(
-          new THREE.CylinderGeometry(0.18, 0.18, 0.05, 12),
-          new THREE.MeshStandardMaterial({ color: 0x080809, roughness: 0.9 })
-        );
-        foot.position.set(fx, -deckH - 0.025, fz);
-        baseGroup.add(foot);
-      });
-
-      laptopGroup.add(baseGroup);
-      laptopGroup.position.set(0, -1.2, 0);
       scene.add(laptopGroup);
+
+      const dracoLoader = new THREE.DRACOLoader();
+      dracoLoader.setDecoderPath('/draco/');
+
+      const loader = new THREE.GLTFLoader();
+      loader.setDRACOLoader(dracoLoader);
+
+      loader.load('/mac.glb', (gltf) => {
+        const macModel = gltf.scene;
+
+        macModel.traverse((child) => {
+          if (child.isMesh) {
+            child.castShadow = true;
+            child.receiveShadow = true;
+
+            // Target screen mesh ('matte')
+            if (child.name === 'matte' || (child.material && child.material.name === 'matte')) {
+              const screenMat = new THREE.MeshBasicMaterial({
+                map: videoTexture
+              });
+              child.material = screenMat;
+            } else if (child.material) {
+              child.material.envMapIntensity = 1.8;
+            }
+          }
+        });
+
+        // Scale mac.glb (31.5 units wide natively -> scale by 0.27 to ~8.5 units wide)
+        macModel.scale.set(0.27, 0.27, 0.27);
+        macModel.position.set(0, -1.2, 0);
+        laptopGroup.add(macModel);
+        window.modelLoaded = true;
+      }, undefined, (err) => {
+        console.error('Error loading mac.glb model:', err);
+      });
 
       // 8. Ground shadow plane
       const shadowPlane = new THREE.Mesh(
         new THREE.PlaneGeometry(40, 40),
-        new THREE.ShadowMaterial({ opacity: 0.5 })
+        new THREE.ShadowMaterial({ opacity: 0.35 })
       );
       shadowPlane.rotation.x = -Math.PI / 2;
       shadowPlane.position.y = -1.4;
@@ -268,28 +170,28 @@
       drawWebsiteUI(appCtx, t);
       videoTexture.needsUpdate = true;
 
-      // Camera choreography (smooth lerp, never zooms inside the laptop)
+      // Camera choreography (smooth lerp, natural angles)
       let cx = 0, cy = 2.2, cz = 10.5;
-      let ry = -0.30, rx = 0.18; // slight yaw left, slight pitch down to show keyboard
+      let ry = -0.30, rx = 0.18;
 
       if (t >= 4 && t < 9) {
-        // Slow gentle zoom toward screen — never closer than z=6
         cx = 0.3; cy = 1.4; cz = 7.8;
         ry = -0.28; rx = 0.14;
       } else if (t >= 9) {
-        // Pan right to show the other side
         cx = -0.5; cy = 2.0; cz = 10.0;
         ry = 0.20; rx = 0.14;
       }
 
-      const s = 0.04; // smooth factor
+      const s = 0.04;
       camera.position.x += (cx - camera.position.x) * s;
       camera.position.y += (cy - camera.position.y) * s;
       camera.position.z += (cz - camera.position.z) * s;
       camera.lookAt(0, 0.8, 0);
 
-      laptopGroup.rotation.y += (ry - laptopGroup.rotation.y) * s;
-      laptopGroup.rotation.x += (rx - laptopGroup.rotation.x) * s;
+      if (laptopGroup) {
+        laptopGroup.rotation.y += (ry - laptopGroup.rotation.y) * s;
+        laptopGroup.rotation.x += (rx - laptopGroup.rotation.x) * s;
+      }
 
       renderer.render(scene, camera);
     }
@@ -359,10 +261,8 @@
         ctx.lineWidth = 1;
         roundRect(ctx, cx, cy, 425, 168, 16); ctx.fill(); ctx.stroke();
 
-        // Left accent bar
         ctx.fillStyle = s.color;
         ctx.fillRect(cx + 0, cy, 4, 168);
-        // Round left edge of bar
         ctx.beginPath(); ctx.arc(cx + 2, cy + 2, 2, 0, Math.PI * 2); ctx.fill();
 
         ctx.fillStyle = '#475569';
