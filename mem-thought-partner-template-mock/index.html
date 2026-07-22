@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>OpenDemo Stage-1 Mock</title>
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { font-family: system-ui, sans-serif; overflow-x: hidden; }
+  .scene { display: none; position: relative; width: 100vw; min-height: 100vh; background: var(--bg); }
+  .scene.active { display: block; }
+  .bar { position: absolute; top: 0; left: 0; right: 0; height: 7vh; background: var(--panel); box-shadow: 0 1px 4px rgba(0,0,0,.12); }
+  .panel { position: absolute; left: 30%; top: 18%; width: 40%; height: 55%; background: var(--panel); border-radius: 10px; box-shadow: 0 4px 18px rgba(0,0,0,.10); }
+  .el { position: absolute; transform: translate(-50%, -50%); z-index: 3; }
+  .input { width: 24%; min-width: 180px; padding: 10px 14px; font-size: 15px; border: 2px solid var(--accent); border-radius: 6px; background: #fff; }
+  .btn { padding: 11px 26px; font-size: 15px; color: #fff; background: var(--accent); border: 0; border-radius: 6px; cursor: pointer; transition: transform .12s ease; }
+  .btn.pulsed { transform: translate(-50%, -50%) scale(.94); }
+  .card { position: relative; margin: 110vh auto 3vh; width: 42%; padding: 26px; background: var(--panel); border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,.08); font-size: 15px; }
+  .card ~ .card { margin-top: 3vh; }
+  #modal { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(10,12,20,.45); opacity: 0; transition: opacity .45s ease; z-index: 9; }
+  #modal.open { opacity: 1; }
+  #modal .box { width: 40%; min-width: 300px; padding: 44px; text-align: center; font-size: 21px; background: #fff; border-radius: 12px; transform: scale(.82); transition: transform .45s ease; }
+  #modal.open .box { transform: scale(1); }
+</style>
+</head>
+<body>
+
+  <section class="scene active" id="s0"
+           style="--bg:rgb(224,224,224);--panel:rgb(206,206,206);--accent:rgb(160,160,160);min-height:260vh;">
+    <header class="bar"></header>
+    <div class="panel"></div>
+    <button id="m0" class="el btn" style="left:53.8%;top:51.4%" onclick="pulse(this)">Select</button>
+    <button id="m1" class="el btn" style="left:50.0%;top:51.1%" onclick="showModal(this)">Open</button>
+    <input id="m2" class="el input" style="left:45.7%;top:50.0%" placeholder="Enter text..." />
+    <button id="m3" class="el btn" style="left:37.6%;top:53.8%" onclick="pulse(this)">Select</button>
+    <button id="m4" class="el btn" style="left:29.7%;top:50.0%" onclick="pulse(this)">Select</button>
+    <button id="m5" class="el btn" style="left:50.0%;top:50.7%" onclick="pulse(this)">Select</button>
+    <button id="m6" class="el btn" style="left:54.3%;top:47.9%" onclick="pulse(this)">Select</button>
+    <button id="m7" class="el btn" style="left:51.3%;top:47.7%" onclick="pulse(this)">Select</button>
+    <button id="m8" class="el btn" style="left:62.9%;top:50.0%" onclick="pulse(this)">Select</button>
+    <button id="m9" class="el btn" style="left:32.8%;top:50.0%" onclick="showModal(this)">Open</button>
+    <button id="m10" class="el btn" style="left:50.8%;top:50.0%" onclick="pulse(this)">Select</button>
+    <button id="m11" class="el btn" style="left:52.3%;top:62.0%" onclick="pulse(this)">Select</button>
+    <button id="m12" class="el btn" style="left:50.9%;top:50.5%" onclick="pulse(this)">Select</button>
+    <button id="m13" class="el btn" style="left:50.1%;top:50.8%" onclick="pulse(this)">Select</button>
+    <button id="m14" class="el btn" style="left:49.8%;top:50.0%" onclick="pulse(this)">Select</button>
+    <button id="m15" class="el btn" style="left:37.6%;top:50.0%" onclick="pulse(this)">Select</button>
+    <button id="m16" class="el btn" style="left:49.0%;top:50.0%" onclick="showModal(this)">Open</button>
+    <button id="m17" class="el btn" style="left:53.6%;top:50.2%" onclick="pulse(this)">Select</button>
+    <input id="m18" class="el input" style="left:50.6%;top:50.8%" placeholder="Enter text..." />
+    <button id="m19" class="el btn" style="left:60.8%;top:50.0%" onclick="pulse(this)">Select</button>
+    <button id="m20" class="el btn" style="left:35.9%;top:54.2%" onclick="pulse(this)">Select</button>
+    <button id="m21" class="el btn" style="left:52.1%;top:50.0%" onclick="pulse(this)">Select</button>
+    <div class="card">Section 1</div>
+      <div class="card">Section 2</div>
+      <div class="card">Section 3</div>
+      <div class="card">Section 4</div>
+      <div class="card">Section 5</div>
+      <div class="card">Section 6</div>
+      <div class="card">Section 7</div>
+      <div class="card">Section 8</div>
+  </section>
+
+  <section class="scene" id="s1"
+           style="--bg:rgb(224,224,224);--panel:rgb(206,206,206);--accent:rgb(32,32,32);">
+    <header class="bar"></header>
+    <div class="panel"></div>
+    <input id="m22" class="el input" style="left:50.0%;top:49.9%" placeholder="Enter text..." />
+    <button id="m23" class="el btn" style="left:46.5%;top:47.9%" onclick="showModal(this)">Open</button>
+    <button id="m24" class="el btn" style="left:50.0%;top:50.7%" onclick="pulse(this)">Select</button>
+    <button id="m25" class="el btn" style="left:50.0%;top:50.7%" onclick="pulse(this)">Select</button>
+    <button id="m26" class="el btn" style="left:50.0%;top:50.7%" onclick="showModal(this)">Open</button>
+    <button id="m27" class="el btn" style="left:40.9%;top:50.0%" onclick="showModal(this)">Open</button>
+    <button id="m28" class="el btn" style="left:50.8%;top:50.0%" onclick="showModal(this)">Open</button>
+    
+  </section>
+  <div id="modal"><div class="box">✓ Action completed</div></div>
+<script>
+  function showScene(n) {
+    document.querySelectorAll(".scene").forEach(function (s) { s.classList.remove("active"); });
+    var el = document.getElementById("s" + n);
+    if (el) el.classList.add("active");
+    window.scrollTo(0, 0);
+  }
+  function showModal(btn) {
+    var m = document.getElementById("modal");
+    m.style.display = "flex";
+    requestAnimationFrame(function () { m.classList.add("open"); });
+    setTimeout(function () {
+      m.classList.remove("open");
+      setTimeout(function () { m.style.display = "none"; }, 500);
+    }, 1800);
+  }
+  function pulse(btn) {
+    btn.classList.add("pulsed");
+    setTimeout(function () { btn.classList.remove("pulsed"); }, 160);
+  }
+  function applyHash() {
+    var m = (location.hash || "").match(/^#s(\d+)$/);
+    showScene(m ? parseInt(m[1]) : 0);
+  }
+  window.addEventListener("hashchange", applyHash);
+  applyHash();
+</script>
+</body>
+</html>

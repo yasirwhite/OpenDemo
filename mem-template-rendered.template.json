@@ -1,0 +1,598 @@
+{
+  "_meta": {
+    "kind": "opendemo-video-template",
+    "stage": "1-generic",
+    "source": "/sessions/nifty-vigilant-heisenberg/mnt/OpenDemo/reference/mem-reference.mp4",
+    "generatedAt": "2026-07-07T17:24:53.315Z",
+    "referenceSummary": {
+      "durationMs": 78545,
+      "cuts": [
+        48250
+      ],
+      "eventCounts": {
+        "pulse": 21,
+        "transition": 8,
+        "pan": 5,
+        "scroll": 3
+      }
+    },
+    "personalization": [
+      "This is an editable video template. Re-render after ANY edit with:",
+      "  node render-mimic.mjs <this-file> --output out.mp4",
+      "Then score against the reference:",
+      "  node evaluate-mimic.mjs <reference> out.mp4",
+      "Beat content: style 'text' renders beat.text as a big clean text slide;",
+      "style 'screen' uses beat.image as the frame background. Edit either freely.",
+      "To personalize for a product (stage 2):",
+      "  1. Set scenes[i].image to product screenshots (any size; auto-scaled).",
+      "  2. Adjust scenes[i].bg/panel/accent (and beats) to the product's brand colors.",
+      "  3. Keep timeline timestamps — they reproduce the reference's rhythm.",
+      "  4. Optionally edit/add/remove timeline events (transition/pulse/scroll/pan)."
+    ]
+  },
+  "video": {
+    "width": 640,
+    "height": 360,
+    "fps": 30,
+    "durationMs": 78545
+  },
+  "scenes": [
+    {
+      "startMs": 0,
+      "bg": [
+        249,
+        248,
+        248
+      ],
+      "panel": [
+        239,
+        231,
+        211
+      ],
+      "accent": [
+        177,
+        175,
+        175
+      ],
+      "beats": [
+        {
+          "tMs": 0,
+          "bg": [
+            253,
+            253,
+            253
+          ],
+          "panel": [
+            239,
+            231,
+            211
+          ],
+          "accent": [
+            144,
+            138,
+            150
+          ],
+          "image": "mem-template-rendered-assets/beat_0_0.png",
+          "style": "text",
+          "text": "Remembering is so"
+        },
+        {
+          "tMs": 4920,
+          "bg": [
+            239,
+            231,
+            211
+          ],
+          "panel": [
+            249,
+            245,
+            239
+          ],
+          "accent": [
+            149,
+            144,
+            144
+          ],
+          "image": "mem-template-rendered-assets/beat_0_1.png",
+          "style": "text",
+          "text": "thought nartner"
+        },
+        {
+          "tMs": 17920,
+          "bg": [
+            249,
+            249,
+            250
+          ],
+          "panel": [
+            211,
+            210,
+            213
+          ],
+          "accent": [
+            176,
+            175,
+            180
+          ],
+          "image": "mem-template-rendered-assets/beat_0_2.png",
+          "style": "text",
+          "text": "Mew faaee paanct Or old VOU es tiwen Soe sewesto Pitch Orett"
+        },
+        {
+          "tMs": 36170,
+          "bg": [
+            239,
+            239,
+            239
+          ],
+          "panel": [
+            239,
+            231,
+            211
+          ],
+          "accent": [
+            126,
+            125,
+            139
+          ],
+          "image": "mem-template-rendered-assets/beat_0_3.png",
+          "style": "text",
+          "text": "AA itto your meeting agenda with Sarah Added Kevin"
+        },
+        {
+          "tMs": 38670,
+          "bg": [
+            248,
+            247,
+            245
+          ],
+          "panel": [
+            210,
+            210,
+            210
+          ],
+          "accent": [
+            21,
+            25,
+            51
+          ],
+          "image": "mem-template-rendered-assets/beat_0_4.png",
+          "style": "text",
+          "text": "oe Heads Up Meeting With Sarah Glows"
+        }
+      ],
+      "_comment": "Scene 0: 48.3s. Set \"image\" to a product screenshot to personalize."
+    },
+    {
+      "startMs": 48250,
+      "bg": [
+        247,
+        247,
+        246
+      ],
+      "panel": [
+        236,
+        225,
+        204
+      ],
+      "accent": [
+        17,
+        22,
+        45
+      ],
+      "beats": [
+        {
+          "tMs": 48250,
+          "bg": [
+            251,
+            251,
+            251
+          ],
+          "panel": [
+            237,
+            225,
+            205
+          ],
+          "accent": [
+            17,
+            22,
+            45
+          ],
+          "image": "mem-template-rendered-assets/beat_1_0.png",
+          "style": "screen"
+        },
+        {
+          "tMs": 56795,
+          "bg": [
+            239,
+            238,
+            237
+          ],
+          "panel": [
+            237,
+            226,
+            206
+          ],
+          "accent": [
+            111,
+            109,
+            107
+          ],
+          "image": "mem-template-rendered-assets/beat_1_1.png",
+          "style": "screen"
+        },
+        {
+          "tMs": 66545,
+          "bg": [
+            252,
+            251,
+            251
+          ],
+          "panel": [
+            236,
+            224,
+            203
+          ],
+          "accent": [
+            175,
+            175,
+            177
+          ],
+          "image": "mem-template-rendered-assets/beat_1_2.png",
+          "style": "screen"
+        },
+        {
+          "tMs": 72170,
+          "bg": [
+            236,
+            224,
+            202
+          ],
+          "panel": [
+            253,
+            253,
+            253
+          ],
+          "accent": [
+            253,
+            104,
+            63
+          ],
+          "image": "mem-template-rendered-assets/beat_1_3.png",
+          "style": "text",
+          "text": "Your go-to thought partner"
+        },
+        {
+          "tMs": 76920,
+          "bg": [
+            253,
+            253,
+            253
+          ],
+          "panel": [
+            247,
+            209,
+            204
+          ],
+          "accent": [
+            173,
+            169,
+            180
+          ],
+          "image": "mem-template-rendered-assets/beat_1_4.png",
+          "style": "text",
+          "text": "AA MeM"
+        }
+      ],
+      "_comment": "Scene 1: 30.3s. Set \"image\" to a product screenshot to personalize."
+    }
+  ],
+  "timeline": [
+    {
+      "type": "pulse",
+      "tMs": 3375,
+      "durMs": 500,
+      "region": {
+        "x": 0.531,
+        "y": 0.514
+      },
+      "coverage": 0.16
+    },
+    {
+      "type": "pulse",
+      "tMs": 4250,
+      "durMs": 320,
+      "region": {
+        "x": 0.5,
+        "y": 0.514
+      },
+      "coverage": 0.13
+    },
+    {
+      "type": "transition",
+      "tMs": 4500,
+      "durMs": 420,
+      "coverage": 0.98
+    },
+    {
+      "type": "pulse",
+      "tMs": 10250,
+      "durMs": 1195,
+      "region": {
+        "x": 0.461,
+        "y": 0.5
+      },
+      "coverage": 0.37
+    },
+    {
+      "type": "pan",
+      "tMs": 11250,
+      "durMs": 500,
+      "distance": 220
+    },
+    {
+      "type": "pulse",
+      "tMs": 13625,
+      "durMs": 320,
+      "region": {
+        "x": 0.539,
+        "y": 0.5
+      },
+      "coverage": 0.11
+    },
+    {
+      "type": "pulse",
+      "tMs": 14625,
+      "durMs": 320,
+      "region": {
+        "x": 0.5,
+        "y": 0.444
+      },
+      "coverage": 0.2
+    },
+    {
+      "type": "scroll",
+      "tMs": 15625,
+      "durMs": 375,
+      "distance": 140
+    },
+    {
+      "type": "pulse",
+      "tMs": 15750,
+      "durMs": 375,
+      "region": {
+        "x": 0.648,
+        "y": 0.5
+      },
+      "coverage": 0.19
+    },
+    {
+      "type": "pan",
+      "tMs": 16375,
+      "durMs": 500,
+      "distance": -220
+    },
+    {
+      "type": "transition",
+      "tMs": 17500,
+      "durMs": 420,
+      "coverage": 0.95
+    },
+    {
+      "type": "pulse",
+      "tMs": 21250,
+      "durMs": 320,
+      "region": {
+        "x": 0.516,
+        "y": 0.625
+      },
+      "coverage": 0.24
+    },
+    {
+      "type": "pulse",
+      "tMs": 27875,
+      "durMs": 350,
+      "region": {
+        "x": 0.5,
+        "y": 0.625
+      },
+      "coverage": 0.47
+    },
+    {
+      "type": "pulse",
+      "tMs": 31625,
+      "durMs": 1200,
+      "region": {
+        "x": 0.523,
+        "y": 0.514
+      },
+      "coverage": 0.2
+    },
+    {
+      "type": "pulse",
+      "tMs": 33875,
+      "durMs": 320,
+      "region": {
+        "x": 0.484,
+        "y": 0.5
+      },
+      "coverage": 0.15
+    },
+    {
+      "type": "transition",
+      "tMs": 35750,
+      "durMs": 420,
+      "coverage": 0.97
+    },
+    {
+      "type": "transition",
+      "tMs": 38250,
+      "durMs": 420,
+      "coverage": 0.99
+    },
+    {
+      "type": "pulse",
+      "tMs": 40750,
+      "durMs": 375,
+      "region": {
+        "x": 0.531,
+        "y": 0.5
+      },
+      "coverage": 0.15
+    },
+    {
+      "type": "pulse",
+      "tMs": 44750,
+      "durMs": 1200,
+      "region": {
+        "x": 0.523,
+        "y": 0.5
+      },
+      "coverage": 0.33
+    },
+    {
+      "type": "scroll",
+      "tMs": 47250,
+      "durMs": 625,
+      "distance": -240
+    },
+    {
+      "type": "pan",
+      "tMs": 47375,
+      "durMs": 500,
+      "distance": 220
+    },
+    {
+      "type": "pulse",
+      "tMs": 47500,
+      "durMs": 1200,
+      "region": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "coverage": 0.5
+    },
+    {
+      "type": "pulse",
+      "tMs": 50750,
+      "durMs": 375,
+      "region": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "coverage": 0.5
+    },
+    {
+      "type": "scroll",
+      "tMs": 51125,
+      "durMs": 500,
+      "distance": 220
+    },
+    {
+      "type": "pan",
+      "tMs": 51250,
+      "durMs": 500,
+      "distance": 220
+    },
+    {
+      "type": "pulse",
+      "tMs": 51500,
+      "durMs": 420,
+      "region": {
+        "x": 0.5,
+        "y": 0.45
+      },
+      "coverage": 0.4
+    },
+    {
+      "type": "transition",
+      "tMs": 56375,
+      "durMs": 420,
+      "coverage": 0.75
+    },
+    {
+      "type": "pulse",
+      "tMs": 58000,
+      "durMs": 320,
+      "region": {
+        "x": 0.523,
+        "y": 0.486
+      },
+      "coverage": 0.03
+    },
+    {
+      "type": "pulse",
+      "tMs": 59500,
+      "durMs": 320,
+      "region": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "coverage": 0.18
+    },
+    {
+      "type": "pan",
+      "tMs": 59625,
+      "durMs": 500,
+      "distance": 220
+    },
+    {
+      "type": "pulse",
+      "tMs": 59875,
+      "durMs": 945,
+      "region": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "coverage": 0.2
+    },
+    {
+      "type": "transition",
+      "tMs": 66125,
+      "durMs": 420,
+      "coverage": 0.97
+    },
+    {
+      "type": "pulse",
+      "tMs": 70000,
+      "durMs": 445,
+      "region": {
+        "x": 0.5,
+        "y": 0.542
+      },
+      "coverage": 0.26
+    },
+    {
+      "type": "transition",
+      "tMs": 71750,
+      "durMs": 420,
+      "coverage": 0.99
+    },
+    {
+      "type": "pulse",
+      "tMs": 74750,
+      "durMs": 320,
+      "region": {
+        "x": 0.516,
+        "y": 0.5
+      },
+      "coverage": 0.16
+    },
+    {
+      "type": "transition",
+      "tMs": 76500,
+      "durMs": 420,
+      "coverage": 0.97
+    },
+    {
+      "type": "pulse",
+      "tMs": 76625,
+      "durMs": 320,
+      "region": {
+        "x": 0.508,
+        "y": 0.5
+      },
+      "coverage": 0.11
+    }
+  ]
+}

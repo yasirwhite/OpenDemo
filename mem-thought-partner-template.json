@@ -1,0 +1,337 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "recording": {
+    "width": 1280,
+    "height": 720,
+    "fps": 60,
+    "timeLapseWaitSegments": false,
+    "timeLapseSpeedFactor": 1
+  },
+  "serve": {
+    "dir": "./mem-thought-partner-template-mock"
+  },
+  "steps": [
+    {
+      "action": "wait",
+      "timeoutMs": 1000
+    },
+    {
+      "action": "goto",
+      "target": "/",
+      "_notes": "Demo opens on the initial page."
+    },
+    {
+      "action": "wait",
+      "timeoutMs": 3167,
+      "_notes": "Viewer dwells on this screen for 3.2s."
+    },
+    {
+      "action": "click",
+      "target": "#m0",
+      "_notes": "Brief localized change in the center of the screen (~54% across, ~51% down) — likely a click or hover.",
+      "_screenHint": "Small UI change in the center of the screen (~54% across, ~51% down).",
+      "zoom": {
+        "durationMs": 1200
+      }
+    },
+    {
+      "action": "click",
+      "target": "#m1",
+      "_notes": "Brief localized change in the center of the screen (~50% across, ~51% down) — likely a click or hover. Triggered a 0.1s animated transition (modal/expansion/zoom).",
+      "_screenHint": "Small UI change in the center of the screen (~50% across, ~51% down).",
+      "zoom": {
+        "durationMs": 1200
+      }
+    },
+    {
+      "action": "wait",
+      "timeoutMs": 2917,
+      "_notes": "Viewer dwells on this screen for 2.9s."
+    },
+    {
+      "action": "type",
+      "target": "#m2",
+      "value": "Summarize the launch plan",
+      "durationMs": 1400,
+      "_notes": "Sustained localized activity for 0.8s in the center of the screen (~46% across, ~50% down) — consistent with text entry."
+    },
+    {
+      "action": "click",
+      "target": "#m3",
+      "_notes": "Brief localized change in the center of the screen (~38% across, ~54% down) — likely a click or hover.",
+      "_screenHint": "Small UI change in the center of the screen (~38% across, ~54% down).",
+      "zoom": {
+        "durationMs": 1200
+      }
+    },
+    {
+      "action": "scroll",
+      "value": "90",
+      "mode": "smooth",
+      "_notes": "Page scrolls down ~90px over 0.2s."
+    },
+    {
+      "action": "click",
+      "target": "#m4",
+      "_notes": "Brief localized change in the middle left of the screen (~30% across, ~50% down) — likely a click or hover.",
+      "_screenHint": "Small UI change in the middle left of the screen (~30% across, ~50% down)."
+    },
+    {
+      "action": "click",
+      "target": "#m5",
+      "_notes": "Brief localized change in the center of the screen (~50% across, ~51% down) — likely a click or hover.",
+      "_screenHint": "Small UI change in the center of the screen (~50% across, ~51% down)."
+    },
+    {
+      "action": "wait",
+      "timeoutMs": 2083,
+      "_notes": "Viewer dwells on this screen for 2.1s."
+    },
+    {
+      "action": "click",
+      "target": "#m6",
+      "_notes": "Brief localized change in the center of the screen (~54% across, ~48% down) — likely a click or hover.",
+      "_screenHint": "Small UI change in the center of the screen (~54% across, ~48% down)."
+    },
+    {
+      "action": "click",
+      "target": "#m7",
+      "_notes": "Brief localized change in the center of the screen (~51% across, ~48% down) — likely a click or hover.",
+      "_screenHint": "Small UI change in the center of the screen (~51% across, ~48% down)."
+    },
+    {
+      "action": "scroll",
+      "value": "70",
+      "mode": "smooth",
+      "_notes": "Page scrolls down ~70px over 0.1s."
+    },
+    {
+      "action": "click",
+      "target": "#m8",
+      "_notes": "Brief localized change in the center of the screen (~63% across, ~50% down) — likely a click or hover.",
+      "_screenHint": "Small UI change in the center of the screen (~63% across, ~50% down)."
+    },
+    {
+      "action": "click",
+      "target": "#m9",
+      "_notes": "Brief localized change in the middle left of the screen (~33% across, ~50% down) — likely a click or hover. Triggered a 0.1s animated transition (modal/expansion/zoom).",
+      "_screenHint": "Small UI change in the middle left of the screen (~33% across, ~50% down)."
+    },
+    {
+      "action": "click",
+      "target": "#m10",
+      "_notes": "Brief localized change in the center of the screen (~51% across, ~50% down) — likely a click or hover.",
+      "_screenHint": "Small UI change in the center of the screen (~51% across, ~50% down)."
+    },
+    {
+      "action": "wait",
+      "timeoutMs": 3499,
+      "_notes": "Viewer dwells on this screen for 3.5s."
+    },
+    {
+      "action": "click",
+      "target": "#m11",
+      "_notes": "Brief localized change in the center of the screen (~52% across, ~62% down) — likely a click or hover.",
+      "_screenHint": "Small UI change in the center of the screen (~52% across, ~62% down)."
+    },
+    {
+      "action": "wait",
+      "timeoutMs": 3250,
+      "_notes": "Viewer dwells on this screen for 3.3s."
+    },
+    {
+      "action": "wait",
+      "timeoutMs": 3249,
+      "_notes": "Viewer dwells on this screen for 3.2s."
+    },
+    {
+      "action": "wait",
+      "timeoutMs": 2250,
+      "_notes": "Viewer dwells on this screen for 2.3s."
+    },
+    {
+      "action": "click",
+      "target": "#m12",
+      "_notes": "Brief localized change in the center of the screen (~51% across, ~50% down) — likely a click or hover.",
+      "_screenHint": "Small UI change in the center of the screen (~51% across, ~50% down)."
+    },
+    {
+      "action": "click",
+      "target": "#m13",
+      "_notes": "Brief localized change in the center of the screen (~50% across, ~51% down) — likely a click or hover.",
+      "_screenHint": "Small UI change in the center of the screen (~50% across, ~51% down)."
+    },
+    {
+      "action": "click",
+      "target": "#m14",
+      "_notes": "Brief localized change in the center of the screen (~50% across, ~50% down) — likely a click or hover.",
+      "_screenHint": "Small UI change in the center of the screen (~50% across, ~50% down)."
+    },
+    {
+      "action": "click",
+      "target": "#m15",
+      "_notes": "Brief localized change in the center of the screen (~38% across, ~50% down) — likely a click or hover.",
+      "_screenHint": "Small UI change in the center of the screen (~38% across, ~50% down)."
+    },
+    {
+      "action": "click",
+      "target": "#m16",
+      "_notes": "Brief localized change in the center of the screen (~49% across, ~50% down) — likely a click or hover. Triggered a 0.1s animated transition (modal/expansion/zoom).",
+      "_screenHint": "Small UI change in the center of the screen (~49% across, ~50% down)."
+    },
+    {
+      "action": "wait",
+      "timeoutMs": 2500,
+      "_notes": "Viewer dwells on this screen for 2.5s."
+    },
+    {
+      "action": "wait",
+      "timeoutMs": 2333,
+      "_notes": "Viewer dwells on this screen for 2.3s."
+    },
+    {
+      "action": "click",
+      "target": "#m17",
+      "_notes": "Brief localized change in the center of the screen (~54% across, ~50% down) — likely a click or hover.",
+      "_screenHint": "Small UI change in the center of the screen (~54% across, ~50% down)."
+    },
+    {
+      "action": "wait",
+      "timeoutMs": 3667,
+      "_notes": "Viewer dwells on this screen for 3.7s."
+    },
+    {
+      "action": "type",
+      "target": "#m18",
+      "value": "Summarize the launch plan",
+      "durationMs": 1400,
+      "_notes": "Sustained localized activity for 1.9s in the center of the screen (~51% across, ~51% down) — consistent with text entry."
+    },
+    {
+      "action": "click",
+      "target": "#m19",
+      "_notes": "Brief localized change in the center of the screen (~61% across, ~50% down) — likely a click or hover.",
+      "_screenHint": "Small UI change in the center of the screen (~61% across, ~50% down)."
+    },
+    {
+      "action": "click",
+      "target": "#m20",
+      "_notes": "Brief localized change in the center of the screen (~36% across, ~54% down) — likely a click or hover.",
+      "_screenHint": "Small UI change in the center of the screen (~36% across, ~54% down)."
+    },
+    {
+      "action": "click",
+      "target": "#m21",
+      "_notes": "Brief localized change in the center of the screen (~52% across, ~50% down) — likely a click or hover.",
+      "_screenHint": "Small UI change in the center of the screen (~52% across, ~50% down)."
+    },
+    {
+      "action": "scroll",
+      "value": "120",
+      "mode": "smooth",
+      "_notes": "Page scrolls up ~120px over 0.1s."
+    },
+    {
+      "action": "goto",
+      "target": "/#s1",
+      "_notes": "Hard cut to a different page/scene at 48.3s."
+    },
+    {
+      "action": "type",
+      "target": "#m22",
+      "value": "Find my product strategy notes",
+      "durationMs": 1400,
+      "_notes": "Sustained localized activity for 1.1s in the center of the screen (~50% across, ~50% down) — consistent with text entry. Triggered a 0.4s animated transition (modal/expansion/zoom). Triggered a 0.1s animated transition (modal/expansion/zoom). Triggered a 0.1s animated transition (modal/expansion/zoom)."
+    },
+    {
+      "action": "wait",
+      "timeoutMs": 4667,
+      "_notes": "Viewer dwells on this screen for 4.7s."
+    },
+    {
+      "action": "click",
+      "target": "#m23",
+      "_notes": "Brief localized change in the center of the screen (~46% across, ~48% down) — likely a click or hover. Triggered a 0.1s animated transition (modal/expansion/zoom).",
+      "_screenHint": "Small UI change in the center of the screen (~46% across, ~48% down)."
+    },
+    {
+      "action": "click",
+      "target": "#m24",
+      "_notes": "Brief localized change in the center of the screen (~50% across, ~51% down) — likely a click or hover.",
+      "_screenHint": "Small UI change in the center of the screen (~50% across, ~51% down)."
+    },
+    {
+      "action": "wait",
+      "timeoutMs": 4666,
+      "_notes": "Viewer dwells on this screen for 4.7s."
+    },
+    {
+      "action": "click",
+      "target": "#m25",
+      "_notes": "Brief localized change in the center of the screen (~50% across, ~51% down) — likely a click or hover.",
+      "_screenHint": "Small UI change in the center of the screen (~50% across, ~51% down)."
+    },
+    {
+      "action": "click",
+      "target": "#m26",
+      "_notes": "Brief localized change in the center of the screen (~50% across, ~51% down) — likely a click or hover. Triggered a 0.1s animated transition (modal/expansion/zoom).",
+      "_screenHint": "Small UI change in the center of the screen (~50% across, ~51% down)."
+    },
+    {
+      "action": "click",
+      "target": "#m27",
+      "_notes": "Brief localized change in the center of the screen (~35% across, ~35% down) — likely a click or hover. Triggered a 0.1s animated transition (modal/expansion/zoom).",
+      "_screenHint": "Small UI change in the center of the screen (~35% across, ~35% down)."
+    },
+    {
+      "action": "wait",
+      "timeoutMs": 2917,
+      "_notes": "Viewer dwells on this screen for 2.9s."
+    },
+    {
+      "action": "click",
+      "target": "#m28",
+      "_notes": "Brief localized change in the center of the screen (~51% across, ~50% down) — likely a click or hover. Triggered a 0.1s animated transition (modal/expansion/zoom).",
+      "_screenHint": "Small UI change in the center of the screen (~51% across, ~50% down)."
+    },
+    {
+      "action": "wait",
+      "timeoutMs": 2000
+    }
+  ],
+  "_mimicMeta": {
+    "stage": "1-generic-mock",
+    "sourceVideoUrl": ".\\reference\\mem-reference.mp4",
+    "sourceVideoTitle": "mem-reference",
+    "analyzedBy": "local/local-cv",
+    "generatedAt": "2026-07-07T15:47:23.570Z",
+    "originalStepCount": 47,
+    "mockDir": "./mem-thought-partner-template-mock",
+    "adapterNotes": [
+      "This template was generated by analyzing a reference demo video.",
+      "It contains 47 steps: 2 navigations, 26 clicks, 3 text inputs.",
+      "",
+      "STAGE 1 (current): the template targets a generated mock page (see \"serve\" block)",
+      "so it can be recorded and scored immediately, with no product involved:",
+      "    node run-demo.mjs <this-file>",
+      "    node evaluate-mimic.mjs .\\reference\\mem-reference.mp4 recordings/<hash>.webm",
+      "Iterate on step timing/order in this file until the score is acceptable.",
+      "",
+      "STAGE 2 (personalization) — an AI assistant adapts this template to a real product:",
+      "  1. Point it at the product:",
+      "     - Hosted/running app: set \"baseUrl\" and DELETE the \"serve\" block.",
+      "     - Local repo, static/built files: \"serve\": { \"dir\": \"../client-repo/dist\" }",
+      "     - Local repo, dev server: \"serve\": { \"command\": \"npm run dev\", \"cwd\": \"../client-repo\", \"port\": 5173 }",
+      "  2. Replace every \"target\" with a real CSS selector from the product's DOM",
+      "     (\"_originalTarget\", \"_notes\" and \"_screenHint\" describe what the reference showed",
+      "      and WHERE on screen it happened — use them to pick equivalent elements).",
+      "  3. Replace \"goto\" targets with real URL paths, and type-step \"value\"s with real data.",
+      "  4. Keep the step ORDER and the \"wait\" timings — they reproduce the reference's pacing,",
+      "     which is what evaluate-mimic.mjs scores.",
+      "  5. Re-run and re-score after personalizing:",
+      "     node run-demo.mjs <personalized-file> && node evaluate-mimic.mjs <reference> recordings/<hash>.webm",
+      "  6. Fill in 3 placeholder value(s) in type steps.",
+      "Target product: http://localhost:3000"
+    ]
+  }
+}

@@ -1,0 +1,230 @@
+1
+00:00:01,168 --> 00:00:02,368
+[word "Remembering"] slides right 9px into place, ease-in, progressive reveal
+[words "is", "so"] slide left 32px + fade in, ease-out
+
+2
+00:00:02,394 --> 00:00:03,594
+[words "is", "so"] slide left 32px + fade in, ease-out
+[words "Remembering", "is", "so"] slide out left 28px, fading
+[product demonstration]
+
+3
+00:00:03,594 --> 00:00:04,794
+[product demonstration]
+
+4
+00:00:04,794 --> 00:00:06,157
+[word "Meet"] pops in
+[word "your"] slides left 7px into place, ease-in
+… +2 more events
+
+5
+00:00:06,157 --> 00:00:07,393
+[word "Meet"] pops out
+[word "your"] slides out left 274px
+[words "notes", "app"] slide up 182px into place, ease-out
+
+6
+00:00:07,393 --> 00:00:09,009
+[words "notes", "app"] slide up 182px into place, ease-out
+[words "app", "notes"] slide out left 159px, ease-out
+… +2 more events
+
+7
+00:00:09,009 --> 00:00:10,474
+[words "second", "brain", "second", "brain"] slide out left 214px
+[words "though", "oartner"] slide left 258px into place, ease-out
+… +2 more events
+
+8
+00:00:10,474 --> 00:00:11,674
+[words "though", "thought", "oartner", "partner"] slide out down 47px
+[words "thought", "partner"] slide down 20px into place
+
+9
+00:00:13,000 --> 00:00:16,333
+[product demonstration]
+
+10
+00:00:16,540 --> 00:00:17,740
+[words "Capture", "anything"] pop in
+[words "Capture", "anything"] pop out
+[product demonstration]
+
+11
+00:00:17,740 --> 00:00:19,133
+[words "Capture", "anything"] pop out
+[product demonstration]
+
+12
+00:00:20,241 --> 00:00:21,441
+[words "Turn", "brain", "into", "dumps", "notes"] slide down 23px into place
+[word "beautiful"] slides down 9px + fades in, ease-in
+[words "Turn", "brain", "into", "dumps", "beautiful", "notes"] pop out
+
+13
+00:00:21,441 --> 00:00:23,333
+[word "beautiful"] slides down 9px + fades in, ease-in
+[words "Turn", "brain", "into", "dumps", "beautiful", "notes"] pop out
+[product demonstration]
+
+14
+00:00:24,827 --> 00:00:26,027
+[words "Let", "Mem"] pop in
+[words "Let", "Mem"] slide out left 121px, ease-out
+… +2 more events
+
+15
+00:00:26,061 --> 00:00:27,261
+[word "notes"] pops in
+[words "notes", "for"] slide left 57px into place, ease-out
+… +2 more events
+
+16
+00:00:27,261 --> 00:00:28,461
+[word "notes"] slides out left 6px
+[word "you"] slides left 22px + fades in
+… +2 more events
+
+17
+00:00:29,867 --> 00:00:31,200
+[product demonstration]
+
+18
+00:00:31,574 --> 00:00:32,774
+[word "Te!"] slides left 12px into place
+[word "Te!"] slides out left 12px, ease-out
+… +3 more events
+
+19
+00:00:32,774 --> 00:00:37,617
+[word "Te!"] slides out left 12px, ease-out
+[word "Mem"] slides left 86px into place
+… +3 more events
+
+20
+00:00:38,258 --> 00:00:39,473
+[word "remembers"] slides up 18px + fades in, progressive reveal
+
+21
+00:00:39,473 --> 00:00:40,673
+[word "remembers"] slides up 18px + fades in, progressive reveal
+[word "for"] slides down 13px into place, ease-in
+… +3 more events
+
+22
+00:00:40,673 --> 00:00:41,873
+[word "remembers"] pops out
+[word "you"] slides up 9px into place
+[words "for", "you"] fade out
+
+23
+00:00:41,873 --> 00:00:43,800
+[product demonstration]
+
+24
+00:00:44,941 --> 00:00:46,141
+[word "Find"] slides left 104px into place, ease-out
+[word "Find"] slides out right 7px
+
+25
+00:00:46,141 --> 00:00:48,267
+[word "Find"] slides out right 7px
+[product demonstration]
+
+26
+00:00:48,267 --> 00:00:49,467
+[product demonstration]
+— hard cut —
+
+27
+00:00:49,467 --> 00:00:51,600
+[product demonstration]
+
+28
+00:00:51,707 --> 00:00:52,907
+[word "and"] pops in
+[word "and"] slides out left 66px, ease-in
+[word "and"] slides left 67px into place, ease-out
+
+29
+00:00:52,907 --> 00:00:54,144
+[word "and"] slides out left 66px, ease-in
+[word "and"] slides left 67px into place, ease-out
+[word "recall"] slides left 7px + fades in, ease-in
+
+30
+00:00:54,144 --> 00:00:55,344
+[word "recall"] slides left 7px + fades in, ease-in
+[words "and", "recall"] fade out, ease-out
+[word "everything"] slides right 9px + fades in, ease-out, progressive reveal
+
+31
+00:00:55,344 --> 00:00:56,544
+[word "everything"] slides right 9px + fades in, ease-out, progressive reveal
+
+32
+00:00:56,544 --> 00:00:57,744
+[word "everything"] slides out left 10px
+[words "Mem", "Chat"] fade in, ease-in
+
+33
+00:00:57,910 --> 00:00:59,110
+[words "Mem", "Chat"] pop out
+
+34
+00:00:59,417 --> 00:01:03,217
+[product demonstration]
+
+35
+00:01:04,040 --> 00:01:05,240
+[words "I've", "created", "to-do", "list", "for", "you"] slide up 30px into place, ease-out
+[words "I've", "created"] slide out right 31px, ease-in
+… +2 more events
+
+36
+00:01:05,240 --> 00:01:06,574
+[words "I've", "created"] slide out right 31px, ease-in
+[words "list", "for", "you"] slide out left 30px, ease-in
+… +4 more events
+
+37
+00:01:06,574 --> 00:01:08,457
+[word "and"] slides out right 9px
+[words "of", "course"] pop out
+… +2 more events
+
+38
+00:01:08,457 --> 00:01:09,733
+[words "Team", "Sharing"] slide out up 19px
+[product demonstration]
+
+39
+00:01:10,324 --> 00:01:11,524
+[words "Not", "notes"] slide left 136px into place, progressive reveal
+[words "another", "app"] slide left 70px + fade in, ease-out
+[words "Not", "another", "notes", "app"] slide out up 21px, ease-in
+
+40
+00:01:11,524 --> 00:01:12,840
+[words "another", "app"] slide left 70px + fade in, ease-out
+[words "Not", "another", "notes", "app"] slide out up 21px, ease-in
+… +2 more events
+
+41
+00:01:12,840 --> 00:01:14,040
+[word "Your"] slides right 18px + fades in
+[word "go-to"] slides right 21px into place
+[words "thought", "partner"] slide right 26px + fade in, ease-out
+
+42
+00:01:14,443 --> 00:01:15,643
+[word "partner"] fades out, ease-out
+[words "Your", "go-to", "thought"] pop out
+[product demonstration]
+
+43
+00:01:15,643 --> 00:01:16,843
+[words "Your", "go-to", "thought"] pop out
+[product demonstration]

@@ -1,0 +1,195 @@
+{
+  "overall": 0.704,
+  "weights": {
+    "color": 0.18,
+    "motion": 0.2,
+    "cuts": 0.12,
+    "structure": 0.08,
+    "pacing": 0.08,
+    "events": 0.16,
+    "density": 0.18
+  },
+  "dimensions": {
+    "color": {
+      "score": 0.94,
+      "detail": {
+        "globalPalette": 0.951,
+        "timelinePalette": 0.929
+      },
+      "explain": "Global palette overlap 95%, timeline palette overlap 93%."
+    },
+    "motion": {
+      "score": 0.562,
+      "detail": {
+        "profileShape": 0.616,
+        "energyLevel": 0.48,
+        "refMeanEnergy": 0.0256,
+        "genMeanEnergy": 0.0123
+      },
+      "explain": "Motion-profile shape match 62%; motion amount ratio 48%."
+    },
+    "cuts": {
+      "score": 1,
+      "detail": {
+        "refCuts": 1,
+        "genCuts": 1,
+        "matched": 1,
+        "precision": 1,
+        "recall": 1
+      },
+      "explain": "Reference has 1 cut(s), generated has 1; 1 matched in timing (±7.5% of duration)."
+    },
+    "structure": {
+      "score": 0.43,
+      "detail": {
+        "rawDhashSimilarity": 0.715
+      },
+      "explain": "Time-aligned layout (dHash) similarity 71% raw (43% above chance). Different products naturally score lower here."
+    },
+    "pacing": {
+      "score": 0.869,
+      "detail": {
+        "refDurationMs": 78545,
+        "genDurationMs": 78533,
+        "durationRatio": 1,
+        "refActivityRatio": 0.166,
+        "genActivityRatio": 0.062,
+        "meanIdleMsRef": 2179,
+        "meanIdleMsGen": 3500
+      },
+      "explain": "Duration 78.5s vs 78.5s (ratio 100%); screen-active time 17% vs 6%."
+    },
+    "events": {
+      "score": 0.34,
+      "detail": {
+        "scroll": {
+          "ref": 3,
+          "gen": 3,
+          "refTimeShare": 0.005,
+          "genTimeShare": 0.013,
+          "similarity": 0.687
+        },
+        "pan": {
+          "ref": 5,
+          "gen": 0,
+          "refTimeShare": 0.016,
+          "genTimeShare": 0,
+          "similarity": 0
+        },
+        "animation": {
+          "ref": 16,
+          "gen": 2,
+          "refTimeShare": 0.038,
+          "genTimeShare": 0.003,
+          "similarity": 0.104
+        },
+        "micro": {
+          "ref": 24,
+          "gen": 15,
+          "refTimeShare": 0.105,
+          "genTimeShare": 0.045,
+          "similarity": 0.525
+        }
+      },
+      "explain": "scroll: 3 ref / 3 gen (time share 0% vs 1%); pan: 5 ref / 0 gen (time share 2% vs 0%); animation: 16 ref / 2 gen (time share 4% vs 0%); micro: 24 ref / 15 gen (time share 11% vs 4%)"
+    },
+    "density": {
+      "score": 0.802,
+      "detail": {
+        "refMeanBgShare": 0.901,
+        "genMeanBgShare": 0.852,
+        "meanProfileGap": 0.079
+      },
+      "explain": "Whitespace/content density: reference frames are 90% background on average, generated 85% (timeline gap 8%). Dense clutter vs clean slides shows up here."
+    }
+  },
+  "reference": {
+    "path": "/sessions/nifty-vigilant-heisenberg/mnt/OpenDemo/reference/mem-reference.mp4",
+    "durationMs": 78545,
+    "resolution": "640x360",
+    "sampledFrames": 628,
+    "cuts": 1,
+    "events": {
+      "scroll": 3,
+      "pan": 5,
+      "animation": 16,
+      "micro": 24
+    }
+  },
+  "generated": {
+    "path": "/sessions/nifty-vigilant-heisenberg/mnt/OpenDemo/mem-template-rendered.mp4",
+    "durationMs": 78533,
+    "resolution": "640x360",
+    "sampledFrames": 628,
+    "cuts": 1,
+    "events": {
+      "scroll": 3,
+      "pan": 0,
+      "animation": 2,
+      "micro": 15
+    }
+  },
+  "segments": [
+    {
+      "window": "0.0-9.8s",
+      "score": 0.86,
+      "color": 0.973,
+      "density": 0.946,
+      "motion": 0.558
+    },
+    {
+      "window": "9.8-19.6s",
+      "score": 0.785,
+      "color": 0.964,
+      "density": 0.973,
+      "motion": 0.234
+    },
+    {
+      "window": "19.6-29.5s",
+      "score": 0.82,
+      "color": 0.884,
+      "density": 0.639,
+      "motion": 0.971
+    },
+    {
+      "window": "29.5-39.3s",
+      "score": 0.712,
+      "color": 0.912,
+      "density": 0.638,
+      "motion": 0.497
+    },
+    {
+      "window": "39.3-49.1s",
+      "score": 0.747,
+      "color": 0.896,
+      "density": 0.894,
+      "motion": 0.304
+    },
+    {
+      "window": "49.1-58.9s",
+      "score": 0.814,
+      "color": 0.875,
+      "density": 0.892,
+      "motion": 0.608
+    },
+    {
+      "window": "58.9-68.7s",
+      "score": 0.866,
+      "color": 0.967,
+      "density": 0.983,
+      "motion": 0.544
+    },
+    {
+      "window": "68.7-78.5s",
+      "score": 0.968,
+      "color": 0.964,
+      "density": 0.966,
+      "motion": 0.976
+    }
+  ],
+  "notes": [
+    "LOW events (0.34): scroll: 3 ref / 3 gen (time share 0% vs 1%); pan: 5 ref / 0 gen (time share 2% vs 0%); animation: 16 ref / 2 gen (time share 4% vs 0%); micro: 24 ref / 15 gen (time share 11% vs 4%)",
+    "LOW structure (0.43): Time-aligned layout (dHash) similarity 71% raw (43% above chance). Different products naturally score lower here.",
+    "LOW motion (0.562): Motion-profile shape match 62%; motion amount ratio 48%."
+  ]
+}

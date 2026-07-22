@@ -783,13 +783,40 @@ async function runFlow(flow) {
 // ────────────────────────────────────────────────
 async function main() {
   let flow = BING_DEMO_FLOW;
+  let flowDir = __dirname;
 
   if (process.argv[2]) {
     const { readFileSync } = await import("node:fs");
-    flow = JSON.parse(readFileSync(resolve(process.argv[2]), "utf8"));
+    const flowPath = resolve(process.argv[2]);
+    flow = JSON.parse(readFileSync(flowPath, "utf8"));
+    flowDir = dirname(flowPath);
     log(`📂 Loaded flow: ${process.argv[2]}`);
   } else {
     log("📝 Using built-in Bing 'chicken wing' demo");
+  }
+
+  // ── Optional local serving ("serve" block) ────────────────────────────────
+  // Lets a flow target local content with no server running beforehand:
+  //   "serve": { "dir": "./my-mock-or-built-app" }          → static file server
+  //   "serve": { "command": "npm run dev", "cwd": "../repo", "port": 5173 }
+  // The served URL overrides baseUrl for this run.
+  if (flow.serve) {
+    log(`🌐 Local serve requested...`);
+    const { startServe } = await import("./scripts/demo-server.mjs");
+    let server;
+    try {
+      server = await startServe(flow.serve, flowDir, log);
+    } catch (err) {
+      log(`💥 Could not serve local target: ${err.message}`);
+      process.exit(1);
+    }
+    flow.baseUrl = server.url;
+    // Ensure teardown however the process ends (success, error, Ctrl+C)
+    const cleanup = () => { try { server.close(); } catch { } };
+    process.on("exit", cleanup);
+    process.on("SIGINT", () => { cleanup(); process.exit(130); });
+    process.on("SIGTERM", () => { cleanup(); process.exit(143); });
+    log(`   baseUrl → ${server.url}`);
   }
 
   log("─".repeat(55));

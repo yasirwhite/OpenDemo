@@ -1,0 +1,185 @@
+1
+00:00:00,400 --> 00:00:02,578
+[text "R"] slides in from the left 37px (slide+fade), ease-out, 600ms
+[text "emembering"] letters cascade in left-to-right ~104ms apart (slide+fade), each sliding from the right 20px, ease-out
+[text "is so"] slides in from the right 21px (slide+fade), ease-out, 300ms
+
+2
+00:00:02,578 --> 00:00:04,097
+[text "Remembering s so"] slides out to the left 47px (slide), ease-out
+[text "vesterday"] letters cascade in left-to-right ~42ms apart (slide+fade), each sliding from the right 113px, ease-out
+
+3
+00:00:04,097 --> 00:00:05,560
+[text "vesterday"] slides out to the right 22px (slide), ease-out
+[text "Meet"] pops out
+[text "your"] letters cascade in left-to-right ~67ms apart (fade), ease-out
+
+4
+00:00:05,560 --> 00:00:06,769
+[text "New"] fades in as one block, linear, 400ms
+[text "your"] slides out up-left 223px (slide), ease-out
+[text "app"] slides in rising 128px (slide), linear, 433ms
+
+5
+00:00:06,769 --> 00:00:07,731
+[text "notes"] slides in rising 53px (slide), linear, 434ms
+[text "second"] letters cascade in left-to-right ~56ms apart (slide+fade), each sliding from the right 261px, ease-out
+[text "brain"] letters cascade in left-to-right ~117ms apart (slide+fade), each sliding from the right 91px, ease-out
+
+6
+00:00:07,731 --> 00:00:08,931
+[text "es pp"] slides out to the left 158px (slide), ease-out
+
+7
+00:00:09,029 --> 00:00:10,124
+[text "thought partner"] letters cascade in left-to-right ~93ms apart (slide), each sliding from the right 252px, ease-out
+[text "econd brain"] slides out to the left 246px (slide), ease-out
+
+8
+00:00:10,124 --> 00:00:11,666
+[text "hought artner"] slides out down-left 152px (slide), ease-out
+[product demo] embedded app footage (not transcribed)
+
+9
+00:00:13,266 --> 00:00:16,200
+[product demo] embedded app footage (not transcribed)
+
+10
+00:00:16,509 --> 00:00:20,067
+[text "Capture anything"] pops in
+[text "apture anything"] slides out to the right 9px (slide), linear
+[product demo] embedded app footage (not transcribed)
+
+11
+00:00:20,249 --> 00:00:23,533
+[text "Turn brain dumps into beautiful notes"] letters cascade in ~139ms apart (pop), each dropping 10px, linear
+[text "Turn brain dumps into beautiful"] fades out (484ms)
+[product demo] embedded app footage (not transcribed)
+
+12
+00:00:24,796 --> 00:00:27,142
+[text "Let Mem take meeting"] letters cascade in left-to-right ~33ms apart (slide+fade), each sliding from the right 79px, ease-out
+[text "et Mem ta"] slides out to the left 32px (slide), ease-out
+[text "notes for you"] letters cascade in left-to-right ~67ms apart (slide+fade), each sliding from the right 36px, ease-out
+
+13
+00:00:27,204 --> 00:00:28,404
+[text "for you"] slides out to the right 33px (slide), ease-out
+
+14
+00:00:28,866 --> 00:00:30,133
+[product demo] embedded app footage (not transcribed)
+
+15
+00:00:30,328 --> 00:00:31,454
+[text "Tel"] letters cascade in left-to-right ~34ms apart (slide+fade), each rising 50px, ease-out
+
+16
+00:00:31,454 --> 00:00:33,207
+[text "Tel"] pops out
+[text "Tell"] pops in
+[text "ell"] pops out
+
+17
+00:00:33,600 --> 00:00:35,196
+[text "needtoask aboutthedomain name Ined"] letters cascade in left-to-right ~89ms apart (slide+fade), each sliding from the right 135px, ease-in
+
+18
+00:00:35,424 --> 00:00:37,467
+[text "need to ask about the domain name"] slides out upward 38px (slide), ease-in
+[text "eed"] slides out up-left 61px (slide), ease-out
+[product demo] embedded app footage (not transcribed)
+
+19
+00:00:38,269 --> 00:00:39,658
+[text "Mem"] slides in rising 13px (slide+fade), ease-out, 133ms
+[text "remembers"] slides in up-left 22px (slide), ease-out, 400ms
+[text "membe"] slides out to the left 10px (slide), ease-out
+
+20
+00:00:39,658 --> 00:00:45,133
+[text "Mem"] slides out to the left 23px (slide), ease-out
+[product demo] embedded app footage (not transcribed)
+
+21
+00:00:45,309 --> 00:00:47,029
+[text "Find"] slides in from the right 13px (slide), ease-out, 133ms
+[text "Find"] slides out to the right 36px (slide), linear
+
+22
+00:00:47,029 --> 00:00:48,466
+[text "DeepSearch"] letters cascade in right-to-left ~8ms apart (slide+fade), linear
+[text "Deep Search"] leaves at hard cut
+[cut] hard cut
+
+23
+00:00:48,466 --> 00:00:51,533
+[product demo] embedded app footage (not transcribed)
+
+24
+00:00:51,709 --> 00:00:54,100
+[text "d"] slides in from the right 105px (slide), ease-in, 1168ms
+[text "an"] slides in from the right 51px (slide+fade), ease-out, 200ms
+[text "recall"] fades in as one block, ease-out, 233ms
+
+25
+00:00:54,100 --> 00:00:55,727
+[text "and recall"] fades out (167ms)
+[text "everything with"] letters cascade in left-to-right ~52ms apart (slide+fade), ease-out
+
+26
+00:00:56,154 --> 00:00:57,522
+[text "everything"] slides out to the left 12px (slide), ease-in
+[text "Mem Chat"] fades in as one block, ease-out, 634ms
+
+27
+00:00:57,874 --> 00:01:03,867
+[text "Mem Chat"] fades out (200ms)
+[product demo] embedded app footage (not transcribed)
+
+28
+00:01:04,036 --> 00:01:05,354
+[text "I've created a to-do list for you"] letters cascade in ~33ms apart (slide+fade), each rising 27px, ease-out
+[text "created a to-do list for you"] slides out to the left 30px (slide), linear
+[text "and of course"] pops in
+
+29
+00:01:05,354 --> 00:01:06,984
+[text "and of course"] slides out to the left 17px (slide), ease-out
+[text "Offline Mode"] slides in from the left 15px (slide), ease-out, 200ms
+[text "Tea haing"] slides in up-right 40px (slide), linear, 400ms
+
+30
+00:01:06,984 --> 00:01:08,234
+[text "Offline Mode"] slides out upward 41px (slide), linear
+[text "Team Sharing"] pops out
+[text "Templates"] slides in rising 31px (slide), ease-out, 400ms
+
+31
+00:01:08,234 --> 00:01:08,834
+[text "Templates"] pops out
+[text "API Acess"] pops in
+[text "API Access"] pops out
+
+32
+00:01:08,800 --> 00:01:10,603
+[text "Dark Mode"] letters cascade in ~181ms apart (pop), each rising 16px, linear
+[text "Dark Mode"] pops out
+[text "Not"] letters cascade in left-to-right ~184ms apart (slide), each sliding from the right 116px, ease-out
+
+33
+00:01:10,603 --> 00:01:12,256
+[text "another"] slides in from the right 60px (slide+fade), ease-out, 400ms
+[text "notes app"] letters cascade in left-to-right ~25ms apart (slide+fade), each sliding from the right 32px, linear
+[text "Not another notes"] slides out upward 23px (slide), ease-out
+
+34
+00:01:12,256 --> 00:01:13,803
+[text "Your go-to thought partner"] letters cascade in right-to-left ~79ms apart (slide+fade), each sliding from the left 22px, ease-out
+
+35
+00:01:14,447 --> 00:01:17,067
+[text "Your go-to thought partner"] slides out to the left 10px (slide), linear
+[product demo] embedded app footage (not transcribed)
+

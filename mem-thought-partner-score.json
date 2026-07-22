@@ -1,0 +1,128 @@
+{
+  "overall": 0.42,
+  "weights": {
+    "color": 0.2,
+    "motion": 0.25,
+    "cuts": 0.15,
+    "structure": 0.1,
+    "pacing": 0.1,
+    "events": 0.2
+  },
+  "dimensions": {
+    "color": {
+      "score": 0.591,
+      "detail": {
+        "globalPalette": 0.594,
+        "timelinePalette": 0.588
+      },
+      "explain": "Global palette overlap 59%, timeline palette overlap 59%."
+    },
+    "motion": {
+      "score": 0.217,
+      "detail": {
+        "profileShape": 0.215,
+        "energyLevel": 0.22,
+        "refMeanEnergy": 0.0256,
+        "genMeanEnergy": 0.0056
+      },
+      "explain": "Motion-profile shape match 21%; motion amount ratio 22%."
+    },
+    "cuts": {
+      "score": 0,
+      "detail": {
+        "refCuts": 1,
+        "genCuts": 9,
+        "matched": 0,
+        "precision": 0,
+        "recall": 0
+      },
+      "explain": "Reference has 1 cut(s), generated has 9; 0 matched in timing (±7.5% of duration)."
+    },
+    "structure": {
+      "score": 0.178,
+      "detail": {
+        "rawDhashSimilarity": 0.589
+      },
+      "explain": "Time-aligned layout (dHash) similarity 59% raw (18% above chance). Different products naturally score lower here."
+    },
+    "pacing": {
+      "score": 0.782,
+      "detail": {
+        "refDurationMs": 78545,
+        "genDurationMs": 101763,
+        "durationRatio": 0.772,
+        "refActivityRatio": 0.161,
+        "genActivityRatio": 0.139,
+        "meanIdleMsRef": 1992,
+        "meanIdleMsGen": 3804
+      },
+      "explain": "Duration 78.5s vs 101.8s (ratio 77%); screen-active time 16% vs 14%."
+    },
+    "events": {
+      "score": 0.756,
+      "detail": {
+        "scroll": {
+          "ref": 3,
+          "gen": 0,
+          "refTimeShare": 0.005,
+          "genTimeShare": 0,
+          "similarity": 0
+        },
+        "pan": {
+          "ref": 6,
+          "gen": 0,
+          "refTimeShare": 0.014,
+          "genTimeShare": 0,
+          "similarity": 0
+        },
+        "animation": {
+          "ref": 18,
+          "gen": 20,
+          "refTimeShare": 0.038,
+          "genTimeShare": 0.033,
+          "similarity": 0.884
+        },
+        "micro": {
+          "ref": 28,
+          "gen": 31,
+          "refTimeShare": 0.102,
+          "genTimeShare": 0.095,
+          "similarity": 0.916
+        }
+      },
+      "explain": "scroll: 3 ref / 0 gen (time share 0% vs 0%); pan: 6 ref / 0 gen (time share 1% vs 0%); animation: 18 ref / 20 gen (time share 4% vs 3%); micro: 28 ref / 31 gen (time share 10% vs 9%)"
+    }
+  },
+  "reference": {
+    "path": "C:\\Users\\Yasir\\Desktop\\Code\\OpenDemo\\reference\\mem-reference.mp4",
+    "durationMs": 78545,
+    "resolution": "640x360",
+    "sampledFrames": 628,
+    "cuts": 1,
+    "events": {
+      "scroll": 3,
+      "pan": 6,
+      "animation": 18,
+      "micro": 28
+    }
+  },
+  "generated": {
+    "path": "C:\\Users\\Yasir\\Desktop\\Code\\OpenDemo\\recordings\\page@8b4f6ffa897050847bfa12dc58f3f2fa-openscreen.mp4",
+    "durationMs": 101763,
+    "resolution": "1920x1080",
+    "sampledFrames": 814,
+    "cuts": 9,
+    "events": {
+      "scroll": 0,
+      "pan": 0,
+      "animation": 20,
+      "micro": 31
+    }
+  },
+  "notes": [
+    "LOW cuts (0): Reference has 1 cut(s), generated has 9; 0 matched in timing (±7.5% of duration).",
+    "LOW structure (0.178): Time-aligned layout (dHash) similarity 59% raw (18% above chance). Different products naturally score lower here.",
+    "LOW motion (0.217): Motion-profile shape match 21%; motion amount ratio 22%.",
+    "LOW color (0.591): Global palette overlap 59%, timeline palette overlap 59%."
+  ]
+}
