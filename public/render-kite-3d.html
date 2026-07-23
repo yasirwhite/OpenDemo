@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Kite 3D WebGL MacBook Pro Renderer</title>
+  <title>Kite 3D WebGL MacBook Pro Studio Renderer</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: #0a0b12;
+      background: #08090e;
       overflow: hidden;
     }
     #canvas-container {
@@ -22,34 +22,33 @@
     }
   </style>
   <script src="/three.min.js"></script>
-  <script src="/DRACOLoader.js"></script>
-  <script src="/GLTFLoader.js"></script>
 </head>
 <body>
   <div id="canvas-container"></div>
 
   <script>
-    let scene, camera, renderer, laptopGroup;
+    let scene, camera, renderer, laptopGroup, lidGroup, baseGroup;
     let videoTexture, appCanvas, appCtx;
     let clock = new THREE.Clock();
-    window.modelLoaded = false;
+    window.modelLoaded = true; // High-fidelity procedural mesh ready immediately
 
-    // Get background wallpaper choice from URL param ?bg=3 (default to 3)
+    // URL params for wallpaper option
     const urlParams = new URLSearchParams(window.location.search);
     const bgNum = urlParams.get('bg') || '3';
-    const bgPath = `/wallpapers/wallpaper${bgNum}.jpg`;
 
     function init() {
       const container = document.getElementById('canvas-container');
 
-      // 1. Scene
+      // 1. Scene setup
       scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x08090e);
+      scene.fog = new THREE.FogExp2(0x08090e, 0.025);
 
-      // 2. Camera
+      // 2. Camera setup (Perspective matching Apple product shots)
       camera = new THREE.PerspectiveCamera(36, 1280 / 720, 0.1, 200);
       camera.position.set(0, 2.2, 10.5);
 
-      // 3. Renderer
+      // 3. WebGL Renderer with High-Quality PBR and Soft Shadows
       renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
       renderer.setSize(1280, 720);
       renderer.setPixelRatio(window.devicePixelRatio);
@@ -57,25 +56,42 @@
       renderer.shadowMap.type = THREE.PCFSoftShadowMap;
       renderer.physicallyCorrectLights = true;
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.2;
+      renderer.toneMappingExposure = 1.25;
       container.appendChild(renderer.domElement);
 
-      // 4. OpenScreen 2D Wallpaper Background
-      const textureLoader = new THREE.TextureLoader();
-      textureLoader.load(bgPath, (bgTexture) => {
-        bgTexture.encoding = THREE.sRGBEncoding;
-        const bgGeo = new THREE.PlaneGeometry(75, 42);
-        const bgMat = new THREE.MeshBasicMaterial({ map: bgTexture, fog: false });
-        const bgMesh = new THREE.Mesh(bgGeo, bgMat);
-        bgMesh.position.z = -22;
-        scene.add(bgMesh);
-      });
+      // 4. Studio Background & Environment Accent Glows
+      const bgGeo = new THREE.PlaneGeometry(80, 45);
+      const bgCanvas = document.createElement('canvas');
+      bgCanvas.width = 1024; bgCanvas.height = 576;
+      const bgCtx = bgCanvas.getContext('2d');
+      const bgGrad = bgCtx.createRadialGradient(512, 288, 0, 512, 288, 700);
+      bgGrad.addColorStop(0,   '#181a32'); // Deep indigo studio radial center
+      bgGrad.addColorStop(0.5, '#0f1022');
+      bgGrad.addColorStop(1,   '#06060c'); // Obsidian edges
+      bgCtx.fillStyle = bgGrad;
+      bgCtx.fillRect(0, 0, 1024, 576);
+      const bgTex = new THREE.CanvasTexture(bgCanvas);
+      const bgMesh = new THREE.Mesh(bgGeo, new THREE.MeshBasicMaterial({ map: bgTex, fog: false }));
+      bgMesh.position.z = -25;
+      scene.add(bgMesh);
+
+      // Ambient studio color lights
+      const addGlow = (color, x, y, z, size, opacity = 0.14) => {
+        const g = new THREE.SphereGeometry(size, 16, 16);
+        const m = new THREE.MeshBasicMaterial({ color, transparent: true, opacity, fog: false });
+        const mesh = new THREE.Mesh(g, m);
+        mesh.position.set(x, y, z);
+        scene.add(mesh);
+      };
+      addGlow(0x6366f1, -9, 5, -18, 10);  // Indigo left glow
+      addGlow(0x8b5cf6,  10, -2, -20, 11); // Purple right glow
+      addGlow(0x38bdf8, -1, 9, -22, 8);   // Sky blue top glow
 
       // 5. Studio Product Lighting
-      scene.add(new THREE.AmbientLight(0xffffff, 1.2));
+      scene.add(new THREE.AmbientLight(0xffffff, 0.9));
 
-      // Key light from top right
-      const keyLight = new THREE.DirectionalLight(0xfff8f0, 3.5);
+      // Key light (Warm overhead key shadow caster)
+      const keyLight = new THREE.DirectionalLight(0xfffbf0, 3.8);
       keyLight.position.set(6, 15, 12);
       keyLight.castShadow = true;
       keyLight.shadow.mapSize.width = 2048;
@@ -88,17 +104,17 @@
       keyLight.shadow.camera.right = 15;
       scene.add(keyLight);
 
-      // Rim light for metallic chamfer edges
-      const rimLight = new THREE.PointLight(0xa5b4fc, 4.5, 30);
-      rimLight.position.set(-9, 5, -4);
+      // Metallic rim light (Highlights aluminum bevel edges)
+      const rimLight = new THREE.PointLight(0x818cf8, 4.5, 30);
+      rimLight.position.set(-8, 5, -4);
       scene.add(rimLight);
 
-      // Front fill light
-      const fillLight = new THREE.PointLight(0xffffff, 1.8, 18);
-      fillLight.position.set(0, 4, 8);
+      // Soft front fill light
+      const fillLight = new THREE.PointLight(0xffffff, 1.6, 16);
+      fillLight.position.set(0, 3, 7);
       scene.add(fillLight);
 
-      // 6. App canvas texture
+      // 6. High-Res App Canvas Texture (1920x1080)
       appCanvas = document.createElement('canvas');
       appCanvas.width = 1920;
       appCanvas.height = 1080;
@@ -111,73 +127,208 @@
       videoTexture.generateMipmaps = false;
       videoTexture.encoding = THREE.sRGBEncoding;
 
-      // 7. Load Genuine MacBook Pro 3D Mesh (.glb) with DRACOLoader
+      // 7. BUILD HIGH-FIDELITY MACBOOK PRO 3D MODEL
       laptopGroup = new THREE.Group();
-      scene.add(laptopGroup);
 
-      const dracoLoader = new THREE.DRACOLoader();
-      dracoLoader.setDecoderPath('/draco/');
-
-      const loader = new THREE.GLTFLoader();
-      loader.setDRACOLoader(dracoLoader);
-
-      loader.load('/mac.glb', (gltf) => {
-        const macModel = gltf.scene;
-
-        macModel.traverse((child) => {
-          if (child.isMesh) {
-            child.castShadow = true;
-            child.receiveShadow = true;
-
-            // Target screen mesh ('matte')
-            if (child.name === 'matte' || (child.material && child.material.name === 'matte')) {
-              const screenMat = new THREE.MeshBasicMaterial({
-                map: videoTexture
-              });
-              child.material = screenMat;
-            } else if (child.material) {
-              child.material.envMapIntensity = 1.8;
-            }
-          }
-        });
-
-        // Scale mac.glb (31.5 units wide natively -> scale by 0.27 to ~8.5 units wide)
-        macModel.scale.set(0.27, 0.27, 0.27);
-        macModel.position.set(0, -1.2, 0);
-        laptopGroup.add(macModel);
-        window.modelLoaded = true;
-      }, undefined, (err) => {
-        console.error('Error loading mac.glb model:', err);
+      // Materials
+      const spaceGrayMat = new THREE.MeshStandardMaterial({
+        color: 0x3a3d46, // Rich Space Gray anodized aluminum
+        roughness: 0.22,
+        metalness: 0.86,
+      });
+      const silverMat = new THREE.MeshStandardMaterial({
+        color: 0xd0d4df, // Silver accent trim
+        roughness: 0.18,
+        metalness: 0.92,
+      });
+      const darkTrayMat = new THREE.MeshStandardMaterial({
+        color: 0x0d0e14, // Recessed keyboard tray
+        roughness: 0.6,
+        metalness: 0.1,
+      });
+      const keyCapMat = new THREE.MeshStandardMaterial({
+        color: 0x161720, // Matte black keycaps
+        roughness: 0.35,
+        metalness: 0.1,
+        emissive: 0x1e2030, // Subtle key backlighting
+        emissiveIntensity: 0.3,
+      });
+      const trackpadMat = new THREE.MeshStandardMaterial({
+        color: 0x22242e,
+        roughness: 0.15,
+        metalness: 0.4,
       });
 
-      // 8. Ground shadow plane
+      // --- DISPLAY LID ---
+      lidGroup = new THREE.Group();
+      const sw = 8.0, sh = 5.0; // 16:10 Screen ratio
+
+      // Lid aluminum back shell
+      const bezelW = 8.5, bezelH = 5.4;
+      const lidBack = new THREE.Mesh(new THREE.BoxGeometry(bezelW, bezelH, 0.12), spaceGrayMat);
+      lidBack.castShadow = true;
+      lidBack.receiveShadow = true;
+      lidGroup.add(lidBack);
+
+      // Black inner display bezel
+      const innerBezel = new THREE.Mesh(
+        new THREE.BoxGeometry(bezelW - 0.04, bezelH - 0.04, 0.01),
+        new THREE.MeshStandardMaterial({ color: 0x050508, roughness: 0.3 })
+      );
+      innerBezel.position.set(0, 0, 0.062);
+      lidGroup.add(innerBezel);
+
+      // Display Screen Plane (sits safely in front, zero z-fighting)
+      const screenGeo = new THREE.PlaneGeometry(sw, sh);
+      const screenMat = new THREE.MeshBasicMaterial({ map: videoTexture });
+      const screenMesh = new THREE.Mesh(screenGeo, screenMat);
+      screenMesh.position.set(0, 0, 0.07);
+      lidGroup.add(screenMesh);
+
+      // Camera Notch at top center of display
+      const notchMesh = new THREE.Mesh(
+        new THREE.BoxGeometry(0.55, 0.16, 0.02),
+        new THREE.MeshStandardMaterial({ color: 0x050508, roughness: 0.2 })
+      );
+      notchMesh.position.set(0, (sh / 2) - 0.08, 0.075);
+      lidGroup.add(notchMesh);
+
+      // Position lid pivot at hinge line and open ~100 degrees
+      lidGroup.position.set(0, sh / 2 + 0.15, 0);
+      lidGroup.rotation.x = -0.18;
+      laptopGroup.add(lidGroup);
+
+      // --- UNIBODY BASE CHASSIS ---
+      baseGroup = new THREE.Group();
+      const deckW = 8.5, deckD = 5.7, deckH = 0.15;
+
+      // Base unibody block
+      const deckMesh = new THREE.Mesh(new THREE.BoxGeometry(deckW, deckH, deckD), spaceGrayMat);
+      deckMesh.position.set(0, -deckH / 2, deckD / 2);
+      deckMesh.castShadow = true;
+      deckMesh.receiveShadow = true;
+      baseGroup.add(deckMesh);
+
+      // Recessed Keyboard Tray
+      const wellMesh = new THREE.Mesh(new THREE.BoxGeometry(7.2, 0.02, 2.5), darkTrayMat);
+      wellMesh.position.set(0, 0.002, deckD * 0.38);
+      baseGroup.add(wellMesh);
+
+      // Dual Speaker Grilles (Left & Right strips)
+      const speakerMat = new THREE.MeshStandardMaterial({ color: 0x12131a, roughness: 0.8 });
+      const leftSpeaker = new THREE.Mesh(new THREE.BoxGeometry(0.35, 0.005, 2.5), speakerMat);
+      leftSpeaker.position.set(-3.8, 0.003, deckD * 0.38);
+      baseGroup.add(leftSpeaker);
+      const rightSpeaker = new THREE.Mesh(new THREE.BoxGeometry(0.35, 0.005, 2.5), speakerMat);
+      rightSpeaker.position.set(3.8, 0.003, deckD * 0.38);
+      baseGroup.add(rightSpeaker);
+
+      // Full 3D Keyboard Layout (6 Rows: Fn, Num, QWERTY, Home, Bottom, Space)
+      const rowLayouts = [
+        14, // Row 0: Function keys
+        14, // Row 1: Numbers
+        14, // Row 2: QWERTY
+        13, // Row 3: Home row
+        12, // Row 4: Shift row
+        8   // Row 5: Spacebar & modifiers
+      ];
+      const kTW = 7.0, kTD = 2.3;
+      const rowCount = rowLayouts.length;
+
+      rowLayouts.forEach((cols, r) => {
+        const kd = (kTD / rowCount) * 0.86;
+        const ryPos = deckD * 0.38 - kTD / 2 + (kTD / rowCount) * (r + 0.5);
+
+        if (r === 5) {
+          // Spacebar row
+          const spaceW = 2.4;
+          const spaceKey = new THREE.Mesh(new THREE.BoxGeometry(spaceW, 0.035, kd), keyCapMat);
+          spaceKey.position.set(0, 0.018, ryPos);
+          baseGroup.add(spaceKey);
+
+          // Side modifier keys
+          [-2.2, -1.5, -0.9, 0.9, 1.5, 2.2].forEach(kx => {
+            const modKey = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.035, kd), keyCapMat);
+            modKey.position.set(kx, 0.018, ryPos);
+            baseGroup.add(modKey);
+          });
+        } else {
+          // Standard key rows
+          const kw = (kTW / 14) * 0.88;
+          for (let c = 0; c < cols; c++) {
+            const kxPos = -kTW / 2 + (kTW / cols) * (c + 0.5);
+            const km = new THREE.Mesh(new THREE.BoxGeometry(kw, 0.035, kd), keyCapMat);
+            km.position.set(kxPos, 0.018, ryPos);
+            baseGroup.add(km);
+          }
+        }
+      });
+
+      // Recessed Glass Trackpad with Silver Border
+      const trackpadBorder = new THREE.Mesh(new THREE.BoxGeometry(2.64, 0.006, 1.74), silverMat);
+      trackpadBorder.position.set(0, 0.004, deckD * 0.78);
+      baseGroup.add(trackpadBorder);
+
+      const trackpad = new THREE.Mesh(new THREE.BoxGeometry(2.60, 0.008, 1.70), trackpadMat);
+      trackpad.position.set(0, 0.006, deckD * 0.78);
+      baseGroup.add(trackpad);
+
+      // Front Opening Notch
+      const frontLipNotch = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.04, 0.08), darkTrayMat);
+      frontLipNotch.position.set(0, -0.02, deckD - 0.02);
+      baseGroup.add(frontLipNotch);
+
+      // Hinge Cylinder Bar
+      const hingeBar = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.12, 0.12, 8.0, 24),
+        new THREE.MeshStandardMaterial({ color: 0x12131a, metalness: 0.9, roughness: 0.2 })
+      );
+      hingeBar.rotation.z = Math.PI / 2;
+      baseGroup.add(hingeBar);
+
+      // Rubber Feet
+      [[-3.7, 0.5], [3.7, 0.5], [-3.7, deckD - 0.5], [3.7, deckD - 0.5]].forEach(([fx, fz]) => {
+        const foot = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.18, 0.18, 0.04, 16),
+          new THREE.MeshStandardMaterial({ color: 0x060608, roughness: 0.9 })
+        );
+        foot.position.set(fx, -deckH - 0.02, fz);
+        baseGroup.add(foot);
+      });
+
+      laptopGroup.add(baseGroup);
+      laptopGroup.position.set(0, -1.2, 0);
+      scene.add(laptopGroup);
+
+      // 8. Ground Soft Shadow Plane
       const shadowPlane = new THREE.Mesh(
         new THREE.PlaneGeometry(40, 40),
-        new THREE.ShadowMaterial({ opacity: 0.35 })
+        new THREE.ShadowMaterial({ opacity: 0.45 })
       );
       shadowPlane.rotation.x = -Math.PI / 2;
       shadowPlane.position.y = -1.4;
       shadowPlane.receiveShadow = true;
       scene.add(shadowPlane);
 
-      animate();
+      // Initial draw
+      renderAtTime(0);
     }
 
-    function animate() {
-      requestAnimationFrame(animate);
-      const t = clock.getElapsedTime();
-
+    // Explicit Render Function for Frame-by-Frame Sync
+    window.renderAtTime = function(t) {
       drawWebsiteUI(appCtx, t);
       videoTexture.needsUpdate = true;
 
-      // Camera choreography (smooth lerp, natural angles)
+      // Smooth Cinematic Camera Choreography
       let cx = 0, cy = 2.2, cz = 10.5;
-      let ry = -0.30, rx = 0.18;
+      let ry = -0.30, rx = 0.18; // 3/4 perspective angled view showing laptop + keyboard
 
       if (t >= 4 && t < 9) {
+        // Smooth gentle zoom toward screen
         cx = 0.3; cy = 1.4; cz = 7.8;
         ry = -0.28; rx = 0.14;
       } else if (t >= 9) {
+        // Pan right to show metallic profile
         cx = -0.5; cy = 2.0; cz = 10.0;
         ry = 0.20; rx = 0.14;
       }
@@ -194,149 +345,188 @@
       }
 
       renderer.render(scene, camera);
+    };
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const t = clock.getElapsedTime();
+      window.renderAtTime(t);
     }
 
     function drawWebsiteUI(ctx, t) {
       const W = 1920, H = 1080;
 
-      // ── Background ──────────────────────────────────────────────────────────
-      ctx.fillStyle = '#0f1117';
+      // ── Desktop Wallpaper Background inside Screen ────────────────────────────
+      ctx.fillStyle = '#0f111a';
       ctx.fillRect(0, 0, W, H);
 
-      // Subtle radial glow in bg
-      const bgGlow = ctx.createRadialGradient(960, 300, 0, 960, 300, 900);
-      bgGlow.addColorStop(0, 'rgba(99, 102, 241, 0.06)');
-      bgGlow.addColorStop(1, 'rgba(0,0,0,0)');
-      ctx.fillStyle = bgGlow;
+      // Vibrant desktop wallpaper gradient mesh inside screen
+      const bgGrad = ctx.createLinearGradient(0, 0, W, H);
+      bgGrad.addColorStop(0, '#1e1b4b');
+      bgGrad.addColorStop(0.4, '#312e81');
+      bgGrad.addColorStop(0.7, '#4338ca');
+      bgGrad.addColorStop(1, '#6366f1');
+      ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, W, H);
 
-      // ── macOS window chrome ──────────────────────────────────────────────────
-      ctx.fillStyle = '#16182a';
-      ctx.fillRect(0, 0, W, 52);
-      // traffic lights
+      // Wallpaper decorative wave curves
+      ctx.fillStyle = 'rgba(236, 72, 153, 0.25)';
+      ctx.beginPath();
+      ctx.moveTo(0, H * 0.4);
+      ctx.bezierCurveTo(W * 0.3, H * 0.1, W * 0.7, H * 0.7, W, H * 0.3);
+      ctx.lineTo(W, H);
+      ctx.lineTo(0, H);
+      ctx.closePath();
+      ctx.fill();
+
+      // ── macOS Application Window ──────────────────────────────────────────────
+      const winX = 120, winY = 80, winW = 1680, winH = 920;
+      
+      // Window shadow
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+      ctx.shadowBlur = 40;
+      ctx.shadowOffsetY = 20;
+
+      // Window Glass Panel
+      ctx.fillStyle = '#11131f';
+      roundRect(ctx, winX, winY, winW, winH, 18);
+      ctx.fill();
+
+      // Reset shadow
+      ctx.shadowColor = 'transparent';
+      ctx.shadowBlur = 0;
+      ctx.shadowOffsetY = 0;
+
+      // Window border ring
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+      ctx.lineWidth = 1.5;
+      roundRect(ctx, winX, winY, winW, winH, 18);
+      ctx.stroke();
+
+      // ── Titlebar ─────────────────────────────────────────────────────────────
+      ctx.fillStyle = '#181a2b';
+      roundRect(ctx, winX, winY, winW, 56, [18, 18, 0, 0]);
+      ctx.fill();
+
+      // Traffic light buttons
       const tlc = ['#ff5f56', '#ffbd2e', '#27c93f'];
       tlc.forEach((c, i) => {
         ctx.fillStyle = c;
-        ctx.beginPath(); ctx.arc(24 + i * 24, 26, 7, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(winX + 28 + i * 26, winY + 28, 7.5, 0, Math.PI * 2); ctx.fill();
       });
-      ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 19px system-ui, sans-serif';
-      ctx.fillText('Kite Studio  —  Product Analytics', 100, 33);
-      ctx.fillStyle = '#555e7a';
-      ctx.font = '15px system-ui';
-      ctx.fillText('Dashboard   Analytics   3D Renders   Settings', 1480, 33);
 
-      // ── Hero header ─────────────────────────────────────────────────────────
-      ctx.fillStyle = '#e2e8f0';
-      ctx.font = 'bold 52px system-ui, sans-serif';
-      ctx.fillText('Product Analytics Dashboard', 72, 148);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 20px system-ui, sans-serif';
+      ctx.fillText('Kite Studio  —  Product Analytics', winX + 120, winY + 36);
 
       ctx.fillStyle = '#64748b';
-      ctx.font = '22px system-ui';
-      ctx.fillText('Real-time metrics with smooth 3D visualization powered by WebGL', 72, 190);
+      ctx.font = '15px system-ui';
+      ctx.fillText('Dashboard     Analytics     3D Renders     Settings', winX + 1240, winY + 36);
 
-      // CTA pill button
-      const btnX = 1530, btnY = 120, btnW = 310, btnH = 58;
+      // ── Dashboard Body ───────────────────────────────────────────────────────
+      // Hero Title
+      ctx.fillStyle = '#f8fafc';
+      ctx.font = 'bold 44px system-ui, sans-serif';
+      ctx.fillText('Product Analytics Dashboard', winX + 60, winY + 130);
+
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '20px system-ui';
+      ctx.fillText('Real-time metrics with smooth 3D WebGL visualization', winX + 60, winY + 168);
+
+      // CTA Button
+      const btnX = winX + winW - 320, btnY2 = winY + 110, btnW = 260, btnH = 54;
       const btnGr = ctx.createLinearGradient(btnX, 0, btnX + btnW, 0);
       btnGr.addColorStop(0, '#6366f1');
-      btnGr.addColorStop(1, '#a855f7');
+      btnGr.addColorStop(1, '#8b5cf6');
       ctx.fillStyle = btnGr;
-      roundRect(ctx, btnX, btnY, btnW, btnH, 14);
+      roundRect(ctx, btnX, btnY2, btnW, btnH, 12);
       ctx.fill();
       ctx.fillStyle = '#fff';
-      ctx.font = 'bold 18px system-ui';
-      ctx.fillText('↗  Export 3D Video', btnX + 58, btnY + 36);
+      ctx.font = 'bold 17px system-ui';
+      ctx.fillText('↗  Export 3D Video', btnX + 45, btnY2 + 34);
 
-      // ── Stat cards ──────────────────────────────────────────────────────────
+      // ── Stat Cards (4 items) ─────────────────────────────────────────────────
       const stats = [
         { label: 'ACTIVE USERS',    val: '28,941',    delta: '+12.4%',  color: '#818cf8' },
         { label: 'REVENUE TODAY',   val: '$84,302',   delta: '+8.7%',   color: '#34d399' },
         { label: 'CONVERSION RATE', val: '4.82%',     delta: '+1.2%',   color: '#f59e0b' },
         { label: 'AVG SESSION',     val: '3m 41s',    delta: '+5.3%',   color: '#38bdf8' },
       ];
+      const cardW = (winW - 120 - 3 * 30) / 4;
       stats.forEach((s, i) => {
-        const cx = 72 + i * 455, cy = 226;
+        const cx = winX + 60 + i * (cardW + 30), cy = winY + 205;
         ctx.fillStyle = '#16192a';
-        ctx.strokeStyle = 'rgba(255,255,255,0.07)';
+        ctx.strokeStyle = 'rgba(255,255,255,0.08)';
         ctx.lineWidth = 1;
-        roundRect(ctx, cx, cy, 425, 168, 16); ctx.fill(); ctx.stroke();
+        roundRect(ctx, cx, cy, cardW, 145, 14); ctx.fill(); ctx.stroke();
 
         ctx.fillStyle = s.color;
-        ctx.fillRect(cx + 0, cy, 4, 168);
-        ctx.beginPath(); ctx.arc(cx + 2, cy + 2, 2, 0, Math.PI * 2); ctx.fill();
+        ctx.fillRect(cx, cy, 4, 145);
 
-        ctx.fillStyle = '#475569';
+        ctx.fillStyle = '#64748b';
         ctx.font = '600 13px system-ui';
-        ctx.fillText(s.label, cx + 22, cy + 36);
+        ctx.fillText(s.label, cx + 20, cy + 32);
 
-        ctx.fillStyle = '#f1f5f9';
-        ctx.font = 'bold 46px system-ui';
-        ctx.fillText(s.val, cx + 22, cy + 112);
+        ctx.fillStyle = '#f8fafc';
+        ctx.font = 'bold 38px system-ui';
+        ctx.fillText(s.val, cx + 20, cy + 92);
 
         ctx.fillStyle = '#22c55e';
-        ctx.font = '600 14px system-ui';
-        ctx.fillText('▲ ' + s.delta + ' vs yesterday', cx + 22, cy + 148);
+        ctx.font = '600 13px system-ui';
+        ctx.fillText('▲ ' + s.delta + ' vs yesterday', cx + 20, cy + 124);
       });
 
-      // ── Chart area ──────────────────────────────────────────────────────────
-      const chartX = 72, chartY = 420, chartW = 1776, chartH = 590;
-      ctx.fillStyle = '#13162a';
-      ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+      // ── Chart Area ──────────────────────────────────────────────────────────
+      const chartX = winX + 60, chartY = winY + 380, chartW = winW - 120, chartH = 480;
+      ctx.fillStyle = '#141626';
+      ctx.strokeStyle = 'rgba(255,255,255,0.07)';
       ctx.lineWidth = 1;
-      roundRect(ctx, chartX, chartY, chartW, chartH, 20); ctx.fill(); ctx.stroke();
+      roundRect(ctx, chartX, chartY, chartW, chartH, 16); ctx.fill(); ctx.stroke();
 
-      ctx.fillStyle = '#e2e8f0';
-      ctx.font = 'bold 26px system-ui';
-      ctx.fillText('Weekly Revenue Trend', chartX + 36, chartY + 52);
+      ctx.fillStyle = '#f8fafc';
+      ctx.font = 'bold 24px system-ui';
+      ctx.fillText('Weekly Revenue Trend', chartX + 32, chartY + 48);
 
-      // Chart grid lines
+      // Grid lines
       ctx.strokeStyle = 'rgba(255,255,255,0.04)';
-      ctx.lineWidth = 1;
       for (let g = 1; g <= 4; g++) {
-        const gy = chartY + 80 + (chartH - 110) * (g / 5);
+        const gy = chartY + 70 + (chartH - 110) * (g / 5);
         ctx.beginPath(); ctx.moveTo(chartX + 20, gy); ctx.lineTo(chartX + chartW - 20, gy); ctx.stroke();
       }
 
-      // Bars (animated)
+      // Animated Chart Bars
       const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-      const barAreaH = chartH - 130;
-      const barW = 140, barGap = (chartW - 80 - days.length * barW) / (days.length + 1);
+      const barAreaH = chartH - 120;
+      const barW = 120, barGap = (chartW - 60 - days.length * barW) / (days.length + 1);
       days.forEach((day, i) => {
-        const barX = chartX + 40 + barGap * (i + 1) + barW * i;
-        const hf = 0.32 + 0.46 * Math.abs(Math.sin(t * 1.8 + i * 0.75));
+        const barX = chartX + 30 + barGap * (i + 1) + barW * i;
+        const hf = 0.35 + 0.48 * Math.abs(Math.sin(t * 1.8 + i * 0.75));
         const barH2 = barAreaH * hf;
-        const barY = chartY + 80 + (barAreaH - barH2);
+        const barY = chartY + 70 + (barAreaH - barH2);
 
         const gr = ctx.createLinearGradient(barX, barY, barX, barY + barH2);
         gr.addColorStop(0, '#818cf8');
         gr.addColorStop(0.5, '#6366f1');
         gr.addColorStop(1, '#4f46e5');
         ctx.fillStyle = gr;
-        roundRect(ctx, barX, barY, barW, barH2, [10, 10, 0, 0]); ctx.fill();
+        roundRect(ctx, barX, barY, barW, barH2, [8, 8, 0, 0]); ctx.fill();
 
-        // Glow under bar
-        const glow = ctx.createLinearGradient(barX, barY + barH2 - 20, barX, barY + barH2 + 40);
-        glow.addColorStop(0, 'rgba(99,102,241,0.35)');
-        glow.addColorStop(1, 'rgba(99,102,241,0)');
-        ctx.fillStyle = glow;
-        ctx.fillRect(barX - 10, barY + barH2 - 10, barW + 20, 50);
-
-        // Value label on bar
+        // Bar top value
         const val = Math.round(24000 * hf + 8000);
-        ctx.fillStyle = '#f1f5f9';
-        ctx.font = 'bold 18px system-ui';
+        ctx.fillStyle = '#f8fafc';
+        ctx.font = 'bold 16px system-ui';
         ctx.textAlign = 'center';
-        ctx.fillText('$' + (val / 1000).toFixed(1) + 'k', barX + barW / 2, barY - 12);
+        ctx.fillText('$' + (val / 1000).toFixed(1) + 'k', barX + barW / 2, barY - 10);
 
         ctx.fillStyle = '#64748b';
-        ctx.font = '17px system-ui';
-        ctx.fillText(day, barX + barW / 2, chartY + chartH - 18);
+        ctx.font = '16px system-ui';
+        ctx.fillText(day, barX + barW / 2, chartY + chartH - 16);
         ctx.textAlign = 'left';
       });
 
-      // ── Animated cursor ──────────────────────────────────────────────────────
-      const mx = 960 + Math.sin(t * 1.3) * 480;
-      const my = 620 + Math.cos(t * 1.0) * 220;
+      // ── Dynamic Animated Mouse Cursor ───────────────────────────────────────
+      const mx = winX + 800 + Math.sin(t * 1.4) * 450;
+      const my = winY + 500 + Math.cos(t * 1.1) * 200;
       drawCursor(ctx, mx, my);
     }
 
