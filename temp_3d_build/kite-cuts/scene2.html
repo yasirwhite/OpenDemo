@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Kite-match render — scene2</title>
+<style>
+  html,body{margin:0;padding:0;background:#000;overflow:hidden}
+  canvas{display:block}
+</style>
+<script type="importmap">
+{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}
+</script>
+</head>
+<body>
+<script type="module">
+import * as THREE from "three";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+import { CUTS, SETUPS, DURATION } from "./cuts.js";
+import * as UI from "./ui-textures.js";
+
+const q = new URLSearchParams(location.search);
+const W = +(q.get("w") || 1920), H = +(q.get("h") || 1080);
+const SS = +(q.get("ss") || 1);          // supersample factor
+const D2R = Math.PI / 180;
+
+window.DURATION = DURATION;
+
+// ---------------------------------------------------------------- renderer
+const renderer = new THREE.WebGLRenderer({
+  antialias: true, preserveDrawingBuffer: true, powerPreference: "high-performance",
+});
+renderer.setSize(W, H);
+renderer.setPixelRatio(SS);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.0;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+// Tight near/far: the whole set is ~35 cm of device at 40-140 cm. An oversized
+// far plane is one of the classic causes of floor z-fighting.
+const camera = new THREE.PerspectiveCamera(26, W / H, 1, 500);
+
+// ------------------------------------------------------------- environment
+const pmrem = new THREE.PMREMGenerator(renderer);
+pmrem.compileEquirectangularShader();
+const roomEnv = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+scene.environment = roomEnv;
+
+// G3: a clear key direction from the upper RIGHT, so aluminium reads with a lit
+// side and a shadow side instead of flat even light.
+const key = new THREE.DirectionalLight(0xfff2e2, 2.6);
+key.position.set(70, 95, 55);
+key.castShadow = true;
+key.shadow.mapSize.set(2048, 2048);
+key.shadow.camera.near = 20;
+key.shadow.camera.far = 320;
+key.shadow.camera.left = -60; key.shadow.camera.right = 60;
+key.shadow.camera.top = 60; key.shadow.camera.bottom = -60;
+key.shadow.bias = -0.0012;
+key.shadow.normalBias = 0.4;
+scene.add(key);
+
+const fill = new THREE.DirectionalLight(0xdfe8ff, 0.55);
+fill.position.set(-80, 40, 60);
+scene.add(fill);
+
+const rim = new THREE.DirectionalLight(0xbcd2ff, 0.7);
+rim.position.set(-30, 50, -90);
+scene.add(rim);
+
+// --------------------------------------------------------------- backdrops
+function gradientTex(stops, w = 64, h = 512) {
+  const c = document.createElement("canvas"); c.width = w; c.height = h;
+  const g = c.getContext("2d");
+  const lin = g.createLinearGradient(0, 0, 0, h);
+  for (const [p, col] of stops) lin.addColorStop(p, col);
+  g.fillStyle = lin; g.fillRect(0, 0, w, h);
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = THREE.SRGBColorSpace;
+  return t;
+}
+
+// P1: light studio is a subtle gradient (a touch darker low) — never flat white.
+const BG = {
+  dark:  gradientTex([[0, "#050507"], [0.6, "#020203"], [1, "#000000"]]),
+  white: gradientTex([[0, "#ffffff"], [0.55, "#f4f6fa"], [1, "#d9dee7"]]),
+  sky:   gradientTex([[0, "#8fc0ec"], [0.45, "#b9d8f3"], [0.7, "#e8f1fa"], [1, "#ffffff"]]),
+};
+
+// floorEnv is the knob that keeps the dark floor BLACK. The floor is a mirror-ish
+// PBR surface, so if it samples the (bright) studio environment at full strength
+// it turns into a flat grey sheet that swallows the device reflection — which is
+// exactly the "grey + glitching floor" symptom being fixed here.
+const ENVS = {
+  // alphaNear = how much FLOOR sits over the mirrored device at the contact point;
+  // 0.62 leaves a ~38% reflection, which is about where the reference sits.
+  dark:  { bg: BG.dark,  fog: 0x000000, floorColor: 0x000000, alphaNear: 0.62, alphaFar: 1.0,
+           envInt: 0.34, exposure: 0.92, key: 1.9 },
+  white: { bg: BG.white, fog: 0xd9dee7, floorColor: 0xe9edf4, alphaNear: 0.70, alphaFar: 1.0,
+           envInt: 1.15, exposure: 1.02, key: 2.1 },
+  sky:   { bg: BG.sky,   fog: 0xffffff, floorColor: 0xf2f6fb, alphaNear: 0.74, alphaFar: 1.0,
+           envInt: 1.25, exposure: 1.02, key: 2.0 },
+};
+
+// ------------------------------------------------------------------- floor
+// FLOOR Z-FIGHTING FIX
+// The old scene stacked TWO coplanar planes at y=0 (an opaque grey base floor
+// and a reflection-fade overlay). Coplanar + same depth = the flat grey punching
+// through wherever the overlay lost the depth test.
+// Here there is exactly ONE plane. Reflections are mirrored clones drawn BELOW
+// it, and the floor is a glossy PBR surface whose alpha map fades from mostly
+// transparent under the device (strong reflection) to opaque further out
+// (reflection fades away). No second plane, so nothing to fight with.
+// NOTE: three samples alphaMap from the texture's GREEN channel, not its alpha
+// channel — so the ramp has to be painted as opaque greyscale. Painting it as
+// rgba(255,255,255,a) leaves green at 255 everywhere, i.e. a fully opaque floor
+// that hides the reflection completely.
+function floorAlphaMap(near, far) {
+  const S = 512;
+  const c = document.createElement("canvas"); c.width = S; c.height = S;
+  const g = c.getContext("2d");
+  const grey = (a) => { const v = Math.round(Math.max(0, Math.min(1, a)) * 255); return `rgb(${v},${v},${v})`; };
+  const rad = g.createRadialGradient(S / 2, S / 2, 0, S / 2, S / 2, S / 2);
+  rad.addColorStop(0.00, grey(near));
+  rad.addColorStop(0.10, grey(near + (far - near) * 0.35));
+  rad.addColorStop(0.22, grey(near + (far - near) * 0.80));
+  rad.addColorStop(0.35, grey(far));
+  rad.addColorStop(1.00, grey(far));
+  g.fillStyle = rad; g.fillRect(0, 0, S, S);
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = THREE.NoColorSpace;
+  return t;
+}
+
+// The floor is UNLIT on purpose. A lit PBR floor sampling the studio environment
+// turns into a flat grey sheet that both looks wrong on a black set and washes
+// out the reflection — the "grey floor" symptom. Here the gloss comes entirely
+// from the mirrored device below, which is what actually reads in the reference.
+const floorMat = new THREE.MeshBasicMaterial({
+  color: 0x000000,
+  transparent: true,
+  depthWrite: false,     // let the mirrored clones below show through
+  alphaMap: floorAlphaMap(0.10, 1.0),
+});
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(420, 420), floorMat);
+floor.rotation.x = -Math.PI / 2;
+floor.position.y = 0;
+floor.renderOrder = 1;
+scene.add(floor);
+
+// Contact shadow as its own decal, lifted off the floor and polygon-offset so it
+// can never become coplanar with it (the original scene's z-fighting came from
+// exactly that: two planes sharing y = 0).
+const shadowTex = (() => {
+  const S = 256;
+  const c = document.createElement("canvas"); c.width = S; c.height = S;
+  const g = c.getContext("2d");
+  const rad = g.createRadialGradient(S / 2, S / 2, 0, S / 2, S / 2, S / 2);
+  rad.addColorStop(0, "rgba(0,0,0,0.85)");
+  rad.addColorStop(0.45, "rgba(0,0,0,0.42)");
+  rad.addColorStop(1, "rgba(0,0,0,0)");
+  g.fillStyle = rad; g.fillRect(0, 0, S, S);
+  return new THREE.CanvasTexture(c);
+})();
+const contact = new THREE.Mesh(
+  new THREE.PlaneGeometry(1, 1),
+  new THREE.MeshBasicMaterial({
+    map: shadowTex, transparent: true, depthWrite: false,
+    polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1,
+  })
+);
+contact.rotation.x = -Math.PI / 2;
+contact.position.y = 0.06;
+contact.renderOrder = 2;
+scene.add(contact);
+
+const CONTACT = {
+  macbook: { sx: 62, sz: 46, op: 0.60, z: 2 },
+  iphone:  { sx: 26, sz: 26, op: 0.26, z: 0 },
+  panel:   { sx: 52, sz: 30, op: 0.22, z: 0 },
+};
+
+// ------------------------------------------------------------ model loading
+const draco = new DRACOLoader().setDecoderPath("/node_modules/three/examples/jsm/libs/draco/");
+const loader = new GLTFLoader().setDRACOLoader(draco);
+const load = (url) => new Promise((res, rej) => loader.load(url, res, undefined, rej));
+
+const ASSETS = {
+  macbook: "/temp_3d_build/kite-cuts/assets/cand-macbook-16.glb",
+  iphone:  "/temp_3d_build/kite-cuts/assets/cand-iphone.glb",
+};
+
+// Reports a screen mesh's UV extent so we can confirm the donor unwraps 0..1
+// across the display (if it did not, content would land cropped or offset).
+function uvRange(mesh) {
+  const uv = mesh.geometry.attributes.uv;
+  if (!uv) return null;
+  let u0 = Infinity, u1 = -Infinity, v0 = Infinity, v1 = -Infinity;
+  for (let i = 0; i < uv.count; i++) {
+    const u = uv.getX(i), v = uv.getY(i);
+    if (u < u0) u0 = u; if (u > u1) u1 = u;
+    if (v < v0) v0 = v; if (v > v1) v1 = v;
+  }
+  return { u: [+u0.toFixed(3), +u1.toFixed(3)], v: [+v0.toFixed(3), +v1.toFixed(3)], count: uv.count };
+}
+
+// Unused fallback: builds a flat quad covering a screen mesh when the donor's
+// own UVs are unusable. Kept because it is the escape hatch if a model is swapped.
+function screenOverlay(mesh, root) {
+  root.updateMatrixWorld(true);
+  mesh.updateWorldMatrix(true, false);
+  const geo = mesh.geometry;
+  const pos = geo.attributes.position;
+  const nrmAttr = geo.attributes.normal;
+
+  const nmat = new THREE.Matrix3().getNormalMatrix(mesh.matrixWorld);
+  const n = new THREE.Vector3(), tmp = new THREE.Vector3();
+  for (let i = 0; i < nrmAttr.count; i++) n.add(tmp.fromBufferAttribute(nrmAttr, i).applyMatrix3(nmat).normalize());
+  n.normalize();
+
+  const up = new THREE.Vector3(0, 1, 0);
+  if (Math.abs(up.dot(n)) > 0.95) up.set(0, 0, 1);
+  const right = new THREE.Vector3().crossVectors(up, n).normalize();
+  const vup = new THREE.Vector3().crossVectors(n, right).normalize();
+
+  const ctr = new THREE.Vector3(), p = new THREE.Vector3();
+  for (let i = 0; i < pos.count; i++) ctr.add(p.fromBufferAttribute(pos, i).applyMatrix4(mesh.matrixWorld));
+  ctr.divideScalar(pos.count);
+
+  let minR = Infinity, maxR = -Infinity, minU = Infinity, maxU = -Infinity;
+  for (let i = 0; i < pos.count; i++) {
+    p.fromBufferAttribute(pos, i).applyMatrix4(mesh.matrixWorld).sub(ctr);
+    const r = p.dot(right), u = p.dot(vup);
+    if (r < minR) minR = r; if (r > maxR) maxR = r;
+    if (u < minU) minU = u; if (u > maxU) maxU = u;
+  }
+  const w = maxR - minR, h = maxU - minU;
+  const center = ctr.clone().addScaledVector(right, (minR + maxR) / 2).addScaledVector(vup, (minU + maxU) / 2);
+
+  const plane = new THREE.Mesh(
+    new THREE.PlaneGeometry(w * 0.998, h * 0.998),
+    new THREE.MeshBasicMaterial({ toneMapped: false })
+  );
+  plane.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(right, vup, n));
+  plane.position.copy(center).addScaledVector(n, Math.max(w, h) * 0.0012);
+  plane.renderOrder = 3;
+  root.add(plane);   // root transform is identity at build time, so world == local
+  return plane;
+}
+
+function mirrorOf(src) {
+  const m = src.clone(true);
+  m.traverse((o) => {
+    if (!o.isMesh) return;
+    o.material = o.material.clone();
+    o.material.side = THREE.DoubleSide;   // negative scale flips winding
+    o.castShadow = false;
+    o.receiveShadow = false;
+    o.renderOrder = 0;
+  });
+  return m;
+}
+
+// ----------------------------------------------------------------- devices
+const mirrorRoot = new THREE.Group();
+mirrorRoot.scale.y = -1;
+scene.add(mirrorRoot);
+
+const devices = {};   // name -> {root, mirror, screens:{}}
+
+function registerDevice(name, root) {
+  root.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+  scene.add(root);
+  const mirror = mirrorOf(root);
+  mirrorRoot.add(mirror);
+  devices[name] = { root, mirror };
+  return devices[name];
+}
+
+// ---- MacBook Pro 16" ------------------------------------------------------
+const macGltf = await load(ASSETS.macbook);
+const macRoot = new THREE.Group();
+{
+  const m = macGltf.scene;
+  const box = new THREE.Box3().setFromObject(m);
+  m.position.y -= box.min.y;                 // sit the base on y = 0
+  m.position.x -= (box.min.x + box.max.x) / 2;
+  macRoot.add(m);
+  macRoot.updateMatrixWorld(true);
+
+  // the display panel is the emissive plate high in the lid
+  let screenMesh = null, best = -Infinity;
+  m.traverse((o) => {
+    if (!o.isMesh) return;
+    const b = new THREE.Box3().setFromObject(o);
+    const s = b.getSize(new THREE.Vector3());
+    const isEmissive = o.material?.emissive && o.material.emissive.getHex() !== 0x000000;
+    const area = s.x * Math.max(s.y, s.z);
+    if (isEmissive && b.getCenter(new THREE.Vector3()).y > 5 && area > best) { best = area; screenMesh = o; }
+  });
+  if (!screenMesh) throw new Error("MacBook screen mesh not found");
+  // Drive the donor display panel directly: its own UVs already fit the rounded
+  // screen exactly, which an added quad cannot match.
+  screenMesh.material = new THREE.MeshBasicMaterial({ toneMapped: false });
+  devices.__macScreenMesh = screenMesh;
+  window.__macUV = uvRange(screenMesh);
+}
+const mac = registerDevice("macbook", macRoot);
+mac.screen = devices.__macScreenMesh;
+
+// ---- iPhone 15 Pro Max ----------------------------------------------------
+const phoneGltf = await load(ASSETS.iphone);
+const phoneRoot = new THREE.Group();
+{
+  const flip = new THREE.Group();
+  flip.rotation.y = Math.PI;          // donor model's display faces -Z; face it +Z
+  const m = phoneGltf.scene;
+  m.scale.setScalar(100);             // donor is in metres, the set is in centimetres
+  flip.add(m);
+  phoneRoot.add(flip);
+  phoneRoot.updateMatrixWorld(true);
+
+  let screenMesh = null, best = -Infinity;
+  m.traverse((o) => {
+    if (!o.isMesh) return;
+    const b = new THREE.Box3().setFromObject(o);
+    const s = b.getSize(new THREE.Vector3());
+    const isEmissive = o.material?.emissive && o.material.emissive.getHex() !== 0x000000;
+    const flatness = Math.min(s.x, s.y, s.z);
+    const area = s.x * s.y;
+    if (isEmissive && flatness < 0.2 && area > best) { best = area; screenMesh = o; }
+  });
+  if (!screenMesh) throw new Error("iPhone screen mesh not found");
+  screenMesh.material = new THREE.MeshBasicMaterial({ toneMapped: false });
+  devices.__phoneScreenMesh = screenMesh;
+  window.__phoneUV = uvRange(screenMesh);
+}
+const phone = registerDevice("iphone", phoneRoot);
+phone.screen = devices.__phoneScreenMesh;
+
+// ---- floating app panel ---------------------------------------------------
+// Not an Apple product — a UI surface, so it is built procedurally.
+const panelRoot = new THREE.Group();
+{
+  const PW = 38, PH = PW * (1400 / 2200);
+  const shape = new THREE.Shape();
+  const r = 1.1, w = PW / 2, h = PH / 2;
+  shape.moveTo(-w + r, -h);
+  shape.lineTo(w - r, -h); shape.quadraticCurveTo(w, -h, w, -h + r);
+  shape.lineTo(w, h - r);  shape.quadraticCurveTo(w, h, w - r, h);
+  shape.lineTo(-w + r, h); shape.quadraticCurveTo(-w, h, -w, h - r);
+  shape.lineTo(-w, -h + r); shape.quadraticCurveTo(-w, -h, -w + r, -h);
+  const body = new THREE.Mesh(
+    new THREE.ExtrudeGeometry(shape, { depth: 0.55, bevelEnabled: true, bevelThickness: 0.09, bevelSize: 0.09, bevelSegments: 3, curveSegments: 24 }),
+    new THREE.MeshPhysicalMaterial({ color: 0x14161c, roughness: 0.35, metalness: 0.75, clearcoat: 0.6 })
+  );
+  body.geometry.center();
+  panelRoot.add(body);
+  const face = new THREE.Mesh(
+    new THREE.PlaneGeometry(PW - 0.5, PH - 0.5),
+    new THREE.MeshBasicMaterial({ toneMapped: false })
+  );
+  // the extruded body's front surface sits at depth/2 + bevel, so the face has to
+  // clear ~0.365 or it renders inside the shell and the panel reads solid black
+  face.position.z = 0.42;
+  face.renderOrder = 3;
+  panelRoot.add(face);
+  panelRoot.userData.face = face;
+}
+const panel = registerDevice("panel", panelRoot);
+panel.screen = panelRoot.userData.face;
+
+// -------------------------------------------------------------- UI content
+const ventura = UI.makeVentura();
+const phoneWeatherCanvas = UI.makePhoneWeather();
+const SCREENS = {
+  kite:           UI.tex(UI.makeKiteEditor()),
+  desktopWeather: UI.tex(UI.makeDesktopWeather(ventura)),
+  desktopPhone:   UI.tex(UI.makeDesktopPhone(ventura, phoneWeatherCanvas)),
+  weatherPanel:   UI.tex(UI.makeWeatherPanel()),
+  moonPanel:      UI.tex(UI.makeMoonPanel()),
+  phoneWeather:   UI.tex(phoneWeatherCanvas),
+  phoneWeatherDark: UI.tex(UI.makePhoneWeatherDark()),
+  phoneHome:      UI.tex(UI.makePhoneHome()),
+};
+
+// ------------------------------------------------------------------ timing
+let t0 = 0;
+for (const c of CUTS) { c.tStart = t0; c.dur = c.durationMs / 1000; t0 += c.dur; }
+
+const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+const lerp = (a, b, t) => a + (b - a) * t;
+
+// Camera setups are resolved to a POSITION; within a cut we interpolate the
+// resulting positions and the fov linearly. We never interpolate azimuth, so a
+// cut can dolly but can never orbit.
+function setupToPosition(s) {
+  const y = s.pitch * D2R, a = s.yaw * D2R;
+  return new THREE.Vector3(
+    s.target[0] + Math.sin(a) * Math.cos(y) * s.dist,
+    s.target[1] + Math.sin(y) * s.dist,
+    s.target[2] + Math.cos(a) * Math.cos(y) * s.dist
+  );
+}
+
+let curEnv = null;
+const alphaCache = {};
+function applyEnv(name) {
+  if (name === curEnv) return;
+  curEnv = name;
+  const e = ENVS[name];
+  scene.background = e.bg;
+  scene.environmentIntensity = e.envInt;
+  renderer.toneMappingExposure = e.exposure;
+  key.intensity = e.key;
+  // Fog matched to the backdrop's lower stop makes the floor's far edge dissolve
+  // into the background instead of ending on a hard horizon line.
+  scene.fog = new THREE.Fog(e.fog, 150, 400);
+  floorMat.color.setHex(e.floorColor);
+  alphaCache[name] ||= floorAlphaMap(e.alphaNear, e.alphaFar);
+  floorMat.alphaMap = alphaCache[name];
+  floorMat.needsUpdate = true;
+}
+
+function showOnly(name) {
+  for (const k of ["macbook", "iphone", "panel"]) {
+    const d = devices[k];
+    d.root.visible = k === name;
+    d.mirror.visible = k === name;
+  }
+}
+
+function setScreen(device, key) {
+  const map = SCREENS[key];
+  if (!map) return;
+  const set = (mesh) => { if (mesh && mesh.material.map !== map) { mesh.material.map = map; mesh.material.needsUpdate = true; } };
+  set(devices[device].screen);
+  // keep the mirrored clone's screen in sync
+  devices[device].mirror.traverse((o) => {
+    if (o.isMesh && o.material?.isMeshBasicMaterial && o.material.map !== map) {
+      o.material.map = map; o.material.needsUpdate = true;
+    }
+  });
+}
+
+function applyPose(device, pose) {
+  const d = devices[device];
+  const rx = (pose.pitch || 0) * D2R, ry = (pose.yaw || 0) * D2R, rz = (pose.roll || 0) * D2R;
+  d.root.rotation.set(rx, ry, rz);
+  d.root.position.set(pose.px || 0, pose.py || 0, pose.pz || 0);
+  d.mirror.position.copy(d.root.position);
+  d.mirror.rotation.copy(d.root.rotation);
+}
+
+window.renderAtTime = function (t) {
+  if (t >= DURATION) t = DURATION - 1e-4;
+  if (t < 0) t = 0;
+  let cut = CUTS[0];
+  for (const c of CUTS) if (t >= c.tStart && t < c.tStart + c.dur) { cut = c; break; }
+
+  const lt = (t - cut.tStart) / cut.dur;
+  const e = easeInOut(Math.max(0, Math.min(1, lt)));
+
+  applyEnv(cut.env);
+  showOnly(cut.device);
+  setScreen(cut.device, cut.screen);
+
+  const cs = CONTACT[cut.device];
+  contact.scale.set(cs.sx, cs.sz, 1);
+  contact.position.set(0, 0.06, cs.z);
+  contact.material.opacity = cut.env === "dark" ? cs.op * 0.35 : cs.op;
+
+  const A = SETUPS[cut.cam.from], B = SETUPS[cut.cam.to];
+  const pa = setupToPosition(A), pb = setupToPosition(B);
+  camera.position.set(lerp(pa.x, pb.x, e), lerp(pa.y, pb.y, e), lerp(pa.z, pb.z, e));
+  camera.fov = lerp(A.fov, B.fov, e);
+  camera.updateProjectionMatrix();
+  camera.lookAt(
+    lerp(A.target[0], B.target[0], e),
+    lerp(A.target[1], B.target[1], e),
+    lerp(A.target[2], B.target[2], e)
+  );
+
+  const fa = cut.pose.from, fb = cut.pose.to;
+  applyPose(cut.device, {
+    yaw:   lerp(fa.yaw || 0, fb.yaw || 0, e),
+    pitch: lerp(fa.pitch || 0, fb.pitch || 0, e),
+    roll:  lerp(fa.roll || 0, fb.roll || 0, e),
+    px:    lerp(fa.px || 0, fb.px || 0, e),
+    py:    lerp(fa.py || 0, fb.py || 0, e),
+    pz:    lerp(fa.pz || 0, fb.pz || 0, e),
+  });
+
+  renderer.render(scene, camera);
+};
+
+// expose the cut table so the renderer/report can diff timing without re-parsing
+window.CUT_TABLE = CUTS.map((c) => ({ name: c.name, start: c.tStart, dur: c.dur, motion: c.motion, env: c.env, device: c.device }));
+
+// debug handles (used by the compare/scoring scripts, not by the render itself)
+Object.assign(window, { __scene: scene, __camera: camera, __devices: devices, __floor: floor, __mirrorRoot: mirrorRoot, __contact: contact, THREE });
+
+window.renderAtTime(0);
+window.__ready = true;
+</script>
+</body>
+</html>

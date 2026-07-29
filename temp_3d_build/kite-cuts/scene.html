@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Kite-style cinematic device render</title>
+<style>
+  html,body{margin:0;padding:0;background:#000;overflow:hidden}
+  #stage{width:1280px;height:720px;position:relative}
+  canvas{width:100%;height:100%;display:block}
+</style>
+<script src="./three.min.js"></script>
+</head>
+<body>
+<div id="stage"></div>
+<script>
+const W = 1280, H = 720;
+let scene, camera, renderer, pmrem, envTex;
+let macGroup, phoneGroup, panelGroup, mirrorRoot, bgMesh, floorMesh, contactShadow;
+let macScreenTex, phoneScreenTex, phoneHomeTex, panelTex;
+
+// ---------- easing ----------
+const easeInOut = t => t<0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2;
+const easeOut   = t => 1 - Math.pow(1-t,3);
+const lerp = (a,b,t)=>a+(b-a)*t;
+
+// ---------- canvas texture helpers ----------
+function roundRect(ctx,x,y,w,h,r){
+  const a=Array.isArray(r)?r:[r,r,r,r];const[tl,tr,br,bl]=a;
+  ctx.beginPath();ctx.moveTo(x+tl,y);ctx.lineTo(x+w-tr,y);ctx.quadraticCurveTo(x+w,y,x+w,y+tr);
+  ctx.lineTo(x+w,y+h-br);ctx.quadraticCurveTo(x+w,y+h,x+w-br,y+h);ctx.lineTo(x+bl,y+h);
+  ctx.quadraticCurveTo(x,y+h,x,y+h-bl);ctx.lineTo(x,y+tl);ctx.quadraticCurveTo(x,y,x+tl,y);ctx.closePath();
+}
+
+// A weather-app-ish landscape UI (for mac screen + panel). Content is placeholder.
+function makeWeatherLandscape(){
+  const c=document.createElement('canvas');c.width=1600;c.height=1000;const x=c.getContext('2d');
+  const g=x.createLinearGradient(0,0,0,1000);
+  g.addColorStop(0,'#8fb7e8');g.addColorStop(0.5,'#5b86c4');g.addColorStop(1,'#3d5f97');
+  x.fillStyle=g;x.fillRect(0,0,1600,1000);
+  // menubar
+  x.fillStyle='rgba(20,26,40,0.55)';x.fillRect(0,0,1600,42);
+  x.fillStyle='#e8eefc';x.font='500 22px system-ui,sans-serif';x.fillText('Weather',24,29);
+  x.font='500 20px system-ui,sans-serif';x.textAlign='right';x.fillText('Mon 3:21 PM',1576,29);x.textAlign='left';
+  // big temp
+  x.fillStyle='#ffffff';x.font='300 40px system-ui';x.fillText('Mission Dolores',80,150);
+  x.font='200 150px system-ui';x.fillText('57°',80,300);
+  x.font='300 30px system-ui';x.fillStyle='rgba(255,255,255,.85)';x.fillText('Partly Cloudy',90,350);
+  // hourly row
+  const hrs=['Now','1PM','2PM','3PM','4PM','5PM','6PM','7PM','8PM','9PM'];
+  x.fillStyle='rgba(255,255,255,.10)';roundRect(x,80,420,1440,150,24);x.fill();
+  hrs.forEach((h,i)=>{const cx=140+i*140;x.fillStyle='rgba(255,255,255,.8)';x.font='500 22px system-ui';x.textAlign='center';
+    x.fillText(h,cx,470);x.font='400 30px system-ui';x.fillStyle='#fff';x.fillText((55+((i*7)%12))+'°',cx,540);x.textAlign='left';});
+  // bottom cards
+  for(let i=0;i<3;i++){const cx=80+i*490;x.fillStyle='rgba(255,255,255,.10)';roundRect(x,cx,620,450,300,24);x.fill();
+    x.fillStyle='rgba(255,255,255,.6)';x.font='600 20px system-ui';x.fillText(['AIR QUALITY','UV INDEX','WIND'][i],cx+30,670);
+    x.fillStyle='#fff';x.font='300 70px system-ui';x.fillText(['31','4','8 mi'][i],cx+30,760);}
+  return c;
+}
+
+// Phone weather (portrait)
+function makeWeatherPortrait(){
+  const c=document.createElement('canvas');c.width=1100;c.height=2380;const x=c.getContext('2d');
+  const g=x.createLinearGradient(0,0,0,2380);g.addColorStop(0,'#7fb0e6');g.addColorStop(.55,'#4f7cc0');g.addColorStop(1,'#2f4d86');
+  x.fillStyle=g;x.fillRect(0,0,1100,2380);
+  x.fillStyle='#fff';x.textAlign='center';x.font='300 60px system-ui';x.fillText('Mission Dolores',550,220);
+  x.font='100 260px system-ui';x.fillText('57°',550,520);
+  x.font='300 46px system-ui';x.fillStyle='rgba(255,255,255,.85)';x.fillText('Partly Cloudy',550,600);
+  x.font='300 40px system-ui';x.fillText('H:64°  L:48°',550,660);
+  x.textAlign='left';
+  x.fillStyle='rgba(255,255,255,.12)';roundRect(x,60,760,980,260,32);x.fill();
+  const hrs=['Now','1PM','2PM','3PM','4PM'];
+  hrs.forEach((h,i)=>{const cx=170+i*185;x.fillStyle='rgba(255,255,255,.85)';x.font='500 34px system-ui';x.textAlign='center';
+    x.fillText(h,cx,850);x.font='400 46px system-ui';x.fillStyle='#fff';x.fillText((55+i*2)+'°',cx,960);x.textAlign='left';});
+  // daily list
+  for(let i=0;i<7;i++){const y=1090+i*175;x.fillStyle='rgba(255,255,255,.10)';roundRect(x,60,y,980,150,24);x.fill();
+    x.fillStyle='#fff';x.font='500 40px system-ui';x.fillText(['Mon','Tue','Wed','Thu','Fri','Sat','Sun'][i],110,y+95);
+    x.font='300 44px system-ui';x.textAlign='right';x.fillText((60+i)+'°',990,y+95);x.textAlign='left';}
+  return c;
+}
+
+// Phone home screen grid
+function makeHomeScreen(){
+  const c=document.createElement('canvas');c.width=1100;c.height=2380;const x=c.getContext('2d');
+  const g=x.createLinearGradient(0,0,1100,2380);g.addColorStop(0,'#c94b8f');g.addColorStop(.5,'#7d3bb0');g.addColorStop(1,'#3b2b8f');
+  x.fillStyle=g;x.fillRect(0,0,1100,2380);
+  const cols=['#ff6b6b','#ffa94d','#ffd43b','#69db7c','#38d9a9','#4dabf7','#748ffc','#da77f2','#f783ac','#63e6be','#ffd8a8','#b197fc'];
+  let k=0;
+  for(let r=0;r<6;r++)for(let cc=0;cc<4;cc++){const ix=90+cc*235,iy=180+r*300;
+    x.fillStyle=cols[k%cols.length];roundRect(x,ix,iy,180,180,42);x.fill();k++;}
+  // dock
+  x.fillStyle='rgba(255,255,255,.18)';roundRect(x,70,1980,960,320,60);x.fill();
+  for(let i=0;i<4;i++){x.fillStyle=cols[(i*3)%cols.length];roundRect(x,140+i*225,2040,180,180,42);x.fill();}
+  return c;
+}
+
+function canvasTex(c,srgb=true){const t=new THREE.CanvasTexture(c);t.minFilter=THREE.LinearFilter;t.magFilter=THREE.LinearFilter;t.generateMipmaps=false;t.wrapS=THREE.ClampToEdgeWrapping;t.wrapT=THREE.ClampToEdgeWrapping;if(srgb)t.encoding=THREE.sRGBEncoding;t.anisotropy=8;t.needsUpdate=true;return t;}
+
+// rounded-rect extruded slab
+function roundedSlab(w,h,d,r,mat){
+  const s=new THREE.Shape();const x=-w/2,y=-h/2;
+  s.moveTo(x+r,y);s.lineTo(x+w-r,y);s.quadraticCurveTo(x+w,y,x+w,y+r);
+  s.lineTo(x+w,y+h-r);s.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  s.lineTo(x+r,y+h);s.quadraticCurveTo(x,y+h,x,y+h-r);
+  s.lineTo(x,y+r);s.quadraticCurveTo(x,y,x+r,y);
+  const geo=new THREE.ExtrudeGeometry(s,{depth:d,bevelEnabled:true,bevelThickness:Math.min(0.03,d*0.4),bevelSize:Math.min(0.03,r*0.3),bevelSegments:3,steps:1,curveSegments:24});
+  geo.center();
+  return new THREE.Mesh(geo,mat);
+}
+
+// ---------- build devices ----------
+function buildMac(){
+  const g=new THREE.Group();
+  const alu=new THREE.MeshStandardMaterial({color:0x3b3e47,roughness:0.32,metalness:0.9,side:THREE.DoubleSide});
+  const dark=new THREE.MeshStandardMaterial({color:0x0a0b10,roughness:0.5,metalness:0.3,side:THREE.DoubleSide});
+  const black=new THREE.MeshStandardMaterial({color:0x050507,roughness:0.4,metalness:0.2,side:THREE.DoubleSide});
+  const keycap=new THREE.MeshStandardMaterial({color:0x15161d,roughness:0.5,metalness:0.1,side:THREE.DoubleSide});
+
+  const SW=8.0,SH=5.0; // screen 16:10
+  // ---- base ----
+  const base=new THREE.Group();
+  const deckW=8.6,deckD=5.9,deckH=0.22;
+  const deck=roundedSlab(deckW,deckD,deckH,0.18,alu);
+  deck.rotation.x=-Math.PI/2; deck.position.y=-deckH/2; deck.position.z=deckD/2;
+  base.add(deck);
+  // keyboard well
+  const well=new THREE.Mesh(new THREE.BoxGeometry(7.4,0.02,2.7),dark);well.position.set(0,0.01,deckD*0.36);base.add(well);
+  // keys
+  const rows=[14,14,14,13,12,8];const kTW=7.0,kTD=2.5,rc=rows.length;
+  rows.forEach((cols,r)=>{const kd=(kTD/rc)*0.82;const rz=deckD*0.36-kTD/2+(kTD/rc)*(r+0.5);
+    if(r===5){const sp=new THREE.Mesh(new THREE.BoxGeometry(2.4,0.05,kd),keycap);sp.position.set(0,0.035,rz);base.add(sp);
+      [-2.2,-1.5,-0.9,0.9,1.5,2.2].forEach(kx=>{const m=new THREE.Mesh(new THREE.BoxGeometry(0.5,0.05,kd),keycap);m.position.set(kx,0.035,rz);base.add(m);});
+    } else {const kw=(kTW/14)*0.84;for(let cc=0;cc<cols;cc++){const kx=-kTW/2+(kTW/cols)*(cc+0.5);
+      const m=new THREE.Mesh(new THREE.BoxGeometry(kw,0.05,kd),keycap);m.position.set(kx,0.035,rz);base.add(m);}}});
+  // trackpad
+  const tp=new THREE.Mesh(new THREE.BoxGeometry(2.7,0.02,1.8),new THREE.MeshStandardMaterial({color:0x23252f,roughness:0.25,metalness:0.5,side:THREE.DoubleSide}));
+  tp.position.set(0,0.012,deckD*0.80);base.add(tp);
+  g.add(base);
+
+  // ---- lid ----
+  const lid=new THREE.Group();
+  const lidBack=roundedSlab(SW+0.5,SH+0.4,0.14,0.16,alu);lidBack.position.z=-0.02;lid.add(lidBack);
+  const bezel=roundedSlab(SW+0.34,SH+0.24,0.05,0.12,black);bezel.position.z=0.055;lid.add(bezel);
+  const screenTex=macScreenTex;
+  const screen=new THREE.Mesh(new THREE.PlaneGeometry(SW,SH),new THREE.MeshBasicMaterial({map:screenTex,toneMapped:false}));
+  screen.position.z=0.14;lid.add(screen);
+  const notch=new THREE.Mesh(new THREE.BoxGeometry(0.55,0.14,0.03),black);notch.position.set(0,SH/2-0.02,0.09);lid.add(notch);
+  // hinge pivot at bottom of lid
+  lid.position.set(0,SH/2+0.12,0.02);
+  lid.rotation.x=-0.15; // ~ open a bit past vertical
+  g.add(lid);
+  g.userData.lid=lid;
+  g.position.y=0; // base sits on floor y=0
+  return g;
+}
+
+function buildPhone(screenTex){
+  const g=new THREE.Group();
+  const bodyMat=new THREE.MeshStandardMaterial({color:0x1b1c22,roughness:0.35,metalness:0.85,side:THREE.DoubleSide});
+  const PW=2.4,PH=5.05,PD=0.28;
+  const body=roundedSlab(PW,PH,PD,0.42,bodyMat);
+  g.add(body);
+  const black=new THREE.MeshStandardMaterial({color:0x050507,roughness:0.4,metalness:0.2,side:THREE.DoubleSide});
+  const bez=roundedSlab(PW-0.12,PH-0.12,0.04,0.36,black);bez.position.z=PD/2+0.001;g.add(bez);
+  const screen=new THREE.Mesh(new THREE.PlaneGeometry(PW-0.22,PH-0.22),new THREE.MeshBasicMaterial({map:screenTex,toneMapped:false}));
+  screen.position.z=PD/2+0.07;g.add(screen);
+  // dynamic island
+  const isl=new THREE.Mesh(new THREE.BoxGeometry(0.62,0.17,0.02),black);isl.position.set(0,PH/2-0.42,PD/2+0.085);g.add(isl);
+  g.userData.screenMesh=screen;
+  g.userData.dims={PW,PH};
+  return g;
+}
+
+// floating app panel (rounded window) using landscape UI
+function buildPanel(tex){
+  const g=new THREE.Group();
+  const PW=8.4,PH=5.25;
+  const frame=roundedSlab(PW+0.12,PH+0.12,0.14,0.28,new THREE.MeshStandardMaterial({color:0x1a1d27,roughness:0.4,metalness:0.6,side:THREE.DoubleSide}));
+  g.add(frame);
+  const screen=new THREE.Mesh(new THREE.PlaneGeometry(PW,PH),new THREE.MeshBasicMaterial({map:tex,toneMapped:false}));
+  screen.position.z=0.14;g.add(screen);
+  return g;
+}
+
+// ---------- environment / background ----------
+const ENVS={
+  dark:{top:'#141621',mid:'#0c0d15',bot:'#050508',floor:0x0b0c12,floorRough:0.15,fog:0x06060a,fogD:0.020,env:['#3a3d55','#0a0b12']},
+  orange:{top:'#f0a24b',mid:'#c8542a',bot:'#5a1f1a',floor:0x2a140f,floorRough:0.25,fog:0x3a1a12,fogD:0.016,env:['#ffb066','#5a1f1a']},
+  sky:{top:'#a9d3f5',mid:'#7fb4 e6'.replace(' ',''),bot:'#5b8fcf',floor:0xbcd6f0,floorRough:0.3,fog:0xbcd6f0,fogD:0.012,env:['#dff0ff','#7fb4e6']},
+  white:{top:'#f4f6fb',mid:'#e7ebf3',bot:'#d3d9e6',floor:0xe9edf5,floorRough:0.22,fog:0xeef2f8,fogD:0.010,env:['#ffffff','#dfe6f0']}
+};
+
+function gradTex(top,mid,bot,w=1024,h=768){
+  const c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d');
+  const g=x.createLinearGradient(0,0,0,h);g.addColorStop(0,top);g.addColorStop(0.55,mid);g.addColorStop(1,bot);
+  x.fillStyle=g;x.fillRect(0,0,w,h);
+  return canvasTex(c,false);
+}
+function orangeWall(){
+  const c=document.createElement('canvas');c.width=1200;c.height=800;const x=c.getContext('2d');
+  const g=x.createLinearGradient(0,0,1200,800);g.addColorStop(0,'#f2a martins'.replace(' martins',''));g.addColorStop(0,'#f2a24a');g.addColorStop(.5,'#d75a2c');g.addColorStop(1,'#7a2a1e');
+  x.fillStyle=g;x.fillRect(0,0,1200,800);
+  // swoosh curves
+  for(let i=0;i<4;i++){x.fillStyle=`rgba(${255-i*20},${140-i*20},${60},0.18)`;x.beginPath();
+    x.moveTo(0,200+i*120);x.bezierCurveTo(400,60+i*120,800,520+i*80,1200,180+i*100);x.lineTo(1200,800);x.lineTo(0,800);x.closePath();x.fill();}
+  return canvasTex(c,false);
+}
+let orangeWallTex;
+
+function envMapFrom(colors){
+  const c=document.createElement('canvas');c.width=1024;c.height=512;const x=c.getContext('2d');
+  const g=x.createLinearGradient(0,0,0,512);g.addColorStop(0,colors[0]);g.addColorStop(1,colors[1]);
+  x.fillStyle=g;x.fillRect(0,0,1024,512);
+  // a couple of soft light blobs for specular interest
+  x.fillStyle='rgba(255,255,255,0.55)';x.beginPath();x.ellipse(300,150,220,90,0,0,7);x.fill();
+  x.fillStyle='rgba(255,255,255,0.25)';x.beginPath();x.ellipse(780,120,160,70,0,0,7);x.fill();
+  const t=new THREE.CanvasTexture(c);t.mapping=THREE.EquirectangularReflectionMapping;
+  const pm=pmrem.fromEquirectangular(t);t.dispose();return pm.texture;
+}
+
+function init(){
+  scene=new THREE.Scene();
+  camera=new THREE.PerspectiveCamera(34,W/H,0.1,300);
+  renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true,powerPreference:'high-performance'});
+  renderer.setSize(W,H);renderer.setPixelRatio(1);
+  renderer.shadowMap.enabled=false;
+  renderer.outputEncoding=THREE.sRGBEncoding;
+  renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.1;
+  document.getElementById('stage').appendChild(renderer.domElement);
+  pmrem=new THREE.PMREMGenerator(renderer);pmrem.compileEquirectangularShader();
+
+  // textures
+  macScreenTex=canvasTex(makeWeatherLandscape(),false);
+  phoneScreenTex=canvasTex(makeWeatherPortrait(),false);
+  phoneHomeTex=canvasTex(makeHomeScreen(),false);
+  panelTex=macScreenTex;
+  orangeWallTex=orangeWall();
+
+  // lights (non-physical intensities; keep modest so nothing blows out)
+  scene.add(new THREE.AmbientLight(0xffffff,0.45));
+  const key=new THREE.DirectionalLight(0xfff4e6,1.5);key.position.set(7,14,10);key.castShadow=true;
+  key.shadow.mapSize.set(2048,2048);key.shadow.camera.near=1;key.shadow.camera.far=60;
+  key.shadow.camera.left=-16;key.shadow.camera.right=16;key.shadow.camera.top=16;key.shadow.camera.bottom=-12;
+  key.shadow.bias=-0.0004;scene.add(key);
+  const rim=new THREE.PointLight(0xafc4ff,0.8,60);rim.position.set(-9,6,-6);scene.add(rim);
+  const fill=new THREE.PointLight(0xffffff,0.5,40);fill.position.set(3,4,9);scene.add(fill);
+
+  // background plane (large, behind)
+  bgMesh=new THREE.Mesh(new THREE.PlaneGeometry(120,70),new THREE.MeshBasicMaterial({map:gradTex('#141621','#0c0d15','#050508'),depthWrite:false,fog:false}));
+  bgMesh.position.set(0,6,-30);scene.add(bgMesh);
+
+  // floor
+  floorMesh=new THREE.Mesh(new THREE.PlaneGeometry(120,120),new THREE.MeshStandardMaterial({color:0x0b0c12,roughness:0.15,metalness:0.0}));
+  floorMesh.rotation.x=-Math.PI/2;floorMesh.position.y=0;floorMesh.receiveShadow=true;scene.add(floorMesh);
+
+  // contact shadow blob (fake AO under device)
+  const csC=document.createElement('canvas');csC.width=256;csC.height=256;const cx=csC.getContext('2d');
+  const rg=cx.createRadialGradient(128,128,10,128,128,128);rg.addColorStop(0,'rgba(0,0,0,0.55)');rg.addColorStop(1,'rgba(0,0,0,0)');
+  cx.fillStyle=rg;cx.fillRect(0,0,256,256);
+  contactShadow=new THREE.Mesh(new THREE.PlaneGeometry(12,9),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(csC),transparent:true,depthWrite:false}));
+  contactShadow.rotation.x=-Math.PI/2;contactShadow.position.y=0.01;scene.add(contactShadow);
+
+  // devices
+  macGroup=buildMac();scene.add(macGroup);
+  phoneGroup=buildPhone(phoneScreenTex);scene.add(phoneGroup);
+  panelGroup=buildPanel(panelTex);scene.add(panelGroup);
+
+  // reflections: mirrored clones
+  mirrorRoot=new THREE.Group();mirrorRoot.scale.y=-1;scene.add(mirrorRoot);
+  macMirror=macGroup.clone(true);phoneMirror=phoneGroup.clone(true);panelMirror=panelGroup.clone(true);
+  mirrorRoot.add(macMirror);mirrorRoot.add(phoneMirror);mirrorRoot.add(panelMirror);
+  // fade reflection with a floor overlay that lets only ~35% through
+  reflFade=new THREE.Mesh(new THREE.PlaneGeometry(120,120),new THREE.MeshBasicMaterial({color:0x0b0c12,transparent:true,opacity:0.62,depthWrite:false}));
+  reflFade.rotation.x=-Math.PI/2;reflFade.position.y=0.005;scene.add(reflFade);
+
+  setEnv('dark');
+  window.__ready=true;
+}
+let macMirror,phoneMirror,panelMirror,reflFade,curEnvName;
+
+function setEnv(name){
+  if(name===curEnvName) return; curEnvName=name;
+  const e=ENVS[name];
+  scene.fog=new THREE.FogExp2(e.fog,e.fogD);
+  scene.environment=envMapFrom(e.env);
+  bgMesh.material.map=(name==='orange')?orangeWallTex:gradTex(e.top,e.mid,e.bot);
+  bgMesh.material.needsUpdate=true;
+  floorMesh.material.color.setHex(e.floor);floorMesh.material.roughness=e.floorRough;floorMesh.material.needsUpdate=true;
+  reflFade.material.color.setHex(e.floor);
+  // reflection is brighter/more visible on dark & white studio, subtler on busy orange
+  reflFade.material.opacity=(name==='orange')?0.78:(name==='sky')?0.72:0.60;
+}
+
+// visibility helper
+function showOnly(kind){
+  const macOn=kind==='mac', phOn=kind==='phone', paOn=kind==='panel';
+  macGroup.visible=macMirror.visible=macOn;
+  phoneGroup.visible=phoneMirror.visible=phOn;
+  panelGroup.visible=panelMirror.visible=paOn;
+  contactShadow.visible=true;
+}
+
+// ---------- CHOREOGRAPHY ----------
+// Each shot: {t, dur, env, kind, cam:[start,end] as [px,py,pz,tx,ty,tz], dev:{...} , screen}
+// device pose fields: yaw,pitch,roll,py (lift), lidOpen (mac), orient ('portrait'|'land') for phone
+function P(px,py,pz,tx,ty,tz){return[px,py,pz,tx,ty,tz];}
+const SHOTS=[
+  // 1 — MacBook 3/4 left hero, dark, gentle orbit + slight push
+  {dur:3.5,env:'dark',kind:'mac',screen:'weatherL',
+   cam:[P(-4.8,3.1,12.6, 0,1.5,0), P(-3.2,2.7,11.2, 0,1.6,0)],
+   devA:{yaw:-0.42,pitch:0.06},devB:{yaw:-0.34,pitch:0.06}},
+  // 2 — MacBook push-in to screen, dark
+  {dur:3.3,env:'dark',kind:'mac',screen:'weatherL',
+   cam:[P(-1.8,2.4,8.4, 0,2.0,0), P(-0.5,2.8,5.4, 0,2.6,0)],
+   devA:{yaw:-0.30,pitch:0.03},devB:{yaw:-0.16,pitch:0.0}},
+  // 3 — MacBook on orange wallpaper, 3/4 left, push in
+  {dur:3.6,env:'orange',kind:'mac',screen:'weatherL',
+   cam:[P(-3.6,2.5,10.0, 0,1.5,0), P(-1.4,2.6,6.6, 0,2.1,0)],
+   devA:{yaw:-0.38,pitch:0.04},devB:{yaw:-0.22,pitch:0.02}},
+  // 4 — floating panel, orange, strong yaw glide
+  {dur:3.0,env:'orange',kind:'panel',screen:'weatherL',
+   cam:[P(3.0,1.4,8.6, 0,2.4,0), P(1.2,2.0,7.4, 0,2.4,0)],
+   devA:{yaw:0.5,pitch:0.06,py:2.6},devB:{yaw:0.34,pitch:0.04,py:2.6}},
+  // 5 — MacBook wide full body, dark, reflection, orbit L->R
+  {dur:3.4,env:'dark',kind:'mac',screen:'weatherL',
+   cam:[P(-5.5,3.2,12.5, 0,1.2,0), P(4.5,3.0,12.5, 0,1.2,0)],
+   devA:{yaw:-0.5,pitch:0.10},devB:{yaw:0.4,pitch:0.10}},
+  // 6 — panel, white studio, 3/4 receding, push in
+  {dur:3.4,env:'white',kind:'panel',screen:'weatherL',
+   cam:[P(3.4,1.2,9.2, 0,2.4,0), P(1.6,1.8,6.6, 0,2.4,0)],
+   devA:{yaw:0.55,pitch:0.05,py:2.5},devB:{yaw:0.40,pitch:0.03,py:2.5}},
+  // 7 — full-bleed panel, sky, near frontal, minimal move
+  {dur:3.0,env:'sky',kind:'panel',screen:'weatherL',
+   cam:[P(0.3,2.3,5.6, 0,2.4,0), P(-0.2,2.4,5.2, 0,2.4,0)],
+   devA:{yaw:0.06,pitch:0.02,py:2.4},devB:{yaw:-0.04,pitch:0.02,py:2.4}},
+  // 8 — MacBook frontal subtle (represents phone-on-screen shot), dark
+  {dur:3.2,env:'dark',kind:'mac',screen:'weatherL',
+   cam:[P(-1.0,2.4,8.2, 0,1.9,0), P(0.6,2.4,7.8, 0,1.9,0)],
+   devA:{yaw:-0.12,pitch:0.03},devB:{yaw:0.08,pitch:0.03}},
+  // 9 — iPhone portrait, white, frontal -> orbit 3/4 left
+  {dur:3.4,env:'white',kind:'phone',screen:'weatherP',orient:'portrait',
+   cam:[P(0.6,2.9,9.6, 0.2,2.7,0), P(-2.2,2.7,9.0, -0.2,2.7,0)],
+   devA:{yaw:0.06,pitch:0.05,py:2.8},devB:{yaw:-0.62,pitch:0.10,py:2.8}},
+  // 10 — iPhone landscape dramatic diagonal tilt orbit, white
+  {dur:3.0,env:'white',kind:'phone',screen:'weatherL',orient:'land',
+   cam:[P(-1.6,2.7,8.4, 0,2.5,0), P(1.9,2.7,8.4, 0,2.5,0)],
+   devA:{yaw:-0.25,pitch:0.16,roll:Math.PI/2-0.12,py:2.5},devB:{yaw:0.30,pitch:0.16,roll:Math.PI/2+0.12,py:2.5}},
+  // 11 — iPhone portrait dramatic 3/4 leaning outro, white
+  {dur:3.2,env:'white',kind:'phone',screen:'weatherP',orient:'portrait',
+   cam:[P(1.6,3.0,9.8, 0.3,2.7,0), P(2.4,3.4,9.2, 0.3,2.6,0)],
+   devA:{yaw:0.34,pitch:-0.06,py:2.9},devB:{yaw:0.60,pitch:-0.14,py:2.9}},
+];
+// assign absolute start times
+let TT=0;for(const s of SHOTS){s.t=TT;TT+=s.dur;}
+const DURATION=TT;
+window.DURATION=DURATION;
+
+function applyDevicePose(kind,pose,orient,screen){
+  if(kind==='mac'){
+    macGroup.rotation.set(pose.pitch||0, pose.yaw||0, pose.roll||0);
+    macGroup.position.set(0,(pose.py||0),0);
+    macGroup.userData.lid.rotation.x=-0.15;
+  } else if(kind==='phone'){
+    // choose texture
+    const tex=(screen==='weatherL')?macScreenTex:(screen==='home')?phoneHomeTex:phoneScreenTex;
+    phoneGroup.userData.screenMesh.material.map=tex;phoneGroup.userData.screenMesh.material.needsUpdate=true;
+    let roll=pose.roll||0;
+    phoneGroup.rotation.set(pose.pitch||0, pose.yaw||0, roll);
+    phoneGroup.position.set(0,(pose.py!=null?pose.py:(orient==='land'?2.3:2.5)),0);
+  } else if(kind==='panel'){
+    const tex=(screen==='weatherL')?macScreenTex:panelTex;
+    panelGroup.children.forEach(c=>{if(c.material&&c.material.map){/*frame*/}});
+    panelGroup.rotation.set(pose.pitch||0, pose.yaw||0, pose.roll||0);
+    panelGroup.position.set(0,(pose.py||2.5),0);
+  }
+}
+
+function syncMirror(kind){
+  // mirror clones copy transform of their source (mirrorRoot has scale.y=-1)
+  const map=[[macGroup,macMirror],[phoneGroup,phoneMirror],[panelGroup,panelMirror]];
+  for(const [src,mir] of map){
+    mir.position.copy(src.position);mir.rotation.copy(src.rotation);mir.visible=src.visible;
+    if(src.userData.lid&&mir.userData&&mir.children){/* lid handled by clone deep? set manually */}
+  }
+  // mac lid on mirror
+  if(macMirror.children){const l=macMirror.children.find(c=>c===macMirror.userData.lid);}
+}
+
+window.renderAtTime=function(t){
+  if(t>=DURATION)t=DURATION-0.001;
+  let shot=SHOTS[0];for(const s of SHOTS){if(t>=s.t&&t<s.t+s.dur){shot=s;break;}}
+  const lt=(t-shot.t)/shot.dur; const e=easeInOut(Math.max(0,Math.min(1,lt)));
+  setEnv(shot.env);
+  showOnly(shot.kind);
+  // camera
+  const a=shot.cam[0],b=shot.cam[1];
+  camera.position.set(lerp(a[0],b[0],e),lerp(a[1],b[1],e),lerp(a[2],b[2],e));
+  camera.lookAt(lerp(a[3],b[3],e),lerp(a[4],b[4],e),lerp(a[5],b[5],e));
+  // device pose interp
+  const pa=shot.devA,pb=shot.devB;const pose={
+    yaw:lerp(pa.yaw||0,pb.yaw||0,e),pitch:lerp(pa.pitch||0,pb.pitch||0,e),
+    roll:lerp(pa.roll||0,pb.roll||0,e),py:lerp(pa.py||0,pb.py||0,e)};
+  applyDevicePose(shot.kind,pose,shot.orient,shot.screen);
+  // contact shadow under active device
+  contactShadow.position.set(0,0.01,shot.kind==='mac'?1.6:0.0);
+  contactShadow.scale.set(shot.kind==='phone'?0.5:1.0,1,shot.kind==='phone'?0.6:1.0);
+  syncMirror(shot.kind);
+  renderer.render(scene,camera);
+};
+
+window.onload=function(){init();window.renderAtTime(0);};
+</script>
+</body>
+</html>
