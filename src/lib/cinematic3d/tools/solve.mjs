@@ -2,17 +2,24 @@
 // authored in the same units the reference was measured in (subject width % of
 // frame). Binary search over distance, measuring the rendered frame each step.
 import { chromium } from "playwright";
-import { serve } from "./serve.mjs";
+import { serve } from "../serve.mjs";
 import { readFileSync, writeFileSync } from "node:fs";
 
 const targets = JSON.parse(readFileSync(process.argv[2], "utf8"));
 const outPath = process.argv[3];
 
+// renderCustom() drives the camera directly, so the cut list is irrelevant here —
+// scene.html just refuses to boot without a config, so hand it a trivial one.
+const SOLVER_CONFIG = encodeURIComponent(
+  "data:application/json," +
+    encodeURIComponent(JSON.stringify({ scenes: [{ preset: "laptop-reveal", duration: 1 }] }))
+);
+
 const { server, port } = await serve(8742);
 const browser = await chromium.launch({ headless: true, args: ["--use-angle=d3d11", "--enable-gpu", "--disable-dev-shm-usage"] });
 const page = await browser.newPage({ viewport: { width: 480, height: 300 } });
 page.on("pageerror", (e) => console.log("PAGEERROR:", e.message));
-await page.goto(`http://127.0.0.1:${port}/temp_3d_build/kite-cuts/scene3.html?w=1280&h=720`);
+await page.goto(`http://127.0.0.1:${port}/src/lib/cinematic3d/scene.html?w=1280&h=720&config=${SOLVER_CONFIG}`);
 await page.waitForFunction("window.__ready === true", { timeout: 120000 });
 
 const results = {};

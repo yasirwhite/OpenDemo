@@ -1,5 +1,5 @@
 import { chromium } from "playwright";
-import { serve } from "./serve.mjs";
+import { serve } from "../serve.mjs";
 
 const model = process.argv[2];
 const topN = Number(process.argv[3] || 14);
@@ -13,7 +13,7 @@ const page = await browser.newPage({ viewport: { width: 400, height: 300 } });
 page.on("pageerror", (e) => console.log("PAGEERROR:", e.message));
 page.on("console", (m) => console.log("CONSOLE:", m.type(), m.text()));
 page.on("requestfailed", (r) => console.log("REQFAIL:", r.url().slice(0, 120), r.failure()?.errorText));
-await page.goto(`http://127.0.0.1:${port}/temp_3d_build/kite-cuts/probe-model.html?model=${encodeURIComponent(model)}`);
+await page.goto(`http://127.0.0.1:${port}/src/lib/cinematic3d/tools/probe-model.html?model=${encodeURIComponent(model)}`);
 await page.waitForFunction("window.__ready === true", { timeout: 60000 });
 const r = await page.evaluate("window.__result");
 

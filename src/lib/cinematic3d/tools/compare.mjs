@@ -2,7 +2,7 @@
 // Usage: node compare.mjs <out.png> <pairsJson>
 //   pairsJson: [{label, mine:"/served/path.png", ref:"/served/path.png"}, ...]
 import { chromium } from "playwright";
-import { serve } from "./serve.mjs";
+import { serve } from "../serve.mjs";
 import { writeFileSync } from "node:fs";
 
 const out = process.argv[2];
@@ -15,7 +15,7 @@ const browser = await chromium.launch({
   args: ["--use-angle=d3d11", "--enable-gpu", "--disable-dev-shm-usage"],
 });
 const page = await browser.newPage({ viewport: { width: 400, height: 300 } });
-await page.goto(`http://127.0.0.1:${port}/temp_3d_build/kite-cuts/compare-shell.html`);
+await page.goto(`http://127.0.0.1:${port}/src/lib/cinematic3d/tools/compare-shell.html`);
 
 const dataUrl = await page.evaluate(
   async ({ pairs, CW, CH, LAB, PAD }) => {

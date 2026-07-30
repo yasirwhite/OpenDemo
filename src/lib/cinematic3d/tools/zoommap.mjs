@@ -7,7 +7,7 @@
 //
 // Usage: node zoommap.mjs <dir> <servedDir> <fps> <out.json>
 import { chromium } from "playwright";
-import { serve } from "./serve.mjs";
+import { serve } from "../serve.mjs";
 import { readdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
@@ -18,7 +18,7 @@ const files = readdirSync(join(process.cwd(), dir)).filter((f) => /\.(jpg|png)$/
 const { server, port } = await serve(8738);
 const browser = await chromium.launch({ headless: true, args: ["--use-angle=d3d11", "--enable-gpu", "--disable-dev-shm-usage"] });
 const page = await browser.newPage({ viewport: { width: 300, height: 200 } });
-await page.goto(`http://127.0.0.1:${port}/temp_3d_build/kite-cuts/compare-shell.html`);
+await page.goto(`http://127.0.0.1:${port}/src/lib/cinematic3d/tools/compare-shell.html`);
 console.log(`zoom-mapping ${files.length} frames`);
 
 const rows = await page.evaluate(
