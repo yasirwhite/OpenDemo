@@ -168,3 +168,42 @@ honest. The 41 failures cluster into five fixable groups:
 
 Group 4 is the cheapest and probably the single biggest perceptual win: it is pure number changes in
 `cuts.js`, no new machinery. Groups 2 and 3 need the structural work (2D mode, lid split, keyframe tracks).
+
+---
+
+# RESCORE — `kite-match-v2.mp4` (13 cuts / 46.0 s)
+
+Correction first: the PART C totals above were mis-added. The checklist has **71 items**, not 64, and the
+original render scored **49 FAIL / 9 PARTIAL / 13 PASS**.
+
+| | v1 render (36 s) | v2 render (46 s) |
+|---|---|---|
+| PASS | 13 | **64** |
+| PARTIAL | 9 | **5** |
+| FAIL | **49** | **2** |
+
+## What was built to close the gap
+
+| group | fix |
+|---|---|
+| Structure | `cuts13.js` — 13 cuts on reference durations (1.62–7.10 s). Detected boundaries land within **0.02 s** of the reference on every cut. |
+| Render modes | `mode: '3d' \| 'flat2d'` switchable **mid-cut**; new `screen` device = bare display with no body. |
+| Device animation | MacBook lid split from the base at load by classifying every triangle against a plane at y = 1.85 and re-parenting the upper half to a hinge pivot at (0, 1.72, −12.8). `pose.lid` 0–110°. Mirror clone follows. |
+| Push magnitude | keyframe tracks with per-segment easing. C1 drives 190→46 cm (4×), C4 124→50, C10 92→42 over 7.1 s. |
+| Transitions | dissolve-to-colour on C9; C13 spins out, clears frame, ends on empty white. |
+| Extras | navy environment for C10; backlit-keyboard emissive on the legend plane; mid-cut screen-state swaps. |
+
+## Remaining
+
+**FAIL ×2**
+- `B3.3` weather window is light blue; the reference's is dark/purple-tinted.
+- `B9.5` floating panel has no window title bar.
+
+**PARTIAL ×5**
+- `A5` screen states swap at keyframes rather than animating continuously (deprioritised by request).
+- `B2.2` keyboard strip at the bottom of the screen-fill shot is thinner than the reference's.
+- `B3.4` Ventura wallpaper lacks the navy wedge in the top-left.
+- `B6.2` more orange border visible than the reference.
+- `B9.1` panel still reads as a framed slab; the reference is a thin flat sheet.
+
+All seven are surface/content issues. No structural or motion items remain open.

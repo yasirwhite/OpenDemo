@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Kite-match render — scene3</title>
+<style>html,body{margin:0;padding:0;background:#000;overflow:hidden}canvas{display:block}</style>
+<script type="importmap">
+{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}
+</script>
+</head>
+<body>
+<script type="module">
+import * as THREE from "three";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+import { buildCuts } from "./presets/index.js";
+import * as UI from "./placeholderScreens.js";
+
+const q = new URLSearchParams(location.search);
+
+// The shot list is CONFIGURED, not hard coded. ?config=<url> points at a
+// cinematic3d JSON; presets.js turns it into cuts. See README.md for the schema.
+const CONFIG = await (async () => {
+  const url = q.get("config");
+  if (!url) throw new Error("cinematic3d: ?config=<url> is required");
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`cinematic3d: could not load config ${url} (${r.status})`);
+  return r.json();
+})();
+const { cuts: CUTS, mapping: SOURCE_MAP, duration: DURATION } = buildCuts(CONFIG);
+const W = +(q.get("w") || 1920), H = +(q.get("h") || 1080);
+const D2R = Math.PI / 180;
+const DEBUG_MAC = q.get("debugmac") === "1";   // alignment aid only, never in a render
+window.DURATION = DURATION;
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true, powerPreference: "high-performance" });
+renderer.setSize(W, H); renderer.setPixelRatio(+(q.get("ss") || 1));
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.0;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.autoClear = false;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(26, W / H, 1, 600);
+
+// overlay scene: full-bleed 2D content and dissolves, drawn after the 3D pass
+const ortho = new THREE.OrthographicCamera(-0.5, 0.5, 0.5, -0.5, 0, 10);
+const overlay = new THREE.Scene();
+const flatMat = new THREE.MeshBasicMaterial({ toneMapped: false, transparent: true });
+const flatQuad = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), flatMat);
+flatQuad.position.z = -1; overlay.add(flatQuad);
+const fadeMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0 });
+const fadeQuad = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), fadeMat);
+fadeQuad.position.z = -0.5; overlay.add(fadeQuad);
+
+// --- cursor -------------------------------------------------------------
+// A pointer gives the screens something live, which is what lets the CAMERA
+// hold still. Without it the only motion in a shot is the dolly, which is how
+// the previous pass ended up zooming on nearly every cut.
+function makeCursorTex() {
+  const S = 128, c = document.createElement("canvas"); c.width = c.height = S;
+  const g = c.getContext("2d");
+  const pts = [[0.16, 0.06], [0.16, 0.80], [0.36, 0.62], [0.50, 0.92], [0.63, 0.85], [0.49, 0.57], [0.74, 0.55]];
+  g.beginPath();
+  pts.forEach(([x, y], i) => (i ? g.lineTo(x * S, y * S) : g.moveTo(x * S, y * S)));
+  g.closePath();
+  g.fillStyle = "#4a5ef0";
+  g.strokeStyle = "#ffffff"; g.lineWidth = S * 0.055; g.lineJoin = "round";
+  g.stroke(); g.fill();
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+}
+const cursorTex = makeCursorTex();
+const cursorFlat = new THREE.Mesh(new THREE.PlaneGeometry(1, 1),
+  new THREE.MeshBasicMaterial({ map: cursorTex, transparent: true, toneMapped: false, depthTest: false }));
+cursorFlat.position.z = -0.9; overlay.add(cursorFlat);
+
+// Locate a screen's world rectangle via its UV corners (exact for a planar quad,
+// and independent of however the donor happened to orient the mesh).
+function screenBasis(mesh) {
+  const g = mesh.geometry, pos = g.attributes.position, uv = g.attributes.uv;
+  mesh.updateWorldMatrix(true, false);
+  let i00 = 0, i10 = 0, i01 = 0, d00 = Infinity, d10 = Infinity, d01 = Infinity;
+  for (let i = 0; i < uv.count; i++) {
+    const u = uv.getX(i), v = uv.getY(i);
+    let d = u * u + v * v; if (d < d00) { d00 = d; i00 = i; }
+    d = (u - 1) * (u - 1) + v * v; if (d < d10) { d10 = d; i10 = i; }
+    d = u * u + (v - 1) * (v - 1); if (d < d01) { d01 = d; i01 = i; }
+  }
+  const P = (i) => new THREE.Vector3().fromBufferAttribute(pos, i).applyMatrix4(mesh.matrixWorld);
+  const p00 = P(i00), du = P(i10).sub(p00), dv = P(i01).sub(p00);
+  const n = new THREE.Vector3().crossVectors(du, dv).normalize();
+  return { p00, du, dv, n, size: Math.max(du.length(), dv.length()) };
+}
+
+// Glass sheen over a screen. Black base + additive blending means the surface
+// contributes only its specular/environment response — a reflection, never a wash
+// over the UI. Because it is real geometry it responds to camera angle and to the
+// device rotating, which a sheen painted into the texture could not.
+// A dedicated environment for the glass: black except for one soft, tapered white
+// strip. The shared RoomEnvironment has bright area lights, which reflect as a hard
+// hotspot; a strip reflects as a strip. Per-material envMap so this affects nothing
+// else in the scene.
+let stripEnvTex = null;
+function stripEnv() {
+  if (stripEnvTex) return stripEnvTex;
+  const W2 = 1024, H2 = 512;
+  const c = document.createElement("canvas"); c.width = W2; c.height = H2;
+  const g = c.getContext("2d");
+  g.fillStyle = "#000"; g.fillRect(0, 0, W2, H2);
+  // soft vertical falloff -> a band rather than a line
+  const band = g.createLinearGradient(0, H2 * 0.20, 0, H2 * 0.44);
+  band.addColorStop(0.00, "rgba(255,255,255,0)");
+  band.addColorStop(0.45, "rgba(255,255,255,0.95)");
+  band.addColorStop(0.60, "rgba(255,255,255,0.95)");
+  band.addColorStop(1.00, "rgba(255,255,255,0)");
+  g.fillStyle = band; g.fillRect(0, H2 * 0.20, W2, H2 * 0.24);
+  // taper the ends so it reads as a strip, not a full ring around the horizon
+  const ends = g.createLinearGradient(0, 0, W2, 0);
+  ends.addColorStop(0.00, "rgba(0,0,0,1)");
+  ends.addColorStop(0.22, "rgba(0,0,0,0)");
+  ends.addColorStop(0.62, "rgba(0,0,0,0)");
+  ends.addColorStop(0.86, "rgba(0,0,0,1)");
+  g.globalCompositeOperation = "destination-out";
+  g.fillStyle = ends; g.fillRect(0, 0, W2, H2);
+  g.globalCompositeOperation = "source-over";
+  const t = new THREE.CanvasTexture(c);
+  t.mapping = THREE.EquirectangularReflectionMapping;
+  const pm = pmrem.fromEquirectangular(t);
+  t.dispose();
+  stripEnvTex = pm.texture;
+  return stripEnvTex;
+}
+
+function addGlass(devEntry, screenMesh, host, strength = 0.55) {
+  // Reuse the screen's OWN geometry as a child with identity transform, so the
+  // glass is exactly the screen's shape and size — rounded corners included.
+  // (Building a PlaneGeometry from the UV corners overshot the rect, because on a
+  // rounded-rect mesh the vertices nearest UV 0/1 sit on the corner arcs, not at
+  // the true corners.) polygonOffset keeps it off the screen without moving it.
+  const m = new THREE.Mesh(
+    screenMesh.geometry,
+    new THREE.MeshPhysicalMaterial({
+      color: 0x000000,
+      metalness: 0.0,
+      roughness: 0.16,               // broader, softer highlight than a mirror
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.10,
+      envMap: stripEnv(),            // the strip, not the studio's area lights
+      envMapIntensity: 1.5,
+      transparent: true,
+      opacity: strength,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+      polygonOffset: true,
+      polygonOffsetFactor: -2,
+      polygonOffsetUnits: -2,
+    })
+  );
+  m.userData.isGlass = true;
+  m.renderOrder = 5;
+  screenMesh.add(m);
+  devEntry.glass = m;
+}
+
+function addCursor(devEntry, screenMesh, root, parent) {
+  const b = screenBasis(screenMesh);
+  const host = parent || root;
+  const s = b.size * 0.038;
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(s, s),
+    // depthWrite:false — a transparent quad still writes depth over its FULL
+    // rectangle by default, which stamps a box-shaped occluder into the buffer.
+    new THREE.MeshBasicMaterial({ map: cursorTex, transparent: true, toneMapped: false, depthWrite: false }));
+  m.renderOrder = 4;
+  m.userData.isCursor = true;
+  host.add(m);
+  // host may be offset from the root (the lid pivot is), so remember the offset
+  devEntry.cursor = m; devEntry.basis = b; devEntry.cursorOffset = host.position.clone();
+}
+// place the cursor at canvas coords (cu, cv) with cv measured downward
+function placeCursor(devEntry, cu, cv) {
+  const m = devEntry.cursor; if (!m) return;
+  const b = devEntry.basis;
+  const u = cu, v = 1 - cv;
+  m.position.copy(b.p00).addScaledVector(b.du, u).addScaledVector(b.dv, v).addScaledVector(b.n, b.size * 0.004);
+  if (devEntry.cursorOffset) m.position.sub(devEntry.cursorOffset);
+  // offset so the pointer tip, not its centre, sits on the target
+  m.position.addScaledVector(b.du, 0.018).addScaledVector(b.dv, -0.028);
+  m.quaternion.setFromRotationMatrix(
+    new THREE.Matrix4().makeBasis(b.du.clone().normalize(), b.dv.clone().normalize(), b.n)
+  );
+}
+
+const pmrem = new THREE.PMREMGenerator(renderer);
+pmrem.compileEquirectangularShader();
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+const key = new THREE.DirectionalLight(0xfff2e2, 2.0);
+key.position.set(70, 95, 55); key.castShadow = true;
+key.shadow.mapSize.set(2048, 2048);
+key.shadow.camera.near = 20; key.shadow.camera.far = 340;
+key.shadow.camera.left = -70; key.shadow.camera.right = 70;
+key.shadow.camera.top = 70; key.shadow.camera.bottom = -70;
+key.shadow.bias = -0.0012; key.shadow.normalBias = 0.4;
+scene.add(key);
+const fillL = new THREE.DirectionalLight(0xdfe8ff, 0.55); fillL.position.set(-80, 40, 60); scene.add(fillL);
+const rimL = new THREE.DirectionalLight(0xbcd2ff, 0.7); rimL.position.set(-30, 50, -90); scene.add(rimL);
+
+function gradientTex(stops, w = 64, h = 512) {
+  const c = document.createElement("canvas"); c.width = w; c.height = h;
+  const g = c.getContext("2d");
+  const lin = g.createLinearGradient(0, 0, 0, h);
+  for (const [p, col] of stops) lin.addColorStop(p, col);
+  g.fillStyle = lin; g.fillRect(0, 0, w, h);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+}
+const BG = {
+  dark:  gradientTex([[0, "#050507"], [0.6, "#020203"], [1, "#000000"]]),
+  // C10 reads dark BLUE in the reference, not black
+  navy:  gradientTex([[0, "#0b1024"], [0.5, "#080d1c"], [1, "#05070f"]]),
+  white: gradientTex([[0, "#ffffff"], [0.55, "#f4f6fa"], [1, "#d9dee7"]]),
+  sky:   gradientTex([[0, "#8fc0ec"], [0.45, "#b9d8f3"], [0.7, "#e8f1fa"], [1, "#ffffff"]]),
+};
+const ENVS = {
+  dark:  { bg: BG.dark,  fog: 0x000000, floor: 0x000000, aNear: 0.58, envInt: 0.34, exp: 0.94, key: 1.9 },
+  navy:  { bg: BG.navy,  fog: 0x05070f, floor: 0x05070f, aNear: 0.62, envInt: 0.40, exp: 0.98, key: 2.0 },
+  white: { bg: BG.white, fog: 0xeef1f6, floor: 0xeef1f6, aNear: 0.70, envInt: 1.15, exp: 1.02, key: 2.1, fogNear: 60, fogFar: 190 },
+  sky:   { bg: BG.sky,   fog: 0xf7fafd, floor: 0xf7fafd, aNear: 0.58, envInt: 1.25, exp: 1.02, key: 2.0, fogNear: 60, fogFar: 200 },  // aNear lowered -> stronger mirror
+};
+
+function floorAlphaMap(near, far = 1) {
+  const S = 512, c = document.createElement("canvas"); c.width = c.height = S;
+  const g = c.getContext("2d");
+  const grey = (a) => { const v = Math.round(Math.min(1, Math.max(0, a)) * 255); return `rgb(${v},${v},${v})`; };
+  const rad = g.createRadialGradient(S / 2, S / 2, 0, S / 2, S / 2, S / 2);
+  rad.addColorStop(0, grey(near)); rad.addColorStop(0.1, grey(near + (far - near) * 0.35));
+  rad.addColorStop(0.22, grey(near + (far - near) * 0.8)); rad.addColorStop(0.35, grey(far)); rad.addColorStop(1, grey(far));
+  g.fillStyle = rad; g.fillRect(0, 0, S, S);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.NoColorSpace; return t;
+}
+const floorMat = new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, depthWrite: false, alphaMap: floorAlphaMap(0.58) });
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(600, 600), floorMat);
+floor.rotation.x = -Math.PI / 2; floor.renderOrder = 1; scene.add(floor);
+
+const shadowTex = (() => {
+  const S = 256, c = document.createElement("canvas"); c.width = c.height = S;
+  const g = c.getContext("2d");
+  const r = g.createRadialGradient(S / 2, S / 2, 0, S / 2, S / 2, S / 2);
+  r.addColorStop(0, "rgba(0,0,0,0.85)"); r.addColorStop(0.45, "rgba(0,0,0,0.42)"); r.addColorStop(1, "rgba(0,0,0,0)");
+  g.fillStyle = r; g.fillRect(0, 0, S, S); return new THREE.CanvasTexture(c);
+})();
+const contact = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial({
+  map: shadowTex, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1,
+}));
+contact.rotation.x = -Math.PI / 2; contact.position.y = 0.06; contact.renderOrder = 2; scene.add(contact);
+const CONTACT = { macbook: { sx: 62, sz: 46, op: 0.6, z: 2 }, iphone: { sx: 26, sz: 26, op: 0.26, z: 0 },
+                  panel: { sx: 52, sz: 30, op: 0.22, z: 0 }, screen: { sx: 52, sz: 26, op: 0.20, z: 0 } };
+
+const draco = new DRACOLoader().setDecoderPath("/node_modules/three/examples/jsm/libs/draco/");
+const loader = new GLTFLoader().setDRACOLoader(draco);
+const load = (u) => new Promise((res, rej) => loader.load(u, res, undefined, rej));
+
+const mirrorRoot = new THREE.Group(); mirrorRoot.scale.y = -1; scene.add(mirrorRoot);
+const devices = {};
+function mirrorOf(src) {
+  const m = src.clone(true);
+  m.traverse((o) => { if (o.isMesh) { o.material = o.material.clone(); o.material.side = THREE.DoubleSide; o.castShadow = o.receiveShadow = false; o.renderOrder = 0; } });
+  return m;
+}
+function register(name, root) {
+  root.traverse((o) => { if (o.isMesh) { o.castShadow = o.receiveShadow = true; } });
+  scene.add(root);
+  const mirror = mirrorOf(root);
+  mirrorRoot.add(mirror);
+  devices[name] = { root, mirror };
+  return devices[name];
+}
+
+// ---- MacBook, with the lid split off into a hinge pivot ------------------
+// The donor merges lid and base into single meshes spanning the whole model, so
+// there is no lid node to rotate. We split every mesh by a horizontal plane just
+// above the deck and re-parent the upper half to a pivot at the hinge line.
+const LID_CUT_Y = 1.85, HINGE_Y = 1.72, HINGE_Z = -12.8, LID_OPEN_DEG = 110;
+
+function splitByPlaneY(mesh, worldY) {
+  const geo = mesh.geometry, pos = geo.attributes.position;
+  const idx = geo.index;
+  const triCount = idx ? idx.count / 3 : pos.count / 3;
+  const v = new THREE.Vector3();
+  const upper = [], lower = [];
+  for (let t = 0; t < triCount; t++) {
+    const a = idx ? idx.getX(t * 3) : t * 3, b = idx ? idx.getX(t * 3 + 1) : t * 3 + 1, c = idx ? idx.getX(t * 3 + 2) : t * 3 + 2;
+    let my = 0;
+    for (const i of [a, b, c]) { v.fromBufferAttribute(pos, i).applyMatrix4(mesh.matrixWorld); my += v.y; }
+    (my / 3 > worldY ? upper : lower).push(a, b, c);
+  }
+  if (!upper.length || !lower.length) return null;
+  const gU = geo.clone(); gU.setIndex(upper);
+  const gL = geo.clone(); gL.setIndex(lower);
+  return [gU, gL];
+}
+
+const macGltf = await load("/src/lib/cinematic3d/assets/macbook-pro-16.glb");
+const macRoot = new THREE.Group();
+let lidPivot = null;
+{
+  const m = macGltf.scene;
+  const box = new THREE.Box3().setFromObject(m);
+  m.position.y -= box.min.y;
+  m.position.x -= (box.min.x + box.max.x) / 2;
+  macRoot.add(m); macRoot.updateMatrixWorld(true);
+
+  let screenMesh = null, best = -Infinity;
+  m.traverse((o) => {
+    if (!o.isMesh) return;
+    const b = new THREE.Box3().setFromObject(o), s = b.getSize(new THREE.Vector3());
+    const emis = o.material?.emissive && o.material.emissive.getHex() !== 0;
+    const area = s.x * Math.max(s.y, s.z);
+    if (emis && b.getCenter(new THREE.Vector3()).y > 5 && area > best) { best = area; screenMesh = o; }
+  });
+  screenMesh.material = new THREE.MeshBasicMaterial({ toneMapped: false });
+  devices.__macScreen = screenMesh;
+
+  // backlit keyboard: the flat legend plane over the key area is emissive in the reference
+  m.traverse((o) => {
+    if (!o.isMesh || o === screenMesh) return;
+    const b = new THREE.Box3().setFromObject(o), s = b.getSize(new THREE.Vector3());
+    if (s.y < 0.05 && s.x > 30 && s.z > 8 && s.z < 14 && o.material?.map) {
+      o.material = o.material.clone();
+      o.material.emissive = new THREE.Color(0xbfd4ff);
+      o.material.emissiveMap = o.material.map;
+      o.material.emissiveIntensity = 0.85;
+    }
+  });
+
+  // split lid from base
+  lidPivot = new THREE.Group();
+  lidPivot.position.set(0, HINGE_Y, HINGE_Z);
+  macRoot.add(lidPivot);
+  const toSplit = [];
+  m.traverse((o) => { if (o.isMesh) toSplit.push(o); });
+  for (const mesh of toSplit) {
+    mesh.updateWorldMatrix(true, false);
+    const b = new THREE.Box3().setFromObject(mesh);
+    if (b.min.y > LID_CUT_Y) { lidPivot.attach(mesh); continue; }   // wholly lid
+    if (b.max.y < LID_CUT_Y) continue;                              // wholly base
+    const parts = splitByPlaneY(mesh, LID_CUT_Y);
+    if (!parts) continue;
+    const [gU, gL] = parts;
+    const upper = new THREE.Mesh(gU, mesh.material);
+    upper.applyMatrix4(mesh.matrixWorld);
+    upper.matrixAutoUpdate = true;
+    lidPivot.attach(upper);
+    mesh.geometry = gL;
+  }
+  macRoot.updateMatrixWorld(true);
+}
+const mac = register("macbook", macRoot);
+mac.screen = devices.__macScreen;
+mac.lidPivot = lidPivot;
+// The display sits ~17 cm behind the model origin, so yawing about the origin
+// swings the screen through an arc. Pivot about the SCREEN centre instead, so the
+// panel turns in place and the camera can stay locked on it.
+const WORK_LID = 95;
+lidPivot.rotation.x = (LID_OPEN_DEG - WORK_LID) * D2R;
+macRoot.updateMatrixWorld(true);
+mac.pivot = new THREE.Box3().setFromObject(devices.__macScreen).getCenter(new THREE.Vector3());
+
+// ---- iPhone --------------------------------------------------------------
+const phoneGltf = await load("/src/lib/cinematic3d/assets/iphone-15-pro.glb");
+const phoneRoot = new THREE.Group();
+{
+  const flip = new THREE.Group(); flip.rotation.y = Math.PI;
+  const m = phoneGltf.scene; m.scale.setScalar(100); flip.add(m); phoneRoot.add(flip);
+  phoneRoot.updateMatrixWorld(true);
+  let sm = null, best = -Infinity;
+  m.traverse((o) => {
+    if (!o.isMesh) return;
+    const b = new THREE.Box3().setFromObject(o), s = b.getSize(new THREE.Vector3());
+    const emis = o.material?.emissive && o.material.emissive.getHex() !== 0;
+    if (emis && Math.min(s.x, s.y, s.z) < 0.2 && s.x * s.y > best) { best = s.x * s.y; sm = o; }
+  });
+  sm.material = new THREE.MeshBasicMaterial({ toneMapped: false });
+  devices.__phoneScreen = sm;
+}
+const phone = register("iphone", phoneRoot);
+phone.screen = devices.__phoneScreen;
+
+// ---- framed panel + bare screen -----------------------------------------
+function makePlane(name, PW, thickness, framed) {
+  const root = new THREE.Group();
+  const PH = PW * (1400 / 2200);
+  if (framed) {
+    const sh = new THREE.Shape(); const r = 0.8, w = PW / 2, h = PH / 2;
+    sh.moveTo(-w + r, -h); sh.lineTo(w - r, -h); sh.quadraticCurveTo(w, -h, w, -h + r);
+    sh.lineTo(w, h - r); sh.quadraticCurveTo(w, h, w - r, h);
+    sh.lineTo(-w + r, h); sh.quadraticCurveTo(-w, h, -w, h - r);
+    sh.lineTo(-w, -h + r); sh.quadraticCurveTo(-w, -h, -w + r, -h);
+    const body = new THREE.Mesh(
+      new THREE.ExtrudeGeometry(sh, { depth: thickness, bevelEnabled: true, bevelThickness: 0.05, bevelSize: 0.05, bevelSegments: 2, curveSegments: 20 }),
+      new THREE.MeshPhysicalMaterial({ color: 0x20242e, roughness: 0.35, metalness: 0.6, clearcoat: 0.5 })
+    );
+    body.geometry.center(); root.add(body);
+  }
+  const face = new THREE.Mesh(new THREE.PlaneGeometry(PW, PH), new THREE.MeshBasicMaterial({ toneMapped: false }));
+  face.position.z = framed ? thickness / 2 + 0.09 : 0.02;
+  face.renderOrder = 3; root.add(face);
+  root.userData.face = face;
+  return root;
+}
+const panelRoot = makePlane("panel", 40, 0.5, true);
+const panel = register("panel", panelRoot); panel.screen = panelRoot.userData.face;
+// C4/C6: a bare display with no body at all
+const screenRoot = makePlane("screen", 44, 0, false);
+const screenDev = register("screen", screenRoot); screenDev.screen = screenRoot.userData.face;
+
+// cursors are added after the mirrors are built, so reflections stay clean
+addCursor(mac, mac.screen, macRoot, lidPivot);
+// GLASS LAYER DISABLED. It read as barely-there when the lid faces camera (a black
+// studio has nothing behind the lens to reflect) and was not worth the cost.
+// Re-enable with: addGlass(mac, mac.screen, null, 0.34);
+// NOTE: if re-enabled, the cursor MUST keep depthWrite:false (see below) or its
+// quad punches a rectangular hole in the reflection.
+addCursor(panel, panel.screen, panelRoot);
+addCursor(screenDev, screenDev.screen, screenRoot);
+
+// ---- content -------------------------------------------------------------
+const ventura = UI.makeVentura();
+const phoneWeatherCanvas = UI.makePhoneWeather();
+const phoneHomeCanvas = UI.makePhoneHome();
+const desktopWeatherCanvas = UI.makeDesktopWeather(ventura);
+const SRC = {
+  kite: UI.makeKiteEditor(),
+  desktopWeather: desktopWeatherCanvas,
+  desktopRecord: UI.makeDesktopWeather(ventura),
+  desktopSelect: UI.makeDesktopWeather(ventura),
+  desktopPhone: UI.makeDesktopPhone(ventura, phoneHomeCanvas),
+  desktopPhoneWeather: UI.makeDesktopPhone(ventura, phoneWeatherCanvas),
+  weatherPanel: UI.makeWeatherPanel(),
+  moonPanel: UI.makeMoonPanel(),
+  phoneWeather: phoneWeatherCanvas,
+  phoneWeatherDark: UI.makePhoneWeatherDark(),
+  phoneHome: phoneHomeCanvas,
+};
+// mid-cut state overlays so a shot is not one frozen texture
+(() => {
+  const g = SRC.desktopRecord.getContext("2d"), w = SRC.desktopRecord.width, h = SRC.desktopRecord.height;
+  g.fillStyle = "rgba(6,8,14,0.55)"; g.fillRect(0, 0, w, h);
+  g.fillStyle = "rgba(30,30,34,0.95)";
+  const bw = 520, bh = 64; g.beginPath();
+  g.roundRect((w - bw) / 2, h * 0.30, bw, bh, 14); g.fill();
+  g.fillStyle = "#ff4d4d"; g.beginPath(); g.arc((w - bw) / 2 + 34, h * 0.30 + bh / 2, 11, 0, 7); g.fill();
+  g.fillStyle = "#fff"; g.font = "600 28px -apple-system,system-ui,sans-serif";
+  g.fillText("Record this display", (w - bw) / 2 + 60, h * 0.30 + bh / 2 + 10);
+})();
+(() => {
+  const g = SRC.desktopSelect.getContext("2d"), w = SRC.desktopSelect.width, h = SRC.desktopSelect.height;
+  g.fillStyle = "rgba(6,8,14,0.62)"; g.fillRect(0, 0, w, h);
+  g.fillStyle = "rgba(255,255,255,0.92)"; g.font = "500 34px -apple-system,system-ui,sans-serif";
+  g.textAlign = "center"; g.fillText("Drag to select an area to record", w / 2, h * 0.52); g.textAlign = "left";
+})();
+const MAX_ANISO = renderer.capabilities.getMaxAnisotropy();
+const TEX = {}; for (const k in SRC) { TEX[k] = UI.tex(SRC[k]); TEX[k].anisotropy = MAX_ANISO; }
+
+// --- the actual demo recording as screen content --------------------------
+// Rendering is random-access and runs across parallel workers, so the video is
+// SEEKED per frame and awaited — never played. Playing would make the output
+// depend on wall-clock timing and differ between runs.
+let videoEl = null, videoTex = null;
+if (CONFIG.source) {
+  videoEl = document.createElement("video");
+  videoEl.src = CONFIG.source;
+  videoEl.muted = true;
+  videoEl.playsInline = true;
+  videoEl.preload = "auto";
+  await new Promise((res, rej) => {
+    videoEl.onloadeddata = res;
+    videoEl.onerror = () => rej(new Error(`cinematic3d: could not load source ${CONFIG.source}`));
+  });
+  videoTex = new THREE.VideoTexture(videoEl);
+  videoTex.colorSpace = THREE.SRGBColorSpace;
+  videoTex.minFilter = THREE.LinearFilter;
+  videoTex.magFilter = THREE.LinearFilter;
+  videoTex.generateMipmaps = false;   // regenerating per seeked frame is not worth it
+  // The screen is a plane seen at an angle — the case isotropic filtering is worst
+  // at. Without this the recording crawls and shimmers as the camera moves.
+  videoTex.anisotropy = MAX_ANISO;
+  TEX.video = videoTex;
+  window.__video = videoEl;          // exposed for probes/debugging
+}
+// Every screen key must resolve to something, source or not — presets are also
+// rendered with no recording at all (see tools/make-previews.mjs).
+TEX.placeholder = TEX.desktopWeather;
+if (!TEX.video) TEX.video = TEX.desktopWeather;
+
+/**
+ * Map render time -> time in the source recording, per the scene's clip range.
+ *
+ * `fit: "stretch"` (default) remaps the clip onto the scene duration, so a 3s
+ * clip held for 6s plays at half speed. `fit: "loop"` plays at true 1x and wraps
+ * back to the start of the clip — use it when the scene is longer than the
+ * footage and slow motion would read as sluggish.
+ */
+function sourceTimeFor(t) {
+  const m = SOURCE_MAP.find((x) => t >= x.tStart && t < x.tEnd) || SOURCE_MAP[SOURCE_MAP.length - 1];
+  if (!m || !m.clip) return null;
+  const { from = 0, to, fit } = m.clip;
+  const end = to ?? (videoEl ? videoEl.duration : from);
+  if (fit === "loop") {
+    const span = Math.max(1e-6, end - from);
+    return from + ((t - m.sceneStart) % span);
+  }
+  const u = (t - m.sceneStart) / Math.max(1e-6, m.sceneEnd - m.sceneStart);
+  return from + (end - from) * Math.min(1, Math.max(0, u));
+}
+
+/**
+ * Seek the recording to the frame this render time needs, and resolve once the
+ * decoder has actually produced it. The driver awaits this BEFORE renderAtTime.
+ */
+window.__srcMap = SOURCE_MAP;
+window.__sourceTimeFor = (t) => sourceTimeFor(t);
+window.prepareFrame = async function (t) {
+  if (!videoEl) return;
+  const st = sourceTimeFor(t);
+  if (st == null) return;
+  if (Math.abs(videoEl.currentTime - st) < 1e-4) return;
+  await new Promise((res) => {
+    const done = () => { videoEl.removeEventListener("seeked", done); res(); };
+    videoEl.addEventListener("seeked", done);
+    videoEl.currentTime = st;
+  });
+  // A server that does not answer Range requests leaves the element unseekable:
+  // the assignment is dropped, `seeked` fires anyway, and every frame shows the
+  // first decoded picture. Catch that here instead of shipping a still.
+  if (Math.abs(videoEl.currentTime - st) > 0.5) {
+    throw new Error(`cinematic3d: source is not seekable (asked ${st.toFixed(2)}s, got ${videoEl.currentTime.toFixed(2)}s)`);
+  }
+  if (videoTex) videoTex.needsUpdate = true;
+};
+
+// ---- timing --------------------------------------------------------------
+let acc = 0;
+for (const c of CUTS) { c.tStart = acc; c.dur = c.durationMs / 1000; acc += c.dur; }
+const EASE = {
+  linear: (t) => t,
+  inOut: (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2),
+  out: (t) => 1 - Math.pow(1 - t, 3),
+  in: (t) => t * t * t,
+};
+const lerp = (a, b, t) => a + (b - a) * t;
+
+function camPos(s) {
+  const y = s.pitch * D2R, a = s.yaw * D2R;
+  return [s.target[0] + Math.sin(a) * Math.cos(y) * s.dist,
+          s.target[1] + Math.sin(y) * s.dist,
+          s.target[2] + Math.cos(a) * Math.cos(y) * s.dist];
+}
+
+let curEnv = null; const alphaCache = {};
+function applyEnv(n) {
+  if (n === curEnv) return; curEnv = n;
+  const e = ENVS[n];
+  scene.background = e.bg; scene.environmentIntensity = e.envInt;
+  renderer.toneMappingExposure = e.exp; key.intensity = e.key;
+  scene.fog = new THREE.Fog(e.fog, e.fogNear ?? 170, e.fogFar ?? 460);
+  floorMat.color.setHex(e.floor);
+  alphaCache[n] ||= floorAlphaMap(e.aNear);
+  floorMat.alphaMap = alphaCache[n]; floorMat.needsUpdate = true;
+}
+function showOnly(name) {
+  for (const k of ["macbook", "iphone", "panel", "screen"]) {
+    devices[k].root.visible = devices[k].mirror.visible = k === name;
+  }
+}
+function setScreen(dev, key2) {
+  const map = TEX[key2]; if (!map) return;
+  const d = devices[dev];
+  if (d.screen && d.screen.material.map !== map) { d.screen.material.map = map; d.screen.material.needsUpdate = true; }
+  d.mirror.traverse((o) => {
+    // guard: the cursor is also a MeshBasicMaterial and must keep its own map
+    if (o.isMesh && !o.userData.isCursor && !o.userData.isGlass && o.material?.isMeshBasicMaterial && o.material.map !== map) {
+      o.material.map = map; o.material.needsUpdate = true;
+    }
+  });
+}
+
+// cursor keyframes are {at, u, v} in canvas coords (v measured downward)
+function sampleCursor(cut, u) {
+  const ks = cut.cursor; if (!ks || !ks.length) return null;
+  if (ks.length === 1) return ks[0];
+  let i = 0; while (i < ks.length - 2 && u > ks[i + 1].at) i++;
+  const A = ks[i], B = ks[i + 1];
+  const raw = Math.min(1, Math.max(0, (u - A.at) / Math.max(1e-6, B.at - A.at)));
+  const e = EASE[B.ease || "inOut"](raw);
+  return { u: lerp(A.u, B.u, e), v: lerp(A.v, B.v, e) };
+}
+function applyPose(dev, p) {
+  const d = devices[dev];
+  d.root.rotation.set((p.pitch || 0) * D2R, (p.yaw || 0) * D2R, (p.roll || 0) * D2R);
+  d.root.position.set(p.px || 0, p.py || 0, p.pz || 0);
+  if (d.pivot) {
+    // rotate about the pivot rather than the origin:  pos += P - R(theta)*P
+    const th = (p.yaw || 0) * D2R, c = Math.cos(th), sn = Math.sin(th);
+    const Px = d.pivot.x, Pz = d.pivot.z;
+    d.root.position.x += Px - (Px * c + Pz * sn);
+    d.root.position.z += Pz - (-Px * sn + Pz * c);
+  }
+  d.mirror.position.copy(d.root.position); d.mirror.rotation.copy(d.root.rotation);
+  if (dev === "macbook" && mac.lidPivot) {
+    const rx = (LID_OPEN_DEG - (p.lid ?? LID_OPEN_DEG)) * D2R;
+    mac.lidPivot.rotation.x = rx;
+    const ml = d.mirror.children.find((c) => c.isGroup && Math.abs(c.position.z - HINGE_Z) < 0.01);
+    if (ml) ml.rotation.x = rx;
+  }
+}
+
+function sampleKeys(cut, u) {
+  const ks = cut.keys;
+  let i = 0; while (i < ks.length - 2 && u > ks[i + 1].at) i++;
+  const A = ks[i], B = ks[Math.min(i + 1, ks.length - 1)];
+  const span = Math.max(1e-6, B.at - A.at);
+  const raw = Math.min(1, Math.max(0, (u - A.at) / span));
+  const e = (EASE[B.ease || "inOut"])(raw);
+  const cam = {
+    pos: (() => { const a = camPos(A.cam), b = camPos(B.cam); return [lerp(a[0], b[0], e), lerp(a[1], b[1], e), lerp(a[2], b[2], e)]; })(),
+    target: [lerp(A.cam.target[0], B.cam.target[0], e), lerp(A.cam.target[1], B.cam.target[1], e), lerp(A.cam.target[2], B.cam.target[2], e)],
+    fov: lerp(A.cam.fov ?? 26, B.cam.fov ?? 26, e),
+    dist: lerp(A.cam.dist, B.cam.dist, e),
+  };
+  const pk = ["yaw", "pitch", "roll", "px", "py", "pz", "lid"];
+  const pose = {};
+  for (const k of pk) {
+    const av = A.pose?.[k], bv = B.pose?.[k];
+    if (av === undefined && bv === undefined) continue;
+    pose[k] = lerp(av ?? bv ?? 0, bv ?? av ?? 0, e);
+  }
+  const mode = B.at <= u ? (B.mode || A.mode || "3d") : (A.mode || "3d");
+  const flatA = A.flat, flatB = B.flat;
+  const flat = flatA && flatB ? { zoom: lerp(flatA.zoom, flatB.zoom, e), x: lerp(flatA.x, flatB.x, e), y: lerp(flatA.y, flatB.y, e) } : (flatB || flatA);
+  const screenKey = (u >= B.at ? B.screen : null) || (() => { let s = cut.screen; for (const k of ks) { if (u >= k.at && k.screen) s = k.screen; } return s; })();
+  return { cam, pose, mode, flat, screenKey };
+}
+
+window.renderAtTime = function (t) {
+  if (t >= DURATION) t = DURATION - 1e-4;
+  if (t < 0) t = 0;
+  let cut = CUTS[0];
+  for (const c of CUTS) if (t >= c.tStart && t < c.tStart + c.dur) { cut = c; break; }
+  const u = (t - cut.tStart) / cut.dur;
+  const s = sampleKeys(cut, u);
+
+  applyEnv(cut.env);
+  const dev = cut.device;
+  showOnly(s.mode === "flat2d" || s.mode === "raw2d" ? "__none" : dev);
+  setScreen(dev, s.screenKey);
+
+  const cs = CONTACT[dev] || CONTACT.panel;
+  contact.visible = s.mode !== "flat2d" && s.mode !== "raw2d";
+  contact.scale.set(cs.sx, cs.sz, 1);
+  contact.position.set(s.pose.px || 0, 0.06, cs.z);
+  contact.material.opacity = (cut.env === "dark" || cut.env === "navy") ? cs.op * 0.35 : cs.op;
+  floor.visible = s.mode !== "flat2d" && s.mode !== "raw2d";
+
+  camera.position.set(...s.cam.pos);
+  camera.fov = s.cam.fov; camera.updateProjectionMatrix();
+  camera.lookAt(...s.cam.target);
+  applyPose(dev, s.pose);
+
+  // Constant-rate device spin, computed analytically from elapsed SECONDS so it
+  // is immune to clip length and to whatever easing the camera keys are using.
+  // Riding the keyframe easing made cut 1 run 9.0 deg/s then 6.5, while cuts 2-3
+  // ran 4.1 — which is the speed-up/slow-down that was visible.
+  // Lid angle over ONE continuous eased span. Chaining it through consecutive
+  // ease-out keys made it decelerate to a stop mid-open and then restart, which
+  // is the jitter. Same fix as the spin: compute it, don't ride the keyframes.
+  if (cut.lidOpen) {
+    const L = cut.lidOpen;
+    const raw = Math.min(1, Math.max(0, (u - L.startAt) / Math.max(1e-6, L.endAt - L.startAt)));
+    s.pose.lid = L.from + (L.to - L.from) * EASE[L.ease || "out"](raw);
+    applyPose(dev, s.pose);
+  }
+
+  if (cut.spin) {
+    const elapsed = u * cut.dur;
+    s.pose.yaw = cut.spin.from + cut.spin.dir * cut.spin.rate * elapsed;
+    applyPose(dev, s.pose);
+  }
+
+  // ORBIT. Sweeps azimuth and elevation around the look-at point at constant
+  // deg/s while staying aimed at it. This is how the reference gets its tilt —
+  // an off-axis camera — rather than by ROLLING the object, which reads as a
+  // crooked screen.
+  if (cut.orbit) {
+    const el = u * cut.dur;
+    const yaw = (cut.orbit.yawFrom + cut.orbit.yawDir * cut.orbit.yawRate * el) * D2R;
+    const pit = (cut.orbit.pitchFrom + cut.orbit.pitchRate * el) * D2R;
+    const d = s.cam.dist;
+    camera.position.set(
+      s.cam.target[0] + Math.sin(yaw) * Math.cos(pit) * d,
+      s.cam.target[1] + Math.sin(pit) * d,
+      s.cam.target[2] + Math.cos(yaw) * Math.cos(pit) * d
+    );
+    camera.lookAt(s.cam.target[0], s.cam.target[1], s.cam.target[2]);
+  }
+
+  // --- camera rig moves -----------------------------------------------------
+  // 1) FOLLOW THE LID. While the lid swings back, the camera tracks the arc its
+  //    top edge sweeps instead of dollying straight down -Z. The offset is taken
+  //    relative to the lid's FINAL angle, so it is zero once open and the authored
+  //    framing is preserved — during the open the rig approaches on an angle.
+  // 2) SOFT PEDESTAL UP. Constant cm/s, chained across the cuts of a scene so the
+  //    move runs unbroken through the cut points (analytic, like spin/lidOpen).
+  let dy = 0, dz = 0;
+  if (cut.followLid && cut.lidOpen) {
+    const R = cut.followLid.reach ?? 11.0;
+    const th = (s.pose.lid ?? cut.lidOpen.to) * D2R, thEnd = cut.lidOpen.to * D2R;
+    // HORIZONTAL component only. Following the tip's vertical sweep as well made
+    // the rig rise with the lid; tracking just the depth it travels reads as
+    // sliding along the edge of the keyboard, which is the intent.
+    dz += R * (Math.cos(th) - Math.cos(thEnd));
+  }
+  if (cut.pan) dy += cut.pan.from + cut.pan.rate * (u * cut.dur);
+  if (dy || dz) {
+    // translate the whole rig (pedestal/track), so the look direction is unchanged
+    camera.position.y += dy; camera.position.z += dz;
+    camera.lookAt(s.cam.target[0], s.cam.target[1] + dy, s.cam.target[2] + dz);
+  }
+
+  if (DEBUG_MAC && dev === "iphone") {
+    // show the scene-3 laptop in its own pose so the phone can be aligned to the
+    // plane of its display
+    devices.macbook.root.visible = true;
+    devices.macbook.mirror.visible = true;
+    setScreen("macbook", "desktopWeather");
+    applyPose("macbook", { lid: 106 });
+  }
+
+  const cur = sampleCursor(cut, u);
+  for (const k of ["macbook", "panel", "screen"]) if (devices[k].cursor) devices[k].cursor.visible = false;
+  cursorFlat.visible = false;
+  const lidOpenEnough = dev !== "macbook" || (s.pose.lid ?? 95) > 88;
+  if (cur && devices[dev]?.cursor && s.mode !== "flat2d" && s.mode !== "raw2d" && lidOpenEnough) {
+    devices[dev].cursor.visible = true;
+    placeCursor(devices[dev], cur.u, cur.v);
+  }
+
+  // Force an opaque BLACK clear every frame. three's background state persists
+  // across renders, so after a white/sky scene the buffer was being cleared light —
+  // which is why raw2d (whose overlay scene has no background of its own) showed a
+  // white surround instead of black.
+  renderer.setClearColor(0x000000, 1);
+  renderer.clear();
+  fadeQuad.visible = false;      // never let a stale dissolve bleed into a content pass
+  flatQuad.visible = true;
+  if (s.mode === "raw2d") {
+    // No three.js scene involved: black background, raw 2D content, OpenDemo zoom.
+    const map = TEX[s.screenKey];
+    const zt = sampleZoomCurve(cut, u);
+    window.__lastZoomScale = zt.scale;   // probe hook for verifying flat holds
+    flatMat.map = map; flatMat.opacity = 1; flatMat.needsUpdate = true;
+    const iw = map.image.videoWidth || map.image.width;
+    const ih = map.image.videoHeight || map.image.height;
+    const srcAR = iw / ih, dstAR = W / H;
+    // fit (contain) so the footage sits on black rather than being cropped
+    const fit = srcAR > dstAR ? [1, dstAR / srcAR] : [srcAR / dstAR, 1];
+    flatQuad.scale.set(fit[0] * zt.scale, fit[1] * zt.scale, 1);
+    flatQuad.position.set(zt.x, zt.y, -1);
+    if (cur) {
+      cursorFlat.visible = true;
+      const cs = Math.min(fit[0], fit[1]) * zt.scale * 0.05;
+      cursorFlat.scale.set(cs, cs, 1);
+      cursorFlat.position.set(
+        zt.x + (cur.u - 0.5) * fit[0] * zt.scale + cs * 0.32,
+        zt.y + (0.5 - cur.v) * fit[1] * zt.scale - cs * 0.42,
+        -0.9
+      );
+    }
+    renderer.render(overlay, ortho);
+  } else if (s.mode === "flat2d") {
+    // full-bleed 2D: content fills the frame with zero perspective (reference does
+    // this around 10.7-11.9 s and again on the light-ground shots)
+    const map = TEX[s.screenKey];
+    flatMat.map = map; flatMat.opacity = 1; flatMat.needsUpdate = true;
+    const z = s.flat?.zoom ?? 1.05;
+    const iw = map.image.videoWidth || map.image.width;
+    const ih = map.image.videoHeight || map.image.height;
+    const srcAR = iw / ih, dstAR = W / H;
+    const cover = srcAR > dstAR ? [z * (srcAR / dstAR), z] : [z, z * (dstAR / srcAR)];
+    flatQuad.scale.set(cover[0], cover[1], 1);
+    flatQuad.position.set(s.flat?.x ?? 0, s.flat?.y ?? 0, -1);
+    if (cur) {
+      // map canvas coords into the same cover-scaled quad the content uses
+      cursorFlat.visible = true;
+      const cs = Math.min(cover[0], cover[1]) * 0.05;
+      cursorFlat.scale.set(cs, cs, 1);
+      cursorFlat.position.set(
+        flatQuad.position.x + (cur.u - 0.5) * cover[0] + cs * 0.32,
+        flatQuad.position.y + (0.5 - cur.v) * cover[1] - cs * 0.42,
+        -0.9
+      );
+    }
+    renderer.render(overlay, ortho);
+  } else {
+    renderer.render(scene, camera);
+  }
+
+  // dissolve
+  let fa = 0;
+  if (cut.fade && u > cut.fade.from) fa = Math.min(1, (u - cut.fade.from) / (1 - cut.fade.from));
+  fadeMat.opacity = fa;
+  if (fa > 0) {
+    fadeMat.color.set(cut.fade.color);
+    fadeQuad.visible = true;
+    flatQuad.visible = false;
+    cursorFlat.visible = false;
+    fadeQuad.scale.set(1, 1, 1);
+    renderer.render(overlay, ortho);
+    flatQuad.visible = true;
+  }
+};
+
+// --- OpenDemo-style 2D zoom ------------------------------------------------
+// Mirrors src/components/video-editor/videoPlayback/: a time-driven target shaped
+// by an ease curve, then chased by a spring (stiffness 320 / damping 40) with an
+// overshoot clamp that snaps on target-crossing. The spring is what removes the
+// velocity discontinuity at the launch of the ease.
+//
+// Precomputed per cut because renderAtTime() is random-access across parallel
+// workers — a live stateful spring would not be deterministic.
+const SPRING = { stiffness: 320, damping: 40, mass: 1, restDelta: 0.0005, restSpeed: 0.02 };
+const SPRING_HZ = 240;
+
+function easeProgress(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+
+function buildZoomCurve(cut) {
+  const z = cut.zoom2d; if (!z) return null;
+  const dur = cut.durationMs / 1000;
+  const steps = Math.max(2, Math.ceil(dur * SPRING_HZ));
+  const dt = dur / steps, dtMs = dt * 1000;
+  const axes = ["scale", "x", "y"];
+  const st = {}; const seed = z.stops ? z.stops[0] : z.from;
+  for (const a of axes) st[a] = { v: seed[a] ?? (a === "scale" ? 1 : 0), vel: 0 };
+  const curve = [];
+  for (let i = 0; i <= steps; i++) {
+    const u = i / steps;
+    let tgt;
+    if (z.stops) {
+      // piecewise-eased target through N stops; the spring smooths the joins
+      const st = z.stops;
+      let k = 0; while (k < st.length - 2 && u > st[k + 1].at) k++;
+      const A = st[k], B = st[Math.min(k + 1, st.length - 1)];
+      const raw = Math.min(1, Math.max(0, (u - A.at) / Math.max(1e-6, B.at - A.at)));
+      const p = easeProgress(raw);
+      tgt = {
+        scale: (A.scale ?? 1) + ((B.scale ?? 1) - (A.scale ?? 1)) * p,
+        x: (A.x ?? 0) + ((B.x ?? 0) - (A.x ?? 0)) * p,
+        y: (A.y ?? 0) + ((B.y ?? 0) - (A.y ?? 0)) * p,
+      };
+    } else {
+      const raw = Math.min(1, Math.max(0, (u - (z.startAt ?? 0)) / Math.max(1e-6, (z.endAt ?? 1) - (z.startAt ?? 0))));
+      const p = easeProgress(raw);
+      tgt = {};
+      for (const a of axes) tgt[a] = (z.from[a] ?? (a === "scale" ? 1 : 0)) + ((z.to[a] ?? 0) - (z.from[a] ?? (a === "scale" ? 1 : 0))) * p;
+    }
+    const out = {};
+    for (const a of axes) {
+      const target = tgt[a];
+      const s2 = st[a];
+      const before = s2.v;
+      // semi-implicit Euler, substepped for stability
+      const sub = 4, h = dtMs / 1000 / sub;
+      for (let k = 0; k < sub; k++) {
+        const accel = (SPRING.stiffness * (target - s2.v) - SPRING.damping * s2.vel) / SPRING.mass;
+        s2.vel += accel * h;
+        s2.v += s2.vel * h;
+      }
+      // moving-target overshoot clamp (same rule as stepAxis in zoomSpring.ts)
+      if ((before <= target && s2.v > target) || (before >= target && s2.v < target)) { s2.v = target; s2.vel = 0; }
+      if (Math.abs(target - s2.v) <= SPRING.restDelta && Math.abs(s2.vel) <= SPRING.restSpeed) { s2.v = target; s2.vel = 0; }
+      out[a] = s2.v;
+    }
+    curve.push(out);
+  }
+  return curve;
+}
+function sampleZoomCurve(cut, u) {
+  const c = cut._zoomCurve; if (!c) return { scale: 1, x: 0, y: 0 };
+  const f = Math.min(c.length - 1, Math.max(0, u * (c.length - 1)));
+  const i = Math.floor(f), j = Math.min(c.length - 1, i + 1), a = f - i;
+  return {
+    scale: c[i].scale + (c[j].scale - c[i].scale) * a,
+    x: c[i].x + (c[j].x - c[i].x) * a,
+    y: c[i].y + (c[j].y - c[i].y) * a,
+  };
+}
+for (const c of CUTS) if (c.zoom2d) c._zoomCurve = buildZoomCurve(c);
+
+// --- framing solver support ----------------------------------------------
+// Render an arbitrary camera/pose, then measure the resulting subject width the
+// same way the reference was measured. This lets the cut list be authored in
+// "subject width %" (the units the zoom map is in) instead of guessed distances.
+const measCanvas = document.createElement("canvas");
+measCanvas.width = 320; measCanvas.height = 180;
+const measCtx = measCanvas.getContext("2d", { willReadFrequently: true });
+
+window.measureFrame = function () {
+  const MW = measCanvas.width, MH = measCanvas.height;
+  measCtx.drawImage(renderer.domElement, 0, 0, MW, MH);
+  const d = measCtx.getImageData(0, 0, MW, MH).data;
+  const lum = new Float32Array(MW * MH);
+  for (let p = 0, q = 0; p < d.length; p += 4, q++) lum[q] = 0.2126 * d[p] + 0.7152 * d[p + 1] + 0.0722 * d[p + 2];
+  const TH = 18;
+  const colHits = new Int32Array(MW), rowHits = new Int32Array(MH);
+  let n = 0, sx = 0, sy = 0;
+  for (let y = 1; y < MH - 1; y++) {
+    for (let x = 1; x < MW - 1; x++) {
+      const q = y * MW + x;
+      if (Math.abs(lum[q + 1] - lum[q - 1]) + Math.abs(lum[q + MW] - lum[q - MW]) > TH) {
+        n++; sx += x; sy += y; colHits[x]++; rowHits[y]++;
+      }
+    }
+  }
+  if (n < 120) return { w: 0, h: 0, cx: 50, cy: 50 };
+  // A thin horizon line spans every column with 1-2 hits and would otherwise set
+  // the bounding box to the full frame. Require real edge DENSITY per column/row.
+  const maxCol = Math.max(...colHits), maxRow = Math.max(...rowHits);
+  const cMin = maxCol * 0.12, rMin = maxRow * 0.12;
+  let l = 0, r = MW - 1, tp = 0, bt = MH - 1;
+  for (let x = 0; x < MW; x++) if (colHits[x] > cMin) { l = x; break; }
+  for (let x = MW - 1; x >= 0; x--) if (colHits[x] > cMin) { r = x; break; }
+  for (let y = 0; y < MH; y++) if (rowHits[y] > rMin) { tp = y; break; }
+  for (let y = MH - 1; y >= 0; y--) if (rowHits[y] > rMin) { bt = y; break; }
+  return {
+    w: +((100 * (r - l)) / MW).toFixed(2), h: +((100 * (bt - tp)) / MH).toFixed(2),
+    cx: +((100 * (sx / n)) / MW).toFixed(2), cy: +((100 * (sy / n)) / MH).toFixed(2),
+  };
+};
+
+window.renderCustom = function (cfg) {
+  applyEnv(cfg.env);
+  const dev = cfg.device;
+  showOnly(cfg.mode === "flat2d" ? "__none" : dev);
+  setScreen(dev, cfg.screen);
+  for (const k of ["macbook", "panel", "screen"]) if (devices[k].cursor) devices[k].cursor.visible = false;
+  cursorFlat.visible = false;
+  const cs = CONTACT[dev] || CONTACT.panel;
+  contact.visible = cfg.mode !== "flat2d";
+  contact.scale.set(cs.sx, cs.sz, 1);
+  contact.position.set(cfg.pose?.px || 0, 0.06, cs.z);
+  contact.material.opacity = (cfg.env === "dark" || cfg.env === "navy") ? cs.op * 0.35 : cs.op;
+  floor.visible = cfg.mode !== "flat2d";
+  const p = camPos(cfg.cam);
+  camera.position.set(p[0], p[1], p[2]);
+  camera.fov = cfg.cam.fov ?? 26; camera.updateProjectionMatrix();
+  camera.lookAt(cfg.cam.target[0], cfg.cam.target[1], cfg.cam.target[2]);
+  applyPose(dev, cfg.pose || {});
+  renderer.clear();
+  if (cfg.mode === "flat2d") {
+    const map = TEX[cfg.screen];
+    flatMat.map = map; flatMat.opacity = 1; flatMat.needsUpdate = true;
+    const z = cfg.flat?.zoom ?? 1.05;
+    const iw = map.image.videoWidth || map.image.width;
+    const ih = map.image.videoHeight || map.image.height;
+    const srcAR = iw / ih, dstAR = W / H;
+    const cover = srcAR > dstAR ? [z * (srcAR / dstAR), z] : [z, z * (dstAR / srcAR)];
+    flatQuad.scale.set(cover[0], cover[1], 1);
+    flatQuad.position.set(cfg.flat?.x ?? 0, cfg.flat?.y ?? 0, -1);
+    fadeMat.opacity = 0;
+    renderer.render(overlay, ortho);
+  } else {
+    renderer.render(scene, camera);
+  }
+};
+
+window.CUT_TABLE = CUTS.map((c) => ({ name: c.name, start: c.tStart, dur: c.dur, env: c.env, device: c.device }));
+Object.assign(window, { __scene: scene, __camera: camera, __devices: devices, THREE });
+window.renderAtTime(0);
+window.__ready = true;
+</script>
+</body>
+</html>

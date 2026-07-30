@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<title>GLB probe</title>
+<script type="importmap">
+{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}
+</script>
+<script type="module">
+import * as THREE from "three";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
+
+const url = new URLSearchParams(location.search).get("model");
+
+const draco = new DRACOLoader().setDecoderPath("/node_modules/three/examples/jsm/libs/draco/");
+const loader = new GLTFLoader().setDRACOLoader(draco);
+
+loader.load(url, (gltf) => {
+  const root = gltf.scene;
+  root.updateMatrixWorld(true);
+  const whole = new THREE.Box3().setFromObject(root);
+  const ws = whole.getSize(new THREE.Vector3());
+
+  const parts = [];
+  root.traverse((o) => {
+    if (!o.isMesh) return;
+    const b = new THREE.Box3().setFromObject(o);
+    const s = b.getSize(new THREE.Vector3());
+    const c = b.getCenter(new THREE.Vector3());
+    const m = o.material;
+    // "flatness": how plate-like the mesh is (smallest dim vs largest)
+    const dims = [s.x, s.y, s.z].sort((a, b2) => a - b2);
+    parts.push({
+      name: o.name,
+      mat: m?.name || "",
+      size: [+s.x.toFixed(4), +s.y.toFixed(4), +s.z.toFixed(4)],
+      center: [+c.x.toFixed(4), +c.y.toFixed(4), +c.z.toFixed(4)],
+      verts: o.geometry.attributes.position.count,
+      faceArea: +(dims[1] * dims[2]).toFixed(4),
+      flat: +(dims[0] / (dims[2] || 1)).toFixed(4),
+      emissive: m?.emissive ? m.emissive.getHexString() : null,
+      hasMap: !!m?.map,
+      color: m?.color ? m.color.getHexString() : null,
+      metal: m?.metalness, rough: m?.roughness,
+    });
+  });
+  parts.sort((a, b) => b.faceArea - a.faceArea);
+
+  window.__result = {
+    whole: { size: [+ws.x.toFixed(4), +ws.y.toFixed(4), +ws.z.toFixed(4)],
+             min: whole.min.toArray().map((v) => +v.toFixed(4)),
+             max: whole.max.toArray().map((v) => +v.toFixed(4)) },
+    count: parts.length,
+    parts,
+  };
+  window.__ready = true;
+}, undefined, (e) => { window.__result = { error: String(e) }; window.__ready = true; });
+</script>

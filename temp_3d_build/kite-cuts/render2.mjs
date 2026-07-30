@@ -1,4 +1,4 @@
-// GPU frame grabber for scene2.html.
+// GPU frame grabber for scene3.html.
 //   node render2.mjs sample            -> sample/ : start+mid+end of every cut
 //   node render2.mjs full [workers]    -> frames2/: every frame at 30 fps
 // Deterministic: each frame is produced by window.renderAtTime(t), no rAF clock.
@@ -20,7 +20,7 @@ if (existsSync(outDir) && !RESUME) rmSync(outDir, { recursive: true, force: true
 mkdirSync(outDir, { recursive: true });
 
 const { server, port } = await serve(8734);
-const url = `http://127.0.0.1:${port}/temp_3d_build/kite-cuts/scene2.html?w=${W}&h=${H}&ss=${SS}`;
+const url = `http://127.0.0.1:${port}/temp_3d_build/kite-cuts/scene3.html?w=${W}&h=${H}&ss=${SS}`;
 
 const browser = await chromium.launch({
   headless: true,

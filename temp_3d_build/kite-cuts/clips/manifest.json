@@ -1,0 +1,23 @@
+{
+ "fps": 30,
+ "width": 1920,
+ "height": 1080,
+ "clips": [
+  {
+   "id": "06-phone-showcase",
+   "title": "Phone slides in, holds, exits",
+   "t0": 35.7,
+   "t1": 46,
+   "duration": 10.3,
+   "frames": 309,
+   "file": "06-phone-showcase.mp4",
+   "slots": {
+    "primary": "phoneWeather",
+    "state": [
+     "phoneHome",
+     "phoneWeatherDark"
+    ]
+   }
+  }
+ ]
+}
