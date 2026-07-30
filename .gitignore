@@ -69,3 +69,23 @@ result-*
 
 # Auto-caption model + ORT wasm — regenerated at build by scripts/fetch-caption-model.mjs
 /caption-assets/
+
+# Rendered video. Cinematic output regenerates from a config:
+#   node src/lib/cinematic3d/render.mjs <config.json>
+*.mp4
+
+# ...except the demo fixture the example config and tests render against.
+!examples/login-demo.mp4
+
+# Reference films — fetched on demand, never committed. See references/README.md.
+references/media/
+
+# Rendered output and intermediate frame dumps.
+recordings_3d/
+**/.cinematic3d-frames/
+**/.cinematic3d-config.json
+
+# Working cinematic configs live in the repo but are not committed — only the
+# examples are. See src/lib/cinematic3d/configs/README.md.
+src/lib/cinematic3d/configs/*.json
+!src/lib/cinematic3d/configs/examples/*.json

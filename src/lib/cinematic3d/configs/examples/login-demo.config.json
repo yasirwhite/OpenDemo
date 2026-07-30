@@ -1,0 +1,27 @@
+{
+  "//": "Two-scene film against examples/login-demo.mp4 (10.05s). Render with:",
+  "//run": "node src/lib/cinematic3d/render.mjs src/lib/cinematic3d/configs/examples/login-demo.config.json 3",
+  "//why-two": "A single login action does not carry three scenes. Two shots, each long enough to follow, beat three shots that keep interrupting. Both run at 1.00x - duration equals clip length - so the film never changes speed.",
+
+  "source": "../../../../../examples/login-demo.mp4",
+  "output": "../../../../../recordings_3d/login-demo-3d.mp4",
+  "width": 1920, "height": 1080, "fps": 60,
+
+  "//quality": "fps 60 matches the source recording - halving it to 30 throws away every other frame of a 60fps capture. supersample 2 renders at 3840x2160 and downsamples with lanczos, which is what sharpens UI text; the GPU's antialiasing cannot help there because the text lives inside a texture.",
+  "supersample": 2,
+  "crf": 15,
+
+  "scenes": [
+    {
+      "//": "Opener. Lid rises slowly while the camera drifts in - the whole point is that you can follow it.",
+      "preset": "laptop-reveal", "duration": 5.0,
+      "clip": { "from": 0.0, "to": 5.0 }
+    },
+    {
+      "//": "Flat 2D for the rest: credentials, submit, result. One zoom in the whole shot, then it stays put.",
+      "preset": "raw-2d", "duration": 5.05,
+      "clip": { "from": 5.0, "to": 10.05 },
+      "focus": [{ "at": 0.22, "on": [0.5, 0.52], "scale": 1.45, "hold": 0.5 }]
+    }
+  ]
+}

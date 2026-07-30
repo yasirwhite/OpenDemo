@@ -53,6 +53,35 @@ To save time during complex workflows, be aware of the following:
 - **Recordings Auto-Cleanup**: The `run-demo.mjs` script automatically deletes the contents of the `recordings/` directory when it starts a new run. If a previous run was not explicitly exported/saved, it will be lost.
 - **HUD Minimization**: The OpenScreen UI allows minimizing the HUD bar into a small clapperboard icon using the `-` button on the overlay.
 
+## Optional: 3D Cinematic Presentation (EXPERIMENTAL — not finished)
+
+If the user wants a more *exciting* / product-launch-style demo rather than a plain screen
+recording, there is an experimental pass that places the finished recording inside 3D
+product shots (MacBook Pro / iPhone on a studio set) with camera work derived from real
+product films.
+
+**This is a footnote, not part of the normal flow.** It is not called by `run-demo.mjs`, the
+shot library is small, and it has known gaps. Produce the normal recording first; only offer
+this if the user asks for something more cinematic, and tell them it is experimental.
+
+```bash
+node src/lib/cinematic3d/render.mjs src/lib/cinematic3d/configs/my-demo.json 3
+```
+
+You configure *intent* — which slice of the recording plays in each shot, and what deserves
+attention — not camera angles. See `src/lib/cinematic3d/README.md` for the config schema and
+the available shot presets.
+
+Two things carry over from the zoom rules above, with more force:
+- **Zoom even more sparingly here.** A 3D push is far more disruptive than a 2D one.
+- **Use punch-then-reveal for feature moments:** push in hard to frame the click
+  (attention), then pull back a *little* to show what it affected (consequence). Pulling
+  back too far throws away the attention the push just bought.
+
+If you are trying to reproduce the look of a specific reference film, read
+`docs/reference-matching.md` first — it is a method plus a list of traps that have already
+cost real time, and it is meant to be appended to as more references are studied.
+
 Finally...
 After you complete your first JSON instruction, re-review your work and be pessimistic about how it actually accomplishes the workflow.
 

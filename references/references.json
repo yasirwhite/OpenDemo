@@ -1,0 +1,16 @@
+{
+  "//": "Reference films used to derive OpenDemo's camera language. The media is NOT committed - fetch it with `node references/fetch.mjs`. See docs/reference-matching.md for the method, and add a notes section there per reference.",
+  "dir": "media",
+  "references": [
+    {
+      "id": "kite",
+      "file": "kite-product-film.mp4",
+      "url": "https://kite.video/new-samples/kite-recording.mp4",
+      "md5": "08a3ee08ec8b78a8bd2694077f9a24c2",
+      "bytes": 8982547,
+      "spec": "1920x1080, 30fps, 46.0s",
+      "notes": "docs/reference-matching.md#kite-product-film-46s-1920x1080-30fps",
+      "usedBy": "src/lib/cinematic3d/presets/ - all six presets are shots from this film"
+    }
+  ]
+}
