@@ -1,19 +1,12 @@
 # OpenDemo
 
-OpenDemo gives your LLM the ability to create product demo videos.
+OpenDemo gives your LLM the ability to create exciting demo videos.
 
 ***No cloud services or API keys |*** Just clone `OpenDemo` and prompt the model you already use.
 
 ### Demo
 Watch OpenDemo fully execute a local login flow from a tiny JSON instruction file:
 ![Demo](./examples/login-demo.gif)
-
-### What can I accomplish with OpenDemo?
-* 🎬 Build high-quality product videos for YouTube
-* 🎯 Make demos for finished hackathon projects
-* 🌿 Bring life to your Landing page
-* ✨ Create ProductHunt launch videos
-
 
 ## Usage
 
