@@ -1,0 +1,491 @@
+{
+  "_about": [
+    "WORKED EXAMPLE — a launch video for 'Doorstep', a novelty service that mails",
+    "unpleasant gag gifts anonymously to someone's door. The copy leans crude on",
+    "purpose: the comedy is the product, and hedged wording kills it.",
+    "",
+    "Build and render:",
+    "  node src/lib/textcards/build.mjs --config examples/doorstep-launch-video.json",
+    "  node src/lib/textcards/render.mjs --out doorstep.mp4 --fps 60",
+    "",
+    "Preset slugs are defined in src/lib/textcards/src/presets/index.jsx.",
+    "Read PRESET_NOTES there to choose one. See README.md for the rules.",
+    "",
+    "Every scene carries a 'role' so the next model can tell brand copy from",
+    "in-product dialogue — see the Copy roles table in README.md."
+  ],
+  "video": {
+    "width": 1280,
+    "height": 720,
+    "fps": 60,
+    "durationMs": 35822
+  },
+  "ground": [
+    {
+      "fromMs": 0,
+      "colour": [
+        253,
+        252,
+        250
+      ]
+    },
+    {
+      "fromMs": 4257,
+      "colour": [
+        24,
+        22,
+        34
+      ]
+    },
+    {
+      "fromMs": 12533,
+      "colour": [
+        253,
+        252,
+        250
+      ]
+    },
+    {
+      "fromMs": 20809,
+      "colour": [
+        24,
+        22,
+        34
+      ]
+    },
+    {
+      "fromMs": 27016,
+      "colour": [
+        253,
+        252,
+        250
+      ]
+    },
+    {
+      "fromMs": 33222,
+      "colour": [
+        24,
+        22,
+        34
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "hook",
+      "role": "brand",
+      "preset": "reveal-line",
+      "startMs": 0,
+      "durationMs": 2188,
+      "size": 76,
+      "x": 40,
+      "scaleFrom": 1.7,
+      "scaleDurMs": 1100,
+      "exitAtMs": 1600,
+      "exitSweepMs": 520,
+      "exitFadeMs": 200,
+      "groups": [
+        {
+          "text": "Some people ",
+          "atMs": 200,
+          "durMs": 320,
+          "colour": [
+            28,
+            26,
+            40
+          ],
+          "blurIn": true
+        },
+        {
+          "text": "really ",
+          "atMs": 700,
+          "durMs": 260,
+          "colour": [
+            232,
+            72,
+            58
+          ],
+          "italic": true
+        },
+        {
+          "text": "suck",
+          "atMs": 980,
+          "durMs": 280,
+          "colour": [
+            28,
+            26,
+            40
+          ],
+          "shimmer": {
+            "startMs": 1200,
+            "durMs": 550,
+            "width": 0.7,
+            "amount": 0.85
+          }
+        }
+      ]
+    },
+    {
+      "id": "hero",
+      "role": "brand",
+      "preset": "wave-word",
+      "startMs": 2188,
+      "durationMs": 2069,
+      "text": "mail them shit",
+      "size": 156,
+      "hot": [
+        232,
+        72,
+        58
+      ],
+      "to": [
+        28,
+        26,
+        40
+      ],
+      "slideFromPx": 440,
+      "slideDurMs": 600,
+      "sweepAtMs": 540,
+      "sweepDurMs": 460,
+      "shrinkAtMs": 3760,
+      "shrinkDurMs": 800,
+      "shrinkToScale": 0.62
+    },
+    {
+      "id": "meet",
+      "role": "brand",
+      "preset": "scale-in",
+      "startMs": 4257,
+      "durationMs": 2069,
+      "text": "Meet",
+      "size": 92,
+      "scaleFrom": 1.7,
+      "settleDurMs": 460,
+      "blur": 22,
+      "fade": false,
+      "colour": [
+        248,
+        246,
+        242
+      ]
+    },
+    {
+      "id": "doorstep",
+      "role": "brand",
+      "preset": "word-cut",
+      "startMs": 6326,
+      "durationMs": 2069,
+      "text": "Doorstep",
+      "size": 92,
+      "colour": [
+        248,
+        246,
+        242
+      ]
+    },
+    {
+      "id": "slot-1",
+      "preset": "product-slot",
+      "startMs": 8395,
+      "durationMs": 4138,
+      "index": 1,
+      "label": "product demo — browsing the catalogue",
+      "bg": [
+        24,
+        22,
+        34
+      ],
+      "ink": [
+        235,
+        232,
+        245
+      ],
+      "_filled": [
+        "This slot is FILLED with a real 3D product shot. The placeholder box",
+        "still renders — it is overlaid at composite time, so the text video can",
+        "always be rebuilt on its own. To reproduce (scratch lives in .demo-build/,",
+        "which is gitignored):",
+        "  node run-demo.mjs .demo-build/record.json          # record the mock app",
+        "  node src/lib/cinematic3d/render.mjs .demo-build/shot1.json 3",
+        "  ffmpeg -y -i text.mp4 -i .demo-build/shot1.mp4 -filter_complex \\",
+        "    \"[1:v]setpts=PTS+6.33/TB[s];[0:v][s]overlay=0:0:enable='between(t,6.33,10.33)'\" \\",
+        "    -c:v libx264 -crf 17 -pix_fmt yuv420p -r 60 doorstep.mp4",
+        "",
+        "The 3D shot is laptop-punch-reveal on a black set, which cuts cleanly",
+        "against this scene's dark ground. Render it at the SAME width/height/fps",
+        "as 'video' above or the overlay will not line up."
+      ]
+    },
+    {
+      "id": "bridge",
+      "role": "brand",
+      "preset": "reveal-line",
+      "startMs": 12533,
+      "durationMs": 2069,
+      "size": 72,
+      "x": 0,
+      "scaleFrom": 1.22,
+      "scaleDurMs": 700,
+      "exitAtMs": 1500,
+      "exitSweepMs": 460,
+      "exitFadeMs": 200,
+      "groups": [
+        {
+          "text": "Mail your own. ",
+          "atMs": 120,
+          "durMs": 300,
+          "colour": [
+            28,
+            26,
+            40
+          ],
+          "blurIn": true
+        },
+        {
+          "text": "Or shop ours.",
+          "atMs": 620,
+          "durMs": 320,
+          "colour": [
+            232,
+            72,
+            58
+          ],
+          "shimmer": {
+            "startMs": 1050,
+            "durMs": 520,
+            "width": 0.7,
+            "amount": 0.8
+          }
+        }
+      ]
+    },
+    {
+      "id": "slot-2",
+      "preset": "product-slot",
+      "startMs": 14602,
+      "durationMs": 4138,
+      "index": 2,
+      "label": "product demo — mobile, quick send",
+      "bg": [
+        253,
+        252,
+        250
+      ],
+      "ink": [
+        28,
+        26,
+        40
+      ]
+    },
+    {
+      "id": "claim",
+      "role": "brand",
+      "preset": "statement",
+      "startMs": 18740,
+      "durationMs": 2069,
+      "lines": [
+        "Pick something smelly.",
+        "We mail it anonymously."
+      ],
+      "size": 74,
+      "lineStaggerMs": 167,
+      "colour": [
+        28,
+        26,
+        40
+      ]
+    },
+    {
+      "id": "prompt",
+      "role": "user-voice",
+      "_note": "DIEGETIC — the user typing an order into the product. Not a slogan.",
+      "preset": "type-on",
+      "startMs": 20809,
+      "durationMs": 4138,
+      "text": "gorilla poop, to my landlord",
+      "cps": 11.0,
+      "size": 190,
+      "ramp": [
+        [
+          248,
+          246,
+          242
+        ],
+        [
+          248,
+          246,
+          242
+        ],
+        [
+          120,
+          150,
+          250
+        ],
+        [
+          200,
+          120,
+          170
+        ],
+        [
+          232,
+          90,
+          70
+        ]
+      ],
+      "exitAtMs": 24659,
+      "exitDurMs": 420
+    },
+    {
+      "id": "confirm",
+      "role": "product-voice",
+      "_note": "DIEGETIC — the product confirming the order back to the user.",
+      "preset": "statement",
+      "startMs": 24947,
+      "durationMs": 2069,
+      "lines": [
+        "Boxed. Shipping Tuesday.",
+        "Completely untraceable."
+      ],
+      "size": 66,
+      "lineStaggerMs": 167,
+      "colour": [
+        240,
+        238,
+        246
+      ]
+    },
+    {
+      "id": "features",
+      "role": "feature",
+      "preset": "feature-pills",
+      "startMs": 27016,
+      "durationMs": 4137,
+      "size": 120,
+      "pills": [
+        {
+          "text": "Fully Anonymous",
+          "slab": [
+            246,
+            206,
+            196
+          ],
+          "colour": [
+            110,
+            30,
+            20
+          ],
+          "durMs": 1034
+        },
+        {
+          "text": "Gift Wrapped",
+          "slab": [
+            214,
+            232,
+            200
+          ],
+          "colour": [
+            40,
+            70,
+            25
+          ],
+          "durMs": 776
+        },
+        {
+          "text": "Live Tracking",
+          "slab": [
+            206,
+            220,
+            248
+          ],
+          "colour": [
+            26,
+            46,
+            110
+          ],
+          "durMs": 517
+        },
+        {
+          "text": "Zero Refunds",
+          "slab": [
+            222,
+            220,
+            224
+          ],
+          "colour": [
+            44,
+            42,
+            50
+          ],
+          "durMs": 517,
+          "static": true
+        }
+      ]
+    },
+    {
+      "id": "kicker",
+      "role": "brand",
+      "preset": "reveal-line",
+      "startMs": 31153,
+      "durationMs": 2069,
+      "size": 84,
+      "x": 0,
+      "scaleFrom": 1.18,
+      "scaleDurMs": 640,
+      "exitAtMs": 1560,
+      "exitSweepMs": 460,
+      "exitFadeMs": 200,
+      "groups": [
+        {
+          "text": "Petty, ",
+          "atMs": 140,
+          "durMs": 300,
+          "colour": [
+            28,
+            26,
+            40
+          ],
+          "blurIn": true
+        },
+        {
+          "text": "but legal",
+          "atMs": 620,
+          "durMs": 340,
+          "colour": [
+            232,
+            72,
+            58
+          ],
+          "shimmer": {
+            "startMs": 1080,
+            "durMs": 520,
+            "width": 0.7,
+            "amount": 0.85
+          }
+        }
+      ]
+    },
+    {
+      "id": "signoff",
+      "role": "brand",
+      "preset": "logo-lockup",
+      "startMs": 33222,
+      "durationMs": 2600,
+      "text": "doorstep",
+      "markLabel": "logo",
+      "scaleFrom": 2.6,
+      "settleDurMs": 520,
+      "size": 96,
+      "colour": [
+        248,
+        246,
+        242
+      ],
+      "ground": [
+        24,
+        22,
+        34
+      ],
+      "markSvg": "logo.svg"
+    }
+  ]
+}

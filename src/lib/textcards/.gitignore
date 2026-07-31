@@ -1,0 +1,5 @@
+dist/
+sheet/
+cmp/
+*.png
+src/_config.generated.js

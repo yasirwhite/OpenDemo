@@ -53,34 +53,95 @@ To save time during complex workflows, be aware of the following:
 - **Recordings Auto-Cleanup**: The `run-demo.mjs` script automatically deletes the contents of the `recordings/` directory when it starts a new run. If a previous run was not explicitly exported/saved, it will be lost.
 - **HUD Minimization**: The OpenScreen UI allows minimizing the HUD bar into a small clapperboard icon using the `-` button on the overlay.
 
-## Optional: 3D Cinematic Presentation (EXPERIMENTAL — not finished)
+## ALPHA: Exciting launch videos (3D product shots + kinetic text)
 
-If the user wants a more *exciting* / product-launch-style demo rather than a plain screen
-recording, there is an experimental pass that places the finished recording inside 3D
-product shots (MacBook Pro / iPhone on a studio set) with camera work derived from real
-product films.
+**Before you start, ask the human which kind of demo they want.** Do not assume.
 
-**This is a footnote, not part of the normal flow.** It is not called by `run-demo.mjs`, the
-shot library is small, and it has known gaps. Produce the normal recording first; only offer
-this if the user asks for something more cinematic, and tell them it is experimental.
+> Would you like an **exciting launch video** — 3D product shots with kinetic
+> typography, in the style of a real product launch film — or a **simple
+> walkthrough recording** of the product?
+
+Ask once, in plain language, and wait for the answer. Both paths are supported;
+they produce very different things and take different amounts of work.
+
+### Path A — simple walkthrough (stable)
+
+The classic flow documented above: write the JSON config, run `run-demo.mjs`,
+hand back the .mp4. Choose this for documentation, onboarding clips, or a
+straightforward feature tour.
+
+### Path B — exciting launch video (ALPHA)
+
+A launch film is **two layers cut together**:
+
+**1. Product shots** — the recording placed inside 3D product shots (MacBook /
+iPhone on a studio set) with camera work derived from real product films.
 
 ```bash
 node src/lib/cinematic3d/render.mjs src/lib/cinematic3d/configs/my-demo.json 3
 ```
 
-You configure *intent* — which slice of the recording plays in each shot, and what deserves
-attention — not camera angles. See `src/lib/cinematic3d/README.md` for the config schema and
-the available shot presets.
+You configure *intent* — which slice of the recording plays in each shot, and
+what deserves attention — not camera angles. See
+`src/lib/cinematic3d/README.md` for the schema and the shot presets.
 
-Two things carry over from the zoom rules above, with more force:
-- **Zoom even more sparingly here.** A 3D push is far more disruptive than a 2D one.
-- **Use punch-then-reveal for feature moments:** push in hard to frame the click
-  (attention), then pull back a *little* to show what it affected (consequence). Pulling
-  back too far throws away the attention the push just bought.
+**2. Kinetic text cards** — the titles, claims and feature beats between the
+product shots, assembled from measured presets.
 
-If you are trying to reproduce the look of a specific reference film, read
-`docs/reference-matching.md` first — it is a method plus a list of traps that have already
-cost real time, and it is meant to be appended to as more references are studied.
+```bash
+node src/lib/textcards/build.mjs --config examples/my-video.json
+node src/lib/textcards/render.mjs --out my-text.mp4 --fps 60
+```
+
+See **`src/lib/textcards/README.md`** for the preset list, the config format, and the rules
+that keep it from looking generated.
+
+**How they fit together.** Author ONE text config for the whole video and use
+the `product-slot` preset wherever a product shot belongs. Each slot renders a
+labelled placeholder with its exact in/out times, so you can build and review
+the full cut before any 3D rendering exists, then replace slots one at a time.
+
+**Replacing a slot with real footage.** Record the app, render that recording
+through cinematic3d, then overlay the result onto the slot's window. Match the
+text video's `width`/`height`/`fps` in the cinematic3d config or the overlay
+will not line up.
+
+```bash
+node run-demo.mjs my-flow.json                             # 1. record the app
+node src/lib/cinematic3d/render.mjs shot1.json 3           # 2. put it in 3D
+# 3. drop it into the slot — startMs 6330, durationMs 4000 -> 6.33 .. 10.33
+ffmpeg -y -i text.mp4 -i shot1.mp4 -filter_complex \
+  "[1:v]setpts=PTS+6.33/TB[s];[0:v][s]overlay=0:0:enable='between(t,6.33,10.33)'" \
+  -c:v libx264 -crf 17 -pix_fmt yuv420p -r 60 final.mp4
+```
+
+Keep scratch work (mock apps, recordings, intermediate renders) in
+`.demo-build/` — it is gitignored. `configs/doorstep.json` was built exactly
+this way; its `slot-1` records the commands that filled it.
+
+**Zoom rules carry over, with more force:**
+- **Zoom even more sparingly in 3D.** A 3D push is far more disruptive than a 2D one.
+- **Punch-then-reveal for feature moments:** push in hard to frame the click
+  (attention), then pull back a *little* to show what it affected (consequence).
+  Pulling back too far throws away the attention the push just bought.
+
+**Text rules that matter most** (full list in `src/lib/textcards/README.md`):
+- **Cut, don't crossfade.** Almost every transition in a real launch film is a
+  single frame.
+- **Hold still.** A good reference is in motion only ~19% of the time; the long
+  dead holds are what make the moving parts land.
+- **Vary the easing and the edit length.** Uniformity is what reads as generated.
+- **Use scale.** Entering oversized and settling on an exponential is the single
+  most effective device, and the most commonly missed.
+- **Tag every text scene with a `role`** (`brand` / `product-voice` /
+  `user-voice` / `feature`). Copy that is the product talking inside a demo is
+  dialogue, not a slogan, and must be adapted differently.
+
+If you are reproducing the look of a specific reference film, read
+`docs/reference-matching.md` first — a method plus a list of traps that have
+already cost real time. The short version: **sample frames densely.** Nearly
+every wrong conclusion in this project came from sampling at 1-2 second
+intervals and confidently reading a mid-animation frame as a finished state.
 
 Finally...
 After you complete your first JSON instruction, re-review your work and be pessimistic about how it actually accomplishes the workflow.

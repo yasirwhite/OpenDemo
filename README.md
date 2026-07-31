@@ -8,6 +8,18 @@ OpenDemo gives your LLM the ability to create exciting demo videos.
 Watch OpenDemo fully execute a local login flow from a tiny JSON instruction file:
 ![Demo](./examples/login-demo.gif)
 
+
+## Two kinds of demo
+
+Your AI will ask which one you want before it starts:
+
+**Simple walkthrough** — a clean screen recording of the product, zoomed and
+paced automatically. Good for docs, onboarding and feature tours. Stable.
+
+**Exciting launch video** *(alpha)* — your recording placed inside 3D product
+shots and cut together with kinetic typography, in the style of a real product
+launch film. Good for ProductHunt, YouTube and launch day.
+
 ## Usage
 
 Just ask your AI assistant to build the demo for you.
@@ -17,7 +29,11 @@ Just ask your AI assistant to build the demo for you.
 > Use OpenDemo to generate a video of my new AI recipe app, ChefBot, showing the user onboarding flow.
 ```
 
-The AI will automatically generate the config, plan the video edits, and hand you a polished .mp4
+The AI will ask which kind of demo you want, generate the config, plan the
+video edits, and hand you a polished .mp4
+
+*Build exciting demos for free using your own AI — it records the demo, edits
+it, and makes it exciting.*
 
 ---
 

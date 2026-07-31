@@ -168,7 +168,7 @@ Worth knowing so you do not fight them:
 | `placeholderScreens.js` | canvas-drawn stand-in UI when there is no `source`. |
 | `assets/*.glb` | device models, real-world scale. |
 | `tools/` | reference-matching toolkit + `make-previews.mjs` — see `docs/reference-matching.md`. |
-| `configs/` | where your configs go — gitignored except `configs/examples/`. See its README. |
+| `configs/` | where your working configs go — gitignored. Examples live in `examples/`. See its README. |
 
 ## Determinism
 

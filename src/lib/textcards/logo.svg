@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="15" fill="#E8483A"/>
+  <!-- doorway -->
+  <path d="M20 46V25a12 12 0 0 1 24 0v21" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/>
+  <!-- handle -->
+  <circle cx="38" cy="34" r="2.4" fill="#fff"/>
+  <!-- parcel on the step -->
+  <rect x="25.5" y="40" width="13" height="10" rx="2" fill="#fff"/>
+  <path d="M32 40v10" stroke="#E8483A" stroke-width="2"/>
+  <!-- the step -->
+  <rect x="14" y="50" width="36" height="4" rx="2" fill="#fff"/>
+</svg>

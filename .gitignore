@@ -85,7 +85,14 @@ recordings_3d/
 **/.cinematic3d-frames/
 **/.cinematic3d-config.json
 
-# Working cinematic configs live in the repo but are not committed — only the
-# examples are. See src/lib/cinematic3d/configs/README.md.
+# Working cinematic configs live in the repo but are not committed. The shared
+# examples/ directory at the repo root holds every committed example config.
 src/lib/cinematic3d/configs/*.json
-!src/lib/cinematic3d/configs/examples/*.json
+
+# scratch for demo builds (recordings, 3D passes, mock apps)
+.demo-build/
+
+# audio beds live on the author's machine, never in the repo
+*.mp3
+*.wav
+*.m4a

@@ -1,6 +1,6 @@
 {
   "//": "Two-scene film against examples/login-demo.mp4 (10.05s). Render with:",
-  "//run": "node src/lib/cinematic3d/render.mjs src/lib/cinematic3d/configs/examples/login-demo.config.json 3",
+  "//run": "node src/lib/cinematic3d/render.mjs examples/login-demo-3d.json 3",
   "//why-two": "A single login action does not carry three scenes. Two shots, each long enough to follow, beat three shots that keep interrupting. Both run at 1.00x - duration equals clip length - so the film never changes speed.",
 
   "source": "../../../../../examples/login-demo.mp4",
