@@ -1,0 +1,154 @@
+{
+  "summary": {
+    "shots": 5,
+    "matched": 3,
+    "channelRecall": 0.7,
+    "channelsExpected": 10,
+    "channelsRecovered": 7,
+    "effectNameAgreement": 0,
+    "medianShapeDistance": 0.273,
+    "medianDurationErrorMs": 367
+  },
+  "pacingDiff": {
+    "reference": {
+      "easingShapeSpread": 0.357,
+      "naiveEasingShare": 0,
+      "moveHoldRatio": 0.193,
+      "sharpEditShare": 0.306,
+      "burstWidthMedian": 5
+    },
+    "render": {
+      "easingShapeSpread": 0.244,
+      "naiveEasingShare": 0.017,
+      "moveHoldRatio": 0.072,
+      "sharpEditShare": 0.5,
+      "burstWidthMedian": 4
+    }
+  },
+  "rows": [
+    {
+      "text": "yesterday",
+      "shotMs": 0,
+      "expected": {
+        "effect": "scale-fade",
+        "durationMs": 834
+      },
+      "recovered": {
+        "effect": "slide-fade",
+        "durationMs": 333,
+        "tMs": 67
+      },
+      "matched": true,
+      "effectMatch": false,
+      "durationErrorMs": -501,
+      "channels": {
+        "opacity": {
+          "expected": "cubic-bezier",
+          "recovered": "power-in",
+          "shapeDistance": 0.286
+        },
+        "translate": {
+          "expected": "cubic-bezier",
+          "recovered": "power-out",
+          "shapeDistance": 0.273
+        },
+        "scale": {
+          "expected": "cubic-bezier",
+          "recovered": "expo-out",
+          "shapeDistance": 0.254
+        },
+        "colour": {
+          "expected": "cubic-bezier",
+          "recovered": "cubic-bezier",
+          "shapeDistance": 0.497
+        }
+      }
+    },
+    {
+      "text": "Meet",
+      "shotMs": 4600,
+      "expected": {
+        "effect": "slide",
+        "durationMs": 934
+      },
+      "recovered": null,
+      "matched": false
+    },
+    {
+      "text": "thought partner",
+      "shotMs": 7900,
+      "expected": {
+        "effect": "cut-in",
+        "durationMs": 701
+      },
+      "recovered": null,
+      "matched": false
+    },
+    {
+      "text": "Capture",
+      "shotMs": 13500,
+      "expected": {
+        "effect": "slide",
+        "durationMs": 534
+      },
+      "recovered": {
+        "effect": "scale-fade",
+        "durationMs": 167,
+        "tMs": 13700
+      },
+      "matched": true,
+      "effectMatch": false,
+      "durationErrorMs": -367,
+      "channels": {
+        "opacity": {
+          "expected": "power-out",
+          "recovered": "linear",
+          "shapeDistance": 0.431
+        },
+        "translate": {
+          "expected": "step",
+          "recovered": "expo-out",
+          "shapeDistance": 0.267
+        },
+        "focus": {
+          "expected": "cubic-bezier",
+          "recovered": null,
+          "shapeDistance": null
+        },
+        "colour": {
+          "expected": "power-out",
+          "recovered": null,
+          "shapeDistance": null
+        }
+      }
+    },
+    {
+      "text": "Capture anything",
+      "shotMs": 16000,
+      "expected": {
+        "effect": "slide",
+        "durationMs": 501
+      },
+      "recovered": {
+        "effect": "fade",
+        "durationMs": 567,
+        "tMs": 15967
+      },
+      "matched": true,
+      "effectMatch": false,
+      "durationErrorMs": 66,
+      "channels": {
+        "opacity": {
+          "expected": "cubic-bezier",
+          "recovered": "cubic-bezier",
+          "shapeDistance": 0.262
+        },
+        "translate": {
+          "expected": "step",
+          "recovered": null,
+          "shapeDistance": null
+        }
+      }
+    }
+  ]
+}

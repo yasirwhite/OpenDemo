@@ -36,7 +36,14 @@ import { createRequire } from "node:module";
 // ffmpeg / ffprobe discovery (bundled npm binary preferred, system fallback)
 // ─────────────────────────────────────────────────────────────────────────────
 
+// OPENDEMO_FFMPEG / OPENDEMO_FFPROBE win over discovery. Needed when the repo
+// has no node_modules but the system ffmpeg is too old for accurate `-ss`
+// seeking — pre-2016 builds seek to the nearest keyframe, which silently
+// shifts every frame-accurate measurement downstream.
 function findFfmpeg() {
+  if (process.env.OPENDEMO_FFMPEG && existsSync(process.env.OPENDEMO_FFMPEG)) {
+    return process.env.OPENDEMO_FFMPEG;
+  }
   try {
     const req = createRequire(import.meta.url);
     const inst = req("@ffmpeg-installer/ffmpeg");
@@ -46,6 +53,9 @@ function findFfmpeg() {
 }
 
 function findFfprobe() {
+  if (process.env.OPENDEMO_FFPROBE && existsSync(process.env.OPENDEMO_FFPROBE)) {
+    return process.env.OPENDEMO_FFPROBE;
+  }
   try {
     const req = createRequire(import.meta.url);
     const inst = req("@ffmpeg-installer/ffmpeg");

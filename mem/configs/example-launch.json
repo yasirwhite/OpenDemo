@@ -1,0 +1,133 @@
+{
+  "_comment": [
+    "A worked example of the config-driven path. Build it with:",
+    "  node mem/build.mjs --config mem/configs/example-launch.json",
+    "  node mem/text-layer/render.mjs --out mem/example.mp4",
+    "",
+    "Every 'preset' slug is defined in mem/text-layer/src/presets/index.jsx —",
+    "read PRESET_NOTES there to choose. Scenes may overlap; they should, because",
+    "a beat should start entering while the previous one is still leaving.",
+    "",
+    "COPY ROLES — mark these when you adapt the template, so the next model can",
+    "tell brand voice from in-product dialogue:",
+    "  brand         marketing copy. Replace wholesale.",
+    "  product-voice the product talking back inside a demo scenario.",
+    "  user-voice    the user's own words being captured by the product.",
+    "  feature       a literal feature list."
+  ],
+
+  "video": { "width": 1280, "height": 720, "fps": 60, "durationMs": 24000 },
+
+  "ground": [
+    { "fromMs": 0, "colour": [255, 255, 255] },
+    { "fromMs": 4538, "colour": [240, 230, 212] },
+    { "fromMs": 12000, "colour": [255, 255, 255] },
+    { "fromMs": 16000, "colour": [240, 230, 212] },
+    { "fromMs": 20000, "colour": [255, 255, 255] }
+  ],
+
+  "scenes": [
+    {
+      "id": "hook",
+      "role": "brand",
+      "preset": "reveal-line",
+      "startMs": 0, "durationMs": 2900,
+      "size": 72, "x": 68,
+      "scaleFrom": 1.83, "scaleDurMs": 1168,
+      "settleAtMs": 1301, "settleDx": -68, "settleDurMs": 834,
+      "exitAtMs": 2302, "exitSweepMs": 550, "exitFadeMs": 200,
+      "groups": [
+        { "text": "Remembering is so", "atMs": 133, "durMs": 334, "blurIn": true }
+      ]
+    },
+    {
+      "id": "hero",
+      "role": "brand",
+      "preset": "wave-word",
+      "startMs": 2820, "durationMs": 1720,
+      "text": "yesterday", "size": 280,
+      "slideFromPx": 470, "slideDurMs": 600,
+      "sweepAtMs": 567, "sweepDurMs": 470,
+      "shrinkAtMs": 3673, "shrinkDurMs": 830, "shrinkToScale": 0.599
+    },
+    {
+      "id": "meet",
+      "role": "brand",
+      "preset": "scale-in",
+      "startMs": 4538, "durationMs": 734,
+      "text": "Meet", "size": 88, "scaleFrom": 1.664, "settleDurMs": 467, "blur": 22,
+      "fade": false
+    },
+    {
+      "id": "your",
+      "role": "brand",
+      "preset": "word-cut",
+      "startMs": 5272, "durationMs": 588,
+      "text": "your", "size": 88, "y": 2
+    },
+    {
+      "id": "product-1",
+      "preset": "product-slot",
+      "startMs": 5860, "durationMs": 4140,
+      "index": 1, "label": "product demo", "bg": [240, 230, 212]
+    },
+    {
+      "id": "claim",
+      "role": "brand",
+      "preset": "statement",
+      "startMs": 10000, "durationMs": 2000,
+      "lines": ["Turn brain dumps", "into beautiful notes"],
+      "size": 83, "lineStaggerMs": 167, "colour": [25, 23, 39]
+    },
+    {
+      "id": "capture",
+      "role": "brand",
+      "preset": "two-tone",
+      "startMs": 12200, "durationMs": 1600,
+      "size": 92, "baseline": 400, "colour": [3, 1, 20],
+      "parts": [
+        { "text": "Capture ", "cx": 480 },
+        { "text": "anything", "cx": 830, "colour": [74, 108, 240], "delayMs": 200 }
+      ]
+    },
+    {
+      "id": "prompt",
+      "role": "user-voice",
+      "_note": "DIEGETIC — the user typing into the product, not a slogan.",
+      "preset": "type-on",
+      "startMs": 14000, "durationMs": 2400,
+      "text": "Tell it what to remember", "cps": 13.2, "size": 248,
+      "exitAtMs": 15900, "exitDurMs": 434
+    },
+    {
+      "id": "features",
+      "role": "feature",
+      "preset": "feature-pills",
+      "startMs": 16600, "durationMs": 3400,
+      "size": 134,
+      "pills": [
+        { "text": "Offline Mode",  "slab": [194, 182, 237], "colour": [30, 0, 82],  "durMs": 900 },
+        { "text": "Templates",     "slab": [207, 242, 180], "colour": [42, 75, 9],  "durMs": 600 },
+        { "text": "Integrations",  "slab": [234, 205, 148], "colour": [80, 52, 0],  "durMs": 500 },
+        { "text": "Dark Mode",     "slab": [190, 190, 190], "colour": [36, 36, 36], "durMs": 900, "static": true }
+      ]
+    },
+    {
+      "id": "reply",
+      "role": "product-voice",
+      "_note": "DIEGETIC — the product answering the user. Keep the voice, swap the specifics.",
+      "preset": "statement",
+      "startMs": 20100, "durationMs": 1700,
+      "lines": ["I’ve created a to-do list for you"],
+      "size": 72, "colour": [0, 0, 0]
+    },
+    {
+      "id": "signoff",
+      "role": "brand",
+      "preset": "logo-lockup",
+      "startMs": 21900, "durationMs": 2100,
+      "text": "yourbrand", "markLabel": "logo",
+      "scaleFrom": 2.67, "settleDurMs": 534, "size": 100
+    }
+  ]
+}

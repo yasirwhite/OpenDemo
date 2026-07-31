@@ -1,0 +1,2713 @@
+{
+  "_meta": {
+    "kind": "opendemo-effect-spec",
+    "source": "C:\\Users\\Yasir\\Desktop\\Code\\OpenDemo_Temp\\reference\\mem-reference.mp4",
+    "fps": 29.97002997002997,
+    "size": [
+      640,
+      360
+    ]
+  },
+  "vocabulary": {
+    "cut-in": "appears in a single frame, no transition",
+    "fade": "opacity only",
+    "slide": "translation only, already opaque",
+    "slide-fade": "translation plus opacity",
+    "blur-in": "defocus resolving to sharp, with opacity",
+    "scale-fade": "scale plus opacity",
+    "recolour": "colour travels, opacity static",
+    "colour-resolve": "colour travels while opacity rises",
+    "unclassified": "no channel passed confidence"
+  },
+  "pacing": {
+    "easingFamilies": {
+      "cubic-bezier": 221,
+      "spring": 33,
+      "linear": 13,
+      "step": 53,
+      "power-in-out": 2,
+      "power-out": 50,
+      "back-out": 9,
+      "expo-out": 17,
+      "power-in": 6
+    },
+    "easingVariety": 0.672,
+    "dominantEasingShare": 0.547,
+    "easingShapeSpread": 0.357,
+    "naiveEasingShare": 0,
+    "effectCounts": {
+      "scale-fade": 2,
+      "slide": 16,
+      "cut-in": 1,
+      "recolour": 8,
+      "blur-in": 1
+    },
+    "moveHoldRatio": 0.193,
+    "burstKinds": {
+      "animation": 15,
+      "sustained": 2,
+      "long-animation": 7,
+      "short-fade": 10,
+      "snap": 13,
+      "cut": 2
+    },
+    "burstWidthFrames": {
+      "median": 5,
+      "mad": 3,
+      "min": 1,
+      "max": 48
+    },
+    "holdMs": {
+      "median": 934,
+      "min": 100,
+      "max": 4738,
+      "count": 50
+    },
+    "sharpEditShare": 0.306
+  },
+  "effects": [
+    {
+      "tMs": 3070,
+      "durationMs": 834,
+      "burstFrames": 11,
+      "burstKind": "animation",
+      "effect": "scale-fade",
+      "agreement": 0.667,
+      "elementsTotal": 6,
+      "elementsClassified": 6,
+      "confidence": 0.89,
+      "overshoot": 0.076,
+      "stagger": {
+        "order": "simultaneous",
+        "medianFrames": 0,
+        "medianMs": 0,
+        "jitterFrames": 1,
+        "monotonicity": 0.8,
+        "totalSpanMs": 33
+      },
+      "params": {
+        "opacity": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              0.875,
+              0.886,
+              0.333,
+              0.957
+            ],
+            "agreement": 0.833,
+            "medianRmse": 0.105,
+            "medianGainVsNaive": 2.38
+          },
+          "confidence": 0.68,
+          "durationMs": 901,
+          "onsetFrame": 1,
+          "from": 0.455,
+          "to": 0.967
+        },
+        "scale": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              0.167,
+              0.314,
+              0.083,
+              1.314
+            ],
+            "agreement": 1,
+            "medianRmse": 0.028,
+            "medianGainVsNaive": 15.05
+          },
+          "confidence": 0.89,
+          "durationMs": 834,
+          "onsetFrame": 1,
+          "fromRel": 0.719
+        },
+        "colour": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              1.125,
+              0.314,
+              0.667,
+              1.314
+            ],
+            "agreement": 0.667,
+            "medianRmse": 0.033,
+            "medianGainVsNaive": 7.42
+          },
+          "confidence": 0.87,
+          "durationMs": 634,
+          "onsetFrame": 10,
+          "perElement": [
+            {
+              "x": 45,
+              "from": [
+                229,
+                201,
+                202
+              ],
+              "to": [
+                66,
+                62,
+                86
+              ]
+            },
+            {
+              "x": 109,
+              "from": [
+                248,
+                188,
+                181
+              ],
+              "to": [
+                56,
+                50,
+                74
+              ]
+            },
+            {
+              "x": 180,
+              "from": [
+                250,
+                202,
+                198
+              ],
+              "to": [
+                59,
+                48,
+                71
+              ]
+            },
+            {
+              "x": 283,
+              "from": [
+                249,
+                208,
+                205
+              ],
+              "to": [
+                65,
+                51,
+                72
+              ]
+            },
+            {
+              "x": 356,
+              "from": [
+                249,
+                205,
+                201
+              ],
+              "to": [
+                65,
+                52,
+                75
+              ]
+            },
+            {
+              "x": 470,
+              "from": [
+                252,
+                217,
+                213
+              ],
+              "to": [
+                66,
+                58,
+                81
+              ]
+            }
+          ],
+          "medianDistance": 276,
+          "spatialRamp": null
+        },
+        "translate": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              0.208,
+              0.957,
+              0.542,
+              0.029
+            ],
+            "agreement": 0.5,
+            "medianRmse": 0.034,
+            "medianGainVsNaive": 6.48
+          },
+          "confidence": 0.86,
+          "durationMs": 567,
+          "onsetFrame": 5,
+          "axis": "y",
+          "fromPx": 12.361
+        }
+      },
+      "layout": {
+        "widthFrac": 0.863,
+        "heightFrac": 0.322,
+        "cxFrac": 0.502,
+        "cyFrac": 0.528,
+        "glyphHeightFrac": 0.253
+      },
+      "bg": [
+        248,
+        248,
+        248
+      ]
+    },
+    {
+      "tMs": 4271,
+      "durationMs": 934,
+      "burstFrames": 8,
+      "burstKind": "animation",
+      "effect": "slide",
+      "agreement": 0.75,
+      "elementsTotal": 4,
+      "elementsClassified": 4,
+      "confidence": 0.73,
+      "overshoot": 0.013,
+      "stagger": {
+        "order": "scattered",
+        "medianFrames": 1,
+        "medianMs": 33,
+        "jitterFrames": 0,
+        "monotonicity": 0.67,
+        "totalSpanMs": 33
+      },
+      "params": {
+        "translate": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              0.625,
+              1.1,
+              -0.042,
+              0.529
+            ],
+            "agreement": 1,
+            "medianRmse": 0.067,
+            "medianGainVsNaive": 2.73
+          },
+          "confidence": 0.73,
+          "durationMs": 934,
+          "onsetFrame": 7,
+          "axis": "x",
+          "fromPx": -14.454
+        },
+        "focus": {
+          "easing": {
+            "family": "spring",
+            "params": [
+              1.006,
+              7.6
+            ],
+            "agreement": 0.5,
+            "medianRmse": 0.104,
+            "medianGainVsNaive": 4.8
+          },
+          "confidence": 0.69,
+          "durationMs": 934,
+          "onsetFrame": 6,
+          "fromRelSharpness": 0.364
+        },
+        "scale": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              0.125,
+              1.243,
+              1.042,
+              0.243
+            ],
+            "agreement": 1,
+            "medianRmse": 0.058,
+            "medianGainVsNaive": 5.09
+          },
+          "confidence": 0.77,
+          "durationMs": 767,
+          "onsetFrame": 11,
+          "fromRel": 1.66
+        },
+        "colour": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              0.833,
+              0.529,
+              1,
+              -0.829
+            ],
+            "agreement": 0.5,
+            "medianRmse": 0.101,
+            "medianGainVsNaive": 5.65
+          },
+          "confidence": 0.6,
+          "durationMs": 934,
+          "onsetFrame": 12,
+          "perElement": [
+            {
+              "x": 301,
+              "from": [
+                176,
+                170,
+                180
+              ],
+              "to": [
+                66,
+                57,
+                73
+              ]
+            },
+            {
+              "x": 324,
+              "from": [
+                155,
+                145,
+                157
+              ],
+              "to": [
+                69,
+                61,
+                77
+              ]
+            }
+          ],
+          "medianDistance": 191,
+          "spatialRamp": null
+        }
+      },
+      "layout": {
+        "widthFrac": 0.122,
+        "heightFrac": 0.083,
+        "cxFrac": 0.5,
+        "cyFrac": 0.522,
+        "glyphHeightFrac": 0.064
+      },
+      "bg": [
+        240,
+        224,
+        208
+      ]
+    },
+    {
+      "tMs": 9109,
+      "durationMs": 701,
+      "burstFrames": 17,
+      "burstKind": "long-animation",
+      "effect": "cut-in",
+      "agreement": 1,
+      "elementsTotal": 7,
+      "elementsClassified": 1,
+      "confidence": 0.42,
+      "overshoot": 0.186,
+      "stagger": {
+        "order": "simultaneous",
+        "medianFrames": 0,
+        "medianMs": 0,
+        "jitterFrames": 1,
+        "monotonicity": 0.67,
+        "totalSpanMs": 100
+      },
+      "params": {
+        "opacity": {
+          "easing": {
+            "family": "step",
+            "params": [
+              0.821
+            ],
+            "agreement": 1,
+            "medianRmse": 0.146,
+            "medianGainVsNaive": 2.85
+          },
+          "confidence": 0.42,
+          "durationMs": 701,
+          "onsetFrame": 6,
+          "from": -0.019,
+          "to": 0.84
+        }
+      },
+      "layout": {
+        "widthFrac": 0.594,
+        "heightFrac": 0.653,
+        "cxFrac": 0.297,
+        "cyFrac": 0.499,
+        "glyphHeightFrac": 0.094
+      },
+      "bg": [
+        240,
+        224,
+        208
+      ]
+    },
+    {
+      "tMs": 13580,
+      "durationMs": 534,
+      "burstFrames": 7,
+      "burstKind": "animation",
+      "effect": "recolour",
+      "agreement": 1,
+      "elementsTotal": 1,
+      "elementsClassified": 1,
+      "confidence": 0.7,
+      "overshoot": 0.197,
+      "stagger": null,
+      "params": {
+        "colour": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              0.958,
+              0.886,
+              0.417,
+              1.386
+            ],
+            "agreement": 1,
+            "medianRmse": 0.076,
+            "medianGainVsNaive": 2.21
+          },
+          "confidence": 0.7,
+          "durationMs": 534,
+          "onsetFrame": 10,
+          "perElement": [
+            {
+              "x": 267,
+              "from": [
+                226,
+                218,
+                204
+              ],
+              "to": [
+                131,
+                125,
+                120
+              ]
+            }
+          ],
+          "medianDistance": 157,
+          "spatialRamp": null
+        }
+      },
+      "layout": {
+        "widthFrac": 0.248,
+        "heightFrac": 0.85,
+        "cxFrac": 0.541,
+        "cyFrac": 0.475,
+        "glyphHeightFrac": 0.85
+      },
+      "bg": [
+        240,
+        224,
+        200
+      ]
+    },
+    {
+      "tMs": 14515,
+      "durationMs": 534,
+      "burstFrames": 6,
+      "burstKind": "animation",
+      "effect": "slide",
+      "agreement": 0.6,
+      "elementsTotal": 16,
+      "elementsClassified": 10,
+      "confidence": 0.75,
+      "overshoot": 0.075,
+      "stagger": {
+        "order": "simultaneous",
+        "medianFrames": 0,
+        "medianMs": 0,
+        "jitterFrames": 1,
+        "monotonicity": 0.8,
+        "totalSpanMs": 234
+      },
+      "params": {
+        "opacity": {
+          "easing": {
+            "family": "power-out",
+            "params": [
+              5.957
+            ],
+            "agreement": 0.667,
+            "medianRmse": 0.098,
+            "medianGainVsNaive": 5.02
+          },
+          "confidence": 0.61,
+          "durationMs": 334,
+          "onsetFrame": 9,
+          "from": -0.011,
+          "to": 0.965
+        },
+        "translate": {
+          "easing": {
+            "family": "step",
+            "params": [
+              0.256
+            ],
+            "agreement": 0.571,
+            "medianRmse": 0.121,
+            "medianGainVsNaive": 4.62
+          },
+          "confidence": 0.75,
+          "durationMs": 467,
+          "onsetFrame": 9,
+          "axis": "y",
+          "fromPx": -10.18
+        },
+        "focus": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              0.708,
+              0.671,
+              -0.083,
+              0.743
+            ],
+            "agreement": 1,
+            "medianRmse": 0.035,
+            "medianGainVsNaive": 7.2
+          },
+          "confidence": 0.86,
+          "durationMs": 601,
+          "onsetFrame": 2,
+          "fromRelSharpness": 1.835
+        },
+        "colour": {
+          "easing": {
+            "family": "power-out",
+            "params": [
+              3.657
+            ],
+            "agreement": 0.333,
+            "medianRmse": 0.079,
+            "medianGainVsNaive": 4.32
+          },
+          "confidence": 0.69,
+          "durationMs": 601,
+          "onsetFrame": 9,
+          "perElement": [
+            {
+              "x": 288,
+              "from": [
+                255,
+                255,
+                255
+              ],
+              "to": [
+                124,
+                116,
+                108
+              ]
+            },
+            {
+              "x": 319,
+              "from": [
+                255,
+                255,
+                255
+              ],
+              "to": [
+                121,
+                113,
+                105
+              ]
+            },
+            {
+              "x": 347,
+              "from": [
+                255,
+                255,
+                255
+              ],
+              "to": [
+                128,
+                119,
+                109
+              ]
+            }
+          ],
+          "medianDistance": 241,
+          "spatialRamp": null
+        }
+      },
+      "layout": {
+        "widthFrac": 1,
+        "heightFrac": 0.497,
+        "cxFrac": 0.5,
+        "cyFrac": 0.551,
+        "glyphHeightFrac": 0.497
+      },
+      "bg": [
+        240,
+        224,
+        208
+      ]
+    },
+    {
+      "tMs": 15649,
+      "durationMs": 434,
+      "burstFrames": 8,
+      "burstKind": "animation",
+      "effect": "slide",
+      "agreement": 0.667,
+      "elementsTotal": 12,
+      "elementsClassified": 12,
+      "confidence": 0.91,
+      "overshoot": 0,
+      "stagger": {
+        "order": "simultaneous",
+        "medianFrames": 0,
+        "medianMs": 0,
+        "jitterFrames": 0,
+        "monotonicity": 0.82,
+        "totalSpanMs": 33
+      },
+      "params": {
+        "opacity": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              0.458,
+              2.029,
+              0.25,
+              0.1
+            ],
+            "agreement": 0.5,
+            "medianRmse": 0.149,
+            "medianGainVsNaive": 4.71
+          },
+          "confidence": 0.45,
+          "durationMs": 701,
+          "onsetFrame": 1,
+          "from": 0.451,
+          "to": 0.971
+        },
+        "translate": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              0,
+              0.314,
+              0,
+              0.457
+            ],
+            "agreement": 0.833,
+            "medianRmse": 0.032,
+            "medianGainVsNaive": 9.3
+          },
+          "confidence": 0.87,
+          "durationMs": 434,
+          "onsetFrame": 4,
+          "axis": "x",
+          "fromPx": 80.936
+        },
+        "colour": {
+          "easing": {
+            "family": "power-out",
+            "params": [
+              2.157
+            ],
+            "agreement": 0.286,
+            "medianRmse": 0.131,
+            "medianGainVsNaive": 1.86
+          },
+          "confidence": 0.53,
+          "durationMs": 601,
+          "onsetFrame": 4,
+          "perElement": [
+            {
+              "x": 0,
+              "from": [
+                241,
+                232,
+                217
+              ],
+              "to": [
+                111,
+                109,
+                107
+              ]
+            },
+            {
+              "x": 224,
+              "from": [
+                237,
+                227,
+                209
+              ],
+              "to": [
+                149,
+                146,
+                143
+              ]
+            },
+            {
+              "x": 235,
+              "from": [
+                246,
+                237,
+                224
+              ],
+              "to": [
+                146,
+                143,
+                140
+              ]
+            },
+            {
+              "x": 246,
+              "from": [
+                247,
+                237,
+                224
+              ],
+              "to": [
+                142,
+                145,
+                145
+              ]
+            },
+            {
+              "x": 300,
+              "from": [
+                246,
+                237,
+                222
+              ],
+              "to": [
+                130,
+                134,
+                134
+              ]
+            },
+            {
+              "x": 357,
+              "from": [
+                243,
+                234,
+                217
+              ],
+              "to": [
+                121,
+                120,
+                122
+              ]
+            },
+            {
+              "x": 538,
+              "from": [
+                191,
+                182,
+                166
+              ],
+              "to": [
+                114,
+                107,
+                100
+              ]
+            }
+          ],
+          "medianDistance": 161,
+          "spatialRamp": null
+        }
+      },
+      "layout": {
+        "widthFrac": 1,
+        "heightFrac": 1,
+        "cxFrac": 0.5,
+        "cyFrac": 0.5,
+        "glyphHeightFrac": 0.425
+      },
+      "bg": [
+        248,
+        248,
+        248
+      ]
+    },
+    {
+      "tMs": 16383,
+      "durationMs": 501,
+      "burstFrames": 8,
+      "burstKind": "animation",
+      "effect": "slide",
+      "agreement": 0.5,
+      "elementsTotal": 22,
+      "elementsClassified": 10,
+      "confidence": 0.56,
+      "overshoot": 0,
+      "stagger": {
+        "order": "simultaneous",
+        "medianFrames": 0,
+        "medianMs": 0,
+        "jitterFrames": 0,
+        "monotonicity": 0.86,
+        "totalSpanMs": 100
+      },
+      "params": {
+        "opacity": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              -0.042,
+              2.029,
+              0.375,
+              -0.043
+            ],
+            "agreement": 1,
+            "medianRmse": 0.123,
+            "medianGainVsNaive": 3.8
+          },
+          "confidence": 0.51,
+          "durationMs": 567,
+          "onsetFrame": 5,
+          "from": 0,
+          "to": 0.991
+        },
+        "translate": {
+          "easing": {
+            "family": "step",
+            "params": [
+              0.282
+            ],
+            "agreement": 0.833,
+            "medianRmse": 0.123,
+            "medianGainVsNaive": 3.04
+          },
+          "confidence": 0.56,
+          "durationMs": 501,
+          "onsetFrame": 4,
+          "axis": "x",
+          "fromPx": -49.762
+        }
+      },
+      "layout": {
+        "widthFrac": 0.384,
+        "heightFrac": 0.083,
+        "cxFrac": 0.502,
+        "cyFrac": 0.5,
+        "glyphHeightFrac": 0.056
+      },
+      "bg": [
+        240,
+        224,
+        200
+      ]
+    },
+    {
+      "tMs": 21154,
+      "durationMs": 1301,
+      "burstFrames": 13,
+      "burstKind": "animation",
+      "effect": "slide",
+      "agreement": 0.882,
+      "elementsTotal": 36,
+      "elementsClassified": 17,
+      "confidence": 0.64,
+      "overshoot": 0.34,
+      "stagger": {
+        "order": "simultaneous",
+        "medianFrames": 0,
+        "medianMs": 0,
+        "jitterFrames": 0,
+        "monotonicity": 0.83,
+        "totalSpanMs": 133
+      },
+      "params": {
+        "translate": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              0,
+              1.171,
+              1.083,
+              1.6
+            ],
+            "agreement": 1,
+            "medianRmse": 0.091,
+            "medianGainVsNaive": 5.85
+          },
+          "confidence": 0.64,
+          "durationMs": 1301,
+          "onsetFrame": 6,
+          "axis": "x",
+          "fromPx": -59.808
+        },
+        "scale": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              -0.042,
+              1.814,
+              1.042,
+              0.1
+            ],
+            "agreement": 1,
+            "medianRmse": 0.048,
+            "medianGainVsNaive": 9.82
+          },
+          "confidence": 0.81,
+          "durationMs": 1301,
+          "onsetFrame": 4,
+          "fromRel": 0.615
+        },
+        "focus": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              0.375,
+              1.1,
+              0.5,
+              0.314
+            ],
+            "agreement": 0.813,
+            "medianRmse": 0.083,
+            "medianGainVsNaive": 3.39
+          },
+          "confidence": 0.66,
+          "durationMs": 1235,
+          "onsetFrame": 8,
+          "fromRelSharpness": 1.673
+        }
+      },
+      "layout": {
+        "widthFrac": 0.967,
+        "heightFrac": 1,
+        "cxFrac": 0.484,
+        "cyFrac": 0.5,
+        "glyphHeightFrac": 0.272
+      },
+      "bg": [
+        248,
+        248,
+        248
+      ]
+    },
+    {
+      "tMs": 24525,
+      "durationMs": 467,
+      "burstFrames": 4,
+      "burstKind": "short-fade",
+      "effect": "slide",
+      "agreement": 0.833,
+      "elementsTotal": 14,
+      "elementsClassified": 6,
+      "confidence": 0.5,
+      "overshoot": 0.309,
+      "stagger": {
+        "order": "simultaneous",
+        "medianFrames": 0,
+        "medianMs": 0,
+        "jitterFrames": 0,
+        "monotonicity": 0.92,
+        "totalSpanMs": 100
+      },
+      "params": {
+        "translate": {
+          "easing": {
+            "family": "step",
+            "params": [
+              0.026
+            ],
+            "agreement": 0.6,
+            "medianRmse": 0.125,
+            "medianGainVsNaive": 5.04
+          },
+          "confidence": 0.5,
+          "durationMs": 467,
+          "onsetFrame": 11,
+          "axis": "y",
+          "fromPx": 15.617
+        },
+        "focus": {
+          "easing": {
+            "family": "step",
+            "params": [
+              0.385
+            ],
+            "agreement": 0.5,
+            "medianRmse": 0.098,
+            "medianGainVsNaive": 2.23
+          },
+          "confidence": 0.61,
+          "durationMs": 701,
+          "onsetFrame": 5,
+          "fromRelSharpness": 1.85
+        }
+      },
+      "layout": {
+        "widthFrac": 0.522,
+        "heightFrac": 0.114,
+        "cxFrac": 0.347,
+        "cyFrac": 0.507,
+        "glyphHeightFrac": 0.083
+      },
+      "bg": [
+        248,
+        248,
+        248
+      ]
+    },
+    {
+      "tMs": 27895,
+      "durationMs": 801,
+      "burstFrames": 2,
+      "burstKind": "snap",
+      "effect": "slide",
+      "agreement": 0.5,
+      "elementsTotal": 4,
+      "elementsClassified": 4,
+      "confidence": 0.7,
+      "overshoot": 0.383,
+      "stagger": {
+        "order": "simultaneous",
+        "medianFrames": 0,
+        "medianMs": 0,
+        "jitterFrames": 0,
+        "monotonicity": 1,
+        "totalSpanMs": 67
+      },
+      "params": {
+        "translate": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              0.125,
+              1.171,
+              1.042,
+              1.314
+            ],
+            "agreement": 0.75,
+            "medianRmse": 0.076,
+            "medianGainVsNaive": 5
+          },
+          "confidence": 0.78,
+          "durationMs": 801,
+          "onsetFrame": 6,
+          "axis": "y",
+          "fromPx": 12.264
+        },
+        "scale": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              0.083,
+              1.6,
+              -0.167,
+              1.457
+            ],
+            "agreement": 1,
+            "medianRmse": 0.024,
+            "medianGainVsNaive": 30.48
+          },
+          "confidence": 0.9,
+          "durationMs": 300,
+          "onsetFrame": 4,
+          "fromRel": 0.216
+        },
+        "opacity": {
+          "easing": {
+            "family": "step",
+            "params": [
+              0.154
+            ],
+            "agreement": 1,
+            "medianRmse": 0.09,
+            "medianGainVsNaive": 10.68
+          },
+          "confidence": 0.78,
+          "durationMs": 1034,
+          "onsetFrame": 2,
+          "from": 0.555,
+          "to": 0.965
+        },
+        "focus": {
+          "easing": {
+            "family": "spring",
+            "params": [
+              0.772,
+              27.314
+            ],
+            "agreement": 0.5,
+            "medianRmse": 0.07,
+            "medianGainVsNaive": 7.6
+          },
+          "confidence": 0.72,
+          "durationMs": 868,
+          "onsetFrame": 7,
+          "fromRelSharpness": 0.617
+        }
+      },
+      "layout": {
+        "widthFrac": 0.486,
+        "heightFrac": 0.372,
+        "cxFrac": 0.499,
+        "cyFrac": 0.564,
+        "glyphHeightFrac": 0.369
+      },
+      "bg": [
+        248,
+        248,
+        248
+      ]
+    },
+    {
+      "tMs": 31832,
+      "durationMs": 567,
+      "burstFrames": 6,
+      "burstKind": "animation",
+      "effect": "scale-fade",
+      "agreement": 0.571,
+      "elementsTotal": 15,
+      "elementsClassified": 7,
+      "confidence": 0.66,
+      "overshoot": 0,
+      "stagger": {
+        "order": "simultaneous",
+        "medianFrames": 0,
+        "medianMs": 0,
+        "jitterFrames": 0,
+        "monotonicity": 0.86,
+        "totalSpanMs": 67
+      },
+      "params": {
+        "scale": {
+          "easing": {
+            "family": "power-out",
+            "params": [
+              2.77
+            ],
+            "agreement": 1,
+            "medianRmse": 0.086,
+            "medianGainVsNaive": 3.37
+          },
+          "confidence": 0.66,
+          "durationMs": 567,
+          "onsetFrame": 2,
+          "fromRel": 0.703
+        }
+      },
+      "layout": {
+        "widthFrac": 0.781,
+        "heightFrac": 0.267,
+        "cxFrac": 0.484,
+        "cyFrac": 0.5,
+        "glyphHeightFrac": 0.242
+      },
+      "bg": [
+        248,
+        248,
+        248
+      ]
+    },
+    {
+      "tMs": 32366,
+      "durationMs": 434,
+      "burstFrames": 7,
+      "burstKind": "animation",
+      "effect": "slide",
+      "agreement": 1,
+      "elementsTotal": 11,
+      "elementsClassified": 5,
+      "confidence": 0.64,
+      "overshoot": 0,
+      "stagger": {
+        "order": "simultaneous",
+        "medianFrames": 0,
+        "medianMs": 0,
+        "jitterFrames": 0,
+        "monotonicity": 0.9,
+        "totalSpanMs": 67
+      },
+      "params": {
+        "translate": {
+          "easing": {
+            "family": "step",
+            "params": [
+              0.718
+            ],
+            "agreement": 0.6,
+            "medianRmse": 0.094,
+            "medianGainVsNaive": 3.88
+          },
+          "confidence": 0.64,
+          "durationMs": 434,
+          "onsetFrame": 4,
+          "axis": "x",
+          "fromPx": -123.215
+        }
+      },
+      "layout": {
+        "widthFrac": 1,
+        "heightFrac": 0.267,
+        "cxFrac": 0.5,
+        "cyFrac": 0.5,
+        "glyphHeightFrac": 0.197
+      },
+      "bg": [
+        248,
+        248,
+        248
+      ]
+    },
+    {
+      "tMs": 32900,
+      "durationMs": 434,
+      "burstFrames": 14,
+      "burstKind": "animation",
+      "effect": "slide",
+      "agreement": 0.625,
+      "elementsTotal": 16,
+      "elementsClassified": 16,
+      "confidence": 0.77,
+      "overshoot": 0.023,
+      "stagger": {
+        "order": "simultaneous",
+        "medianFrames": 0,
+        "medianMs": 0,
+        "jitterFrames": 0,
+        "monotonicity": 0.8,
+        "totalSpanMs": 67
+      },
+      "params": {
+        "opacity": {
+          "easing": {
+            "family": "step",
+            "params": [
+              0.026
+            ],
+            "agreement": 0.5,
+            "medianRmse": 0.076,
+            "medianGainVsNaive": 6.77
+          },
+          "confidence": 0.7,
+          "durationMs": 434,
+          "onsetFrame": 17,
+          "from": 0.52,
+          "to": 0.998
+        },
+        "translate": {
+          "easing": {
+            "family": "power-in",
+            "params": [
+              1.426
+            ],
+            "agreement": 0.286,
+            "medianRmse": 0.058,
+            "medianGainVsNaive": 2.59
+          },
+          "confidence": 0.76,
+          "durationMs": 467,
+          "onsetFrame": 4,
+          "axis": "x",
+          "fromPx": 117.526
+        },
+        "scale": {
+          "easing": {
+            "family": "spring",
+            "params": [
+              0.705,
+              5.366
+            ],
+            "agreement": 1,
+            "medianRmse": 0.081,
+            "medianGainVsNaive": 3.46
+          },
+          "confidence": 0.68,
+          "durationMs": 901,
+          "onsetFrame": 2,
+          "fromRel": 0.813
+        },
+        "colour": {
+          "easing": {
+            "family": "step",
+            "params": [
+              0.026
+            ],
+            "agreement": 0.429,
+            "medianRmse": 0.069,
+            "medianGainVsNaive": 7.22
+          },
+          "confidence": 0.66,
+          "durationMs": 434,
+          "onsetFrame": 16,
+          "perElement": [
+            {
+              "x": 72,
+              "from": [
+                109,
+                109,
+                109
+              ],
+              "to": [
+                85,
+                104,
+                159
+              ]
+            },
+            {
+              "x": 166,
+              "from": [
+                115,
+                115,
+                116
+              ],
+              "to": [
+                132,
+                145,
+                225
+              ]
+            },
+            {
+              "x": 249,
+              "from": [
+                165,
+                172,
+                195
+              ],
+              "to": [
+                200,
+                130,
+                154
+              ]
+            },
+            {
+              "x": 318,
+              "from": [
+                204,
+                207,
+                236
+              ],
+              "to": [
+                225,
+                125,
+                130
+              ]
+            },
+            {
+              "x": 456,
+              "from": [
+                242,
+                176,
+                174
+              ],
+              "to": [
+                237,
+                112,
+                105
+              ]
+            },
+            {
+              "x": 495,
+              "from": [
+                242,
+                178,
+                176
+              ],
+              "to": [
+                235,
+                112,
+                108
+              ]
+            },
+            {
+              "x": 564,
+              "from": [
+                227,
+                185,
+                196
+              ],
+              "to": [
+                226,
+                115,
+                119
+              ]
+            }
+          ],
+          "medianDistance": 95,
+          "spatialRamp": {
+            "fromRgb": [
+              85,
+              104,
+              159
+            ],
+            "toRgb": [
+              226,
+              115,
+              119
+            ],
+            "span": 147,
+            "monotonicity": 0.667
+          }
+        }
+      },
+      "layout": {
+        "widthFrac": 0.981,
+        "heightFrac": 0.194,
+        "cxFrac": 0.491,
+        "cyFrac": 0.533,
+        "glyphHeightFrac": 0.192
+      },
+      "bg": [
+        248,
+        248,
+        248
+      ]
+    },
+    {
+      "tMs": 35602,
+      "durationMs": 968,
+      "burstFrames": 3,
+      "burstKind": "short-fade",
+      "effect": "slide",
+      "agreement": 1,
+      "elementsTotal": 40,
+      "elementsClassified": 2,
+      "confidence": 0.66,
+      "overshoot": 0.502,
+      "stagger": {
+        "order": "simultaneous",
+        "medianFrames": 0,
+        "medianMs": 0,
+        "jitterFrames": 1,
+        "monotonicity": 0.69,
+        "totalSpanMs": 100
+      },
+      "params": {
+        "translate": {
+          "easing": {
+            "family": "power-out",
+            "params": [
+              2.259
+            ],
+            "agreement": 0.5,
+            "medianRmse": 0.084,
+            "medianGainVsNaive": 2.79
+          },
+          "confidence": 0.66,
+          "durationMs": 968,
+          "onsetFrame": 25,
+          "axis": "x",
+          "fromPx": 29.606
+        }
+      },
+      "layout": {
+        "widthFrac": 0.564,
+        "heightFrac": 0.192,
+        "cxFrac": 0.48,
+        "cyFrac": 0.451,
+        "glyphHeightFrac": 0.047
+      },
+      "bg": [
+        224,
+        224,
+        224
+      ]
+    },
+    {
+      "tMs": 40674,
+      "durationMs": 968,
+      "burstFrames": 7,
+      "burstKind": "animation",
+      "effect": "slide",
+      "agreement": 0.667,
+      "elementsTotal": 6,
+      "elementsClassified": 6,
+      "confidence": 0.89,
+      "overshoot": 0,
+      "stagger": {
+        "order": "simultaneous",
+        "medianFrames": 0,
+        "medianMs": 0,
+        "jitterFrames": 0,
+        "monotonicity": 0.8,
+        "totalSpanMs": 167
+      },
+      "params": {
+        "opacity": {
+          "easing": {
+            "family": "power-out",
+            "params": [
+              1.162
+            ],
+            "agreement": 0.5,
+            "medianRmse": 0.029,
+            "medianGainVsNaive": 2.73
+          },
+          "confidence": 0.89,
+          "durationMs": 901,
+          "onsetFrame": 25,
+          "from": 0.013,
+          "to": 0.95
+        },
+        "translate": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              0.583,
+              1.1,
+              0.792,
+              0.457
+            ],
+            "agreement": 1,
+            "medianRmse": 0.027,
+            "medianGainVsNaive": 7.12
+          },
+          "confidence": 0.89,
+          "durationMs": 934,
+          "onsetFrame": 5,
+          "axis": "x",
+          "fromPx": -76.399
+        },
+        "focus": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              1,
+              1.6,
+              0.5,
+              0.314
+            ],
+            "agreement": 1,
+            "medianRmse": 0.109,
+            "medianGainVsNaive": 19.07
+          },
+          "confidence": 0.91,
+          "durationMs": 1068,
+          "onsetFrame": 6,
+          "fromRelSharpness": 2.037
+        }
+      },
+      "layout": {
+        "widthFrac": 0.561,
+        "heightFrac": 1,
+        "cxFrac": 0.546,
+        "cyFrac": 0.5,
+        "glyphHeightFrac": 0.261
+      },
+      "bg": [
+        248,
+        248,
+        248
+      ]
+    },
+    {
+      "tMs": 44678,
+      "durationMs": 1134,
+      "burstFrames": 27,
+      "burstKind": "long-animation",
+      "effect": "recolour",
+      "agreement": 1,
+      "elementsTotal": 8,
+      "elementsClassified": 1,
+      "confidence": 0.48,
+      "overshoot": 0.315,
+      "stagger": {
+        "order": "simultaneous",
+        "medianFrames": 0,
+        "medianMs": 0,
+        "jitterFrames": 1,
+        "monotonicity": 0.86,
+        "totalSpanMs": 67
+      },
+      "params": {
+        "colour": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              1.25,
+              0.386,
+              0.542,
+              0.029
+            ],
+            "agreement": 1,
+            "medianRmse": 0.13,
+            "medianGainVsNaive": 2.77
+          },
+          "confidence": 0.48,
+          "durationMs": 1134,
+          "onsetFrame": 4,
+          "perElement": [
+            {
+              "x": 551,
+              "from": [
+                239,
+                241,
+                241
+              ],
+              "to": [
+                248,
+                120,
+                101
+              ]
+            }
+          ],
+          "medianDistance": 185,
+          "spatialRamp": null
+        }
+      },
+      "layout": {
+        "widthFrac": 0.675,
+        "heightFrac": 0.456,
+        "cxFrac": 0.594,
+        "cyFrac": 0.489,
+        "glyphHeightFrac": 0.114
+      },
+      "bg": [
+        248,
+        240,
+        232
+      ]
+    },
+    {
+      "tMs": 46880,
+      "durationMs": 767,
+      "burstFrames": 17,
+      "burstKind": "long-animation",
+      "effect": "slide",
+      "agreement": 0.667,
+      "elementsTotal": 4,
+      "elementsClassified": 3,
+      "confidence": 0.67,
+      "overshoot": 0.179,
+      "stagger": {
+        "order": "scattered",
+        "medianFrames": -1,
+        "medianMs": -33,
+        "jitterFrames": 1,
+        "monotonicity": 0.33,
+        "totalSpanMs": 100
+      },
+      "params": {
+        "translate": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              0.833,
+              2.029,
+              0.167,
+              0.243
+            ],
+            "agreement": 1,
+            "medianRmse": 0.132,
+            "medianGainVsNaive": 3.25
+          },
+          "confidence": 0.67,
+          "durationMs": 767,
+          "onsetFrame": 9,
+          "axis": "y",
+          "fromPx": -50.609
+        },
+        "colour": {
+          "easing": {
+            "family": "spring",
+            "params": [
+              0.738,
+              14.872
+            ],
+            "agreement": 0.5,
+            "medianRmse": 0.111,
+            "medianGainVsNaive": 4.28
+          },
+          "confidence": 0.69,
+          "durationMs": 634,
+          "onsetFrame": 20,
+          "perElement": [
+            {
+              "x": 0,
+              "from": [
+                249,
+                245,
+                235
+              ],
+              "to": [
+                23,
+                31,
+                64
+              ]
+            },
+            {
+              "x": 521,
+              "from": [
+                248,
+                233,
+                222
+              ],
+              "to": [
+                25,
+                36,
+                69
+              ]
+            }
+          ],
+          "medianDistance": 355,
+          "spatialRamp": null
+        }
+      },
+      "layout": {
+        "widthFrac": 1,
+        "heightFrac": 1,
+        "cxFrac": 0.5,
+        "cyFrac": 0.5,
+        "glyphHeightFrac": 1
+      },
+      "bg": [
+        16,
+        24,
+        80
+      ]
+    },
+    {
+      "tMs": 47981,
+      "durationMs": 1502,
+      "burstFrames": 31,
+      "burstKind": "long-animation",
+      "effect": "slide",
+      "agreement": 1,
+      "elementsTotal": 3,
+      "elementsClassified": 3,
+      "confidence": 0.84,
+      "overshoot": 0,
+      "stagger": {
+        "order": "simultaneous",
+        "medianFrames": 0,
+        "medianMs": 0,
+        "jitterFrames": 0,
+        "monotonicity": 1,
+        "totalSpanMs": 0
+      },
+      "params": {
+        "translate": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              0.208,
+              1.029,
+              0.292,
+              0.1
+            ],
+            "agreement": 1,
+            "medianRmse": 0.039,
+            "medianGainVsNaive": 8.03
+          },
+          "confidence": 0.84,
+          "durationMs": 1502,
+          "onsetFrame": 12,
+          "axis": "y",
+          "fromPx": -34.927
+        },
+        "focus": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              0.208,
+              1.314,
+              -0.125,
+              2.029
+            ],
+            "agreement": 1,
+            "medianRmse": 0.071,
+            "medianGainVsNaive": 15.84
+          },
+          "confidence": 0.81,
+          "durationMs": 1235,
+          "onsetFrame": 12,
+          "fromRelSharpness": 0.125
+        }
+      },
+      "layout": {
+        "widthFrac": 1,
+        "heightFrac": 1,
+        "cxFrac": 0.5,
+        "cyFrac": 0.5,
+        "glyphHeightFrac": 0.994
+      },
+      "bg": [
+        248,
+        248,
+        248
+      ]
+    },
+    {
+      "tMs": 50684,
+      "durationMs": 1602,
+      "burstFrames": 25,
+      "burstKind": "long-animation",
+      "effect": "slide",
+      "agreement": 0.667,
+      "elementsTotal": 3,
+      "elementsClassified": 3,
+      "confidence": 0.71,
+      "overshoot": 0.093,
+      "stagger": {
+        "order": "left-to-right",
+        "medianFrames": 3,
+        "medianMs": 100,
+        "jitterFrames": 2,
+        "monotonicity": 1,
+        "totalSpanMs": 133
+      },
+      "params": {
+        "opacity": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              0.333,
+              1.957,
+              0.417,
+              0.457
+            ],
+            "agreement": 1,
+            "medianRmse": 0.058,
+            "medianGainVsNaive": 8.28
+          },
+          "confidence": 0.77,
+          "durationMs": 1268,
+          "onsetFrame": 10,
+          "from": 0.542,
+          "to": 1
+        },
+        "translate": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              0.583,
+              1.743,
+              1,
+              0.029
+            ],
+            "agreement": 0.667,
+            "medianRmse": 0.089,
+            "medianGainVsNaive": 5.17
+          },
+          "confidence": 0.64,
+          "durationMs": 968,
+          "onsetFrame": 7,
+          "axis": "y",
+          "fromPx": 6.616
+        },
+        "focus": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              0,
+              1.6,
+              0,
+              0.671
+            ],
+            "agreement": 1,
+            "medianRmse": 0.061,
+            "medianGainVsNaive": 9.04
+          },
+          "confidence": 0.76,
+          "durationMs": 701,
+          "onsetFrame": 34,
+          "fromRelSharpness": 0.221
+        }
+      },
+      "layout": {
+        "widthFrac": 0.128,
+        "heightFrac": 0.106,
+        "cxFrac": 0.5,
+        "cyFrac": 0.5,
+        "glyphHeightFrac": 0.078
+      },
+      "bg": [
+        248,
+        248,
+        248
+      ]
+    },
+    {
+      "tMs": 56256,
+      "durationMs": 1068,
+      "burstFrames": 2,
+      "burstKind": "snap",
+      "effect": "recolour",
+      "agreement": 1,
+      "elementsTotal": 6,
+      "elementsClassified": 2,
+      "confidence": 0.49,
+      "overshoot": 0.145,
+      "stagger": {
+        "order": "simultaneous",
+        "medianFrames": 0,
+        "medianMs": 0,
+        "jitterFrames": 0,
+        "monotonicity": 1,
+        "totalSpanMs": 0
+      },
+      "params": {
+        "scale": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              0,
+              2.029,
+              0.042,
+              0.457
+            ],
+            "agreement": 1,
+            "medianRmse": 0.117,
+            "medianGainVsNaive": 5.31
+          },
+          "confidence": 0.53,
+          "durationMs": 868,
+          "onsetFrame": 3,
+          "fromRel": 1.363
+        },
+        "colour": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              0.417,
+              2.029,
+              0.25,
+              -0.757
+            ],
+            "agreement": 1,
+            "medianRmse": 0.147,
+            "medianGainVsNaive": 2.69
+          },
+          "confidence": 0.49,
+          "durationMs": 1068,
+          "onsetFrame": 1,
+          "perElement": [
+            {
+              "x": 222,
+              "from": [
+                214,
+                214,
+                217
+              ],
+              "to": [
+                109,
+                120,
+                161
+              ]
+            },
+            {
+              "x": 260,
+              "from": [
+                240,
+                236,
+                234
+              ],
+              "to": [
+                113,
+                128,
+                182
+              ]
+            }
+          ],
+          "medianDistance": 175,
+          "spatialRamp": null
+        }
+      },
+      "layout": {
+        "widthFrac": 0.314,
+        "heightFrac": 0.106,
+        "cxFrac": 0.504,
+        "cyFrac": 0.492,
+        "glyphHeightFrac": 0.092
+      },
+      "bg": [
+        232,
+        224,
+        200
+      ]
+    },
+    {
+      "tMs": 59526,
+      "durationMs": 367,
+      "burstFrames": 15,
+      "burstKind": "animation",
+      "effect": "recolour",
+      "agreement": 0.333,
+      "elementsTotal": 5,
+      "elementsClassified": 3,
+      "confidence": 0.7,
+      "overshoot": 0.081,
+      "stagger": {
+        "order": "simultaneous",
+        "medianFrames": 0,
+        "medianMs": 0,
+        "jitterFrames": 4,
+        "monotonicity": 0.5,
+        "totalSpanMs": 133
+      },
+      "params": {
+        "colour": {
+          "easing": {
+            "family": "power-out",
+            "params": [
+              2.345
+            ],
+            "agreement": 0.5,
+            "medianRmse": 0.075,
+            "medianGainVsNaive": 3.17
+          },
+          "confidence": 0.7,
+          "durationMs": 367,
+          "onsetFrame": 18,
+          "perElement": [
+            {
+              "x": 272,
+              "from": [
+                255,
+                255,
+                255
+              ],
+              "to": [
+                142,
+                139,
+                137
+              ]
+            },
+            {
+              "x": 560,
+              "from": [
+                230,
+                231,
+                231
+              ],
+              "to": [
+                114,
+                99,
+                113
+              ]
+            }
+          ],
+          "medianDistance": 212,
+          "spatialRamp": null
+        },
+        "translate": {
+          "easing": {
+            "family": "spring",
+            "params": [
+              0.602,
+              5.891
+            ],
+            "agreement": 0.5,
+            "medianRmse": 0.032,
+            "medianGainVsNaive": 10.76
+          },
+          "confidence": 0.87,
+          "durationMs": 667,
+          "onsetFrame": 17,
+          "axis": "x",
+          "fromPx": 56.505
+        },
+        "opacity": {
+          "easing": {
+            "family": "power-out",
+            "params": [
+              6.898
+            ],
+            "agreement": 1,
+            "medianRmse": 0.144,
+            "medianGainVsNaive": 3.31
+          },
+          "confidence": 0.42,
+          "durationMs": 334,
+          "onsetFrame": 19,
+          "from": 0.022,
+          "to": 0.888
+        },
+        "focus": {
+          "easing": {
+            "family": "power-out",
+            "params": [
+              1.361
+            ],
+            "agreement": 1,
+            "medianRmse": 0.03,
+            "medianGainVsNaive": 3.74
+          },
+          "confidence": 0.88,
+          "durationMs": 434,
+          "onsetFrame": 7,
+          "fromRelSharpness": 2.59
+        }
+      },
+      "layout": {
+        "widthFrac": 1,
+        "heightFrac": 0.964,
+        "cxFrac": 0.5,
+        "cyFrac": 0.482,
+        "glyphHeightFrac": 0.161
+      },
+      "bg": [
+        248,
+        240,
+        224
+      ]
+    },
+    {
+      "tMs": 66099,
+      "durationMs": 667,
+      "burstFrames": 3,
+      "burstKind": "short-fade",
+      "effect": "blur-in",
+      "agreement": 1,
+      "elementsTotal": 1,
+      "elementsClassified": 1,
+      "confidence": 0.78,
+      "overshoot": 0,
+      "stagger": null,
+      "params": {
+        "opacity": {
+          "easing": {
+            "family": "step",
+            "params": [
+              0.026
+            ],
+            "agreement": 1,
+            "medianRmse": 0.042,
+            "medianGainVsNaive": 11.85
+          },
+          "confidence": 0.5,
+          "durationMs": 167,
+          "onsetFrame": 4,
+          "from": 0.358,
+          "to": 0.968
+        },
+        "focus": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              0.042,
+              1.243,
+              0.75,
+              0.6
+            ],
+            "agreement": 1,
+            "medianRmse": 0.056,
+            "medianGainVsNaive": 6.65
+          },
+          "confidence": 0.78,
+          "durationMs": 667,
+          "onsetFrame": 5,
+          "fromRelSharpness": 0.653
+        }
+      },
+      "layout": {
+        "widthFrac": 0.763,
+        "heightFrac": 0.258,
+        "cxFrac": 0.5,
+        "cyFrac": 0.501,
+        "glyphHeightFrac": 0.258
+      },
+      "bg": [
+        248,
+        248,
+        248
+      ]
+    },
+    {
+      "tMs": 67234,
+      "durationMs": 434,
+      "burstFrames": 2,
+      "burstKind": "snap",
+      "effect": "recolour",
+      "agreement": 1,
+      "elementsTotal": 3,
+      "elementsClassified": 3,
+      "confidence": 0.72,
+      "overshoot": 0.009,
+      "stagger": {
+        "order": "left-to-right",
+        "medianFrames": 6,
+        "medianMs": 200,
+        "jitterFrames": 6,
+        "monotonicity": 1,
+        "totalSpanMs": 200
+      },
+      "params": {
+        "colour": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              0.708,
+              -0.471,
+              -0.125,
+              1.243
+            ],
+            "agreement": 0.333,
+            "medianRmse": 0.041,
+            "medianGainVsNaive": 5.7
+          },
+          "confidence": 0.72,
+          "durationMs": 434,
+          "onsetFrame": 5,
+          "perElement": [
+            {
+              "x": 76,
+              "from": [
+                177,
+                162,
+                211
+              ],
+              "to": [
+                90,
+                46,
+                83
+              ]
+            },
+            {
+              "x": 336,
+              "from": [
+                182,
+                167,
+                216
+              ],
+              "to": [
+                92,
+                49,
+                86
+              ]
+            },
+            {
+              "x": 444,
+              "from": [
+                183,
+                168,
+                217
+              ],
+              "to": [
+                99,
+                55,
+                92
+              ]
+            }
+          ],
+          "medianDistance": 194,
+          "spatialRamp": null
+        }
+      },
+      "layout": {
+        "widthFrac": 0.763,
+        "heightFrac": 0.261,
+        "cxFrac": 0.5,
+        "cyFrac": 0.5,
+        "glyphHeightFrac": 0.261
+      },
+      "bg": [
+        248,
+        248,
+        248
+      ]
+    },
+    {
+      "tMs": 67834,
+      "durationMs": 334,
+      "burstFrames": 2,
+      "burstKind": "snap",
+      "effect": "recolour",
+      "agreement": 1,
+      "elementsTotal": 1,
+      "elementsClassified": 1,
+      "confidence": 0.84,
+      "overshoot": 0.028,
+      "stagger": null,
+      "params": {
+        "colour": {
+          "easing": {
+            "family": "expo-out",
+            "params": [
+              14.556
+            ],
+            "agreement": 1,
+            "medianRmse": 0.039,
+            "medianGainVsNaive": 12.23
+          },
+          "confidence": 0.84,
+          "durationMs": 334,
+          "onsetFrame": 6,
+          "perElement": [
+            {
+              "x": 76,
+              "from": [
+                184,
+                144,
+                178
+              ],
+              "to": [
+                126,
+                157,
+                93
+              ]
+            }
+          ],
+          "medianDistance": 103,
+          "spatialRamp": null
+        }
+      },
+      "layout": {
+        "widthFrac": 0.763,
+        "heightFrac": 0.261,
+        "cxFrac": 0.5,
+        "cyFrac": 0.5,
+        "glyphHeightFrac": 0.261
+      },
+      "bg": [
+        248,
+        248,
+        248
+      ]
+    },
+    {
+      "tMs": 68302,
+      "durationMs": 334,
+      "burstFrames": 3,
+      "burstKind": "short-fade",
+      "effect": "recolour",
+      "agreement": 1,
+      "elementsTotal": 1,
+      "elementsClassified": 1,
+      "confidence": 0.71,
+      "overshoot": 0.044,
+      "stagger": null,
+      "params": {
+        "colour": {
+          "easing": {
+            "family": "power-out",
+            "params": [
+              8.349
+            ],
+            "agreement": 1,
+            "medianRmse": 0.073,
+            "medianGainVsNaive": 6.6
+          },
+          "confidence": 0.71,
+          "durationMs": 334,
+          "onsetFrame": 5,
+          "perElement": [
+            {
+              "x": 76,
+              "from": [
+                179,
+                211,
+                148
+              ],
+              "to": [
+                115,
+                163,
+                190
+              ]
+            }
+          ],
+          "medianDistance": 90,
+          "spatialRamp": null
+        }
+      },
+      "layout": {
+        "widthFrac": 0.763,
+        "heightFrac": 0.261,
+        "cxFrac": 0.5,
+        "cyFrac": 0.5,
+        "glyphHeightFrac": 0.261
+      },
+      "bg": [
+        248,
+        248,
+        248
+      ]
+    },
+    {
+      "tMs": 68669,
+      "durationMs": 300,
+      "burstFrames": 2,
+      "burstKind": "snap",
+      "effect": "recolour",
+      "agreement": 1,
+      "elementsTotal": 1,
+      "elementsClassified": 1,
+      "confidence": 0.78,
+      "overshoot": 0.013,
+      "stagger": null,
+      "params": {
+        "colour": {
+          "easing": {
+            "family": "expo-out",
+            "params": [
+              16.607
+            ],
+            "agreement": 1,
+            "medianRmse": 0.055,
+            "medianGainVsNaive": 8.91
+          },
+          "confidence": 0.78,
+          "durationMs": 300,
+          "onsetFrame": 4,
+          "perElement": [
+            {
+              "x": 76,
+              "from": [
+                141,
+                194,
+                218
+              ],
+              "to": [
+                223,
+                174,
+                135
+              ]
+            }
+          ],
+          "medianDistance": 118,
+          "spatialRamp": null
+        }
+      },
+      "layout": {
+        "widthFrac": 0.763,
+        "heightFrac": 0.261,
+        "cxFrac": 0.5,
+        "cyFrac": 0.5,
+        "glyphHeightFrac": 0.261
+      },
+      "bg": [
+        248,
+        248,
+        248
+      ]
+    },
+    {
+      "tMs": 69836,
+      "durationMs": 1168,
+      "burstFrames": 11,
+      "burstKind": "animation",
+      "effect": "slide",
+      "agreement": 1,
+      "elementsTotal": 30,
+      "elementsClassified": 2,
+      "confidence": 0.49,
+      "overshoot": 0.034,
+      "stagger": {
+        "order": "simultaneous",
+        "medianFrames": 0,
+        "medianMs": 0,
+        "jitterFrames": 1,
+        "monotonicity": 0.66,
+        "totalSpanMs": 167
+      },
+      "params": {
+        "focus": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              1.083,
+              -0.686,
+              0.125,
+              0.243
+            ],
+            "agreement": 0.625,
+            "medianRmse": 0.104,
+            "medianGainVsNaive": 3.52
+          },
+          "confidence": 0.56,
+          "durationMs": 1068,
+          "onsetFrame": 9,
+          "fromRelSharpness": 0.256
+        }
+      },
+      "layout": {
+        "widthFrac": 0.716,
+        "heightFrac": 0.383,
+        "cxFrac": 0.47,
+        "cyFrac": 0.342,
+        "glyphHeightFrac": 0.067
+      },
+      "bg": [
+        248,
+        248,
+        248
+      ]
+    },
+    {
+      "tMs": 76510,
+      "durationMs": 667,
+      "burstFrames": 4,
+      "burstKind": "short-fade",
+      "effect": "slide",
+      "agreement": 0.571,
+      "elementsTotal": 8,
+      "elementsClassified": 7,
+      "confidence": 0.66,
+      "overshoot": 0.105,
+      "stagger": {
+        "order": "left-to-right",
+        "medianFrames": 1,
+        "medianMs": 33,
+        "jitterFrames": 1,
+        "monotonicity": 0.86,
+        "totalSpanMs": 133
+      },
+      "params": {
+        "translate": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              -0.042,
+              0.6,
+              0.792,
+              1.386
+            ],
+            "agreement": 0.8,
+            "medianRmse": 0.084,
+            "medianGainVsNaive": 5.5
+          },
+          "confidence": 0.66,
+          "durationMs": 667,
+          "onsetFrame": 4,
+          "axis": "x",
+          "fromPx": 3.823
+        },
+        "focus": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              0.958,
+              1.814,
+              0.042,
+              0.171
+            ],
+            "agreement": 0.4,
+            "medianRmse": 0.147,
+            "medianGainVsNaive": 3.69
+          },
+          "confidence": 0.81,
+          "durationMs": 601,
+          "onsetFrame": 4,
+          "fromRelSharpness": 0.343
+        },
+        "scale": {
+          "easing": {
+            "family": "power-out",
+            "params": [
+              1.469
+            ],
+            "agreement": 1,
+            "medianRmse": 0.056,
+            "medianGainVsNaive": 2.78
+          },
+          "confidence": 0.78,
+          "durationMs": 434,
+          "onsetFrame": 10,
+          "fromRel": 1.28
+        },
+        "colour": {
+          "easing": {
+            "family": "cubic-bezier",
+            "params": [
+              0.125,
+              1.386,
+              1.125,
+              0.386
+            ],
+            "agreement": 0.5,
+            "medianRmse": 0.119,
+            "medianGainVsNaive": 4.52
+          },
+          "confidence": 0.7,
+          "durationMs": 534,
+          "onsetFrame": 4,
+          "perElement": [
+            {
+              "x": 235,
+              "from": [
+                242,
+                192,
+                166
+              ],
+              "to": [
+                215,
+                96,
+                86
+              ]
+            },
+            {
+              "x": 308,
+              "from": [
+                249,
+                173,
+                153
+              ],
+              "to": [
+                43,
+                41,
+                69
+              ]
+            },
+            {
+              "x": 324,
+              "from": [
+                249,
+                173,
+                153
+              ],
+              "to": [
+                45,
+                42,
+                69
+              ]
+            },
+            {
+              "x": 338,
+              "from": [
+                252,
+                154,
+                127
+              ],
+              "to": [
+                46,
+                44,
+                70
+              ]
+            }
+          ],
+          "medianDistance": 256,
+          "spatialRamp": {
+            "fromRgb": [
+              215,
+              96,
+              86
+            ],
+            "toRgb": [
+              46,
+              44,
+              70
+            ],
+            "span": 178,
+            "monotonicity": 0.333
+          }
+        },
+        "opacity": {
+          "easing": {
+            "family": "expo-out",
+            "params": [
+              5.022
+            ],
+            "agreement": 0.5,
+            "medianRmse": 0.142,
+            "medianGainVsNaive": 2.27
+          },
+          "confidence": 0.52,
+          "durationMs": 534,
+          "onsetFrame": 8,
+          "from": 0.608,
+          "to": 1
+        }
+      },
+      "layout": {
+        "widthFrac": 0.267,
+        "heightFrac": 0.078,
+        "cxFrac": 0.501,
+        "cyFrac": 0.5,
+        "glyphHeightFrac": 0.078
+      },
+      "bg": [
+        248,
+        248,
+        248
+      ]
+    }
+  ]
+}

@@ -38,6 +38,21 @@ export function findFont() {
   return cachedFont;
 }
 
+/**
+ * Builds the `fontfile=` value for a drawtext filter.
+ *
+ * ffmpeg's filter parser splits options on ':' BEFORE it interprets quotes, so
+ * a Windows drive letter has to be escaped as `C\\:` — and critically the value
+ * must be left UNQUOTED. Wrapping it in single quotes (the form that reads more
+ * natural, and that this file used to use) makes drawtext fail to open the file
+ * and silently fall back to a fontconfig default serif, with no error beyond a
+ * "Cannot load default config file" line on stderr. On Linux the path has no
+ * drive letter, so the bug never shows up there.
+ */
+export function drawtextFontArg(fontPath) {
+  return fontPath.replace(/\\/g, "/").replace(/^([A-Za-z]):\//, "$1\\\\:/");
+}
+
 function hex([r, g, b]) {
   const c = (v) => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, "0");
   return `0x${c(r)}${c(g)}${c(b)}`;
@@ -75,10 +90,10 @@ export function renderTextSlide({ text, w, h, bg, fg }) {
   const lineGap = Math.round(fontsize * 1.35);
   const blockH = lineGap * lines.length;
 
-  const fontPath = font.replace(/\\/g, "/").replace(/^([A-Za-z]):\//, "$1\\\\:/");
+  const fontPath = drawtextFontArg(font);
   const draws = lines.map((line, i) => {
     const y = `(h-${blockH})/2+${i * lineGap}`;
-    return `drawtext=fontfile='${fontPath}':text='${line}':fontsize=${fontsize}:fontcolor=${hex(fg)}:x=(w-text_w)/2:y=${y}`;
+    return `drawtext=fontfile=${fontPath}:text='${line}':fontsize=${fontsize}:fontcolor=${hex(fg)}:x=(w-text_w)/2:y=${y}`;
   });
 
   const r = spawnSync(FFMPEG, [

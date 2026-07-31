@@ -1,0 +1,11 @@
+{
+  "_comment": "Text beats read off the mem reference. Copy is transcribed by eye (OCR garbled it); every motion parameter comes from effects.json via effectAt.",
+  "video": { "width": 640, "height": 360, "fps": 30, "durationMs": 19000 },
+  "shots": [
+    { "tMs": 0,     "endMs": 4600,  "text": "yesterday",        "effectAt": 3070 },
+    { "tMs": 4600,  "endMs": 7900,  "text": "Meet",             "effectAt": 4270 },
+    { "tMs": 7900,  "endMs": 13500, "text": "thought partner",  "effectAt": 9110 },
+    { "tMs": 13500, "endMs": 16000, "text": "Capture",          "effectAt": 14520 },
+    { "tMs": 16000, "endMs": 19000, "text": "Capture anything", "effectAt": 16380 }
+  ]
+}

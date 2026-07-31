@@ -1,0 +1,6 @@
+# Build output and scratch from the compare/debug loop — all regenerable.
+text-layer/dist/
+text-layer/cmp/
+text-layer/sheet/
+text-layer/*.png
+renders/*.mp4
