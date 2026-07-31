@@ -131,6 +131,44 @@ if (rates.length > 1) {
   }
 }
 
+// A WebGL context that is lost, or starved of memory at high supersample, renders
+// PURE BLACK without raising anything: no page error, no exception, correct frame
+// count. Probe one frame mid-film and refuse to spend minutes encoding a black film.
+{
+  const t = DURATION / 2;
+  const stats = await probe.evaluate(async (tt) => {
+    if (window.prepareFrame) await window.prepareFrame(tt);
+    window.renderAtTime(tt);
+    const c = document.querySelector("canvas");
+    const gl = c.getContext("webgl2") || c.getContext("webgl");
+    const s = document.createElement("canvas");
+    s.width = 64; s.height = 36;
+    const g = s.getContext("2d");
+    g.drawImage(c, 0, 0, s.width, s.height);
+    const d = g.getImageData(0, 0, s.width, s.height).data;
+    let min = 255, max = 0;
+    for (let i = 0; i < d.length; i += 4) {
+      const v = (d[i] + d[i + 1] + d[i + 2]) / 3;
+      if (v < min) min = v;
+      if (v > max) max = v;
+    }
+    return { min, max, lost: gl ? gl.isContextLost() : null };
+  }, t);
+  if (stats.lost || stats.max - stats.min < 4) {
+    await browser.close();
+    server.close();
+    throw new Error(
+      `cinematic3d: the probe frame at ${t.toFixed(2)}s is a flat colour ` +
+      `(luma ${stats.min}-${stats.max}${stats.lost ? ", context LOST" : ""}).
+` +
+      `  The GPU context is not producing an image. At supersample ${SS} this renders ` +
+      `${W * SS}x${H * SS}
+  per worker, which needs a lot of memory — try supersample 1, ` +
+      `fewer workers, or free some up.`
+    );
+  }
+}
+
 const pages = [probe];
 for (let i = 1; i < WORKERS; i++) pages.push(await makePage(false));
 

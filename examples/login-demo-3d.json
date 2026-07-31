@@ -1,10 +1,11 @@
 {
   "//": "Two-scene film against examples/login-demo.mp4 (10.05s). Render with:",
   "//run": "node src/lib/cinematic3d/render.mjs examples/login-demo-3d.json 3",
+  "//paths": "source and output resolve relative to THIS file, which lives in examples/ - not relative to the repo root or to render.mjs.",
   "//why-two": "A single login action does not carry three scenes. Two shots, each long enough to follow, beat three shots that keep interrupting. Both run at 1.00x - duration equals clip length - so the film never changes speed.",
 
-  "source": "../../../../../examples/login-demo.mp4",
-  "output": "../../../../../recordings_3d/login-demo-3d.mp4",
+  "source": "./login-demo.mp4",
+  "output": "../recordings_3d/login-demo-3d.mp4",
   "width": 1920, "height": 1080, "fps": 60,
 
   "//quality": "fps 60 matches the source recording - halving it to 30 throws away every other frame of a 60fps capture. supersample 2 renders at 3840x2160 and downsamples with lanczos, which is what sharpens UI text; the GPU's antialiasing cannot help there because the text lives inside a texture.",

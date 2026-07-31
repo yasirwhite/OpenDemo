@@ -41,7 +41,13 @@ Then change `source`, `clip` ranges and `duration`. See
 | `fps` | 30 | **match your source recording.** OpenDemo captures at 60; rendering at 30 discards every other frame. |
 | `supersample` | 1 | renders at N× and downsamples with lanczos. `2` is the meaningful jump for UI text — MSAA cannot help, because the text is inside a texture rather than on a polygon edge. Costs ~4× render time. |
 | `crf` | 17 | x264 quality, lower is better. 15 for a deliverable. |
-| `losslessFrames` | on when `supersample > 1` | PNG intermediates instead of JPEG, so the only lossy step is the final encode. |
+| `losslessFrames` | off | PNG intermediates instead of JPEG, so the only lossy step is the final encode. A 4K PNG is ~8 MB, so use sparingly. |
+
+`supersample: 2` renders **W×2 by H×2 per worker** — 3840×2160 at 1080p output. That is
+a lot of GPU memory: on a memory-starved machine the WebGL context dies and renders pure
+black, with no error and the correct frame count. `render.mjs` probes one frame before
+committing to a run and refuses to encode a flat-colour film, but if you hit it, drop to
+`supersample: 1`, use fewer workers, or free some memory.
 
 The example config uses `fps: 60`, `supersample: 2`, `crf: 15`. Drop to the defaults
 while you are iterating on timing — a preview render is roughly 4× faster.
