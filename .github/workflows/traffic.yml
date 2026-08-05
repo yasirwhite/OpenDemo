@@ -4,7 +4,10 @@ name: Clone stats
 # daily into .github/traffic/clones.json and rewrites the block in the README.
 on:
   schedule:
-    - cron: "17 3 * * *"   # 03:17 UTC daily — off the hour, when the runner queue is short
+    # 05:00 UTC = 21:00 PST. GitHub cron is UTC-only with no DST handling, so this
+    # sits at 22:00 during PDT (mid-March to early November). Change to "0 4 * * *"
+    # if you would rather it be 21:00 PDT and 20:00 PST.
+    - cron: "0 5 * * *"
   workflow_dispatch:        # so you can run it by hand from the Actions tab
 
 permissions:
