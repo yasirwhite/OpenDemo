@@ -80,7 +80,11 @@ Add it as `templates/<next-unused-tree-name>/` (naming:
   fixed vs replaceable;
 - an entry in `templates/index.json` with `style`, `category` and `tags`
   filled in thoughtfully — this metadata is what lets us reorganize the folder
-  when there are too many templates for a flat list.
+  when there are too many templates for a flat list;
+- `previews/` — 3-4 small JPGs (~960w, q3) rendered from the placeholder-copy
+  template at its strongest beats (`render.mjs --at <t> --png`, then convert).
+  The gallery site shows the first one as the card image, so lead with the
+  most characteristic frame.
 
 ## 7. Deliverable
 

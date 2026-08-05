@@ -19,8 +19,8 @@ Add to this file when a convention is decided; do not leave conventions implied.
 
 - **No committed video/reference media, ever.** References, template preview
   videos and deliverables are tracked as manifests (URL + md5) and fetched —
-  see `references/README.md` for the rationale. Small JPG preview strips are
-  the one exception (`presets/previews/`).
+  see `references/README.md` for the rationale. Small JPG preview stills are
+  the one exception (`presets/previews/`, `templates/<slug>/previews/`).
 - **Scratch work lives in `.demo-build/`** (gitignored). Working configs live
   in the gitignored config dirs, never in `examples/` or `templates/`.
 - No long-lived asset branches: a branch costs every clone the download,
