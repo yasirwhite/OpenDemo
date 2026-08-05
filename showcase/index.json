@@ -1,0 +1,15 @@
+{
+  "//": [
+    "Made-with-OpenDemo showcase - the gallery site renders this. One flat list,",
+    "two views: template pages show entries whose `templates` includes their slug;",
+    "category pages show entries by `category`. An entry needs a videoUrl (or repo",
+    "with the video committed) - media itself is NEVER committed here.",
+    "categories: oss-demo (open-source product demos), landing-page, launch-video,",
+    "product-tour (simple walkthroughs). Add categories sparingly.",
+    "`templates`: which template(s) the video used, if any - omit for preset-combo",
+    "one-offs. `presets`: notable presets used, for the preset-combo videos.",
+    "`prompt`: the prompt a visitor can copy to get the same kind of result.",
+    "`repo`: the featured project's GitHub URL - free publicity is the point."
+  ],
+  "entries": []
+}

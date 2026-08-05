@@ -1,0 +1,481 @@
+{
+  "_about": [
+    "TEMPLATE 'cedar' + WORKED EXAMPLE - a launch video for 'Recall', a fictional note-keeping app. The copy is placeholder: to retarget this template to a real product, rewrite the role-tagged scenes per templates/README.md and keep every timing exactly as-is - the timings are the template.",
+    "",
+    "Build and render:",
+    "  node src/lib/textcards/build.mjs --config templates/cedar/template.json",
+    "  node src/lib/textcards/render.mjs --out recall.mp4 --fps 60",
+    "",
+    "Preset slugs are defined in src/lib/textcards/src/presets/index.jsx.",
+    "Read PRESET_NOTES there to choose one. See src/lib/textcards/README.md for the rules.",
+    "",
+    "Every scene carries a 'role' so a model can tell brand copy from in-product dialogue - see the Copy roles table in src/lib/textcards/README.md."
+  ],
+  "video": {
+    "width": 1280,
+    "height": 720,
+    "fps": 60,
+    "durationMs": 35822
+  },
+  "ground": [
+    {
+      "fromMs": 0,
+      "colour": [
+        253,
+        252,
+        250
+      ]
+    },
+    {
+      "fromMs": 4257,
+      "colour": [
+        24,
+        22,
+        34
+      ]
+    },
+    {
+      "fromMs": 12533,
+      "colour": [
+        253,
+        252,
+        250
+      ]
+    },
+    {
+      "fromMs": 20809,
+      "colour": [
+        24,
+        22,
+        34
+      ]
+    },
+    {
+      "fromMs": 27016,
+      "colour": [
+        253,
+        252,
+        250
+      ]
+    },
+    {
+      "fromMs": 33222,
+      "colour": [
+        24,
+        22,
+        34
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "hook",
+      "role": "brand",
+      "preset": "reveal-line",
+      "startMs": 0,
+      "durationMs": 2188,
+      "size": 76,
+      "x": 40,
+      "scaleFrom": 1.7,
+      "scaleDurMs": 1100,
+      "exitAtMs": 1600,
+      "exitSweepMs": 520,
+      "exitFadeMs": 200,
+      "groups": [
+        {
+          "text": "Some things ",
+          "atMs": 200,
+          "durMs": 320,
+          "colour": [
+            28,
+            26,
+            40
+          ],
+          "blurIn": true
+        },
+        {
+          "text": "always ",
+          "atMs": 700,
+          "durMs": 260,
+          "colour": [
+            232,
+            72,
+            58
+          ],
+          "italic": true
+        },
+        {
+          "text": "slip",
+          "atMs": 980,
+          "durMs": 280,
+          "colour": [
+            28,
+            26,
+            40
+          ],
+          "shimmer": {
+            "startMs": 1200,
+            "durMs": 550,
+            "width": 0.7,
+            "amount": 0.85
+          }
+        }
+      ]
+    },
+    {
+      "id": "hero",
+      "role": "brand",
+      "preset": "wave-word",
+      "startMs": 2188,
+      "durationMs": 2069,
+      "text": "remember it all",
+      "size": 156,
+      "hot": [
+        232,
+        72,
+        58
+      ],
+      "to": [
+        28,
+        26,
+        40
+      ],
+      "slideFromPx": 440,
+      "slideDurMs": 600,
+      "sweepAtMs": 540,
+      "sweepDurMs": 460,
+      "shrinkAtMs": 3760,
+      "shrinkDurMs": 800,
+      "shrinkToScale": 0.62
+    },
+    {
+      "id": "meet",
+      "role": "brand",
+      "preset": "scale-in",
+      "startMs": 4257,
+      "durationMs": 2069,
+      "text": "Meet",
+      "size": 92,
+      "scaleFrom": 1.7,
+      "settleDurMs": 460,
+      "blur": 22,
+      "fade": false,
+      "colour": [
+        248,
+        246,
+        242
+      ]
+    },
+    {
+      "id": "name",
+      "role": "brand",
+      "preset": "word-cut",
+      "startMs": 6326,
+      "durationMs": 2069,
+      "text": "Recall",
+      "size": 92,
+      "colour": [
+        248,
+        246,
+        242
+      ]
+    },
+    {
+      "id": "slot-1",
+      "preset": "product-slot",
+      "startMs": 8395,
+      "durationMs": 4138,
+      "index": 1,
+      "label": "product demo — capturing a note",
+      "bg": [
+        24,
+        22,
+        34
+      ],
+      "ink": [
+        235,
+        232,
+        245
+      ],
+      "_fill": [
+        "This slot ships EMPTY - it renders a labelled placeholder box.",
+        "To fill it: record the product, render the recording through",
+        "src/lib/cinematic3d/render.mjs at the SAME width/height/fps as 'video'",
+        "above, then overlay it onto this slot's window - see the ffmpeg recipe in",
+        "templates/README.md. A laptop-punch-reveal shot on a black set cuts",
+        "cleanly against this scene's dark ground."
+      ]
+    },
+    {
+      "id": "bridge",
+      "role": "brand",
+      "preset": "reveal-line",
+      "startMs": 12533,
+      "durationMs": 2069,
+      "size": 72,
+      "x": 0,
+      "scaleFrom": 1.22,
+      "scaleDurMs": 700,
+      "exitAtMs": 1500,
+      "exitSweepMs": 460,
+      "exitFadeMs": 200,
+      "groups": [
+        {
+          "text": "Type it. Snap it. ",
+          "atMs": 120,
+          "durMs": 300,
+          "colour": [
+            28,
+            26,
+            40
+          ],
+          "blurIn": true
+        },
+        {
+          "text": "Recall keeps it.",
+          "atMs": 620,
+          "durMs": 320,
+          "colour": [
+            232,
+            72,
+            58
+          ],
+          "shimmer": {
+            "startMs": 1050,
+            "durMs": 520,
+            "width": 0.7,
+            "amount": 0.8
+          }
+        }
+      ]
+    },
+    {
+      "id": "slot-2",
+      "preset": "product-slot",
+      "startMs": 14602,
+      "durationMs": 4138,
+      "index": 2,
+      "label": "product demo — mobile, instant search",
+      "bg": [
+        253,
+        252,
+        250
+      ],
+      "ink": [
+        28,
+        26,
+        40
+      ]
+    },
+    {
+      "id": "claim",
+      "role": "brand",
+      "preset": "statement",
+      "startMs": 18740,
+      "durationMs": 2069,
+      "lines": [
+        "Toss anything in.",
+        "Find it in seconds."
+      ],
+      "size": 74,
+      "lineStaggerMs": 167,
+      "colour": [
+        28,
+        26,
+        40
+      ]
+    },
+    {
+      "id": "prompt",
+      "role": "user-voice",
+      "_note": "DIEGETIC — the user typing an order into the product. Not a slogan.",
+      "preset": "type-on",
+      "startMs": 20809,
+      "durationMs": 4138,
+      "text": "that pasta place sarah loved",
+      "cps": 11.0,
+      "size": 190,
+      "ramp": [
+        [
+          248,
+          246,
+          242
+        ],
+        [
+          248,
+          246,
+          242
+        ],
+        [
+          120,
+          150,
+          250
+        ],
+        [
+          200,
+          120,
+          170
+        ],
+        [
+          232,
+          90,
+          70
+        ]
+      ],
+      "exitAtMs": 24659,
+      "exitDurMs": 420
+    },
+    {
+      "id": "confirm",
+      "role": "product-voice",
+      "_note": "DIEGETIC — the product confirming the order back to the user.",
+      "preset": "statement",
+      "startMs": 24947,
+      "durationMs": 2069,
+      "lines": [
+        "Saved. Filed under Places.",
+        "Ready when you need it."
+      ],
+      "size": 66,
+      "lineStaggerMs": 167,
+      "colour": [
+        240,
+        238,
+        246
+      ]
+    },
+    {
+      "id": "features",
+      "role": "feature",
+      "preset": "feature-pills",
+      "startMs": 27016,
+      "durationMs": 4137,
+      "size": 120,
+      "pills": [
+        {
+          "text": "Instant Capture",
+          "slab": [
+            246,
+            206,
+            196
+          ],
+          "colour": [
+            110,
+            30,
+            20
+          ],
+          "durMs": 1034
+        },
+        {
+          "text": "Auto Sorted",
+          "slab": [
+            214,
+            232,
+            200
+          ],
+          "colour": [
+            40,
+            70,
+            25
+          ],
+          "durMs": 776
+        },
+        {
+          "text": "Works Offline",
+          "slab": [
+            206,
+            220,
+            248
+          ],
+          "colour": [
+            26,
+            46,
+            110
+          ],
+          "durMs": 517
+        },
+        {
+          "text": "Fully Private",
+          "slab": [
+            222,
+            220,
+            224
+          ],
+          "colour": [
+            44,
+            42,
+            50
+          ],
+          "durMs": 517,
+          "static": true
+        }
+      ]
+    },
+    {
+      "id": "kicker",
+      "role": "brand",
+      "preset": "reveal-line",
+      "startMs": 31153,
+      "durationMs": 2069,
+      "size": 84,
+      "x": 0,
+      "scaleFrom": 1.18,
+      "scaleDurMs": 640,
+      "exitAtMs": 1560,
+      "exitSweepMs": 460,
+      "exitFadeMs": 200,
+      "groups": [
+        {
+          "text": "Forget ",
+          "atMs": 140,
+          "durMs": 300,
+          "colour": [
+            28,
+            26,
+            40
+          ],
+          "blurIn": true
+        },
+        {
+          "text": "forgetting",
+          "atMs": 620,
+          "durMs": 340,
+          "colour": [
+            232,
+            72,
+            58
+          ],
+          "shimmer": {
+            "startMs": 1080,
+            "durMs": 520,
+            "width": 0.7,
+            "amount": 0.85
+          }
+        }
+      ]
+    },
+    {
+      "id": "signoff",
+      "role": "brand",
+      "preset": "logo-lockup",
+      "startMs": 33222,
+      "durationMs": 2600,
+      "text": "recall",
+      "markLabel": "logo",
+      "scaleFrom": 2.6,
+      "settleDurMs": 520,
+      "size": 96,
+      "colour": [
+        248,
+        246,
+        242
+      ],
+      "ground": [
+        24,
+        22,
+        34
+      ],
+      "markSvg": "logo.svg"
+    }
+  ]
+}

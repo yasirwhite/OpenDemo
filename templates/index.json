@@ -1,0 +1,19 @@
+{
+  "//": "Template registry. One entry per templates/<slug>/ folder. Agents pick templates from here; the gallery site will be generated from here. Categories are free-form for now - when the list outgrows a flat folder, these fields are how it gets reorganized.",
+  "templates": [
+    {
+      "slug": "cedar",
+      "name": "Cedar",
+      "style": "kinetic-typography launch film",
+      "category": "typography-led",
+      "durationMs": 35822,
+      "aspect": "16:9",
+      "fps": 60,
+      "bpm": 116,
+      "slots": 2,
+      "tags": ["kinetic-text", "two-tone-grounds", "product-slots", "type-on", "feature-pills"],
+      "derivedFrom": "the mem launch film, measured frame-by-frame",
+      "config": "cedar/template.json"
+    }
+  ]
+}

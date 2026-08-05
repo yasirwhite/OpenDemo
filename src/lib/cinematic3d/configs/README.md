@@ -20,6 +20,7 @@ configs you author, which stay gitignored.
 | file | what it shows |
 |---|---|
 | [`examples/login-demo-3d.json`](../../../../examples/login-demo-3d.json) | the two-scene shape: a 3D opener, then flat 2D for the part that has to stay legible. Renders against `examples/login-demo.mp4`. |
+| [`templates/cedar/template.json`](../../../../templates/cedar/template.json) | the text layer that cuts between 3D shots — a full launch film with product slots. See `src/lib/textcards/` and `templates/README.md`. |
 
 Start by copying one:
 

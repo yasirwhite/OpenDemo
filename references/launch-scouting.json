@@ -1,0 +1,4 @@
+{
+  "//": "Scouting log for the nightly template-expansion runbook (docs/runbooks/nightly-template-expansion.md). EVERY video vetted gets an entry - including rejects, so nights don't re-vet the same launches. Engagement fields are whatever the source exposes (upvotes, views, likes); record the numbers seen and the date seen, since they drift.",
+  "videos": []
+}
