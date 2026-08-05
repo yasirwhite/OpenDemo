@@ -1,0 +1,43 @@
+name: Clone stats
+
+# GitHub keeps 14 days of traffic and there is no backfill, so this snapshots it
+# daily into .github/traffic/clones.json and rewrites the block in the README.
+on:
+  schedule:
+    - cron: "17 3 * * *"   # 03:17 UTC daily — off the hour, when the runner queue is short
+  workflow_dispatch:        # so you can run it by hand from the Actions tab
+
+permissions:
+  contents: write           # needed both to read traffic and to commit the result
+
+concurrency:
+  group: traffic
+  cancel-in-progress: false  # never cancel a run mid-commit
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Fetch traffic and update README
+        env:
+          # Falls back to the built-in token. If your org blocks it from the
+          # traffic endpoints, add a PAT with `repo` scope as a secret named
+          # TRAFFIC_TOKEN and this picks it up with no other changes.
+          TRAFFIC_TOKEN: ${{ secrets.TRAFFIC_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node .github/scripts/traffic.mjs
+
+      - name: Commit if anything changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md .github/traffic/clones.json
+          git diff --staged --quiet && echo "no change" && exit 0
+          git commit -m "chore: update clone stats [skip ci]"
+          git push
