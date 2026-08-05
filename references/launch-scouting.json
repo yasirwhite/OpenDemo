@@ -1,4 +1,85 @@
 {
   "//": "Scouting log for the nightly template-expansion runbook (docs/runbooks/nightly-template-expansion.md). EVERY video vetted gets an entry - including rejects, so nights don't re-vet the same launches. Engagement fields are whatever the source exposes (upvotes, views, likes); record the numbers seen and the date seen, since they drift.",
-  "videos": []
+  "videos": [
+    {
+      "title": "Hyperagent, by Airtable — agents platform launch",
+      "videoUrl": "https://video.twimg.com/amplify_video/2024618025618726912/vid/avc1/1920x1080/GLGx9INlGIDpojlB.mp4",
+      "sourceUrl": "https://x.com/howietl/status/2024618178912145592",
+      "source": "X (@howietl, Airtable CEO)",
+      "metrics": "13,807,500 views; 3,826 likes; 4,624 bookmarks; 336 replies; 246 reposts; 80 quotes (X, via fxtwitter API; author @howietl, 330k followers, posted 2026-02-19)",
+      "humans": "none",
+      "verdict": "reject",
+      "reason": "OVERTURNED on human review (2026-08-05): not a launch film. It is a raw screen capture of the product dashboard — a feature demonstration attached to a high-engagement announcement tweet. No produced layer at all (no type beats, no camera work, no edited cuts, no brand cards), so a rebuild is 100% product-slot placeholders with nothing to learn. The 13.8M views belong to the announcement, not to film craft. IGNORE for template work; do not re-vet."
+    },
+    {
+      "title": "Webild — AI website builder launch",
+      "videoUrl": "https://video.twimg.com/amplify_video/2027061769349611522/vid/avc1/3840x2160/q-aWRFJz5xyrnCp-.mp4",
+      "sourceUrl": "https://x.com/idanzei/status/2027063554055295323",
+      "source": "X (@idanzei)",
+      "metrics": "X: 25,930 views, 628 likes, 46 reposts, 84 replies, 307 bookmarks, 1 quote (verified via fxtwitter API, 2026-08-05; posted 2026-02-26)",
+      "humans": "dominant",
+      "verdict": "reject",
+      "reason": "Rejected on both criteria. Humans are dominant: 8 of 10 sampled frames are live-action actors (couch dialogue scenes, vintage-phone Wolf of Wall Street parody, plus an actual Wolf of Wall Street film clip); only 1 frame shows product screen UI, so this is a live-action comedy short, not the motion-graphics/screen-UI film the 4K master suggested. Engagement is also only moderate for X: 25.9k views / 628 likes / 307 bookmarks — healthy ratios but mid-tier absolute numbers, not genuinely high. Video downloaded successfully (39.9 MB, 89 s, 3840x2160) and frames extracted to c:/Users/Yasir/Desktop/Code/OpenDemo/.demo-build/nightly/undefined/vet/cand-1-frames/."
+    },
+    {
+      "title": "Proliferate — coding agents for end-to-end company work",
+      "videoUrl": "https://video.twimg.com/amplify_video/2026003753086910464/vid/avc1/1920x1080/I2yrv1J8Svf20STf.mp4",
+      "sourceUrl": "https://x.com/ycombinator/status/2026024262876733630",
+      "source": "X (@ycombinator launch post)",
+      "metrics": "325 likes, 61 replies (verified via X syndication API); ~69.5k views claimed in candidate notes, not independently verifiable; posted 2026-02-23 by @ycombinator",
+      "humans": "dominant",
+      "verdict": "reject",
+      "reason": "Rejected on two grounds: (1) humans=dominant — video is a founder talking-head vlog: full-frame live-action person in ~5 of 11 sampled frames including open/close, and a persistent webcam PiP bubble over every UI segment, so it cannot be rebuilt as screen UI/product shots/kinetic type; (2) engagement is weak for X — 325 likes on the ~2M-follower @ycombinator account (~0.47% of claimed 69.5k views) is well below the genuinely-high bar."
+    },
+    {
+      "title": "Celltype — agentic drug company launch",
+      "videoUrl": "https://video.twimg.com/amplify_video/2024128608189734913/vid/avc1/1920x1080/x_dALLoFZYDkYuDV.mp4",
+      "sourceUrl": "https://x.com/ycombinator/status/2024151932005454229",
+      "source": "X (@ycombinator launch post, 2026-02-18)",
+      "metrics": "Original post: @ycombinator on X, created 2026-02-18T16:00:02Z. Verified via cdn.syndication.twimg.com tweet-result API (x.com HTML blocked, HTTP 402): favorite_count=231, conversation_count(replies)=20; view count not exposed by that API — candidate note claims ~44.7k views, unverified. No higher-engagement original found: CellType's own YC launch page (ycombinator.com/companies/celltype) shows no upvote/engagement counters, and no @celltypeinc post of this video with better numbers surfaced. Seen 2026-08-05. Context: ~0.5% like/view rate on a ~1M-follower account; YC launch tweets that break out land in the thousands of likes / hundreds of thousands of views. The often-cited \"7M+ views\" belongs to Sundar Pichai's earlier Cell2Sentence post, not this launch video.",
+      "humans": "none",
+      "verdict": "reject",
+      "reason": "Reject on engagement only. 231 likes / 20 replies (~44.7k claimed views) on the @ycombinator launch post is middling for X — not a clear standout, and engagement is the filter. Craft-wise it would have been a good clone target: 71 s, 1920x1080, zero live-action people across 10 sampled frames — the whole film is kinetic typography (all-caps grotesque, word-per-beat cuts, stat counters like \"75%\", stacked light/bold pairs) over stock nature plates, macro lab shots and 3D cell/tumor renders, closing on a Sundar Pichai pull-quote card. Downloaded fine (21.4 MB) but note video.twimg.com only resolves over IPv4 here: curl -4 is required, plain curl hangs and exits 28."
+    },
+    {
+      "title": "Grade — payroll for performance launch",
+      "videoUrl": "https://video.twimg.com/amplify_video/2023768679780151297/vid/avc1/1920x1080/g-_ulR1JCkJYfltR.mp4",
+      "sourceUrl": "https://x.com/ycombinator/status/2023804644322160848",
+      "source": "X (@ycombinator launch post for @usegrade)",
+      "metrics": "474 likes, 39 replies (live via Twitter syndication API, checked 2026-08-05); ~63.0k views per scrape metadata (views not exposed by syndication API); posted 2026-02-17 by @ycombinator",
+      "humans": "incidental",
+      "verdict": "reject",
+      "reason": "Downloaded OK (80.7s 1920x1080, 11.5MB) and content is clone-friendly (mostly kinetic type + product UI; founders on camera in only ~2 of 10 sampled frames = incidental). Rejected on engagement: 474 likes / 39 replies / ~63k views is midpack for @ycombinator's 1.4M+ follower account, not genuinely high."
+    },
+    {
+      "title": "Anthropic — Claude mobile: draft/send emails, messages, calendar invites",
+      "videoUrl": "https://video.twimg.com/amplify_video/1950588606873309184/vid/avc1/1920x1080/5BhIPorEc2dsz_cW.mp4",
+      "sourceUrl": "https://x.com/AnthropicAI/status/1950590543370834335",
+      "source": "X (@AnthropicAI)",
+      "metrics": "X (@AnthropicAI), posted 2025-07-30: 261,864 views, 2,442 likes, 231 retweets, 91 quotes, 94 replies, 495 bookmarks",
+      "humans": "none",
+      "verdict": "accept",
+      "reason": "Confirmed original @AnthropicAI post with solid engagement (262k views / 2.4k likes — strong reach, though mid-tier for an account of Anthropic's size, hence 6/10). Video downloaded and verified (44.35 s, 1920x1080; note video.twimg.com's default edge IP was unreachable from this network — download required pinning the hostname to the working twimg CDN IP 146.75.92.159). All 10+ sampled frames are motion-graphics screen UI of the Claude mobile app (chat, email draft, share sheet, calendar form, logo card) with zero humans — ideal for screen-UI/kinetic-type rebuild."
+    },
+    {
+      "title": "Perplexity Comet — 'Comet is here' browser launch",
+      "videoUrl": "https://video.twimg.com/amplify_video/1942968083217629184/vid/avc1/1280x720/Glh1ut3Pjcg513Yn.mp4?tag=14",
+      "sourceUrl": "https://x.com/perplexity_ai/status/1942969263305671143",
+      "source": "X (@perplexity_ai)",
+      "metrics": "6,519 likes / 491 replies confirmed via X syndication API (checked 2026-08-05); ~1.7M views per candidate notes (views not exposed by syndication API); posted 2025-07-09 by @perplexity_ai",
+      "humans": "incidental",
+      "verdict": "accept",
+      "reason": "Original post confirmed on X by @perplexity_ai (2025-07-09) with 6.5k likes / ~1.7M views — strong for a brand launch post. Video downloaded (72 s, 1280x720 h264, 6.4 MB; required pinning video.twimg.com to Fastly edge 146.75.92.159 due to Cloudflare route timeout). Frames show kinetic serif type, abstract orb/particle renders, and browser UI screen recordings; no live-action people, only tiny avatars inside screen captures (humans=incidental). Meets all accept criteria."
+    },
+    {
+      "title": "Cluely — viral launch/ad film ('soham parekh gets away with it')",
+      "videoUrl": "https://video.twimg.com/amplify_video/1940675431491092480/vid/avc1/3840x2160/xVvYvtLYe0bqR3Ho.mp4",
+      "sourceUrl": "https://x.com/im_roy_lee/status/1940675563242639443",
+      "source": "X (@im_roy_lee, Cluely founder)",
+      "metrics": "Verified via Twitter syndication API: 7,817 likes, 438 replies (2025-07-03 post by @im_roy_lee, Cluely founder). Views not exposed by API; candidate notes report ~736.7k views, consistent with verified likes.",
+      "humans": "dominant",
+      "verdict": "reject",
+      "reason": "Engagement is genuinely strong for X (~737k views, 7.8k likes on a startup ad), and the 4K file downloaded fine, but 8 of 11 sampled frames are live-action people dominating the frame — a nine-actor video-call grid and a hooded actor with a handwritten \"SOHAM PAREKH\" sign — with only a 3-frame Cluely logo end card of rebuildable kinetic type. Predominantly live-action narrative, so rejected per the humans rule."
+    }
+  ]
 }

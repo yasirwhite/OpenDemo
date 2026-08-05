@@ -45,6 +45,18 @@ rebuild screen UI, product shots, and kinetic type, not people. Incidental
 human footage is tolerable if the video's spine is product/typography; a
 founder-on-camera film is an automatic reject (logged, so it is not re-vetted).
 
+**Also reject raw feature demos — but only those.** High engagement on a post
+does not mean the attached video is a launch film: announcement tweets often
+attach a plain screen capture of the product in use. Before accepting, ask
+*"is there a produced layer to clone?"* — any of: title/type beats, camera
+moves or device comps, an edited cut rhythm, brand cards, motion graphics.
+If the answer is no — essentially a raw screen recording — there is nothing
+to rebuild: the clone comes out as wall-to-wall product-slot placeholders
+(this exact failure happened with the Hyperagent dashboard clip, 2026-08-05;
+see the scouting log). Reject **only** on "no produced layer at all" — a real
+film that merely *contains* raw-capture demo stretches is exactly what we
+want, and engagement judged on the film itself still decides.
+
 Pick the top **2** survivors by engagement and distinctiveness from templates
 we already have (`templates/index.json`).
 

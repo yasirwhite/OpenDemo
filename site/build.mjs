@@ -194,7 +194,7 @@ document.querySelectorAll('[data-t]').forEach(b=>{
   if(!t||!im||t.images.length<2)return;
   let i=0,cyc=null;
   b.addEventListener('mouseenter',()=>{t.images.forEach(s=>{(new Image()).src=s});
-    cyc=setInterval(()=>{i=(i+1)%t.images.length;im.src=t.images[i]},2000)});
+    cyc=setInterval(()=>{i=(i+1)%t.images.length;im.src=t.images[i]},500)});
   b.addEventListener('mouseleave',()=>{clearInterval(cyc);cyc=null;i=0;im.src=t.images[0]});
 });
 </script>`;
