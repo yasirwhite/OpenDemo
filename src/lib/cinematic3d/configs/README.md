@@ -13,8 +13,6 @@ so from here the repo root is `../../../../`.
 
 ## Examples
 
-| file | what it shows |
-|---|---|
 Example configs for every pipeline live together in the repo's top-level
 `examples/` directory, not in here — this directory is only for the working
 configs you author, which stay gitignored.
@@ -22,7 +20,6 @@ configs you author, which stay gitignored.
 | file | what it shows |
 |---|---|
 | [`examples/login-demo-3d.json`](../../../../examples/login-demo-3d.json) | the two-scene shape: a 3D opener, then flat 2D for the part that has to stay legible. Renders against `examples/login-demo.mp4`. |
-| [`examples/doorstep-launch-video.json`](../../../../examples/doorstep-launch-video.json) | the text layer that cuts between 3D shots — see `src/lib/textcards/`. |
 
 Start by copying one:
 

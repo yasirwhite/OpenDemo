@@ -129,8 +129,7 @@ ffmpeg -y -i text.mp4 -i shot1.mp4 -filter_complex \
 ```
 
 Keep scratch work (mock apps, recordings, intermediate renders) in
-`.demo-build/` — it is gitignored. `configs/doorstep.json` was built exactly
-this way; its `slot-1` records the commands that filled it.
+`.demo-build/` — it is gitignored.
 
 **Zoom rules carry over, with more force:**
 - **Zoom even more sparingly in 3D.** A 3D push is far more disruptive than a 2D one.

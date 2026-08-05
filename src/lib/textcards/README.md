@@ -9,12 +9,12 @@ by frame. They are not invented, and they are the reason this does not look
 generated.
 
 ```bash
-node src/lib/textcards/build.mjs --config examples/doorstep-launch-video.json
-node src/lib/textcards/render.mjs --out doorstep.mp4 --fps 60
+node src/lib/textcards/build.mjs --config my-video.json
+node src/lib/textcards/render.mjs --out my-video.mp4 --fps 60
 ```
 
-`examples/doorstep-launch-video.json` is a complete worked example — read it first.
-All example configs for every pipeline live in `examples/`.
+The config format is documented below; example configs for every pipeline live
+in the repo's top-level `examples/`.
 
 Other commands:
 
@@ -104,7 +104,7 @@ ffmpeg -y -i text.mp4 -i shot1.mp4 -filter_complex \
 ```
 
 Render the footage at the **same width/height/fps** as `video` or it will not
-line up. `examples/doorstep-launch-video.json` has a worked `_filled` block on `slot-1`.
+line up.
 
 ---
 
@@ -116,8 +116,8 @@ matters most once there is a track under the video.
 
 **Vary how many bars sit between cuts.** Putting a cut on *every* downbeat is
 just a slower metronome, and uniform edit lengths are the thing that reads as
-generated. Mix 1-bar and 2-bar gaps; 4 bars for a long hold. In
-`examples/doorstep-launch-video.json` the gaps run 1,1,1,1,2,1,2,1,2,1,2,1 bars.
+generated. Mix 1-bar and 2-bar gaps; 4 bars for a long hold. In the cut this
+rule was measured from, the gaps ran 1,1,1,1,2,1,2,1,2,1,2,1 bars.
 
 **Product slots should be a whole number of bars.** A 4.0s shot against a
 2.069s bar ends 0.14s early and leaks a frame of empty ground before the next
@@ -125,8 +125,8 @@ beat. Render the `cinematic3d` pass at the bar-aligned duration instead —
 `"duration": 4.138` for two bars at 116 BPM.
 
 **One licensed exception: dense internal cadences may subdivide to the beat.**
-A feature list flashing on the bar is too slow to feel like a list. `pills` in
-the Doorstep config run 2 / 1.5 / 1 / 1 beats — still accelerating, still
+A feature list flashing on the bar is too slow to feel like a list. A
+`feature-pills` cadence of 2 / 1.5 / 1 / 1 beats is still accelerating, still
 locked, just below bar resolution. Do this for cadence *inside* one scene,
 never for the cuts *between* scenes.
 
