@@ -58,8 +58,8 @@
       "source": "X (@AnthropicAI)",
       "metrics": "X (@AnthropicAI), posted 2025-07-30: 261,864 views, 2,442 likes, 231 retweets, 91 quotes, 94 replies, 495 bookmarks",
       "humans": "none",
-      "verdict": "accept",
-      "reason": "Confirmed original @AnthropicAI post with solid engagement (262k views / 2.4k likes — strong reach, though mid-tier for an account of Anthropic's size, hence 6/10). Video downloaded and verified (44.35 s, 1920x1080; note video.twimg.com's default edge IP was unreachable from this network — download required pinning the hostname to the working twimg CDN IP 146.75.92.159). All 10+ sampled frames are motion-graphics screen UI of the Claude mobile app (chat, email draft, share sheet, calendar form, logo card) with zero humans — ideal for screen-UI/kinetic-type rebuild."
+      "verdict": "reject",
+      "reason": "OVERTURNED on human review (2026-08-05): engagement is brand halo — a video posted by @AnthropicAI draws views because it is Claude, not because of reusable film craft. The style (hand-drawn device frame, bespoke brand illustration) is also too tied to that one brand to retarget: other products could not credibly be dropped into this film's grammar. Produced and well-made, but not template material. Do not re-vet."
     },
     {
       "title": "Perplexity Comet — 'Comet is here' browser launch",
