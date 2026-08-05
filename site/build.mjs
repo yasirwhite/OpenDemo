@@ -70,7 +70,8 @@ footer a{color:var(--sub)}footer a:hover{color:var(--ink)}
 .carousel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:0;border-radius:16px 16px 0 0}
 .carousel img{width:100%;flex-shrink:0;scroll-snap-align:center;aspect-ratio:16/9;object-fit:cover;display:block}
 .dots{display:flex;gap:.4rem;justify-content:center;padding:.6rem 0 0}
-.dots span{width:6px;height:6px;border-radius:99px;background:var(--line)}
+.dots span{width:7px;height:7px;border-radius:99px;background:var(--line);cursor:pointer;transition:background .2s,transform .2s}
+.dots span.on{background:var(--accent);transform:scale(1.25)}
 .dbody{padding:.75rem 1.5rem 1.5rem}
 .dbody h3{margin:.5rem 0 .75rem;font-size:1.05rem}
 pre.prompt{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:1rem;white-space:pre-wrap;word-break:break-word;font-size:.85rem;line-height:1.55;color:var(--sub);margin:0 0 .9rem}
@@ -163,19 +164,39 @@ const T=${JSON.stringify(data)};
 const ovl=document.getElementById('ovl'),imgs=document.getElementById('ovl-imgs'),
 dots=document.getElementById('ovl-dots'),pr=document.getElementById('ovl-prompt'),
 cp=document.getElementById('ovl-copy');
+let n=0,idx=0,timer=null,paused=false;
+const mark=()=>[...dots.children].forEach((d,i)=>d.classList.toggle('on',i===idx));
+const goTo=i=>{idx=(i+n)%n;imgs.scrollTo({left:idx*imgs.clientWidth,behavior:'smooth'});mark()};
+const play=()=>{stop();if(n>1)timer=setInterval(()=>{if(!paused)goTo(idx+1)},2000)};
+const stop=()=>{if(timer){clearInterval(timer);timer=null}};
+imgs.addEventListener('scroll',()=>{const i=Math.round(imgs.scrollLeft/imgs.clientWidth);
+  if(i!==idx&&i>=0&&i<n){idx=i;mark()}});
+imgs.addEventListener('mouseenter',()=>paused=true);
+imgs.addEventListener('mouseleave',()=>paused=false);
 document.querySelectorAll('[data-t]').forEach(b=>b.addEventListener('click',()=>{
   const t=T[b.dataset.t];if(!t)return;
+  n=t.images.length;idx=0;paused=false;
   imgs.innerHTML=t.images.map(s=>'<img src="'+s+'" alt="">').join('');
-  dots.innerHTML=t.images.length>1?t.images.map(()=>'<span></span>').join(''):'';
+  dots.innerHTML=n>1?t.images.map((_,i)=>'<span data-i="'+i+'"></span>').join(''):'';
+  [...dots.children].forEach(d=>d.addEventListener('click',()=>goTo(+d.dataset.i)));
   pr.textContent=t.prompt;cp.textContent='Copy prompt';
-  imgs.scrollLeft=0;ovl.classList.add('open');
+  imgs.scrollLeft=0;mark();ovl.classList.add('open');play();
 }));
-const close=()=>ovl.classList.remove('open');
+const close=()=>{ovl.classList.remove('open');stop()};
 document.getElementById('ovl-x').addEventListener('click',close);
 ovl.addEventListener('click',e=>{if(e.target===ovl)close()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
 cp.addEventListener('click',()=>{navigator.clipboard.writeText(pr.textContent)
   .then(()=>{cp.textContent='Copied ✓';setTimeout(()=>cp.textContent='Copy prompt',1500)})});
+// card hover: 2s slideshow through the template's previews
+document.querySelectorAll('[data-t]').forEach(b=>{
+  const t=T[b.dataset.t],im=b.querySelector('img.thumb');
+  if(!t||!im||t.images.length<2)return;
+  let i=0,cyc=null;
+  b.addEventListener('mouseenter',()=>{t.images.forEach(s=>{(new Image()).src=s});
+    cyc=setInterval(()=>{i=(i+1)%t.images.length;im.src=t.images[i]},2000)});
+  b.addEventListener('mouseleave',()=>{clearInterval(cyc);cyc=null;i=0;im.src=t.images[0]});
+});
 </script>`;
 
 const html = `<!doctype html>
