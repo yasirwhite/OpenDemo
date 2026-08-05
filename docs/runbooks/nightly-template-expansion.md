@@ -16,6 +16,14 @@ minimal human correction.
 Open https://www.launchgallery.video/ and explore recent successful launches.
 Collect candidate launch videos.
 
+**Known blockers (hit on the first run, 2026-08-05):** the site serves plain
+HTTP clients a bot challenge (429, Vercel checkpoint). Drive it with a real
+browser instead — the repo already ships Playwright (`npx playwright`) — or
+fall back to alternate indexes (launchlibrary.xyz worked) and platform
+syndication APIs for engagement numbers (`cdn.syndication.twimg.com` /
+fxtwitter for X). On some networks `video.twimg.com` downloads need
+`curl -4` (IPv6 hangs).
+
 ## 2. Vet engagement
 
 For each candidate, find where the video was originally posted (Product Hunt,
