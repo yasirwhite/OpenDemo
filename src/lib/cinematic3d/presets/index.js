@@ -16,6 +16,34 @@ export { RIG, C } from "./rig.js";
 
 const S = 1000;   // ms per second
 
+// ORBIT. scene.html sweeps the camera around the look-at point as
+//   yaw = yawFrom + yawDir * yawRate * elapsedSeconds
+//   pitch = pitchFrom + pitchRate * elapsedSeconds
+// with every angle in degrees and both rates in degrees per second. A preset
+// ships a tuned orbit; a config may override any subset of these keys, so the
+// same shot can sweep slower, or reverse to sweep the other way, without
+// forking the preset.
+//
+// These defaults apply when a config adds an orbit to a preset that had none.
+// A partial override there would otherwise leave keys undefined, and the yaw
+// math turns a single undefined into NaN — which silently renders a black frame
+// rather than throwing.
+const ORBIT_DEFAULTS = { yawFrom: 0, yawDir: 1, yawRate: 0, pitchFrom: 0, pitchRate: 0 };
+const ORBIT_KEYS = Object.keys(ORBIT_DEFAULTS);
+
+/** Merge a scene's orbit override onto whatever the preset emitted. */
+function resolveOrbit(presetOrbit, override) {
+  if (override === undefined) return presetOrbit;      // untouched
+  if (override === null) return undefined;             // explicitly pinned
+  const bad = Object.keys(override).filter((k) => !ORBIT_KEYS.includes(k));
+  if (bad.length)
+    throw new Error(`unknown orbit key(s) ${bad.join(", ")} — have: ${ORBIT_KEYS.join(", ")}`);
+  for (const k of ORBIT_KEYS)
+    if (override[k] !== undefined && !Number.isFinite(override[k]))
+      throw new Error(`orbit.${k} must be a number, got ${JSON.stringify(override[k])}`);
+  return { ...ORBIT_DEFAULTS, ...(presetOrbit ?? {}), ...override };
+}
+
 export const PRESETS = {
   "laptop-reveal": laptop_reveal,
   "laptop-punch-reveal": laptop_punch_reveal,
@@ -60,7 +88,14 @@ export function buildCuts(config) {
     if (!preset) throw new Error(`unknown preset "${scene.preset}" (have: ${Object.keys(PRESETS).join(", ")})`);
     const durationMs = Math.round((scene.duration ?? 6) * S);
     const screen = scene.screen ?? (config.source ? "video" : "placeholder");
-    const produced = preset({ durationMs, screen, cursor: scene.cursor, focus: scene.focus });
+    const produced = preset({ durationMs, screen, cursor: scene.cursor, focus: scene.focus, orbit: scene.orbit });
+
+    // Presets are meant to be configurable, so a scene may retune the sweep the
+    // preset shipped with — including on presets that emit no orbit at all.
+    for (const c of produced) {
+      const resolved = resolveOrbit(c.orbit, scene.orbit);
+      if (resolved) c.orbit = resolved; else delete c.orbit;
+    }
 
     // a preset may emit several cuts; split the requested duration across them
     const total = produced.reduce((n, c) => n + c.durationMs, 0);

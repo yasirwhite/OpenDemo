@@ -44,6 +44,48 @@ re-deriving it per demo is how these films get worse, not better.
 | `clip.fit` | `"stretch"` (default) remaps the clip onto the scene duration; `"loop"` plays at true 1x and wraps |
 | `duration` | how long the scene runs in the output (may differ from the clip length — the clip is time-remapped to fit) |
 | `focus` | what to zoom on. Shape depends on the preset (see below). |
+| `cursor` | pointer keyframes for this scene — see The cursor below. |
+| `orbit` | override the camera sweep the preset ships with. See below. |
+
+### Orbit: retuning a preset's camera sweep
+
+A preset ships one tuned orbit, but presets are meant to be configurable, so any
+scene may override part of it:
+
+```jsonc
+{ "preset": "laptop-hold", "duration": 7.2,
+  "orbit": { "yawRate": 0.7, "yawDir": -1 } }   // slower, and sweeping the other way
+```
+
+The camera swings around the look-at point as
+
+```
+yaw   = yawFrom   + yawDir * yawRate * elapsedSeconds
+pitch = pitchFrom + pitchRate        * elapsedSeconds
+```
+
+| key | meaning |
+|---|---|
+| `yawFrom` | starting azimuth, degrees. Negative starts left of centre. |
+| `yawDir` | `1` sweeps left→right, `-1` sweeps right→left |
+| `yawRate` | sweep speed, **degrees per second**. `0` holds the angle. |
+| `pitchFrom` | starting elevation, degrees. Positive looks down at the device. |
+| `pitchRate` | elevation drift, degrees per second |
+
+Keys you omit keep the preset's value. Two special cases:
+
+- `"orbit": null` removes the sweep entirely and pins the camera.
+- Adding `orbit` to a preset that has none (`raw-2d`, `laptop-reveal`) *replaces*
+  how its camera is positioned, since the orbit block drives position directly.
+  Unspecified keys fall back to `0` — so give `pitchFrom` a value, or the camera
+  sits level with the device and you lose the downward tilt.
+
+Alternating `yawDir` between consecutive scenes gives a gentle left-right-left
+rocking across cuts, which reads as calm; sweeping the same way every scene
+starts to feel like a turntable.
+
+A typo throws rather than rendering silently: an unknown key is rejected, and a
+non-numeric value is caught before it can become a `NaN` angle and a black frame.
 
 `clip` and `duration` being independent is deliberate: you can hold on 2 seconds of
 recording for 5 seconds of screen time, or compress 10 seconds into 4. When a scene
@@ -115,6 +157,56 @@ So either:
 When a scene must run longer than the footage you have for it, use
 `"clip": { "fit": "loop" }` rather than stretching it. Looping holds 1.00x and wraps;
 stretching turns that one scene into slow motion while its neighbours play at speed.
+
+## The cursor
+
+A visible pointer is what lets the camera hold still. Without one the only motion
+in a shot is the dolly, which is how these films end up zooming on every cut.
+
+**Leave the colours alone.** The default is a saturated indigo fill inside a thick
+white outline, and that combination is legible over light UI, dark UI, photos and
+video alike. The outline does most of the work. A cursor tinted to match a brand
+almost always loses contrast, and a cursor the viewer cannot track is worse than
+no cursor at all — they lose the thing they were following.
+
+```json
+"cursor": { "color": "#4a5ef0", "outline": "#ffffff", "outlineWidth": 0.055, "scale": 0.038 }
+```
+
+Top-level, applies to the whole film. `scale` is a fraction of screen width;
+`outlineWidth` is a fraction of the pointer sprite. Below ~0.04 the outline stops
+reading. Override these only for a real conflict — a UI that is itself indigo.
+
+### Motion
+
+Per scene, as keyframes in **normalised screen coordinates**, `v` measured downward
+from the top. `at` is a fraction of the cut, and `ease` defaults to `inOut`:
+
+```json
+"cursor": [
+  { "at": 0.00, "u": 0.20, "v": 0.30 },
+  { "at": 0.22, "u": 0.52, "v": 0.55 },
+  { "at": 0.60, "u": 0.54, "v": 0.71 }
+]
+```
+
+Rules, in order of how often they get broken:
+
+- **Move quickly.** A click travel should take ~0.2–0.3 of the cut, not half of it.
+  Slow cursor drift reads as hesitation and makes a confident demo look unsure.
+- **Almost no dwell between actions.** Arrive, click, leave. Real demos have dead
+  air; a film of one should not. If two clicks are adjacent in the recording, the
+  cursor should already be moving to the second as the first resolves.
+- **Ease in and out** — plain `inOut` interpolation between keys. Nothing fancier
+  is needed and anything linear reads as robotic.
+- **Do not animate the cursor during a camera move.** Two motions competing for
+  attention means neither lands. Move the cursor, then move the camera, or hold one
+  perfectly still while the other works.
+- The pointer **tip** is what sits on the target, not the sprite centre — the
+  renderer already offsets for this, so aim at the thing being clicked.
+
+The cursor is hidden automatically in `raw-2d` and flat modes, and while a laptop
+lid is still opening.
 
 ## The punch-then-reveal pattern
 

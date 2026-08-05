@@ -48,3 +48,10 @@ committing to a run and refuses to encode a flat-colour film, but if you hit it,
 
 The example config uses `fps: 60`, `supersample: 2`, `crf: 15`. Drop to the defaults
 while you are iterating on timing — a preview render is roughly 4× faster.
+
+## Cursor
+
+Off unless a scene supplies keyframes. It is worth supplying them: a visible pointer
+is what allows a shot to hold still instead of zooming to create motion. See
+[the cursor section](../README.md#the-cursor) — short version, move fast, do not
+dwell between clicks, and do not change the default colours.

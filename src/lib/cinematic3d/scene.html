@@ -61,6 +61,12 @@ fadeQuad.position.z = -0.5; overlay.add(fadeQuad);
 // A pointer gives the screens something live, which is what lets the CAMERA
 // hold still. Without it the only motion in a shot is the dolly, which is how
 // the previous pass ended up zooming on nearly every cut.
+// The DEFAULT COLOURS ARE THE RIGHT ANSWER unless you have a specific reason.
+// A saturated indigo fill inside a thick white outline stays readable over light
+// UI, dark UI, photos and video alike — a cursor that blends into the recording
+// is worse than no cursor, because the viewer loses the thing they were following.
+// Tinting it to match a brand almost always costs contrast.
+const CUR = CONFIG.cursor ?? {};
 function makeCursorTex() {
   const S = 128, c = document.createElement("canvas"); c.width = c.height = S;
   const g = c.getContext("2d");
@@ -68,8 +74,11 @@ function makeCursorTex() {
   g.beginPath();
   pts.forEach(([x, y], i) => (i ? g.lineTo(x * S, y * S) : g.moveTo(x * S, y * S)));
   g.closePath();
-  g.fillStyle = "#4a5ef0";
-  g.strokeStyle = "#ffffff"; g.lineWidth = S * 0.055; g.lineJoin = "round";
+  g.fillStyle = CUR.color ?? "#4a5ef0";
+  // the outline is what does the work — thinning it below ~0.04 loses legibility
+  g.strokeStyle = CUR.outline ?? "#ffffff";
+  g.lineWidth = S * (CUR.outlineWidth ?? 0.055);
+  g.lineJoin = "round";
   g.stroke(); g.fill();
   const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
 }
@@ -169,7 +178,7 @@ function addGlass(devEntry, screenMesh, host, strength = 0.55) {
 function addCursor(devEntry, screenMesh, root, parent) {
   const b = screenBasis(screenMesh);
   const host = parent || root;
-  const s = b.size * 0.038;
+  const s = b.size * (CUR.scale ?? 0.038);
   const m = new THREE.Mesh(new THREE.PlaneGeometry(s, s),
     // depthWrite:false — a transparent quad still writes depth over its FULL
     // rectangle by default, which stamps a box-shaped occluder into the buffer.
