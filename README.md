@@ -1,24 +1,12 @@
 # OpenDemo
 
-OpenDemo gives your LLM the ability to create exciting demo videos.
+Build exciting demos for free using your own AI
 
 ***No cloud services or API keys |*** Just clone `OpenDemo` and prompt the model you already use.
 
 ### Demo
 Watch OpenDemo fully execute a local login flow from a tiny JSON instruction file:
 ![Demo](./examples/login-demo.gif)
-
-
-## Two kinds of demo
-
-Your AI will ask which one you want before it starts:
-
-**Simple walkthrough** — a clean screen recording of the product, zoomed and
-paced automatically. Good for docs, onboarding and feature tours. Stable.
-
-**Exciting launch video** *(alpha)* — your recording placed inside 3D product
-shots and cut together with kinetic typography, in the style of a real product
-launch film. Good for ProductHunt, YouTube and launch day.
 
 ## Usage
 
@@ -44,6 +32,17 @@ If you (the human) want to make changes:
 To use the editor, run the demo command, which you can get by asking your model for it. It will look something like `node OpenDemo/run-demo.mjs <DEMO.json>`
 
 ---
+
+## Two kinds of demo
+
+Your AI will ask which one you want before it starts:
+
+**Simple walkthrough** — a clean screen recording of the product, zoomed and
+paced automatically. Good for docs, onboarding and feature tours. Stable.
+
+**Exciting launch video** *(alpha)* — your recording placed inside 3D product
+shots and cut together with kinetic typography, in the style of a real product
+launch film. Good for ProductHunt, YouTube and launch day.
 
 ## Installation & Setup
 Because OpenDemo's cinematic video rendering engine is heavily powered by a compiled React application running invisibly in the background, you **must** build the project once before the engine can function.
