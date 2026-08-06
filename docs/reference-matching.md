@@ -196,6 +196,48 @@ Compare at **matched moments**, put them side by side, and state PASS / PARTIAL 
 item with the delta. Do sample stills first — a few per shot, seconds to render — and only
 commit to a full render once the samples hold up.
 
+## 10. Transitions are mechanisms — describe them before you rebuild them
+
+Learned the hard way on the Comet and Bloom rebuilds (2026-08-06): every miss the
+human reviewer caught survived earlier passes because the transition had been
+*labelled* ("fades out", "cut to black") instead of *described*. The fix rounds
+that finally hit reference quality all followed the same discipline:
+
+- **Name the mechanism, not the impression.** "Fades away" hid three different
+  truths: a window that shrinks AND flies up while fading (three channels on
+  different ease powers); a circle that *morphs into the frame* (rises while its
+  width contracts and its corner radius collapses); a disc that grows *out of an
+  ellipsis dot* with accelerating (not decelerating) growth. Write the sentence
+  that names origin point, channels, and curve direction — if you cannot write
+  it, you have not looked closely enough to rebuild it.
+- **Ease direction is a coin with two very different sides.** An expo-*out*
+  where the reference accelerates reads as wrong even when endpoints match.
+  Sample mid-motion positions across consecutive frames and fit the curve; do
+  not pick an easing by vibe.
+- **Every motion claim gets pixel numbers first.** Element rect, corner radius,
+  shadow extent and density, per-frame position — measured from full-decode
+  frames *before* the config is touched. Approximation is the recurring failure
+  mode; measurement is the recurring fix.
+- **Verify motion in motion.** Matched stills pass while the film still reads
+  wrong. Compare consecutive-frame *deltas* (position/coverage per frame)
+  against the reference's — the per-frame trace is what catches a lagging
+  swallow or a front-loaded entry.
+- **Windows and frames are animated objects.** The display surface itself
+  rises, drifts, punch-zooms, shrinks and slides away — with an edge shadow
+  whose density is measurable and which full-bleed geometry physically removes.
+  Measure the window's trajectory like any other actor. Ambient motion is often
+  compound (slow rotation *plus* slight zoom); track two fixed points to
+  separate the components.
+- **Grounds change in bursts.** Map every background state change even when a
+  plate hides it — the burst rhythm (hard cut vs timed dissolve, dead-still
+  holds between) is part of the film's grammar, not scenery.
+- **The reviewer's notes name where to look, not what to change.** Convert each
+  note into measurements at that timestamp, then fix to the measurement. The
+  notes that unlocked "perfect" were nuances no metric flagged — a bottom gap,
+  a corner radius, a ball easing toward shorter text — caught only by a human
+  watching the side-by-side. Always produce the side-by-side; always get it
+  watched.
+
 ---
 
 ## Per-reference notes
@@ -217,3 +259,36 @@ Append a section per reference film. Keep the method above generic.
   **genuine full-bleed 2D**. Not everything is a hardware shot.
 - One cross-dissolve (~28.3s) that **cut detection cannot see** — it shows only as edge
   energy draining, never as a luminance spike.
+
+### Comet browser launch film (72s, 1280×720→720p master, 25fps)
+
+- Rebuilt 2026-08-05/06 as the `aspen` template. Grammar: cream kinetic-serif
+  overture with rolling depth-blurred nouns and glassy orbs → animated browser
+  windows (rise / punch-in / slide-left-shrink exits, measured edge shadows,
+  settled rects deliberately shy of the frame edges — 22–36px bottom gaps) →
+  voice-mode particle sphere → circle-to-frame morph swallow → rotating
+  starfield outro (+1.95°/s with +0.40%/s zoom) with light-resolves-to-mark.
+- Text entries rise into place (~21px, exponential settle) film-wide; exits
+  lift harder (accelerating, −40px+). This upward drift is the film's signature
+  and was invisible at 1–2s sampling.
+- Traps that cost passes: the flash beat's disc grows out of the last ellipsis
+  dot with *accelerating* growth; the swallow is a morph, not a circle wipe;
+  window shadows are constant through zooms and vanish only via full-bleed
+  geometry; the 8fps frame dumps carried non-constant timing offsets (trust
+  full decode only).
+
+### Bloom design-tool launch film (59s, 1920×1080, 25fps)
+
+- Rebuilt 2026-08-05/06 as the `birch` template. Grammar: lilac gradient
+  grounds, serif type with gradient washes and a near-transparent radial glow
+  that tints text; one measured card comp (stage 1051×592, radius ~33, radius
+  tracks scale) gliding/shrinking/fading through the film; loader beats with a
+  blurred ball that eases to each label's width; background changes in three
+  bursts (15.4–23.7s) between dead-still holds; pixel-sort poster reveals
+  (rising top edge + per-column tile dissolve); letter-fall end card (letters
+  enter from the left and settle).
+- Film-wide constant smooth camera zooms (~1.00→1.06 class) on nearly every
+  scene — the single most-missed feature of the first pass; assume every scene
+  has one until measured otherwise.
+- Slot labels belong only on genuinely empty placeholder boxes — never over
+  rebuilt UI.
