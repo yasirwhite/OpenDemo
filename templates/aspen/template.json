@@ -1,0 +1,3019 @@
+{
+  "_about": [
+    "TEMPLATE 'aspen' + WORKED EXAMPLE — a 72s cinematic launch film for 'Aspen' (aspen.computer), a fictional AI browser. An aspen grove is one organism: hundreds of trunks sharing a single root system. That is the product and the voice — every tab, inbox, thread and calendar on one root, and copy that says rooted / threaded / connected rather than fast / smart / powerful.",
+    "The copy is placeholder. To retarget it to a real product, rewrite the role-tagged scenes per templates/README.md and keep every timing exactly as-is — startMs, durationMs, easings, camera keys, window `keys` tracks and ground stops ARE the template.",
+    "",
+    "Build and render:",
+    "  node src/lib/textcards/build.mjs --config templates/aspen/template.json",
+    "  node src/lib/textcards/render.mjs --out aspen.mp4 --fps 25",
+    "",
+    "TEN fillable windows, indexed `slot 1` .. `slot 10` in film order. Each carries a SHORT on-screen `label` and a long `_fill` note holding the measured description of what the window does and what belongs in it. Nine are `media-window` scenes whose rect moves every frame — footage dropped into them must be driven through the SAME `keys` track (set `src` on the scene, or composite with matched transforms); only slot 9 owns the whole frame and can take a plain overlay.",
+    "",
+    "SIGNATURE OPTIONAL SECTION — the template carousel, 27.20-35.50s (slots 2-7): five segments whipping through right-to-left with the gaps between their arrivals growing 360 / 480 / 640 / 850 / 1130 ms, each one decelerating harder than the last, then a sixth that lands, holds, grows into a playing window and punches to full bleed. It occupies exactly the envelope of the single window it replaced, so removing it changes nothing outside 27.20-35.50s. See templates/aspen/README.md for the one-window fallback.",
+    "",
+    "ONE image asset: ../../../templates/aspen/aperture-mark.png — the path is resolved by the browser relative to src/lib/textcards/index.html. It is the mark that opens the film and the mark in the closing lockup. Swapping that one file re-brands both ends.",
+    "",
+    "Every scene that carries copy — text scenes and the labelled windows — has a 'role', so a model can tell brand copy from in-product dialogue. See the Copy roles table in src/lib/textcards/README.md. Scenes with no copy at all (the orbs, the flash discs, the starfield) carry no role."
+  ],
+  "_film": "Perplexity Comet launch film rebuild - text layer with keyframed media-window placeholders. 1280x720@25 (reference rate), 71.96s. orb-roll/group-move/type-on cues are ABSOLUTE film-clock ms; reveal-line group/exit cues, media-window keys and per-scene camera keys are scene-relative. Word entries ride the measured exponential rise (riseDy/settleDecay); line scale-settles and the dot-field pan+zoom are per-scene cameras; product windows are media-window scenes tracing the win-*.tsv tracks.",
+  "_sections": [
+    "section 0 (0-16.1s): cream open, the Aspen mark, dot-field pan, 'A browser rooted in you.' / 'Threading the dots between...', black flash beat, orb-roll noun column (Tabs/Inboxes/Calendars/Threads/Days), 'Ask further', slot 1 rises at 15.15 and continues into section 1 (the slot is merged across the seam on purpose — do not split it back).",
+    "section 1 (16.1-35.5s): slot 1's map-agent demo, 'See further' serif reveal with the orange orb rolling bottom-right -> top-left (26.1-27.35), then THE CAROUSEL (27.20-35.50, slots 2-7) — five template segments flying past one at a time on growing gaps and hardening decelerations, and a sixth that lands, grows into a playing window and punches to full bleed.",
+    "section 2 (35.50-48.04s): 'and go further than ever' on cream, then Aspen's own UI — the home page with the Ask bar and connector chips rising from the bottom (slot 8, ~36.9-38.1) with a slow push-in and a click through to voice mode, then voice mode itself (slot 9): a full-bleed monochrome particle-dust sphere on cream, breathing, pill buttons at the bottom, a sources pill at the top ~45.8. Ends on the film's only score-1.0 hard cut at 48.04.",
+    "section 3 (48.04-71.96s): hard cut to slot 10's video-page demo, 'One root. Every answer.', ground ramping to near-black at 60.44 under the rising mass, cosmic backdrop (the orb ring collapses, starfield turns), 'Browse like it's all one page.', the white dot, the Aspen lockup creeping to 70.3, black hold to the last frame."
+  ],
+  "video": {
+    "width": 1280,
+    "height": 720,
+    "fps": 25,
+    "durationMs": 71960
+  },
+  "ground": [
+    {
+      "fromMs": 0,
+      "colour": [
+        251,
+        250,
+        245
+      ]
+    },
+    {
+      "fromMs": 16100,
+      "colour": [
+        251,
+        250,
+        245
+      ]
+    },
+    {
+      "fromMs": 35500,
+      "colour": [
+        252,
+        253,
+        248
+      ]
+    },
+    {
+      "fromMs": 48040,
+      "colour": [
+        251,
+        250,
+        244
+      ]
+    },
+    {
+      "fromMs": 60400,
+      "colour": [
+        238,
+        237,
+        230
+      ],
+      "_note": "MEASURED plate ramp behind the dark-swallow, one step per reference frame 60.40-61.12. The old two hard cuts ([170,168,163]@60460 then [2,2,2]@60900) were the 'teleport' the reviewer saw: the plate snapped to grey and then to black while the mass was still rising. The reference's own plate is NOT monotonic — it brightens 132 -> 183 in one frame at 60.76 where a scene handover happens under the mass. Reproducing that would be a second snap, so these values are the monotonic least-squares fit through both branches: exact on 60.40-60.60 and on 60.92-61.08, and within 28 levels across the 60.64-60.88 pool where the reference contradicts itself. The last step to [2,2,2] is invisible — the mass covers 100% of the frame from 61.12."
+    },
+    {
+      "fromMs": 60440,
+      "colour": [
+        225,
+        224,
+        217
+      ]
+    },
+    {
+      "fromMs": 60480,
+      "colour": [
+        211,
+        210,
+        203
+      ]
+    },
+    {
+      "fromMs": 60520,
+      "colour": [
+        198,
+        196,
+        192
+      ]
+    },
+    {
+      "fromMs": 60560,
+      "colour": [
+        184,
+        182,
+        178
+      ]
+    },
+    {
+      "fromMs": 60600,
+      "colour": [
+        172,
+        170,
+        166
+      ]
+    },
+    {
+      "fromMs": 60640,
+      "colour": [
+        165,
+        163,
+        159
+      ]
+    },
+    {
+      "fromMs": 60680,
+      "colour": [
+        162,
+        160,
+        156
+      ]
+    },
+    {
+      "fromMs": 60720,
+      "colour": [
+        160,
+        158,
+        154
+      ]
+    },
+    {
+      "fromMs": 60760,
+      "colour": [
+        158,
+        156,
+        152
+      ]
+    },
+    {
+      "fromMs": 60800,
+      "colour": [
+        156,
+        154,
+        150
+      ]
+    },
+    {
+      "fromMs": 60840,
+      "colour": [
+        154,
+        152,
+        148
+      ]
+    },
+    {
+      "fromMs": 60880,
+      "colour": [
+        150,
+        148,
+        144
+      ]
+    },
+    {
+      "fromMs": 60920,
+      "colour": [
+        144,
+        142,
+        138
+      ]
+    },
+    {
+      "fromMs": 60960,
+      "colour": [
+        131,
+        129,
+        125
+      ]
+    },
+    {
+      "fromMs": 61000,
+      "colour": [
+        116,
+        116,
+        113
+      ]
+    },
+    {
+      "fromMs": 61040,
+      "colour": [
+        97,
+        97,
+        94
+      ]
+    },
+    {
+      "fromMs": 61080,
+      "colour": [
+        74,
+        74,
+        74
+      ]
+    },
+    {
+      "fromMs": 61120,
+      "colour": [
+        2,
+        2,
+        2
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "aspen-mark",
+      "role": "brand",
+      "preset": "logo-lockup",
+      "startMs": 900,
+      "durationMs": 2300,
+      "text": "",
+      "markLabel": "Aspen mark",
+      "markH": 160,
+      "markW": 160,
+      "markGap": 0,
+      "size": 100,
+      "scaleFrom": 1,
+      "settleDurMs": 300,
+      "creep": -1,
+      "creepDurMs": 1900,
+      "ground": [
+        251,
+        250,
+        245
+      ],
+      "markSvg": "../../../templates/aspen/aperture-mark.png"
+    },
+    {
+      "id": "drift-dots",
+      "role": "brand",
+      "preset": "group-move",
+      "startMs": 3250,
+      "durationMs": 4800,
+      "size": 16,
+      "keys": [
+        {
+          "atMs": 3250,
+          "s": 1,
+          "x": 0
+        }
+      ],
+      "words": [
+        {
+          "text": "•",
+          "cx": 455,
+          "baseline": 429,
+          "atMs": 3250,
+          "fadeMs": 300
+        },
+        {
+          "text": "•",
+          "cx": 345,
+          "baseline": 679,
+          "atMs": 3250,
+          "fadeMs": 300
+        },
+        {
+          "text": "•",
+          "cx": 645,
+          "baseline": 709,
+          "atMs": 3250,
+          "fadeMs": 300
+        },
+        {
+          "text": "•",
+          "cx": 910,
+          "baseline": 719,
+          "atMs": 3250,
+          "fadeMs": 300
+        },
+        {
+          "text": "•",
+          "cx": 1040,
+          "baseline": 779,
+          "atMs": 3250,
+          "fadeMs": 300
+        },
+        {
+          "text": "•",
+          "cx": 295,
+          "baseline": 949,
+          "atMs": 3250,
+          "fadeMs": 300
+        },
+        {
+          "text": "•",
+          "cx": 955,
+          "baseline": 919,
+          "atMs": 3250,
+          "fadeMs": 300
+        },
+        {
+          "text": "•",
+          "cx": 1165,
+          "baseline": 879,
+          "atMs": 3250,
+          "fadeMs": 300
+        },
+        {
+          "text": "•",
+          "cx": 395,
+          "baseline": 1049,
+          "atMs": 3250,
+          "fadeMs": 300
+        },
+        {
+          "text": "•",
+          "cx": 605,
+          "baseline": 1119,
+          "atMs": 3250,
+          "fadeMs": 300
+        },
+        {
+          "text": "•",
+          "cx": 725,
+          "baseline": 1159,
+          "atMs": 3250,
+          "fadeMs": 300
+        },
+        {
+          "text": "•",
+          "cx": 990,
+          "baseline": 1199,
+          "atMs": 3250,
+          "fadeMs": 300
+        },
+        {
+          "text": "•",
+          "cx": 120,
+          "baseline": 1389,
+          "atMs": 3250,
+          "fadeMs": 300
+        },
+        {
+          "text": "•",
+          "cx": 1205,
+          "baseline": 1409,
+          "atMs": 3250,
+          "fadeMs": 300
+        },
+        {
+          "text": "•",
+          "cx": 1070,
+          "baseline": 1539,
+          "atMs": 3250,
+          "fadeMs": 300
+        },
+        {
+          "text": "•",
+          "cx": 355,
+          "baseline": 1579,
+          "atMs": 3250,
+          "fadeMs": 300
+        },
+        {
+          "text": "•",
+          "cx": 605,
+          "baseline": 1639,
+          "atMs": 3250,
+          "fadeMs": 300
+        },
+        {
+          "text": "•",
+          "cx": 905,
+          "baseline": 1679,
+          "atMs": 3250,
+          "fadeMs": 300
+        },
+        {
+          "text": "•",
+          "cx": 165,
+          "baseline": 1739,
+          "atMs": 3250,
+          "fadeMs": 300
+        }
+      ],
+      "camera": {
+        "originX": 640,
+        "originY": 360,
+        "keys": [
+          {
+            "atMs": 0,
+            "scale": 1,
+            "y": 0
+          },
+          {
+            "atMs": 1200,
+            "scale": 1.058,
+            "y": -288,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2400,
+            "scale": 1.108,
+            "y": -604,
+            "ease": "linear"
+          },
+          {
+            "atMs": 3600,
+            "scale": 1.149,
+            "y": -939,
+            "ease": "linear"
+          },
+          {
+            "atMs": 4800,
+            "scale": 1.185,
+            "y": -1292,
+            "ease": "linear"
+          }
+        ]
+      }
+    },
+    {
+      "id": "line-1",
+      "role": "brand",
+      "preset": "reveal-line",
+      "startMs": 3250,
+      "durationMs": 2000,
+      "size": 40,
+      "weight": 430,
+      "scaleFrom": 1,
+      "font": "Georgia, 'Times New Roman', serif",
+      "groups": [
+        {
+          "text": "A ",
+          "atMs": 70,
+          "durMs": 300,
+          "blurIn": true,
+          "colour": [
+            18,
+            36,
+            31
+          ]
+        },
+        {
+          "text": "browser ",
+          "atMs": 190,
+          "durMs": 300,
+          "blurIn": true,
+          "colour": [
+            18,
+            36,
+            31
+          ]
+        },
+        {
+          "text": "rooted ",
+          "atMs": 310,
+          "durMs": 300,
+          "blurIn": true,
+          "colour": [
+            18,
+            36,
+            31
+          ]
+        },
+        {
+          "text": "in ",
+          "atMs": 390,
+          "durMs": 300,
+          "blurIn": true,
+          "colour": [
+            18,
+            36,
+            31
+          ]
+        },
+        {
+          "text": "y",
+          "atMs": 550,
+          "durMs": 320,
+          "blurIn": true,
+          "colour": [
+            18,
+            36,
+            31
+          ]
+        },
+        {
+          "text": "o",
+          "atMs": 550,
+          "durMs": 320,
+          "blurIn": true,
+          "italic": true,
+          "colour": [
+            18,
+            36,
+            31
+          ]
+        },
+        {
+          "text": "u.",
+          "atMs": 550,
+          "durMs": 320,
+          "blurIn": true,
+          "colour": [
+            18,
+            36,
+            31
+          ]
+        }
+      ],
+      "exitAtMs": 1450,
+      "exitSweepMs": 330,
+      "exitFadeMs": 260,
+      "exitFrom": "left",
+      "exitSlideDx": 0,
+      "exitBlur": 12,
+      "camera": {
+        "originX": 640,
+        "originY": 360,
+        "keys": [
+          {
+            "atMs": 0,
+            "scale": 1
+          },
+          {
+            "atMs": 2000,
+            "scale": 1.1,
+            "ease": "linear"
+          }
+        ]
+      }
+    },
+    {
+      "id": "line-2",
+      "role": "brand",
+      "preset": "reveal-line",
+      "startMs": 5400,
+      "durationMs": 2950,
+      "size": 40,
+      "weight": 430,
+      "scaleFrom": 1,
+      "font": "Georgia, 'Times New Roman', serif",
+      "groups": [
+        {
+          "text": "Threading ",
+          "atMs": 120,
+          "durMs": 850,
+          "blurIn": true,
+          "colour": [
+            18,
+            36,
+            31
+          ]
+        },
+        {
+          "text": "the ",
+          "atMs": 360,
+          "durMs": 850,
+          "blurIn": true,
+          "colour": [
+            18,
+            36,
+            31
+          ]
+        },
+        {
+          "text": "d",
+          "atMs": 600,
+          "durMs": 850,
+          "blurIn": true,
+          "colour": [
+            18,
+            36,
+            31
+          ]
+        },
+        {
+          "text": "o",
+          "atMs": 600,
+          "durMs": 850,
+          "blurIn": true,
+          "italic": true,
+          "colour": [
+            18,
+            36,
+            31
+          ]
+        },
+        {
+          "text": "ts ",
+          "atMs": 600,
+          "durMs": 850,
+          "blurIn": true,
+          "colour": [
+            18,
+            36,
+            31
+          ]
+        },
+        {
+          "text": "between",
+          "atMs": 840,
+          "durMs": 850,
+          "blurIn": true,
+          "colour": [
+            18,
+            36,
+            31
+          ]
+        },
+        {
+          "text": " .",
+          "atMs": 1600,
+          "durMs": 120,
+          "colour": [
+            18,
+            36,
+            31
+          ],
+          "riseDy": 0
+        },
+        {
+          "text": ".",
+          "atMs": 1800,
+          "durMs": 120,
+          "colour": [
+            18,
+            36,
+            31
+          ],
+          "riseDy": 0
+        },
+        {
+          "text": ".",
+          "atMs": 2000,
+          "durMs": 120,
+          "colour": [
+            18,
+            36,
+            31
+          ],
+          "riseDy": 0
+        }
+      ],
+      "exitAtMs": 2300,
+      "exitSweepMs": 350,
+      "exitFadeMs": 220,
+      "exitFrom": "left",
+      "exitSlideDx": 0,
+      "exitBlur": 12,
+      "riseDy": 21,
+      "riseDurMs": 1050,
+      "camera": {
+        "originX": 640,
+        "originY": 360,
+        "keys": [
+          {
+            "atMs": 0,
+            "scale": 1
+          },
+          {
+            "atMs": 2950,
+            "scale": 1.096,
+            "ease": "linear"
+          }
+        ]
+      },
+      "x": 9,
+      "_copyNote": "MEASURED CONSTANT — `x` IS FITTED TO THE COPY, not layout. The black disc at 8.03 grows out of the LAST ELLIPSIS DOT of this line (flash-in's first key is x 890, flash-dot's is 898), so the line's ink has to land where the approved film's did or the biggest transition in the film starts next to nothing. Only the first group's word changed here ('Connecting' -> 'Threading'); that is 10px narrower, which moves a centred line's right edge 5px left, and x:9 puts the last dot back on the disc — measured, not guessed: at t=7.96 the approved rebuild's rightmost ink column is 923 and x:0/5/9/10/15 render 913/918/923/924/929. REWRITE THIS LINE AND YOU MUST RE-MEASURE x THE SAME WAY."
+    },
+    {
+      "id": "flash-in",
+      "role": "brand",
+      "preset": "media-window",
+      "startMs": 7990,
+      "durationMs": 810,
+      "face": [
+        0,
+        0,
+        0
+      ],
+      "shadow": false,
+      "w": 0,
+      "h": 0,
+      "radius": 0,
+      "_note": "MEASURED 8.03-8.23: the black is a DISC that grows out of the last ellipsis dot of 'Connecting the dots between...' at (896,379) — not a glyph flying in from off-frame, and not a ground cut. Growth ACCELERATES (radius x2.3 per 40ms frame); the old scale-in settled on an expo-OUT, i.e. exactly backwards, which is what read as a bad transition. Rendered as a media-window whose radius is kept at w/2 so the rect is a true circle; both channels share each key's ease, so the ratio holds. Needs r>=975 to cover from that centre; it then HOLDS black until the cream reveal takes over at 8.76.",
+      "keys": [
+        {
+          "atMs": 0,
+          "x": 890,
+          "y": 378.8,
+          "w": 0,
+          "h": 0,
+          "radius": 0,
+          "opacity": 1,
+          "ease": "linear"
+        },
+        {
+          "atMs": 50,
+          "x": 891.4,
+          "y": 378.5,
+          "w": 40,
+          "h": 40,
+          "radius": 20,
+          "ease": "linear"
+        },
+        {
+          "atMs": 90,
+          "x": 893.3,
+          "y": 378.7,
+          "w": 107.4,
+          "h": 107.4,
+          "radius": 53.7,
+          "ease": "linear"
+        },
+        {
+          "atMs": 130,
+          "x": 894.9,
+          "y": 378.7,
+          "w": 235.4,
+          "h": 235.4,
+          "radius": 117.7,
+          "ease": "linear"
+        },
+        {
+          "atMs": 170,
+          "x": 896.4,
+          "y": 378.8,
+          "w": 489.2,
+          "h": 489.2,
+          "radius": 244.6,
+          "ease": "linear"
+        },
+        {
+          "atMs": 210,
+          "x": 898,
+          "y": 378.9,
+          "w": 1123,
+          "h": 1123,
+          "radius": 561.5,
+          "ease": "linear"
+        },
+        {
+          "atMs": 250,
+          "x": 898,
+          "y": 378.9,
+          "w": 1960,
+          "h": 1960,
+          "radius": 980,
+          "ease": "linear"
+        },
+        {
+          "atMs": 810
+        }
+      ]
+    },
+    {
+      "id": "flash-dot",
+      "role": "brand",
+      "preset": "media-window",
+      "startMs": 8000,
+      "durationMs": 640,
+      "face": [
+        251,
+        250,
+        243
+      ],
+      "shadow": false,
+      "w": 22,
+      "h": 22,
+      "radius": 11,
+      "_note": "MEASURED 8.00-8.57: a cream disc rides ON TOP of the black one — it starts as the cap over the growing black disc (so the early frames read as a black RING, which is the reference's signature on this beat), settles at r~37-39 and then travels a curved path up and to the left, exiting the TOP edge at 8.57. The old build had a static dot at x=187, which is why the beat read dead. One key per reference frame.",
+      "keys": [
+        {
+          "atMs": 0,
+          "x": 898,
+          "y": 379,
+          "w": 22,
+          "h": 22,
+          "radius": 11,
+          "opacity": 1,
+          "ease": "linear"
+        },
+        {
+          "atMs": 40,
+          "x": 899.3,
+          "y": 378.5,
+          "w": 32.2,
+          "h": 32.2,
+          "radius": 16.1,
+          "ease": "linear"
+        },
+        {
+          "atMs": 80,
+          "x": 897.8,
+          "y": 378.9,
+          "w": 57,
+          "h": 57,
+          "radius": 28.5,
+          "ease": "linear"
+        },
+        {
+          "atMs": 120,
+          "x": 892.9,
+          "y": 379.2,
+          "w": 65.8,
+          "h": 65.8,
+          "radius": 32.9,
+          "ease": "linear"
+        },
+        {
+          "atMs": 160,
+          "x": 884.7,
+          "y": 379.6,
+          "w": 70,
+          "h": 70,
+          "radius": 35,
+          "ease": "linear"
+        },
+        {
+          "atMs": 200,
+          "x": 872.1,
+          "y": 380.1,
+          "w": 72.4,
+          "h": 72.4,
+          "radius": 36.2,
+          "ease": "linear"
+        },
+        {
+          "atMs": 240,
+          "x": 853.5,
+          "y": 380.2,
+          "w": 73.8,
+          "h": 73.8,
+          "radius": 36.9,
+          "ease": "linear"
+        },
+        {
+          "atMs": 280,
+          "x": 826.6,
+          "y": 379.6,
+          "w": 74.2,
+          "h": 74.2,
+          "radius": 37.1,
+          "ease": "linear"
+        },
+        {
+          "atMs": 320,
+          "x": 787.6,
+          "y": 377,
+          "w": 74.4,
+          "h": 74.4,
+          "radius": 37.2,
+          "ease": "linear"
+        },
+        {
+          "atMs": 360,
+          "x": 728.8,
+          "y": 369.7,
+          "w": 75.4,
+          "h": 75.4,
+          "radius": 37.7,
+          "ease": "linear"
+        },
+        {
+          "atMs": 400,
+          "x": 633.5,
+          "y": 349,
+          "w": 75.8,
+          "h": 75.8,
+          "radius": 37.9,
+          "ease": "linear"
+        },
+        {
+          "atMs": 440,
+          "x": 470.9,
+          "y": 285.2,
+          "w": 76.8,
+          "h": 76.8,
+          "radius": 38.4,
+          "ease": "linear"
+        },
+        {
+          "atMs": 480,
+          "x": 310,
+          "y": 168.2,
+          "w": 77.2,
+          "h": 77.2,
+          "radius": 38.6,
+          "ease": "linear"
+        },
+        {
+          "atMs": 520,
+          "x": 234.7,
+          "y": 74.1,
+          "w": 78,
+          "h": 78,
+          "radius": 39,
+          "ease": "linear"
+        },
+        {
+          "atMs": 560,
+          "x": 199,
+          "y": 8,
+          "w": 78,
+          "h": 78,
+          "radius": 39,
+          "ease": "linear"
+        },
+        {
+          "atMs": 600,
+          "x": 178,
+          "y": -68,
+          "w": 78,
+          "h": 78,
+          "radius": 39,
+          "ease": "linear"
+        },
+        {
+          "atMs": 640,
+          "x": 160,
+          "y": -150,
+          "w": 78,
+          "h": 78,
+          "radius": 39,
+          "ease": "linear"
+        }
+      ]
+    },
+    {
+      "id": "flash-spark",
+      "role": "brand",
+      "preset": "media-window",
+      "startMs": 8120,
+      "durationMs": 240,
+      "face": [
+        255,
+        255,
+        255
+      ],
+      "shadow": false,
+      "w": 6.8,
+      "h": 6.8,
+      "radius": 3.4,
+      "_note": "MEASURED 8.12-8.28: a pure-white r=3.4 spark crossing the black frame to the RIGHT, opposite to the cream disc. Small, but it is the only other thing alive during the black hold.",
+      "keys": [
+        {
+          "atMs": 0,
+          "x": 956.1,
+          "y": 441.8,
+          "w": 6.8,
+          "h": 6.8,
+          "radius": 3.4,
+          "opacity": 1,
+          "ease": "linear"
+        },
+        {
+          "atMs": 40,
+          "x": 988.2,
+          "y": 468.2,
+          "ease": "linear"
+        },
+        {
+          "atMs": 80,
+          "x": 1041.5,
+          "y": 505.7,
+          "ease": "linear"
+        },
+        {
+          "atMs": 120,
+          "x": 1139.5,
+          "y": 549.8,
+          "ease": "linear"
+        },
+        {
+          "atMs": 160,
+          "x": 1260,
+          "y": 576.5,
+          "ease": "linear"
+        },
+        {
+          "atMs": 200,
+          "x": 1400,
+          "y": 600,
+          "ease": "linear"
+        },
+        {
+          "atMs": 240,
+          "x": 1540,
+          "y": 624,
+          "ease": "linear"
+        }
+      ]
+    },
+    {
+      "id": "flash-out",
+      "role": "brand",
+      "preset": "media-window",
+      "startMs": 8520,
+      "durationMs": 280,
+      "face": [
+        251,
+        250,
+        243
+      ],
+      "shadow": false,
+      "w": 0,
+      "h": 0,
+      "radius": 0,
+      "_note": "MEASURED 8.53-8.76: the cream comes back as a disc swelling from a centre 247px OFF-FRAME RIGHT at (1527,604), on a decelerating exponential settle (tau ~96ms) — it sweeps in from the right rather than blooming from inside the frame. Its centre also drifts right and down as it grows. Needs r~1700 to clear the far top-left corner. Once it has covered, the scene ends and the identical cream ground carries on underneath, so there is no cut.",
+      "keys": [
+        {
+          "atMs": 0,
+          "x": 1520,
+          "y": 602,
+          "w": 0,
+          "h": 0,
+          "radius": 0,
+          "opacity": 1,
+          "ease": "linear"
+        },
+        {
+          "atMs": 40,
+          "x": 1527.1,
+          "y": 604.2,
+          "w": 1038.4,
+          "h": 1038.4,
+          "radius": 519.2,
+          "ease": "linear"
+        },
+        {
+          "atMs": 80,
+          "x": 1543.4,
+          "y": 606.8,
+          "w": 1975.4,
+          "h": 1975.4,
+          "radius": 987.7,
+          "ease": "linear"
+        },
+        {
+          "atMs": 120,
+          "x": 1557.9,
+          "y": 609.3,
+          "w": 2575.8,
+          "h": 2575.8,
+          "radius": 1287.9,
+          "ease": "linear"
+        },
+        {
+          "atMs": 160,
+          "x": 1570.5,
+          "y": 611.8,
+          "w": 2955.2,
+          "h": 2955.2,
+          "radius": 1477.6,
+          "ease": "linear"
+        },
+        {
+          "atMs": 200,
+          "x": 1582.3,
+          "y": 614.5,
+          "w": 3229,
+          "h": 3229,
+          "radius": 1614.5,
+          "ease": "linear"
+        },
+        {
+          "atMs": 240,
+          "x": 1594,
+          "y": 617,
+          "w": 3400,
+          "h": 3400,
+          "radius": 1700,
+          "ease": "linear"
+        },
+        {
+          "atMs": 280
+        }
+      ]
+    },
+    {
+      "id": "noun-roll",
+      "role": "brand",
+      "preset": "orb-roll",
+      "startMs": 8700,
+      "durationMs": 5350,
+      "font": "Georgia, 'Times New Roman', serif",
+      "words": [
+        "Tabs",
+        "Inboxes",
+        "Calendars",
+        "Threads",
+        "Days"
+      ],
+      "focusAtMs": 9700,
+      "stepMs": 720,
+      "size": 78,
+      "x": 700,
+      "focusY": 360,
+      "spacingPx": 190,
+      "tiltDeg": 7,
+      "blurPer": 7,
+      "growBelow": 0.28,
+      "colour": [
+        26,
+        57,
+        51
+      ],
+      "fade": [
+        170,
+        180,
+        175
+      ],
+      "fadeOutAtMs": 13150,
+      "fadeOutDurMs": 450,
+      "orbs": [
+        {
+          "keys": [
+            {
+              "atMs": 8700,
+              "x": 240,
+              "y": 650,
+              "r": 16
+            },
+            {
+              "atMs": 9250,
+              "x": 355,
+              "y": 358,
+              "r": 150
+            },
+            {
+              "atMs": 9750,
+              "x": 357,
+              "y": 360,
+              "r": 205
+            },
+            {
+              "atMs": 10300,
+              "x": 355,
+              "y": 360,
+              "r": 220
+            },
+            {
+              "atMs": 13250,
+              "x": 363,
+              "y": 345,
+              "r": 218
+            },
+            {
+              "atMs": 13500,
+              "x": 390,
+              "y": 300,
+              "r": 152
+            },
+            {
+              "atMs": 13750,
+              "x": 456,
+              "y": 190,
+              "r": 77
+            },
+            {
+              "atMs": 14040,
+              "x": 470,
+              "y": -130,
+              "r": 70
+            }
+          ],
+          "skins": [
+            {
+              "atMs": 8700,
+              "hi": [
+                111,
+                189,
+                201
+              ],
+              "mid": [
+                29,
+                112,
+                130
+              ],
+              "lo": [
+                20,
+                69,
+                83
+              ]
+            },
+            {
+              "atMs": 9700,
+              "hi": [
+                111,
+                189,
+                201
+              ],
+              "mid": [
+                29,
+                112,
+                130
+              ],
+              "lo": [
+                16,
+                42,
+                54
+              ]
+            },
+            {
+              "atMs": 10300,
+              "hi": [
+                233,
+                196,
+                128
+              ],
+              "mid": [
+                211,
+                133,
+                48
+              ],
+              "lo": [
+                146,
+                62,
+                38
+              ]
+            },
+            {
+              "atMs": 10950,
+              "hi": [
+                214,
+                90,
+                70
+              ],
+              "mid": [
+                196,
+                54,
+                53
+              ],
+              "lo": [
+                130,
+                40,
+                50
+              ]
+            },
+            {
+              "atMs": 11700,
+              "hi": [
+                221,
+                142,
+                109
+              ],
+              "mid": [
+                190,
+                95,
+                45
+              ],
+              "lo": [
+                161,
+                66,
+                38
+              ]
+            },
+            {
+              "atMs": 12350,
+              "hi": [
+                190,
+                120,
+                80
+              ],
+              "mid": [
+                140,
+                85,
+                75
+              ],
+              "lo": [
+                70,
+                50,
+                55
+              ]
+            },
+            {
+              "atMs": 12800,
+              "hi": [
+                74,
+                88,
+                76
+              ],
+              "mid": [
+                46,
+                54,
+                46
+              ],
+              "lo": [
+                16,
+                20,
+                18
+              ]
+            },
+            {
+              "atMs": 14040,
+              "hi": [
+                74,
+                90,
+                80
+              ],
+              "mid": [
+                46,
+                54,
+                46
+              ],
+              "lo": [
+                15,
+                19,
+                17
+              ]
+            }
+          ]
+        }
+      ],
+      "holdMs": 300
+    },
+    {
+      "id": "ask-once",
+      "role": "brand",
+      "preset": "type-on",
+      "startMs": 14100,
+      "durationMs": 1150,
+      "text": "Ask once",
+      "cps": 12,
+      "size": 64,
+      "weight": 430,
+      "font": "Georgia, 'Times New Roman', serif",
+      "caret": false,
+      "ramp": [
+        [
+          26,
+          57,
+          51
+        ],
+        [
+          26,
+          57,
+          51
+        ],
+        [
+          26,
+          57,
+          51
+        ],
+        [
+          26,
+          57,
+          51
+        ],
+        [
+          26,
+          57,
+          51
+        ]
+      ],
+      "exitAtMs": 14900,
+      "exitDurMs": 300,
+      "letterRiseDy": 38,
+      "letterRiseDurMs": 240,
+      "camera": {
+        "originX": 640,
+        "originY": 360,
+        "keys": [
+          {
+            "atMs": 0,
+            "scale": 1.13
+          },
+          {
+            "atMs": 330,
+            "scale": 1.1,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1030,
+            "scale": 1,
+            "ease": "out"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ask-orb",
+      "role": "brand",
+      "preset": "orb-roll",
+      "startMs": 14150,
+      "durationMs": 950,
+      "words": [],
+      "orbs": [
+        {
+          "keys": [
+            {
+              "atMs": 14150,
+              "x": 540,
+              "y": 880,
+              "r": 88
+            },
+            {
+              "atMs": 14500,
+              "x": 488,
+              "y": 620,
+              "r": 82
+            },
+            {
+              "atMs": 14800,
+              "x": 1250,
+              "y": 480,
+              "r": 90
+            },
+            {
+              "atMs": 15050,
+              "x": 1450,
+              "y": 460,
+              "r": 95
+            }
+          ],
+          "skins": [
+            {
+              "atMs": 14150,
+              "hi": [
+                96,
+                115,
+                102
+              ],
+              "mid": [
+                56,
+                64,
+                54
+              ],
+              "lo": [
+                18,
+                22,
+                20
+              ]
+            },
+            {
+              "atMs": 15050,
+              "hi": [
+                96,
+                115,
+                102
+              ],
+              "mid": [
+                56,
+                64,
+                54
+              ],
+              "lo": [
+                18,
+                22,
+                20
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "maps-agent-demo",
+      "preset": "media-window",
+      "startMs": 15150,
+      "durationMs": 10450,
+      "index": 1,
+      "label": "Aspen driving a map app",
+      "w": 910.7,
+      "h": 648.9,
+      "radius": 9,
+      "face": [
+        248,
+        246,
+        243
+      ],
+      "ink": [
+        24,
+        46,
+        43
+      ],
+      "shadow": {
+        "dy": 15.8,
+        "blur": 35.4,
+        "alpha": 0.43
+      },
+      "_note": "MEASURED 15.16-25.60, all three reviewer notes. (a) The 16.52-20.58 state is NOT full-bleed: it is 1274.0x907.9 at (615.3,243.9), i.e. the home rect scaled 1.399 with the SAME aspect, so the right edge sits at 1252.3 (27.7px gap) and the bottom at 697.8 (22.2px gap) with the rounded corner (r 12.7) and its shadow visible in the bottom-right — that is the 'we are seeing the very edge of the UI' read. fullBleed:true forced 1280x720, pinned both edges exactly on the frame border and made an edge shadow impossible. (b) The settled rect is 910.7x648.9 at (673.9,359.2), leaving a 36.3px gap at the bottom (top 35.0, left 218.6, right 150.7) — the old 946x683 at (675,373) left only 5.5px, which is why ours read as touching. Both holds are dead still to <0.3px. (c) The exit is not a fade: over 24.94-25.60 the window slides LEFT 674px (cx 673.9 -> ~0, cy constant to 0.12px) while shrinking to 0.751 and fading out; x rides ease-in pow~3.8, scale pow~2.8 and opacity is near LINEAR, so the three channels cannot share one key ease — the exit is sampled as a polyline instead (replays to right-edge rms 2.1px, opacity rms 0.004). Shadow authored at 720px height so the engine's H/720 scaling reproduces both states: 13.7/32.1 at home and 20.6/44.4 at the edge state. Zoom-in and zoom-out are both ease-OUT (expo / quint), not the ease-in-out the old comment claimed.",
+      "keys": [
+        {
+          "atMs": 0,
+          "x": 673.9,
+          "y": 1062,
+          "w": 910.7,
+          "h": 648.7,
+          "radius": 9,
+          "blur": 12,
+          "opacity": 1
+        },
+        {
+          "atMs": 70
+        },
+        {
+          "atMs": 530,
+          "x": 673.9,
+          "y": 359.3,
+          "blur": 2,
+          "ease": "expo"
+        },
+        {
+          "atMs": 640,
+          "blur": 0,
+          "ease": "out"
+        },
+        {
+          "atMs": 790
+        },
+        {
+          "atMs": 1700,
+          "x": 615.4,
+          "y": 243.9,
+          "w": 1274,
+          "h": 907.9,
+          "radius": 12.6,
+          "ease": "expo"
+        },
+        {
+          "atMs": 5424
+        },
+        {
+          "atMs": 6410,
+          "x": 673.9,
+          "y": 359.3,
+          "w": 910.7,
+          "h": 648.7,
+          "radius": 9,
+          "ease": "quint"
+        },
+        {
+          "atMs": 9790
+        },
+        {
+          "atMs": 9890,
+          "x": 666.8,
+          "w": 906,
+          "h": 645.4,
+          "opacity": 0.733,
+          "ease": "linear"
+        },
+        {
+          "atMs": 10010,
+          "x": 644.8,
+          "w": 892.3,
+          "h": 635.6,
+          "opacity": 0.509,
+          "ease": "linear"
+        },
+        {
+          "atMs": 10130,
+          "x": 599.7,
+          "w": 867.2,
+          "h": 617.7,
+          "opacity": 0.345,
+          "ease": "linear"
+        },
+        {
+          "atMs": 10250,
+          "x": 511.5,
+          "w": 825.9,
+          "h": 588.3,
+          "opacity": 0.181,
+          "ease": "linear"
+        },
+        {
+          "atMs": 10370,
+          "x": 310.9,
+          "w": 758.1,
+          "h": 540,
+          "opacity": 0.082,
+          "ease": "linear"
+        },
+        {
+          "atMs": 10450,
+          "x": 0,
+          "w": 684,
+          "h": 487.2,
+          "opacity": 0,
+          "ease": "linear"
+        }
+      ],
+      "role": "product-voice",
+      "_fill": "Aspen rises blurred from the bottom edge and sharpens (15.15-15.68), then drives a maps app: it zooms IN to the near-full-bleed edge state whose bottom-right corner and shadow stay in frame (16.52-20.58) while the assistant types a multi-stop walking-route prompt, zooms back out to the floating window 20.58-21.32, the route builds stop by stop, and the window slides LEFT and shrinks away 24.94-25.60. Footage must be driven through this scene's `keys` track — the window never holds still for long."
+    },
+    {
+      "id": "see-everything",
+      "role": "brand",
+      "preset": "reveal-line",
+      "startMs": 25750,
+      "durationMs": 1650,
+      "size": 68,
+      "weight": 400,
+      "font": "Georgia, 'Times New Roman', serif",
+      "x": 0,
+      "y": 4,
+      "scaleFrom": 1,
+      "scaleDurMs": 1,
+      "exitAtMs": 1150,
+      "exitSweepMs": 300,
+      "exitFadeMs": 150,
+      "exitFrom": "left",
+      "exitSlideDx": 0,
+      "exitBlur": 14,
+      "groups": [
+        {
+          "text": "See ",
+          "atMs": 50,
+          "durMs": 450,
+          "colour": [
+            26,
+            50,
+            47
+          ],
+          "blurIn": true
+        },
+        {
+          "text": "everything",
+          "atMs": 210,
+          "durMs": 500,
+          "colour": [
+            26,
+            50,
+            47
+          ],
+          "blurIn": true
+        }
+      ],
+      "riseDy": 37,
+      "riseDurMs": 1050,
+      "camera": {
+        "originX": 640,
+        "originY": 360,
+        "keys": [
+          {
+            "atMs": 0,
+            "scale": 1.095
+          },
+          {
+            "atMs": 350,
+            "scale": 1.085,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1500,
+            "scale": 1,
+            "ease": "out"
+          }
+        ]
+      }
+    },
+    {
+      "id": "transition-orb",
+      "preset": "orb-roll",
+      "startMs": 26100,
+      "durationMs": 1250,
+      "words": [],
+      "orbs": [
+        {
+          "keys": [
+            {
+              "atMs": 26100,
+              "x": 1560,
+              "y": 950,
+              "r": 150
+            },
+            {
+              "atMs": 26400,
+              "x": 1290,
+              "y": 760,
+              "r": 158
+            },
+            {
+              "atMs": 26625,
+              "x": 435,
+              "y": 330,
+              "r": 182
+            },
+            {
+              "atMs": 26900,
+              "x": -20,
+              "y": -70,
+              "r": 170
+            },
+            {
+              "atMs": 27200,
+              "x": -380,
+              "y": -320,
+              "r": 160
+            }
+          ],
+          "skins": [
+            {
+              "atMs": 26100,
+              "hi": [
+                238,
+                172,
+                80
+              ],
+              "mid": [
+                200,
+                110,
+                45
+              ],
+              "lo": [
+                152,
+                68,
+                40
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tpl-card-1",
+      "preset": "media-window",
+      "role": "product-voice",
+      "startMs": 27200,
+      "durationMs": 620,
+      "index": 2,
+      "label": "template segment 1",
+      "w": 560,
+      "h": 315,
+      "radius": 12,
+      "face": [
+        14,
+        16,
+        15
+      ],
+      "shadow": {
+        "dy": 14,
+        "blur": 34,
+        "alpha": 0.32
+      },
+      "src": null,
+      "clip": null,
+      "fill": "cover",
+      "_fill": "Carousel card 1 — the whip. Crosses the frame on LINEAR at ~3500px/s and is never meant to be read; it is the one that tells the eye a deck is being shuffled. Give it a segment with a strong shape and no type (a colour flash, a hard cut, a mass moving). Face ships near-black so an EMPTY card still reads as its own film; `src` + `clip` fill it.",
+      "keys": [
+        {
+          "atMs": 0,
+          "x": 1690,
+          "y": 360,
+          "w": 560,
+          "h": 315,
+          "radius": 12,
+          "blur": 18,
+          "opacity": 1
+        },
+        {
+          "atMs": 300,
+          "x": 640,
+          "blur": 0,
+          "ease": "linear"
+        },
+        {
+          "atMs": 620,
+          "x": -450,
+          "blur": 16,
+          "ease": "linear"
+        }
+      ]
+    },
+    {
+      "id": "tpl-card-2",
+      "preset": "media-window",
+      "role": "product-voice",
+      "startMs": 27460,
+      "durationMs": 800,
+      "index": 3,
+      "label": "template segment 2",
+      "w": 560,
+      "h": 315,
+      "radius": 12,
+      "face": [
+        250,
+        248,
+        243
+      ],
+      "shadow": {
+        "dy": 14,
+        "blur": 34,
+        "alpha": 0.32
+      },
+      "src": null,
+      "clip": null,
+      "fill": "cover",
+      "_fill": "Carousel card 2 — first card with any deceleration in it. Give it the deck's one block of colour.",
+      "keys": [
+        {
+          "atMs": 0,
+          "x": 1690,
+          "y": 360,
+          "w": 560,
+          "h": 315,
+          "radius": 12,
+          "blur": 16,
+          "opacity": 1
+        },
+        {
+          "atMs": 400,
+          "x": 640,
+          "blur": 0,
+          "ease": "out"
+        },
+        {
+          "atMs": 800,
+          "x": -450,
+          "blur": 14,
+          "ease": "in",
+          "pow": 1.6
+        }
+      ]
+    },
+    {
+      "id": "tpl-card-3",
+      "preset": "media-window",
+      "role": "product-voice",
+      "startMs": 27800,
+      "durationMs": 1010,
+      "index": 4,
+      "label": "template segment 3",
+      "w": 560,
+      "h": 315,
+      "radius": 12,
+      "face": [
+        26,
+        28,
+        34
+      ],
+      "shadow": {
+        "dy": 14,
+        "blur": 34,
+        "alpha": 0.32
+      },
+      "src": null,
+      "clip": null,
+      "fill": "cover",
+      "_fill": "Carousel card 3 — the deck's one image: a poster, a still, a photograph. Something that reads at a glance without being read.",
+      "keys": [
+        {
+          "atMs": 0,
+          "x": 1690,
+          "y": 360,
+          "w": 560,
+          "h": 315,
+          "radius": 12,
+          "blur": 13,
+          "opacity": 1
+        },
+        {
+          "atMs": 540,
+          "x": 640,
+          "blur": 0,
+          "ease": "out"
+        },
+        {
+          "atMs": 1010,
+          "x": -450,
+          "blur": 12,
+          "ease": "in",
+          "pow": 1.9
+        }
+      ]
+    },
+    {
+      "id": "tpl-card-4",
+      "preset": "media-window",
+      "role": "product-voice",
+      "startMs": 28240,
+      "durationMs": 1300,
+      "index": 5,
+      "label": "template segment 4",
+      "w": 560,
+      "h": 315,
+      "radius": 12,
+      "face": [
+        250,
+        248,
+        243
+      ],
+      "shadow": {
+        "dy": 14,
+        "blur": 34,
+        "alpha": 0.32
+      },
+      "src": null,
+      "clip": null,
+      "fill": "cover",
+      "_fill": "Carousel card 4 — the first card to arrive on an expo, i.e. the first that nearly stops, so it is also the first legible enough to matter. Give it a segment whose type is plainly a DIFFERENT film's copy from this one's.",
+      "keys": [
+        {
+          "atMs": 0,
+          "x": 1690,
+          "y": 360,
+          "w": 560,
+          "h": 315,
+          "radius": 12,
+          "blur": 11,
+          "opacity": 1
+        },
+        {
+          "atMs": 740,
+          "x": 640,
+          "blur": 0,
+          "ease": "expo"
+        },
+        {
+          "atMs": 1300,
+          "x": -450,
+          "blur": 10,
+          "ease": "in",
+          "pow": 2.2
+        }
+      ]
+    },
+    {
+      "id": "tpl-card-5",
+      "preset": "media-window",
+      "role": "product-voice",
+      "startMs": 28900,
+      "durationMs": 1660,
+      "index": 6,
+      "label": "template segment 5",
+      "w": 560,
+      "h": 315,
+      "radius": 12,
+      "face": [
+        22,
+        20,
+        26
+      ],
+      "shadow": {
+        "dy": 14,
+        "blur": 34,
+        "alpha": 0.32
+      },
+      "src": null,
+      "clip": null,
+      "fill": "cover",
+      "_fill": "Carousel card 5 — parks near centre for the best part of a second before pow 2.6 throws it off left. The carousel has visibly run down by here, so this card can afford to be fully legible.",
+      "keys": [
+        {
+          "atMs": 0,
+          "x": 1690,
+          "y": 360,
+          "w": 560,
+          "h": 315,
+          "radius": 12,
+          "blur": 9,
+          "opacity": 1
+        },
+        {
+          "atMs": 930,
+          "x": 640,
+          "blur": 0,
+          "ease": "expo"
+        },
+        {
+          "atMs": 1660,
+          "x": -450,
+          "blur": 9,
+          "ease": "in",
+          "pow": 2.6
+        }
+      ]
+    },
+    {
+      "id": "tpl-hero",
+      "preset": "media-window",
+      "role": "product-voice",
+      "startMs": 29760,
+      "durationMs": 5740,
+      "index": 7,
+      "label": "the one you picked",
+      "w": 560,
+      "h": 315,
+      "radius": 12,
+      "face": [
+        248,
+        246,
+        243
+      ],
+      "shadow": {
+        "dy": 15.8,
+        "blur": 35.4,
+        "alpha": 0.43
+      },
+      "src": null,
+      "clip": null,
+      "fill": "cover",
+      "_fill": "The card the carousel STOPS on, and the reason the beat is a sentence rather than five unexplained clips. Entry is the approved film's own fly-in-from-right (1690 -> 1240 on ease-in pow 2.2, then onto centre) so it reads as the same film — except the landing runs on 'out', not 'expo', because an expo is 98% arrived a third of the way in and the whole point of this card is being SEEN slowing down. Then three steps with a dead hold between each: LANDS as a card at 30.96 and sits still 0.44s; GROWS to the 880x495 window at 31.90 and plays there 1.46s; PUNCHES to full bleed at 33.66 on the measured 0.30s inout and holds 1.70s. The 35.36-35.50 fade to opacity 0 is the approved film's own hand-off to the cream ground. Fill it with a segment that is NOT more product UI — kinetic type reads best here, because the product's own screens are four seconds away.",
+      "keys": [
+        {
+          "atMs": 0,
+          "x": 1690,
+          "y": 360,
+          "w": 560,
+          "h": 315,
+          "radius": 12,
+          "blur": 12,
+          "opacity": 1
+        },
+        {
+          "atMs": 240,
+          "x": 1240,
+          "blur": 9,
+          "ease": "in",
+          "pow": 2.2
+        },
+        {
+          "atMs": 1200,
+          "x": 640,
+          "blur": 0,
+          "ease": "out"
+        },
+        {
+          "atMs": 1640
+        },
+        {
+          "atMs": 2140,
+          "y": 356,
+          "w": 880,
+          "h": 495,
+          "radius": 10,
+          "ease": "expo"
+        },
+        {
+          "atMs": 3600
+        },
+        {
+          "atMs": 3900,
+          "fullBleed": true,
+          "ease": "inout"
+        },
+        {
+          "atMs": 5600
+        },
+        {
+          "atMs": 5740,
+          "opacity": 0,
+          "ease": "linear"
+        }
+      ]
+    },
+    {
+      "id": "s2-interlude",
+      "role": "brand",
+      "preset": "reveal-line",
+      "startMs": 35500,
+      "durationMs": 2300,
+      "size": 73,
+      "weight": 400,
+      "y": 4,
+      "font": "'Times New Roman', Georgia, serif",
+      "scaleFrom": 1,
+      "scaleDurMs": 1,
+      "exitAtMs": 1680,
+      "exitSweepMs": 400,
+      "exitFadeMs": 200,
+      "exitFrom": "left",
+      "exitSlideDx": 0,
+      "exitBlur": 12,
+      "groups": [
+        {
+          "text": "and ",
+          "atMs": 60,
+          "durMs": 280,
+          "colour": [
+            16,
+            40,
+            38
+          ],
+          "blurIn": true
+        },
+        {
+          "text": "go ",
+          "atMs": 220,
+          "durMs": 280,
+          "colour": [
+            16,
+            40,
+            38
+          ],
+          "blurIn": true
+        },
+        {
+          "text": "f",
+          "atMs": 340,
+          "durMs": 280,
+          "colour": [
+            16,
+            40,
+            38
+          ],
+          "blurIn": true
+        },
+        {
+          "text": "u",
+          "atMs": 340,
+          "durMs": 280,
+          "colour": [
+            16,
+            40,
+            38
+          ],
+          "blurIn": true,
+          "italic": true
+        },
+        {
+          "text": "rther ",
+          "atMs": 340,
+          "durMs": 280,
+          "colour": [
+            16,
+            40,
+            38
+          ],
+          "blurIn": true
+        },
+        {
+          "text": "than ",
+          "atMs": 500,
+          "durMs": 300,
+          "colour": [
+            16,
+            40,
+            38
+          ],
+          "blurIn": true
+        },
+        {
+          "text": "e",
+          "atMs": 660,
+          "durMs": 300,
+          "colour": [
+            16,
+            40,
+            38
+          ],
+          "blurIn": true,
+          "italic": true
+        },
+        {
+          "text": "ver",
+          "atMs": 660,
+          "durMs": 300,
+          "colour": [
+            16,
+            40,
+            38
+          ],
+          "blurIn": true
+        }
+      ],
+      "riseDy": 36,
+      "riseDurMs": 850,
+      "camera": {
+        "originX": 640,
+        "originY": 360,
+        "keys": [
+          {
+            "atMs": 0,
+            "scale": 1.068
+          },
+          {
+            "atMs": 700,
+            "scale": 1.055,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1800,
+            "scale": 1,
+            "ease": "out"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s2-ball",
+      "role": "brand",
+      "preset": "orb-roll",
+      "startMs": 36150,
+      "durationMs": 900,
+      "words": [],
+      "orbs": [
+        {
+          "keys": [
+            {
+              "atMs": 36180,
+              "x": 350,
+              "y": 800,
+              "r": 42
+            },
+            {
+              "atMs": 36260,
+              "x": 455,
+              "y": 657,
+              "r": 44
+            },
+            {
+              "atMs": 36420,
+              "x": 585,
+              "y": 489,
+              "r": 48
+            },
+            {
+              "atMs": 36500,
+              "x": 652,
+              "y": 368,
+              "r": 52
+            },
+            {
+              "atMs": 36580,
+              "x": 695,
+              "y": 253,
+              "r": 56
+            },
+            {
+              "atMs": 36700,
+              "x": 730,
+              "y": 105,
+              "r": 58
+            },
+            {
+              "atMs": 36860,
+              "x": 754,
+              "y": -80,
+              "r": 60
+            }
+          ],
+          "skins": [
+            {
+              "atMs": 36180,
+              "hi": [
+                212,
+                76,
+                70
+              ],
+              "mid": [
+                178,
+                42,
+                42
+              ],
+              "lo": [
+                88,
+                16,
+                22
+              ]
+            },
+            {
+              "atMs": 36860,
+              "hi": [
+                212,
+                76,
+                70
+              ],
+              "mid": [
+                178,
+                42,
+                42
+              ],
+              "lo": [
+                88,
+                16,
+                22
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s2-home-slot",
+      "preset": "media-window",
+      "startMs": 36900,
+      "durationMs": 2350,
+      "index": 8,
+      "label": "aspen.computer home",
+      "w": 1280,
+      "h": 800,
+      "radius": 10,
+      "face": [
+        248,
+        248,
+        244
+      ],
+      "ink": [
+        24,
+        46,
+        43
+      ],
+      "shadow": {
+        "dx": 0,
+        "dy": 21,
+        "blur": 68,
+        "spread": 8,
+        "colour": [
+          0,
+          0,
+          0
+        ],
+        "alpha": 0.62,
+        "scaleWithH": false
+      },
+      "_note": "MEASURED 36.92-39.24. The reviewer's 'missing the shadows' is a DENSITY problem, not a missing feature: the window's page area is (251,251,248) against a (251,251,246) ground, so with the default shadow (alpha 0.30, colour [12,12,20], no spread) the side edges have almost no contrast — measured peak side darkening 35.6 vs the reference's 91.8, i.e. 2.6x too pale, reaching 52px instead of 83px. Pure black at alpha 0.62 with 8px spread and 68px blur matches to rms < 0.9 luminance across 100+ sample points. scaleWithH:false because the shadow is measured CONSTANT through the zoom — it does not fade or soften, it just translates off-frame (top gone 38.32, right 38.40, left 38.44). Base size is 16:10 (1280x800), NOT 1280x720: a 720-tall window would put the bottom edge at y~697 during the push and paint an unmistakable shadow band across the frame bottom, which never happens — so fullBleed must not be used here. Rise peaks at rel 700ms (the old 'atMs 220 ease out' was ~3x too fast) and the push-in totals only +7.5% (0.935 -> 1.012), not the old 1.13. Radius stays ~10 throughout; the corners leave the frame rather than the radius going to 0.",
+      "keys": [
+        {
+          "atMs": 0,
+          "x": 640,
+          "y": 1007.5,
+          "scale": 0.9281,
+          "opacity": 0,
+          "blur": 3,
+          "radius": 10
+        },
+        {
+          "atMs": 240,
+          "y": 997.8,
+          "scale": 0.9296,
+          "opacity": 0.58,
+          "blur": 1.2,
+          "ease": "linear"
+        },
+        {
+          "atMs": 480,
+          "y": 945.2,
+          "scale": 0.9319,
+          "opacity": 0.83,
+          "blur": 0.5,
+          "ease": "linear"
+        },
+        {
+          "atMs": 560,
+          "y": 904.4,
+          "scale": 0.9327,
+          "ease": "linear"
+        },
+        {
+          "atMs": 620,
+          "y": 858.4,
+          "scale": 0.9336,
+          "opacity": 1,
+          "blur": 0,
+          "ease": "linear"
+        },
+        {
+          "atMs": 700,
+          "y": 765.9,
+          "scale": 0.9351,
+          "ease": "linear"
+        },
+        {
+          "atMs": 780,
+          "y": 667.1,
+          "scale": 0.9371,
+          "ease": "linear"
+        },
+        {
+          "atMs": 860,
+          "y": 594.2,
+          "scale": 0.9393,
+          "ease": "linear"
+        },
+        {
+          "atMs": 980,
+          "y": 521.6,
+          "scale": 0.9445,
+          "ease": "linear"
+        },
+        {
+          "atMs": 1100,
+          "y": 472.3,
+          "scale": 0.9526,
+          "ease": "linear"
+        },
+        {
+          "atMs": 1220,
+          "y": 436.4,
+          "scale": 0.9677,
+          "ease": "linear"
+        },
+        {
+          "atMs": 1340,
+          "y": 409.2,
+          "scale": 0.986,
+          "ease": "linear"
+        },
+        {
+          "atMs": 1460,
+          "y": 388.1,
+          "scale": 0.9964,
+          "ease": "linear"
+        },
+        {
+          "atMs": 1580,
+          "y": 371.8,
+          "scale": 1.0015,
+          "ease": "linear"
+        },
+        {
+          "atMs": 1700,
+          "y": 359.1,
+          "scale": 1.0065,
+          "ease": "linear"
+        },
+        {
+          "atMs": 2350,
+          "y": 333,
+          "scale": 1.012,
+          "ease": "out"
+        }
+      ],
+      "role": "product-voice",
+      "_fill": "Aspen's home page rises from the bottom edge 37.0-38.2 and takes a slow +7.5% push-in 38.2-39.1: the Ask bar with aspen.computer in it, the connector chips under it (mail / chat / calendar / files), and a cursor clicking through to voice mode on the last frames. Authored 16:10 (1280x800), NOT 1280x720 — a 720-tall window would paint an unmistakable shadow band across the frame bottom during the push, which never happens in the reference. Do not use fullBleed here."
+    },
+    {
+      "id": "s2-voice-slot",
+      "preset": "product-slot",
+      "startMs": 39250,
+      "durationMs": 8790,
+      "index": 9,
+      "label": "Aspen voice mode",
+      "bg": [
+        248,
+        248,
+        243
+      ],
+      "ink": [
+        24,
+        46,
+        43
+      ],
+      "role": "product-voice",
+      "_fill": "Voice mode: the UI dissolves into a full-bleed monochrome particle-dust sphere on cream that breathes while it listens and answers, close and mic pill buttons at the bottom, and a sources-count pill popping in at the top around 46.0. This is a plain product-slot, not a window — it owns the whole frame, so the footage needs no transform match, only the same 1280x720 @ 25fps. The section ends on the film's only score-1.0 hard cut at 48.04."
+    },
+    {
+      "id": "yt-demo",
+      "preset": "media-window",
+      "startMs": 48040,
+      "durationMs": 11400,
+      "index": 10,
+      "label": "Aspen on a video page",
+      "w": 882,
+      "h": 585,
+      "radius": 10,
+      "face": [
+        248,
+        246,
+        243
+      ],
+      "shadow": {
+        "colour": [
+          0,
+          0,
+          0
+        ],
+        "alpha": 0.75,
+        "dy": 18.5,
+        "blur": 68
+      },
+      "_note": "MEASURED. Home rect is 882x585 at (640,352), radius ~9-10, dead static to +-0.1px across the whole hold 49.2-58.3 — the old 963x665 at (641,368) was 81px too wide, 80px too tall and 16px too low. Entry is a hard cut at 48.04 onto 1230x816 (scale 1.394, NOT full-bleed: 25px of cream shows at each side) then a pure exponential shrink about a fixed centre. The exit is NOT a fade in place: from 58.32 it shrinks 1.00 -> 0.66 AND flies straight up out of frame (cy 352 -> -161, dx 0) while fading, all three channels accelerating on different powers, done by 59.06 — which also clears the 0.2s of empty cream before 'Ask' lands at 59.28 (the old 11360 fade ran 320ms into that text). Shadow is pure black at alpha 0.75, not [12,12,20] at 0.30 — ours was ~2.5x too light to read at all.",
+      "keys": [
+        {
+          "atMs": 0,
+          "x": 640,
+          "y": 352,
+          "w": 1230,
+          "h": 816,
+          "radius": 10,
+          "opacity": 1
+        },
+        {
+          "atMs": 80,
+          "w": 1151,
+          "h": 763,
+          "ease": "linear"
+        },
+        {
+          "atMs": 1700,
+          "w": 882,
+          "h": 585,
+          "ease": "expo"
+        },
+        {
+          "atMs": 10280,
+          "ease": "linear"
+        },
+        {
+          "atMs": 10440,
+          "w": 872,
+          "h": 578,
+          "y": 352,
+          "opacity": 0.965,
+          "ease": "in",
+          "pow": 2.2
+        },
+        {
+          "atMs": 10560,
+          "w": 853,
+          "h": 566,
+          "y": 338,
+          "opacity": 0.871,
+          "ease": "linear"
+        },
+        {
+          "atMs": 10680,
+          "w": 822,
+          "h": 545,
+          "y": 296,
+          "opacity": 0.746,
+          "ease": "linear"
+        },
+        {
+          "atMs": 10800,
+          "w": 769,
+          "h": 510,
+          "y": 210,
+          "opacity": 0.601,
+          "ease": "linear"
+        },
+        {
+          "atMs": 10880,
+          "w": 717,
+          "h": 475,
+          "y": 111,
+          "opacity": 0.32,
+          "ease": "linear"
+        },
+        {
+          "atMs": 10960,
+          "w": 638,
+          "h": 423,
+          "y": -50,
+          "opacity": 0.147,
+          "ease": "linear"
+        },
+        {
+          "atMs": 11040,
+          "w": 530,
+          "h": 351,
+          "y": -280,
+          "opacity": 0,
+          "ease": "linear"
+        }
+      ],
+      "role": "product-voice",
+      "_fill": "Hard cut at 48.04 straight onto a 1230x816 window (scale 1.394, NOT full-bleed: 25px of ground shows at each side), then a pure exponential shrink about a fixed centre to the 882x585 home rect, dead static to +-0.1px across the whole 49.2-58.3 hold. Aspen sits beside a video page with the assistant rail answering about what is playing. The exit is not a fade in place: from 58.32 the window shrinks 1.00 -> 0.66 AND flies straight up out of frame while fading, done by 59.06."
+    },
+    {
+      "id": "ask-card",
+      "preset": "reveal-line",
+      "role": "brand",
+      "startMs": 59050,
+      "durationMs": 2400,
+      "font": "Georgia, 'Times New Roman', Times, serif",
+      "size": 62,
+      "weight": 400,
+      "scaleFrom": 1,
+      "scaleDurMs": 1,
+      "groups": [
+        {
+          "text": "One ",
+          "atMs": 230,
+          "durMs": 420,
+          "blurIn": true,
+          "colour": [
+            30,
+            52,
+            50
+          ],
+          "riseDy": 38
+        },
+        {
+          "text": "root. ",
+          "atMs": 390,
+          "durMs": 450,
+          "blurIn": true,
+          "colour": [
+            30,
+            52,
+            50
+          ],
+          "riseDy": 35
+        },
+        {
+          "text": "Every answer.",
+          "atMs": 550,
+          "durMs": 480,
+          "blurIn": true,
+          "colour": [
+            30,
+            52,
+            50
+          ],
+          "riseDy": 32
+        }
+      ],
+      "exitAtMs": 1350,
+      "exitSweepMs": 260,
+      "exitFadeMs": 200,
+      "exitFrom": "left",
+      "exitSlideDx": 0,
+      "exitBlur": 8,
+      "riseDurMs": 850,
+      "exitSlideDy": -245,
+      "exitSlideDurMs": 260,
+      "exitWordStaggerMs": 0,
+      "_exitNote": "MEASURED: the line does not dissolve in place — it accelerates straight up and is gone before the dark mass reaches it. Centroid y 368 (60.36) -> 342 -> 309 -> 237 -> 123 (60.64), nothing at 60.68, i.e. 245px of lift in ~300ms while contrast drops 249 -> 22 -> 0, 'Ask' leaving first. The old -85px over 340ms from 60.24 left the words sitting in mid-frame while the mass swallowed them.",
+      "camera": {
+        "originX": 640,
+        "originY": 360,
+        "keys": [
+          {
+            "atMs": 0,
+            "scale": 1.055
+          },
+          {
+            "atMs": 550,
+            "scale": 1.045,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1600,
+            "scale": 1,
+            "ease": "out"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dark-swallow",
+      "role": "brand",
+      "preset": "media-window",
+      "startMs": 60440,
+      "durationMs": 760,
+      "face": [
+        1,
+        1,
+        1
+      ],
+      "shadow": false,
+      "w": 1789,
+      "h": 1789,
+      "radius": 895,
+      "_note": "MEASURED 60.44-61.12: the mass that swallows the frame is not a circle and not a scaling glyph — it is a circle that MORPHS into the full frame. It rises from below the bottom edge (top edge 715.7 -> 0.0) while its width contracts 1789 -> 1280 and its corner radius collapses 895 -> 0 (R/(w/2) 1.00 -> 0.00), so the top reads as a dome early and is dead flat by 60.72. Keys are one per reference frame, so at 25fps they land exactly and need no ease. Edge is hard (10-90% width 1.2-1.6px) - do not blur. Interior (1,1,1) matches the following dark scene exactly, which is what makes the handover seamless instead of a cut.",
+      "keys": [
+        {
+          "atMs": 0,
+          "x": 640,
+          "y": 1610,
+          "w": 1789,
+          "h": 1789,
+          "radius": 895,
+          "opacity": 1,
+          "ease": "linear"
+        },
+        {
+          "atMs": 40,
+          "x": 640,
+          "y": 1518,
+          "w": 1628,
+          "h": 1628,
+          "radius": 800,
+          "ease": "linear"
+        },
+        {
+          "atMs": 80,
+          "x": 640,
+          "y": 1462,
+          "w": 1567,
+          "h": 1567,
+          "radius": 747,
+          "ease": "linear"
+        },
+        {
+          "atMs": 120,
+          "x": 640,
+          "y": 1366,
+          "w": 1472,
+          "h": 1472,
+          "radius": 656,
+          "ease": "linear"
+        },
+        {
+          "atMs": 160,
+          "x": 640,
+          "y": 1216,
+          "w": 1384,
+          "h": 1384,
+          "radius": 534,
+          "ease": "linear"
+        },
+        {
+          "atMs": 200,
+          "x": 640,
+          "y": 1016,
+          "w": 1312,
+          "h": 1312,
+          "radius": 388,
+          "ease": "linear"
+        },
+        {
+          "atMs": 240,
+          "x": 640,
+          "y": 891,
+          "w": 1282,
+          "h": 1282,
+          "radius": 296,
+          "ease": "linear"
+        },
+        {
+          "atMs": 280,
+          "x": 640,
+          "y": 820,
+          "w": 1278,
+          "h": 1278,
+          "radius": 250,
+          "ease": "linear"
+        },
+        {
+          "atMs": 320,
+          "x": 640,
+          "y": 773,
+          "w": 1278,
+          "h": 1278,
+          "radius": 215,
+          "ease": "linear"
+        },
+        {
+          "atMs": 360,
+          "x": 640,
+          "y": 739,
+          "w": 1278,
+          "h": 1278,
+          "radius": 185,
+          "ease": "linear"
+        },
+        {
+          "atMs": 400,
+          "x": 640,
+          "y": 713,
+          "w": 1278,
+          "h": 1278,
+          "radius": 157,
+          "ease": "linear"
+        },
+        {
+          "atMs": 440,
+          "x": 640,
+          "y": 694,
+          "w": 1280,
+          "h": 1280,
+          "radius": 141,
+          "ease": "linear"
+        },
+        {
+          "atMs": 480,
+          "x": 640,
+          "y": 677,
+          "w": 1278,
+          "h": 1278,
+          "radius": 110,
+          "ease": "linear"
+        },
+        {
+          "atMs": 520,
+          "x": 640,
+          "y": 665,
+          "w": 1278,
+          "h": 1278,
+          "radius": 93,
+          "ease": "linear"
+        },
+        {
+          "atMs": 560,
+          "x": 640,
+          "y": 657,
+          "w": 1280,
+          "h": 1280,
+          "radius": 79,
+          "ease": "linear"
+        },
+        {
+          "atMs": 600,
+          "x": 640,
+          "y": 650,
+          "w": 1280,
+          "h": 1280,
+          "radius": 65,
+          "ease": "linear"
+        },
+        {
+          "atMs": 640,
+          "x": 640,
+          "y": 645,
+          "w": 1280,
+          "h": 1280,
+          "radius": 40,
+          "ease": "linear"
+        },
+        {
+          "atMs": 680,
+          "x": 640,
+          "y": 640,
+          "w": 1280,
+          "h": 1280,
+          "radius": 0,
+          "ease": "linear"
+        },
+        {
+          "atMs": 760
+        }
+      ]
+    },
+    {
+      "id": "space",
+      "preset": "cosmic-backdrop",
+      "startMs": 60900,
+      "durationMs": 9500,
+      "orbs": {
+        "atMs": 200,
+        "inDurMs": 1750,
+        "peak": 0.62,
+        "outAtMs": 2100,
+        "outDurMs": 900,
+        "outScale": 0.32,
+        "outX": 500,
+        "outY": 470,
+        "count": 12,
+        "ringR": 285,
+        "orbR": 118,
+        "blur": 32,
+        "swellFrom": 0.95,
+        "swellTo": 1.07,
+        "seed": 7
+      },
+      "stars": {
+        "atMs": 2100,
+        "inDurMs": 900,
+        "outAtMs": 8650,
+        "outDurMs": 750,
+        "count": 1400,
+        "seed": 11,
+        "rotDegPerSec": 1.95,
+        "zoomPctPerSec": 0.4
+      }
+    },
+    {
+      "id": "browse-line",
+      "preset": "reveal-line",
+      "role": "brand",
+      "startMs": 61200,
+      "durationMs": 2950,
+      "font": "Georgia, 'Times New Roman', Times, serif",
+      "size": 62,
+      "weight": 400,
+      "scaleFrom": 1,
+      "scaleDurMs": 1,
+      "groups": [
+        {
+          "text": "Browse ",
+          "atMs": 0,
+          "durMs": 450,
+          "blurIn": true,
+          "colour": [
+            233,
+            231,
+            226
+          ]
+        },
+        {
+          "text": "like ",
+          "atMs": 180,
+          "durMs": 450,
+          "blurIn": true,
+          "colour": [
+            233,
+            231,
+            226
+          ]
+        },
+        {
+          "text": "it's ",
+          "atMs": 340,
+          "durMs": 450,
+          "blurIn": true,
+          "colour": [
+            233,
+            231,
+            226
+          ]
+        },
+        {
+          "text": "all ",
+          "atMs": 520,
+          "durMs": 450,
+          "blurIn": true,
+          "colour": [
+            233,
+            231,
+            226
+          ]
+        },
+        {
+          "text": "one ",
+          "atMs": 700,
+          "durMs": 450,
+          "blurIn": true,
+          "colour": [
+            233,
+            231,
+            226
+          ]
+        },
+        {
+          "text": "page.",
+          "atMs": 880,
+          "durMs": 450,
+          "blurIn": true,
+          "colour": [
+            233,
+            231,
+            226
+          ]
+        }
+      ],
+      "exitAtMs": 2150,
+      "exitSweepMs": 750,
+      "exitFadeMs": 400,
+      "exitFrom": "left",
+      "exitSlideDx": 0,
+      "exitBlur": 10,
+      "riseDy": 32,
+      "riseDurMs": 900,
+      "camera": {
+        "originX": 640,
+        "originY": 360,
+        "keys": [
+          {
+            "atMs": 0,
+            "scale": 1.08
+          },
+          {
+            "atMs": 2950,
+            "scale": 0.905,
+            "ease": "linear"
+          }
+        ]
+      }
+    },
+    {
+      "id": "aspen-dot",
+      "preset": "scale-in",
+      "role": "brand",
+      "startMs": 64560,
+      "durationMs": 640,
+      "text": "●",
+      "size": 105,
+      "colour": [
+        255,
+        255,
+        255
+      ],
+      "scaleFrom": 0.45,
+      "settleDurMs": 380,
+      "cx": 692,
+      "baseline": 442,
+      "glow": {
+        "r": 18,
+        "colour": [
+          255,
+          255,
+          255
+        ]
+      }
+    },
+    {
+      "id": "aspen-lockup",
+      "preset": "logo-lockup",
+      "role": "brand",
+      "startMs": 65200,
+      "durationMs": 5100,
+      "text": "Aspen",
+      "size": 100,
+      "markH": 86,
+      "markW": 86,
+      "markGap": 0.3,
+      "markLabel": "Aspen mark",
+      "ground": [
+        2,
+        2,
+        2
+      ],
+      "scaleFrom": 1.9,
+      "settleDurMs": 480,
+      "creep": 0.05,
+      "creepDurMs": 4000,
+      "font": "Georgia, 'Times New Roman', Times, serif",
+      "colour": [
+        236,
+        234,
+        228
+      ],
+      "markSvg": "../../../templates/aspen/aperture-mark.png"
+    }
+  ],
+  "_marker": "ASPEN-TPL-FINAL-9f3c71"
+}

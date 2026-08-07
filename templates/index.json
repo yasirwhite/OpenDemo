@@ -27,6 +27,19 @@
       "tags": ["kinetic-text", "gradient-sweep", "brand-mark-drift", "orb-loader", "drawn-interiors", "media-windows", "prompt-loop", "poster-reveal", "painterly-grounds"],
       "derivedFrom": "the Bloom launch film, measured frame-by-frame",
       "config": "birch/template.json"
+    },
+    {
+      "slug": "aspen",
+      "name": "Aspen",
+      "style": "cinematic product-demo launch film",
+      "category": "demo-led",
+      "durationMs": 71960,
+      "aspect": "16:9",
+      "fps": 25,
+      "slots": 10,
+      "tags": ["serif-claims", "orb-roll", "noun-column", "media-windows", "template-carousel", "full-bleed-punch", "voice-mode-slot", "cream-grounds", "cosmic-close", "logo-lockup"],
+      "derivedFrom": "the Perplexity Comet launch film, measured frame-by-frame",
+      "config": "aspen/template.json"
     }
   ]
 }

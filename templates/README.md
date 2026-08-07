@@ -29,9 +29,11 @@ memorable, no meaning to collide with product words. See
 Read `templates/index.json`, match its `style`/`tags` against what the user's
 product needs, and confirm the pick with the user before doing any work.
 The registry is the only list — do not rely on a count written here. As of
-this writing it holds **cedar** (kinetic typography, two product slots, ~36s)
-and **birch** (kinetic typography for a brand engine, drawn product screens,
-three media windows, ~59s).
+this writing it holds **cedar** (kinetic typography, two product slots, ~36s),
+**birch** (kinetic typography for a brand engine, drawn product screens,
+three media windows, ~59s) and **aspen** (a cinematic product-demo film for an
+AI browser, ten choreographed windows including an optional template carousel,
+~72s).
 
 ## Using a template: the flow
 
