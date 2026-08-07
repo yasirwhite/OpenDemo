@@ -24,12 +24,31 @@ A feature list flashing on the bar is too slow to feel like a list. A
 locked, just below bar resolution. Do this for cadence *inside* one scene,
 never for the cuts *between* scenes.
 
+## Two scoring models — check which one your reference actually uses
+
+Everything above describes the **bar-locked model** (measured off a pop track
+with a drum kit). The Comet launch film proved a second model exists
+(analysis 2026-08-06): its bed is bass-led cinematic ambient with **no drum
+kit** — ~128.9 BPM ±0.33 with the half-time reading not excluded, only ~25%
+of onsets on the grid — and its hard cuts land **worse than chance** against
+the downbeats. That film scores by **moments, not bars**: swells and single
+impacts placed at picture events (its biggest impact lands on a full-bleed
+beat; its swallow transition rides the *decay into silence* before the
+climax, tension rather than a drop, with the climax arriving ~3s later on
+the reveal). If your track has no percussive grid, stop hunting for one —
+place the track's swells at the film's moments and keep the dead passages
+under the holds.
+
 ## Finding the grid
 
-```bash
-python .demo-build/beatsync.py "<audio>" --write     # snaps a config to the bars
-python .demo-build/verify_downbeat.py "<audio>"      # cross-examines the phase
-```
+The original helper scripts (`beatsync.py` / `verify_downbeat.py`) lived in
+the gitignored scratch dir and are gone — reimplement against the failure
+modes below (numpy/scipy is enough; a from-scratch pass lives in
+`.demo-build/opendemo-launch/audio-analysis/` while it survives). One more
+trap measured since: **slow-tempo bias** — a naive comb sweep let a sparse
+envelope cherry-pick phases and returned the wrong octave *with a confident
+2× margin*; score octaves with a chance-rate-fair statistic and a local (not
+global) baseline, or a 1/f envelope will hand you bogus slow cycles.
 
 Two failure modes worth knowing, because both bit this project:
 
