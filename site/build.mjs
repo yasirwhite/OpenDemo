@@ -57,6 +57,11 @@ h2{font-size:1.15rem;letter-spacing:-.01em;margin:3rem 0 1rem;scroll-margin-top:
 .tbody{padding:.85rem 1rem 1rem}
 .tname{font-weight:600}
 .tmeta{font-size:.8rem;color:var(--sub);margin-top:.15rem}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.9rem;margin-top:1.25rem}
+.scard .tbody{padding:.55rem .75rem .7rem}
+.scard .tname{font-size:.85rem}
+.scard .tmeta{font-size:.72rem}
+.scard video.thumb{cursor:pointer}
 .soonbox{border:1px dashed var(--line);border-radius:14px;padding:2.25rem;text-align:center;color:var(--faint);margin-top:1.25rem}
 .soonbox strong{display:block;color:var(--sub);font-weight:600;margin-bottom:.2rem}
 footer{margin-top:4rem;padding-top:1.25rem;border-top:1px solid var(--line);font-size:.82rem;color:var(--faint)}
@@ -110,11 +115,13 @@ const templateCard = (t) => {
 };
 
 const showcaseCard = (e) => {
-  const vid = e.videoUrl && /\.mp4($|\?)/.test(e.videoUrl)
-    ? `<video class="thumb" src="${esc(e.videoUrl)}" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video>`
+  const isVid = e.videoUrl && /\.mp4($|\?)/.test(e.videoUrl);
+  // start previews ~10 frames in — frame 0 of most demos is blank
+  const vid = isVid
+    ? `<video class="thumb" src="${esc(e.videoUrl)}#t=0.4" data-full="${esc(e.videoUrl)}" title="${esc(e.title)}" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0.4"></video>`
     : "";
   return `
-<div class="tcard" style="cursor:default">${vid}<div class="tbody">
+<div class="tcard scard" style="cursor:default">${vid}<div class="tbody">
   <div class="tname">${esc(e.title)}</div>
   <div class="tmeta">${e.repo ? `<a href="${esc(e.repo)}" style="color:var(--accent)">project repo</a>` : ""}${e.videoUrl ? ` · <a href="${esc(e.videoUrl)}" style="color:var(--accent)">watch</a>` : ""}${e.templates?.length ? ` · ${e.templates.map(esc).join(", ")}` : ""}</div>
   ${e.note ? `<div class="tmeta">${esc(e.note)}</div>` : ""}
@@ -152,10 +159,16 @@ let home = `<h1>OpenDemo templates</h1>
 for (const [slug, label] of CATEGORIES) {
   const entries = showcase.filter((e) => e.category === slug);
   home += `<h2 id="${slug}">${esc(label)}</h2>`;
-  home += entries.length ? `<div class="grid">${entries.map(showcaseCard).join("")}</div>` : comingSoon();
+  home += entries.length ? `<div class="sgrid">${entries.map(showcaseCard).join("")}</div>` : comingSoon();
 }
 
 const overlay = `
+<div class="ovl" id="vovl">
+  <div class="dlg" style="max-width:1080px;background:#000">
+    <button class="x" id="vovl-x" aria-label="Close">✕</button>
+    <video id="vovl-player" controls playsinline style="width:100%;max-height:82vh;display:block;border-radius:16px"></video>
+  </div>
+</div>
 <div class="ovl" id="ovl">
   <div class="dlg" role="dialog" aria-modal="true">
     <button class="x" id="ovl-x" aria-label="Close">✕</button>
@@ -197,6 +210,15 @@ ovl.addEventListener('click',e=>{if(e.target===ovl)close()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
 cp.addEventListener('click',()=>{navigator.clipboard.writeText(pr.textContent)
   .then(()=>{cp.textContent='Copied ✓';setTimeout(()=>cp.textContent='Copy prompt',1500)})});
+// showcase videos: click opens the big player
+const vovl=document.getElementById('vovl'),vp=document.getElementById('vovl-player');
+const vclose=()=>{vovl.classList.remove('open');vp.pause();vp.removeAttribute('src');vp.load()};
+document.querySelectorAll('video.thumb[data-full]').forEach(v=>v.addEventListener('click',()=>{
+  vp.src=v.dataset.full;vovl.classList.add('open');vp.play().catch(()=>{});
+}));
+document.getElementById('vovl-x').addEventListener('click',vclose);
+vovl.addEventListener('click',e=>{if(e.target===vovl)vclose()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')vclose()});
 // card hover: 2s slideshow through the template's previews
 document.querySelectorAll('[data-t]').forEach(b=>{
   const t=T[b.dataset.t],im=b.querySelector('img.thumb');
