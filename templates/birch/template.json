@@ -1,0 +1,4982 @@
+{
+  "_about": [
+    "TEMPLATE 'birch' + WORKED EXAMPLE — a 59s launch film for 'Birch', a fictional brand engine: point it at a domain, it reads the site, extracts the brand, and generates any on-brand asset from a prompt.",
+    "The copy is placeholder. To retarget it to a real product, rewrite the role-tagged scenes per templates/README.md and keep every timing exactly as-is — startMs, durationMs, easings, camera keys and ground stops ARE the template.",
+    "",
+    "Build and render:",
+    "  node src/lib/textcards/build.mjs --config templates/birch/template.json",
+    "  node src/lib/textcards/render.mjs --out birch.mp4 --fps 25",
+    "",
+    "Three fictional customer brands live inside the demo scenario and are meant to be replaced along with the copy: Lantern (a maker marketplace — the site the film reads at 4.8-25.7s), Ashvale (a coffee roaster) and Quarry (a hardware residency), each appearing as a prompt-card brand and as the poster that prompt generates.",
+    "",
+    "ONE image asset: ../../../templates/birch/aperture-mark.png — the path is resolved by the browser relative to src/lib/textcards/index.html. It is the product's mark on the end card, the mark on every generated poster, and the shape of both drift layers. Swapping that one file re-brands the whole film.",
+    "",
+    "No screen in this film is a dashed placeholder: the site the product reads is the 'site-page' preset and the brand kit it builds is 'brand-sheet', both drawn inside their media-window so they ride its glide, hold and punch.",
+    "",
+    "Every text scene carries a 'role' so a model can tell brand copy from in-product dialogue — see the Copy roles table in src/lib/textcards/README.md."
+  ],
+  "video": {
+    "width": 1280,
+    "height": 720,
+    "fps": 25,
+    "durationMs": 58990
+  },
+  "ground": [
+    {
+      "fromMs": 0,
+      "colour": [
+        252,
+        252,
+        252
+      ]
+    },
+    {
+      "fromMs": 4800,
+      "colour": [
+        252,
+        252,
+        253
+      ]
+    },
+    {
+      "fromMs": 6900,
+      "colour": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "fromMs": 7840,
+      "colour": [
+        252,
+        251,
+        252
+      ]
+    },
+    {
+      "fromMs": 13720,
+      "colour": [
+        252,
+        168,
+        110
+      ],
+      "colour2": [
+        8,
+        4,
+        20
+      ],
+      "angle": 178,
+      "stops": [
+        0.11,
+        0.32
+      ],
+      "fadeMs": 720,
+      "ease": "inout",
+      "pow": 1.4
+    },
+    {
+      "fromMs": 17120,
+      "colour": [
+        90,
+        146,
+        120
+      ],
+      "fadeMs": 880,
+      "ease": "inout",
+      "pow": 1.85,
+      "colour2": [
+        136,
+        168,
+        159
+      ],
+      "angle": 90
+    },
+    {
+      "fromMs": 19840,
+      "colour": [
+        168,
+        123,
+        249
+      ],
+      "fadeMs": 760,
+      "ease": "inout",
+      "pow": 1.5,
+      "colour2": [
+        70,
+        24,
+        150
+      ],
+      "angle": 180
+    },
+    {
+      "fromMs": 25250,
+      "colour": [
+        252,
+        251,
+        252
+      ]
+    },
+    {
+      "fromMs": 28000,
+      "colour": [
+        253,
+        253,
+        253
+      ]
+    },
+    {
+      "fromMs": 33300,
+      "colour": [
+        230,
+        223,
+        241
+      ],
+      "colour2": [
+        196,
+        199,
+        158
+      ],
+      "angle": 180,
+      "stops": [
+        0.7,
+        0.97
+      ]
+    },
+    {
+      "fromMs": 34280,
+      "colour": [
+        252,
+        251,
+        253
+      ],
+      "fadeMs": 320,
+      "ease": "inout"
+    },
+    {
+      "fromMs": 41100,
+      "colour": [
+        230,
+        223,
+        241
+      ],
+      "colour2": [
+        196,
+        199,
+        158
+      ],
+      "angle": 180,
+      "stops": [
+        0.7,
+        0.97
+      ]
+    },
+    {
+      "fromMs": 43440,
+      "colour": [
+        252,
+        252,
+        253
+      ],
+      "fadeMs": 320,
+      "ease": "inout"
+    },
+    {
+      "fromMs": 47080,
+      "colour": [
+        230,
+        223,
+        241
+      ],
+      "colour2": [
+        196,
+        199,
+        158
+      ],
+      "angle": 180,
+      "stops": [
+        0.7,
+        0.97
+      ]
+    },
+    {
+      "fromMs": 49440,
+      "colour": [
+        253,
+        252,
+        253
+      ],
+      "fadeMs": 560,
+      "ease": "inout"
+    },
+    {
+      "fromMs": 53500,
+      "colour": [
+        252,
+        252,
+        252
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "s1-generate-anything",
+      "role": "brand",
+      "preset": "gradient-sweep",
+      "startMs": 0,
+      "durationMs": 1680,
+      "font": "Georgia, 'Times New Roman', serif",
+      "size": 172,
+      "weight": 700,
+      "lineHeight": 0.98,
+      "y": 26,
+      "lines": [
+        {
+          "text": "Generate",
+          "atMs": 60
+        },
+        {
+          "text": "anything",
+          "atMs": 150
+        }
+      ],
+      "revealStepMs": 40,
+      "revealDurMs": 110,
+      "blurIn": 9,
+      "coolDelayMs": 30,
+      "coolStepMs": 48,
+      "coolDurMs": 180,
+      "ramp": [
+        [
+          250,
+          190,
+          242
+        ],
+        [
+          236,
+          88,
+          222
+        ],
+        [
+          154,
+          24,
+          162
+        ],
+        [
+          70,
+          30,
+          86
+        ],
+        [
+          24,
+          19,
+          28
+        ]
+      ],
+      "exit": {
+        "atMs": 1470,
+        "durMs": 210,
+        "blur": 12
+      },
+      "camera": {
+        "originX": 640,
+        "originY": 360,
+        "keys": [
+          {
+            "atMs": 1000,
+            "y": 0
+          },
+          {
+            "atMs": 1680,
+            "y": -1180,
+            "ease": "in",
+            "pow": 5.7
+          }
+        ]
+      }
+    },
+    {
+      "id": "s1-always-on-brand",
+      "role": "brand",
+      "preset": "gradient-sweep",
+      "startMs": 1560,
+      "durationMs": 1000,
+      "font": "Georgia, 'Times New Roman', serif",
+      "size": 175,
+      "weight": 700,
+      "lineHeight": 1.35,
+      "y": 30,
+      "lines": [
+        {
+          "text": "Always",
+          "atMs": 40
+        },
+        {
+          "text": "on-brand.",
+          "atMs": 110
+        }
+      ],
+      "revealStepMs": 0,
+      "revealDurMs": 90,
+      "blurIn": 4,
+      "rise": {
+        "dyPx": 390,
+        "durMs": 1250,
+        "colour": [
+          88,
+          48,
+          128
+        ]
+      },
+      "coolDelayMs": 0,
+      "coolStepMs": 40,
+      "coolDurMs": 260,
+      "ramp": [
+        [
+          250,
+          180,
+          246
+        ],
+        [
+          236,
+          88,
+          222
+        ],
+        [
+          154,
+          24,
+          162
+        ],
+        [
+          70,
+          30,
+          86
+        ],
+        [
+          24,
+          19,
+          28
+        ]
+      ],
+      "resweep": {
+        "atMs": 680,
+        "stepMs": 45,
+        "durMs": 360,
+        "colour": [
+          246,
+          120,
+          196
+        ],
+        "colour2": [
+          207,
+          111,
+          78
+        ],
+        "amount": 0.9
+      },
+      "exit": {
+        "atMs": 560,
+        "durMs": 440,
+        "blur": 10,
+        "dx": 245
+      }
+    },
+    {
+      "id": "s1-meet-product",
+      "role": "brand",
+      "preset": "gradient-sweep",
+      "startMs": 2560,
+      "durationMs": 2240,
+      "font": "Georgia, 'Times New Roman', serif",
+      "size": 114,
+      "weight": 700,
+      "lineHeight": 1,
+      "y": -14,
+      "lines": [
+        {
+          "text": "Meet Birch",
+          "atMs": 60
+        }
+      ],
+      "revealStepMs": 40,
+      "revealDurMs": 100,
+      "blurIn": 7,
+      "coolDelayMs": 40,
+      "coolStepMs": 36,
+      "coolDurMs": 340,
+      "ramp": [
+        [
+          246,
+          150,
+          238
+        ],
+        [
+          236,
+          88,
+          222
+        ],
+        [
+          154,
+          24,
+          162
+        ],
+        [
+          70,
+          30,
+          86
+        ],
+        [
+          24,
+          19,
+          28
+        ]
+      ],
+      "resweep": {
+        "atMs": 590,
+        "stepMs": 20,
+        "durMs": 500,
+        "colour": [
+          188,
+          153,
+          254
+        ],
+        "colour2": [
+          54,
+          16,
+          110
+        ]
+      },
+      "exit": {
+        "atMs": 1790,
+        "durMs": 350,
+        "blur": 16
+      },
+      "camera": {
+        "originX": 640,
+        "originY": 336,
+        "keys": [
+          {
+            "atMs": 240,
+            "scale": 1.11
+          },
+          {
+            "atMs": 1000,
+            "scale": 1,
+            "ease": "inout"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s1-mark-burst",
+      "role": "brand",
+      "preset": "petal-drift",
+      "startMs": 3300,
+      "durationMs": 1500,
+      "flowers": [
+        {
+          "seed": 3,
+          "petals": 8,
+          "keys": [
+            {
+              "atMs": 60,
+              "x": 760,
+              "y": 230,
+              "r": 15,
+              "o": 0
+            },
+            {
+              "atMs": 220,
+              "x": 760,
+              "y": 230,
+              "r": 66,
+              "o": 1
+            },
+            {
+              "atMs": 820,
+              "x": 745,
+              "y": 215,
+              "r": 114,
+              "blur": 1
+            },
+            {
+              "atMs": 1300,
+              "x": 740,
+              "y": 205,
+              "r": 180,
+              "blur": 12,
+              "o": 0.35
+            },
+            {
+              "atMs": 1500,
+              "x": 738,
+              "y": 200,
+              "r": 204,
+              "blur": 16,
+              "o": 0
+            }
+          ]
+        },
+        {
+          "seed": 7,
+          "petals": 9,
+          "keys": [
+            {
+              "atMs": 180,
+              "x": 160,
+              "y": 430,
+              "r": 20,
+              "o": 0
+            },
+            {
+              "atMs": 360,
+              "x": 160,
+              "y": 430,
+              "r": 144,
+              "o": 1
+            },
+            {
+              "atMs": 900,
+              "x": 150,
+              "y": 440,
+              "r": 252,
+              "blur": 2
+            },
+            {
+              "atMs": 1330,
+              "x": 145,
+              "y": 445,
+              "r": 348,
+              "blur": 14,
+              "o": 0.25
+            },
+            {
+              "atMs": 1500,
+              "x": 143,
+              "y": 448,
+              "r": 384,
+              "blur": 18,
+              "o": 0
+            }
+          ]
+        },
+        {
+          "seed": 11,
+          "petals": 8,
+          "keys": [
+            {
+              "atMs": 260,
+              "x": 120,
+              "y": 110,
+              "r": 15,
+              "o": 0
+            },
+            {
+              "atMs": 430,
+              "x": 120,
+              "y": 110,
+              "r": 108,
+              "o": 1
+            },
+            {
+              "atMs": 940,
+              "x": 115,
+              "y": 100,
+              "r": 192,
+              "blur": 3
+            },
+            {
+              "atMs": 1350,
+              "x": 110,
+              "y": 92,
+              "r": 276,
+              "blur": 15,
+              "o": 0.25
+            },
+            {
+              "atMs": 1500,
+              "x": 108,
+              "y": 88,
+              "r": 306,
+              "blur": 18,
+              "o": 0
+            }
+          ]
+        },
+        {
+          "seed": 5,
+          "petals": 7,
+          "keys": [
+            {
+              "atMs": 300,
+              "x": 350,
+              "y": 285,
+              "r": 8,
+              "o": 0
+            },
+            {
+              "atMs": 450,
+              "x": 350,
+              "y": 285,
+              "r": 36,
+              "o": 1
+            },
+            {
+              "atMs": 1000,
+              "x": 348,
+              "y": 280,
+              "r": 66,
+              "blur": 2
+            },
+            {
+              "atMs": 1300,
+              "x": 346,
+              "y": 276,
+              "r": 96,
+              "blur": 10,
+              "o": 0.3
+            },
+            {
+              "atMs": 1500,
+              "x": 345,
+              "y": 274,
+              "r": 110,
+              "blur": 13,
+              "o": 0
+            }
+          ]
+        },
+        {
+          "seed": 13,
+          "petals": 8,
+          "keys": [
+            {
+              "atMs": 380,
+              "x": 930,
+              "y": 410,
+              "r": 18,
+              "o": 0
+            },
+            {
+              "atMs": 560,
+              "x": 930,
+              "y": 410,
+              "r": 126,
+              "o": 1
+            },
+            {
+              "atMs": 1020,
+              "x": 935,
+              "y": 415,
+              "r": 222,
+              "blur": 4
+            },
+            {
+              "atMs": 1360,
+              "x": 938,
+              "y": 418,
+              "r": 312,
+              "blur": 16,
+              "o": 0.25
+            },
+            {
+              "atMs": 1500,
+              "x": 940,
+              "y": 420,
+              "r": 342,
+              "blur": 18,
+              "o": 0
+            }
+          ]
+        },
+        {
+          "seed": 17,
+          "petals": 9,
+          "keys": [
+            {
+              "atMs": 480,
+              "x": 580,
+              "y": 140,
+              "r": 20,
+              "o": 0
+            },
+            {
+              "atMs": 660,
+              "x": 580,
+              "y": 140,
+              "r": 168,
+              "o": 1
+            },
+            {
+              "atMs": 1080,
+              "x": 575,
+              "y": 132,
+              "r": 264,
+              "blur": 5
+            },
+            {
+              "atMs": 1380,
+              "x": 572,
+              "y": 126,
+              "r": 360,
+              "blur": 16,
+              "o": 0.2
+            },
+            {
+              "atMs": 1500,
+              "x": 570,
+              "y": 124,
+              "r": 384,
+              "blur": 18,
+              "o": 0
+            }
+          ]
+        },
+        {
+          "seed": 19,
+          "petals": 8,
+          "keys": [
+            {
+              "atMs": 560,
+              "x": 470,
+              "y": 580,
+              "r": 20,
+              "o": 0
+            },
+            {
+              "atMs": 740,
+              "x": 470,
+              "y": 580,
+              "r": 180,
+              "o": 1
+            },
+            {
+              "atMs": 1120,
+              "x": 465,
+              "y": 588,
+              "r": 276,
+              "blur": 6
+            },
+            {
+              "atMs": 1400,
+              "x": 462,
+              "y": 592,
+              "r": 372,
+              "blur": 18,
+              "o": 0.2
+            },
+            {
+              "atMs": 1500,
+              "x": 461,
+              "y": 593,
+              "r": 386,
+              "blur": 18,
+              "o": 0
+            }
+          ]
+        },
+        {
+          "seed": 23,
+          "petals": 8,
+          "keys": [
+            {
+              "atMs": 620,
+              "x": 1060,
+              "y": 140,
+              "r": 15,
+              "o": 0
+            },
+            {
+              "atMs": 800,
+              "x": 1060,
+              "y": 140,
+              "r": 156,
+              "o": 1
+            },
+            {
+              "atMs": 1160,
+              "x": 1065,
+              "y": 132,
+              "r": 252,
+              "blur": 8
+            },
+            {
+              "atMs": 1500,
+              "x": 1068,
+              "y": 126,
+              "r": 348,
+              "blur": 18,
+              "o": 0
+            }
+          ]
+        },
+        {
+          "seed": 29,
+          "petals": 9,
+          "keys": [
+            {
+              "atMs": 680,
+              "x": 940,
+              "y": 620,
+              "r": 18,
+              "o": 0
+            },
+            {
+              "atMs": 860,
+              "x": 940,
+              "y": 620,
+              "r": 168,
+              "o": 1
+            },
+            {
+              "atMs": 1200,
+              "x": 945,
+              "y": 628,
+              "r": 276,
+              "blur": 9
+            },
+            {
+              "atMs": 1500,
+              "x": 948,
+              "y": 632,
+              "r": 360,
+              "blur": 18,
+              "o": 0
+            }
+          ]
+        },
+        {
+          "seed": 31,
+          "petals": 7,
+          "keys": [
+            {
+              "atMs": 700,
+              "x": 680,
+              "y": 430,
+              "r": 8,
+              "o": 0
+            },
+            {
+              "atMs": 850,
+              "x": 680,
+              "y": 430,
+              "r": 41,
+              "o": 1
+            },
+            {
+              "atMs": 1150,
+              "x": 678,
+              "y": 426,
+              "r": 72,
+              "blur": 4
+            },
+            {
+              "atMs": 1350,
+              "x": 676,
+              "y": 422,
+              "r": 108,
+              "blur": 12,
+              "o": 0.3
+            },
+            {
+              "atMs": 1500,
+              "x": 675,
+              "y": 420,
+              "r": 120,
+              "blur": 14,
+              "o": 0
+            }
+          ]
+        }
+      ],
+      "mark": {
+        "src": "../../../templates/birch/aperture-mark.png"
+      }
+    },
+    {
+      "id": "extract-input",
+      "preset": "domain-input",
+      "mode": "input",
+      "startMs": 4800,
+      "durationMs": 2120,
+      "pill": {
+        "x": 210,
+        "y": 340,
+        "w": 869.3,
+        "h": 126
+      },
+      "orb": {
+        "x": 267.3,
+        "y": 403.3,
+        "r": 25
+      },
+      "label": {
+        "text": "Enter Domain",
+        "globeX": 236.7,
+        "globeY": 292.2,
+        "globeR": 13.7,
+        "chipR": 25.7,
+        "chipColour": [
+          255,
+          255,
+          255
+        ],
+        "chipAlpha": 0.42,
+        "stroke": 2,
+        "textX": 269.5,
+        "baseline": 301.7,
+        "baselineEm": 0.15,
+        "scaleX": 0.898,
+        "size": 28,
+        "weight": 700,
+        "colour": [
+          17,
+          15,
+          20
+        ]
+      },
+      "placeholder": {
+        "text": "domain.com",
+        "x": 313,
+        "baseline": 415.3,
+        "baselineEm": 0.203,
+        "scaleX": 0.955,
+        "size": 36,
+        "colour": [
+          176,
+          183,
+          183
+        ],
+        "fadeAtMs": 190,
+        "fadeMs": 90
+      },
+      "typed": {
+        "text": "lantern.com",
+        "x": 313,
+        "baseline": 415.8,
+        "baselineEm": 0.203,
+        "scaleX": 0.955,
+        "size": 36,
+        "colour": [
+          10,
+          4,
+          18
+        ],
+        "typeAtMs": 600,
+        "cps": 13.89
+      },
+      "submit": {
+        "x": 1017,
+        "y": 402,
+        "r": 30,
+        "face": [
+          55,
+          53,
+          58
+        ],
+        "arrowH": 27.3,
+        "arrowW": 20.7,
+        "arrowStroke": 2.3,
+        "arrowColour": [
+          246,
+          244,
+          248
+        ]
+      },
+      "ground": {
+        "base": [
+          253,
+          253,
+          253
+        ],
+        "hazeBlur": 86,
+        "petalBlur": 22,
+        "haze": [
+          {
+            "x": 700,
+            "y": 470,
+            "r": 430,
+            "c": [
+              190,
+              150,
+              225
+            ],
+            "a": 0.2
+          },
+          {
+            "x": 430,
+            "y": 330,
+            "r": 300,
+            "c": [
+              196,
+              162,
+              230
+            ],
+            "a": 0.1
+          },
+          {
+            "x": 980,
+            "y": 300,
+            "r": 260,
+            "c": [
+              206,
+              174,
+              236
+            ],
+            "a": 0.09
+          },
+          {
+            "x": 300,
+            "y": 560,
+            "r": 320,
+            "c": [
+              198,
+              165,
+              228
+            ],
+            "a": 0.12
+          },
+          {
+            "x": 1030,
+            "y": 560,
+            "r": 300,
+            "c": [
+              193,
+              158,
+              226
+            ],
+            "a": 0.13
+          },
+          {
+            "x": 640,
+            "y": 190,
+            "r": 260,
+            "c": [
+              214,
+              190,
+              240
+            ],
+            "a": 0.04
+          }
+        ],
+        "petals": [
+          {
+            "x": 40,
+            "y": 618,
+            "r": 46,
+            "c": [
+              228,
+              150,
+              214
+            ],
+            "a": 0.62
+          },
+          {
+            "x": 118,
+            "y": 660,
+            "r": 38,
+            "c": [
+              248,
+              186,
+              206
+            ],
+            "a": 0.78
+          },
+          {
+            "x": 196,
+            "y": 690,
+            "r": 44,
+            "c": [
+              238,
+              132,
+              178
+            ],
+            "a": 0.6
+          },
+          {
+            "x": 300,
+            "y": 640,
+            "r": 40,
+            "c": [
+              246,
+              178,
+              198
+            ],
+            "a": 0.72
+          },
+          {
+            "x": 352,
+            "y": 672,
+            "r": 34,
+            "c": [
+              236,
+              126,
+              172
+            ],
+            "a": 0.66
+          },
+          {
+            "x": 430,
+            "y": 700,
+            "r": 46,
+            "c": [
+              226,
+              158,
+              222
+            ],
+            "a": 0.6
+          },
+          {
+            "x": 500,
+            "y": 646,
+            "r": 36,
+            "c": [
+              248,
+              196,
+              214
+            ],
+            "a": 0.8
+          },
+          {
+            "x": 560,
+            "y": 690,
+            "r": 42,
+            "c": [
+              250,
+              230,
+              178
+            ],
+            "a": 0.58
+          },
+          {
+            "x": 640,
+            "y": 664,
+            "r": 38,
+            "c": [
+              246,
+              170,
+              192
+            ],
+            "a": 0.6
+          },
+          {
+            "x": 712,
+            "y": 700,
+            "r": 44,
+            "c": [
+              238,
+              176,
+              224
+            ],
+            "a": 0.56
+          },
+          {
+            "x": 786,
+            "y": 648,
+            "r": 34,
+            "c": [
+              224,
+              156,
+              224
+            ],
+            "a": 0.62
+          },
+          {
+            "x": 838,
+            "y": 686,
+            "r": 40,
+            "c": [
+              248,
+              214,
+              176
+            ],
+            "a": 0.58
+          },
+          {
+            "x": 900,
+            "y": 654,
+            "r": 36,
+            "c": [
+              242,
+              158,
+              190
+            ],
+            "a": 0.62
+          },
+          {
+            "x": 966,
+            "y": 694,
+            "r": 44,
+            "c": [
+              230,
+              168,
+              226
+            ],
+            "a": 0.58
+          },
+          {
+            "x": 1040,
+            "y": 650,
+            "r": 38,
+            "c": [
+              248,
+              190,
+              210
+            ],
+            "a": 0.72
+          },
+          {
+            "x": 1104,
+            "y": 686,
+            "r": 40,
+            "c": [
+              238,
+              140,
+              182
+            ],
+            "a": 0.58
+          },
+          {
+            "x": 1180,
+            "y": 644,
+            "r": 36,
+            "c": [
+              232,
+              172,
+              228
+            ],
+            "a": 0.62
+          },
+          {
+            "x": 1246,
+            "y": 686,
+            "r": 44,
+            "c": [
+              248,
+              206,
+              192
+            ],
+            "a": 0.64
+          },
+          {
+            "x": 590,
+            "y": 612,
+            "r": 30,
+            "c": [
+              250,
+              233,
+              190
+            ],
+            "a": 0.46
+          },
+          {
+            "x": 250,
+            "y": 614,
+            "r": 28,
+            "c": [
+              248,
+              196,
+              208
+            ],
+            "a": 0.5
+          }
+        ],
+        "push": [
+          {
+            "x": 430,
+            "y": 380,
+            "r": 300,
+            "c": [
+              214,
+              152,
+              252
+            ],
+            "a": 0.46
+          },
+          {
+            "x": 250,
+            "y": 300,
+            "r": 260,
+            "c": [
+              218,
+              165,
+              254
+            ],
+            "a": 0.4
+          },
+          {
+            "x": 640,
+            "y": 300,
+            "r": 300,
+            "c": [
+              210,
+              145,
+              250
+            ],
+            "a": 0.42
+          },
+          {
+            "x": 330,
+            "y": 540,
+            "r": 280,
+            "c": [
+              216,
+              157,
+              252
+            ],
+            "a": 0.4
+          },
+          {
+            "x": 700,
+            "y": 520,
+            "r": 300,
+            "c": [
+              212,
+              149,
+              250
+            ],
+            "a": 0.42
+          },
+          {
+            "x": 160,
+            "y": 450,
+            "r": 240,
+            "c": [
+              220,
+              169,
+              255
+            ],
+            "a": 0.36
+          },
+          {
+            "x": 900,
+            "y": 420,
+            "r": 280,
+            "c": [
+              214,
+              155,
+              252
+            ],
+            "a": 0.4
+          }
+        ],
+        "pushKeys": [
+          {
+            "atMs": 0,
+            "amount": 0
+          },
+          {
+            "atMs": 160,
+            "amount": 0.04
+          },
+          {
+            "atMs": 240,
+            "amount": 0.083
+          },
+          {
+            "atMs": 320,
+            "amount": 0.125
+          },
+          {
+            "atMs": 400,
+            "amount": 0.167
+          },
+          {
+            "atMs": 480,
+            "amount": 0.229
+          },
+          {
+            "atMs": 560,
+            "amount": 0.313
+          },
+          {
+            "atMs": 640,
+            "amount": 0.417
+          },
+          {
+            "atMs": 720,
+            "amount": 0.604
+          },
+          {
+            "atMs": 800,
+            "amount": 0.813
+          },
+          {
+            "atMs": 880,
+            "amount": 0.896
+          },
+          {
+            "atMs": 960,
+            "amount": 0.938
+          },
+          {
+            "atMs": 1040,
+            "amount": 0.958
+          },
+          {
+            "atMs": 1200,
+            "amount": 0.979
+          },
+          {
+            "atMs": 1360,
+            "amount": 1
+          },
+          {
+            "atMs": 2120,
+            "amount": 1
+          }
+        ]
+      },
+      "flash": {
+        "atMs": 2020,
+        "durMs": 200,
+        "inMs": 60,
+        "colour": [
+          176,
+          62,
+          244
+        ],
+        "core": [
+          248,
+          232,
+          255
+        ],
+        "x": 899,
+        "y": 300,
+        "r": 300,
+        "travel": 420,
+        "wipe": {
+          "colour": [
+            3,
+            1,
+            7
+          ],
+          "deg": 52,
+          "from": 88,
+          "to": -12,
+          "soft": 7
+        }
+      },
+      "camera": {
+        "originX": 257.5,
+        "originY": 443,
+        "keys": [
+          {
+            "atMs": 0,
+            "scale": 1
+          },
+          {
+            "atMs": 200,
+            "scale": 1.028,
+            "ease": "linear"
+          },
+          {
+            "atMs": 360,
+            "scale": 1.055,
+            "ease": "linear"
+          },
+          {
+            "atMs": 440,
+            "scale": 1.109,
+            "ease": "linear"
+          },
+          {
+            "atMs": 520,
+            "scale": 1.162,
+            "ease": "linear"
+          },
+          {
+            "atMs": 600,
+            "scale": 1.243,
+            "ease": "linear"
+          },
+          {
+            "atMs": 680,
+            "scale": 1.418,
+            "ease": "linear"
+          },
+          {
+            "atMs": 760,
+            "scale": 1.609,
+            "ease": "linear"
+          },
+          {
+            "atMs": 840,
+            "scale": 1.752,
+            "ease": "linear"
+          },
+          {
+            "atMs": 920,
+            "scale": 1.836,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1000,
+            "scale": 1.894,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1080,
+            "scale": 1.937,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1160,
+            "scale": 1.963,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1200,
+            "scale": 1.974,
+            "x": 0,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1240,
+            "scale": 1.984,
+            "x": -3.5,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1360,
+            "scale": 2.005,
+            "x": -9,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1480,
+            "scale": 2.017,
+            "x": -23,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1600,
+            "scale": 2.021,
+            "x": -49,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1720,
+            "scale": 2.026,
+            "x": -86,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1840,
+            "scale": 2.028,
+            "x": -149,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1920,
+            "scale": 2.03,
+            "x": -212,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1960,
+            "scale": 2.03,
+            "x": -255,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2000,
+            "scale": 2.031,
+            "x": -309,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2040,
+            "scale": 2.032,
+            "x": -377,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2080,
+            "scale": 2.032,
+            "x": -462,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2120,
+            "scale": 2.032,
+            "x": -568,
+            "ease": "linear"
+          }
+        ]
+      },
+      "role": "user-voice",
+      "_note": "DIEGETIC — the user typing a customer's domain into the product."
+    },
+    {
+      "id": "extract-submit",
+      "preset": "domain-input",
+      "mode": "submit",
+      "startMs": 6900,
+      "durationMs": 940,
+      "pill": {
+        "x": 210,
+        "y": 340,
+        "w": 869.3,
+        "h": 126
+      },
+      "orb": {
+        "x": 267.3,
+        "y": 403.3,
+        "r": 0
+      },
+      "submit": {
+        "x": 1015.5,
+        "y": 402,
+        "r": 27.2,
+        "ring": [
+          255,
+          255,
+          255
+        ],
+        "ringWidth": 0.78,
+        "faceKeys": [
+          {
+            "atMs": 0,
+            "c": [
+              86,
+              0,
+              149
+            ],
+            "ringA": 0
+          },
+          {
+            "atMs": 180,
+            "c": [
+              86,
+              0,
+              149
+            ],
+            "ringA": 0
+          },
+          {
+            "atMs": 260,
+            "c": [
+              108,
+              21,
+              173
+            ],
+            "ringA": 0.15
+          },
+          {
+            "atMs": 340,
+            "c": [
+              137,
+              50,
+              202
+            ],
+            "ringA": 0.35
+          },
+          {
+            "atMs": 420,
+            "c": [
+              166,
+              79,
+              231
+            ],
+            "ringA": 0.55
+          },
+          {
+            "atMs": 500,
+            "c": [
+              191,
+              111,
+              250
+            ],
+            "ringA": 0.72
+          },
+          {
+            "atMs": 580,
+            "c": [
+              200,
+              128,
+              250
+            ],
+            "ringA": 0.85
+          },
+          {
+            "atMs": 700,
+            "c": [
+              186,
+              100,
+              249
+            ],
+            "ringA": 0.9
+          },
+          {
+            "atMs": 940,
+            "c": [
+              167,
+              80,
+              234
+            ],
+            "ringA": 0.9
+          }
+        ],
+        "arrowH": 25.4,
+        "arrowW": 17.2,
+        "arrowStroke": 2.6,
+        "arrowColour": [
+          255,
+          255,
+          255
+        ]
+      },
+      "backdrop": {
+        "colour": [
+          1,
+          0,
+          3
+        ],
+        "inMs": 25
+      },
+      "gloss": {
+        "base": [
+          123,
+          36,
+          188
+        ],
+        "angleDeg": 14,
+        "rim": 1.1,
+        "keys": [
+          {
+            "atMs": 0,
+            "x": 691,
+            "w": 340,
+            "amount": 1,
+            "wash": 0.05,
+            "washR": 0.78,
+            "washX0": 560,
+            "washX1": 960
+          },
+          {
+            "atMs": 100,
+            "x": 782,
+            "w": 320,
+            "amount": 0.99,
+            "wash": 0.05,
+            "washR": 0.76,
+            "washX0": 570,
+            "washX1": 980
+          },
+          {
+            "atMs": 180,
+            "x": 833,
+            "w": 320,
+            "amount": 0.99,
+            "wash": 0.02,
+            "washR": 0.72,
+            "washX0": 580,
+            "washX1": 1000
+          },
+          {
+            "atMs": 220,
+            "x": 845,
+            "w": 340,
+            "amount": 0.99,
+            "wash": 0.25,
+            "washR": 0.74,
+            "washX0": 520,
+            "washX1": 1010
+          },
+          {
+            "atMs": 260,
+            "x": 868,
+            "w": 340,
+            "amount": 0.99,
+            "wash": 0.51,
+            "washR": 0.62,
+            "washX0": 380,
+            "washX1": 1030
+          },
+          {
+            "atMs": 300,
+            "x": 891,
+            "w": 300,
+            "amount": 0.98,
+            "wash": 0.51,
+            "washR": 0.55,
+            "washX0": 210,
+            "washX1": 1079
+          },
+          {
+            "atMs": 400,
+            "x": 933,
+            "w": 165,
+            "amount": 0.99,
+            "wash": 0.36,
+            "washR": 0.36,
+            "washX0": 210,
+            "washX1": 1079
+          },
+          {
+            "atMs": 500,
+            "x": 954,
+            "w": 143,
+            "amount": 0.93,
+            "wash": 0.242,
+            "washR": 0.242,
+            "washX0": 210,
+            "washX1": 1079
+          },
+          {
+            "atMs": 600,
+            "x": 964,
+            "w": 138,
+            "amount": 0.8,
+            "wash": 0.19,
+            "washR": 0.19,
+            "washX0": 210,
+            "washX1": 1079
+          },
+          {
+            "atMs": 700,
+            "x": 972,
+            "w": 142,
+            "amount": 0.73,
+            "wash": 0.11,
+            "washR": 0.11,
+            "washX0": 210,
+            "washX1": 1079
+          },
+          {
+            "atMs": 800,
+            "x": 977,
+            "w": 138,
+            "amount": 0.66,
+            "wash": 0.06,
+            "washR": 0.06,
+            "washX0": 210,
+            "washX1": 1079
+          },
+          {
+            "atMs": 940,
+            "x": 983,
+            "w": 132,
+            "amount": 0.5,
+            "wash": 0,
+            "washR": 0,
+            "washX0": 210,
+            "washX1": 1079
+          }
+        ]
+      },
+      "flash": {
+        "atMs": 0,
+        "durMs": 115,
+        "colour": [
+          176,
+          70,
+          244
+        ],
+        "x": 878,
+        "y": 264,
+        "r": 256,
+        "travel": 1000
+      },
+      "camera": {
+        "originX": 257.5,
+        "originY": 443,
+        "keys": [
+          {
+            "atMs": 0,
+            "scale": 2.032,
+            "x": -568.2
+          },
+          {
+            "atMs": 1550,
+            "x": -1164.2,
+            "ease": "expo"
+          }
+        ]
+      },
+      "role": "user-voice",
+      "_note": "DIEGETIC — the same field at the moment of submit."
+    },
+    {
+      "id": "extract-loader-wash",
+      "role": "brand",
+      "preset": "radial-glow",
+      "startMs": 7820,
+      "durationMs": 5850,
+      "colour": [
+        120,
+        220,
+        255
+      ],
+      "peakAlpha": 0.28,
+      "core": 0.3,
+      "falloff": 1.5,
+      "aspect": 0.75,
+      "blend": "normal",
+      "keys": [
+        {
+          "atMs": 0,
+          "alpha": 0,
+          "x": 420,
+          "y": 350,
+          "r": 340
+        },
+        {
+          "atMs": 500,
+          "alpha": 0
+        },
+        {
+          "atMs": 1180,
+          "alpha": 1,
+          "ease": "out"
+        },
+        {
+          "atMs": 5780,
+          "alpha": 1
+        },
+        {
+          "atMs": 5840,
+          "alpha": 0
+        }
+      ]
+    },
+    {
+      "id": "extract-loader-wash-warm",
+      "role": "brand",
+      "preset": "radial-glow",
+      "startMs": 7822,
+      "durationMs": 5848,
+      "colour": [
+        250,
+        158,
+        178
+      ],
+      "peakAlpha": 0.26,
+      "core": 0.22,
+      "falloff": 1.35,
+      "aspect": 0.26,
+      "blend": "normal",
+      "keys": [
+        {
+          "atMs": 0,
+          "alpha": 0,
+          "x": 150,
+          "y": 20,
+          "r": 640
+        },
+        {
+          "atMs": 498,
+          "alpha": 0
+        },
+        {
+          "atMs": 1178,
+          "alpha": 1,
+          "ease": "out"
+        },
+        {
+          "atMs": 5778,
+          "alpha": 1
+        },
+        {
+          "atMs": 5838,
+          "alpha": 0
+        }
+      ]
+    },
+    {
+      "id": "extract-loader-pill",
+      "role": "brand",
+      "preset": "radial-glow",
+      "startMs": 7830,
+      "durationMs": 5840,
+      "colour": [
+        255,
+        255,
+        255
+      ],
+      "peakAlpha": 0.3,
+      "core": 0.88,
+      "falloff": 2.2,
+      "aspect": 0.155,
+      "blend": "normal",
+      "keys": [
+        {
+          "atMs": 0,
+          "alpha": 0,
+          "x": 640,
+          "y": 361,
+          "r": 350
+        },
+        {
+          "atMs": 490,
+          "alpha": 0
+        },
+        {
+          "atMs": 1170,
+          "alpha": 1,
+          "ease": "out"
+        },
+        {
+          "atMs": 5770,
+          "alpha": 1
+        },
+        {
+          "atMs": 5830,
+          "alpha": 0
+        }
+      ]
+    },
+    {
+      "id": "extract-loader",
+      "preset": "orb-roll",
+      "role": "product-voice",
+      "startMs": 7840,
+      "durationMs": 6260,
+      "font": "Georgia, 'Times New Roman', serif",
+      "words": [
+        {
+          "text": "Going to ‘Lantern.com’",
+          "dx": 0
+        },
+        {
+          "text": "Extracting Styles",
+          "dx": 87
+        },
+        {
+          "text": "Building Brand Kit",
+          "dx": 74
+        }
+      ],
+      "focusAtMs": 9080,
+      "stepMs": 1600,
+      "holdMs": 1160,
+      "size": 46,
+      "x": 458,
+      "focusY": 360,
+      "spacingPx": 120,
+      "tiltDeg": 0,
+      "blurPer": 30,
+      "growBelow": 0,
+      "colour": [
+        28,
+        25,
+        30
+      ],
+      "fade": [
+        228,
+        224,
+        232
+      ],
+      "fadeOutAtMs": 13400,
+      "fadeOutDurMs": 400,
+      "orbs": [
+        {
+          "trackX": true,
+          "keys": [
+            {
+              "atMs": 7840,
+              "x": 640,
+              "y": 362,
+              "r": 47,
+              "blur": 11
+            },
+            {
+              "atMs": 8300,
+              "x": 640,
+              "y": 362,
+              "r": 47,
+              "blur": 11
+            },
+            {
+              "atMs": 9120,
+              "x": 372,
+              "y": 362,
+              "r": 50,
+              "blur": 11
+            },
+            {
+              "atMs": 13400,
+              "x": 372,
+              "y": 362,
+              "r": 51,
+              "blur": 11
+            },
+            {
+              "atMs": 13640,
+              "x": 334,
+              "y": 363,
+              "r": 50,
+              "blur": 13
+            },
+            {
+              "atMs": 13780,
+              "x": 318,
+              "y": 363,
+              "r": 0,
+              "blur": 13
+            }
+          ],
+          "skins": [
+            {
+              "atMs": 7840,
+              "hi": [
+                242,
+                158,
+                236
+              ],
+              "mid": [
+                226,
+                108,
+                204
+              ],
+              "lo": [
+                206,
+                84,
+                178
+              ]
+            },
+            {
+              "atMs": 8500,
+              "hi": [
+                248,
+                140,
+                152
+              ],
+              "mid": [
+                240,
+                108,
+                128
+              ],
+              "lo": [
+                228,
+                84,
+                108
+              ]
+            }
+          ]
+        }
+      ],
+      "camera": {
+        "originX": 640,
+        "originY": 360,
+        "keys": [
+          {
+            "atMs": 1410,
+            "y": 0
+          },
+          {
+            "atMs": 2710,
+            "y": -9,
+            "ease": "linear"
+          },
+          {
+            "atMs": 3210,
+            "y": 0,
+            "ease": "inout"
+          },
+          {
+            "atMs": 4510,
+            "y": -9,
+            "ease": "linear"
+          },
+          {
+            "atMs": 5010,
+            "y": 0,
+            "ease": "inout"
+          },
+          {
+            "atMs": 6310,
+            "y": -9,
+            "ease": "linear"
+          }
+        ]
+      }
+    },
+    {
+      "id": "extract-loader-marks",
+      "role": "brand",
+      "preset": "petal-drift",
+      "startMs": 8840,
+      "durationMs": 4700,
+      "flowers": [
+        {
+          "seed": 41,
+          "petals": 8,
+          "keys": [
+            {
+              "atMs": 0,
+              "x": 596,
+              "y": 400,
+              "r": 17,
+              "rot": -6,
+              "blur": 0,
+              "o": 0
+            },
+            {
+              "atMs": 200,
+              "x": 576,
+              "y": 405,
+              "r": 42,
+              "rot": -6,
+              "blur": 0,
+              "o": 1
+            },
+            {
+              "atMs": 2400,
+              "x": 352,
+              "y": 462,
+              "r": 68,
+              "rot": 2,
+              "blur": 1,
+              "o": 1
+            },
+            {
+              "atMs": 4400,
+              "x": 108,
+              "y": 524,
+              "r": 94,
+              "rot": 10,
+              "blur": 3,
+              "o": 1
+            },
+            {
+              "atMs": 4700,
+              "x": 74,
+              "y": 533,
+              "r": 100,
+              "rot": 13,
+              "blur": 6,
+              "o": 0
+            }
+          ]
+        },
+        {
+          "seed": 43,
+          "petals": 7,
+          "keys": [
+            {
+              "atMs": 140,
+              "x": 712,
+              "y": 310,
+              "r": 16,
+              "rot": 5,
+              "blur": 0,
+              "o": 0
+            },
+            {
+              "atMs": 340,
+              "x": 724,
+              "y": 299,
+              "r": 40,
+              "rot": 5,
+              "blur": 0,
+              "o": 1
+            },
+            {
+              "atMs": 2400,
+              "x": 858,
+              "y": 170,
+              "r": 62,
+              "rot": -1,
+              "blur": 1,
+              "o": 1
+            },
+            {
+              "atMs": 4400,
+              "x": 1004,
+              "y": 30,
+              "r": 84,
+              "rot": -8,
+              "blur": 3,
+              "o": 1
+            },
+            {
+              "atMs": 4700,
+              "x": 1024,
+              "y": 10,
+              "r": 89,
+              "rot": -5,
+              "blur": 6,
+              "o": 0
+            }
+          ]
+        },
+        {
+          "seed": 47,
+          "petals": 8,
+          "keys": [
+            {
+              "atMs": 260,
+              "x": 778,
+              "y": 376,
+              "r": 15,
+              "rot": -3,
+              "blur": 0,
+              "o": 0
+            },
+            {
+              "atMs": 460,
+              "x": 797,
+              "y": 377,
+              "r": 38,
+              "rot": -3,
+              "blur": 0,
+              "o": 1
+            },
+            {
+              "atMs": 2400,
+              "x": 1012,
+              "y": 394,
+              "r": 60,
+              "rot": 2,
+              "blur": 1,
+              "o": 1
+            },
+            {
+              "atMs": 4400,
+              "x": 1246,
+              "y": 412,
+              "r": 82,
+              "rot": 7,
+              "blur": 3,
+              "o": 1
+            },
+            {
+              "atMs": 4700,
+              "x": 1279,
+              "y": 415,
+              "r": 87,
+              "rot": 10,
+              "blur": 6,
+              "o": 0
+            }
+          ]
+        },
+        {
+          "seed": 53,
+          "petals": 7,
+          "keys": [
+            {
+              "atMs": 380,
+              "x": 694,
+              "y": 398,
+              "r": 14,
+              "rot": 7,
+              "blur": 0,
+              "o": 0
+            },
+            {
+              "atMs": 580,
+              "x": 708,
+              "y": 408,
+              "r": 36,
+              "rot": 7,
+              "blur": 0,
+              "o": 1
+            },
+            {
+              "atMs": 2400,
+              "x": 875,
+              "y": 522,
+              "r": 56,
+              "rot": 1,
+              "blur": 1,
+              "o": 1
+            },
+            {
+              "atMs": 4400,
+              "x": 1056,
+              "y": 646,
+              "r": 76,
+              "rot": -5,
+              "blur": 3,
+              "o": 1
+            },
+            {
+              "atMs": 4700,
+              "x": 1081,
+              "y": 663,
+              "r": 81,
+              "rot": -2,
+              "blur": 6,
+              "o": 0
+            }
+          ]
+        },
+        {
+          "seed": 59,
+          "petals": 8,
+          "keys": [
+            {
+              "atMs": 200,
+              "x": 584,
+              "y": 320,
+              "r": 14,
+              "rot": -8,
+              "blur": 0,
+              "o": 0
+            },
+            {
+              "atMs": 400,
+              "x": 568,
+              "y": 312,
+              "r": 36,
+              "rot": -8,
+              "blur": 0,
+              "o": 1
+            },
+            {
+              "atMs": 2400,
+              "x": 384,
+              "y": 224,
+              "r": 55,
+              "rot": -1,
+              "blur": 1,
+              "o": 1
+            },
+            {
+              "atMs": 4400,
+              "x": 184,
+              "y": 128,
+              "r": 74,
+              "rot": 6,
+              "blur": 3,
+              "o": 1
+            },
+            {
+              "atMs": 4700,
+              "x": 156,
+              "y": 115,
+              "r": 78,
+              "rot": 9,
+              "blur": 6,
+              "o": 0
+            }
+          ]
+        },
+        {
+          "seed": 61,
+          "petals": 6,
+          "keys": [
+            {
+              "atMs": 520,
+              "x": 650,
+              "y": 292,
+              "r": 11,
+              "rot": 4,
+              "blur": 0,
+              "o": 0
+            },
+            {
+              "atMs": 720,
+              "x": 655,
+              "y": 282,
+              "r": 28,
+              "rot": 4,
+              "blur": 0,
+              "o": 1
+            },
+            {
+              "atMs": 2400,
+              "x": 718,
+              "y": 169,
+              "r": 44,
+              "rot": -1,
+              "blur": 1,
+              "o": 1
+            },
+            {
+              "atMs": 4400,
+              "x": 786,
+              "y": 46,
+              "r": 60,
+              "rot": -6,
+              "blur": 3,
+              "o": 1
+            },
+            {
+              "atMs": 4700,
+              "x": 796,
+              "y": 29,
+              "r": 64,
+              "rot": -3,
+              "blur": 6,
+              "o": 0
+            }
+          ]
+        }
+      ],
+      "mark": {
+        "src": "../../../templates/birch/aperture-mark.png"
+      }
+    },
+    {
+      "id": "extract-site-comp",
+      "preset": "media-window",
+      "startMs": 13680,
+      "durationMs": 7840,
+      "index": null,
+      "w": 1051.3,
+      "h": 592,
+      "radius": 32.7,
+      "face": [
+        252,
+        252,
+        252
+      ],
+      "label": null,
+      "keys": [
+        {
+          "atMs": 0,
+          "x": 1641.7,
+          "y": 363.2,
+          "scale": 2.91,
+          "radius": 95.2
+        },
+        {
+          "atMs": 1000,
+          "x": 1576.3,
+          "ease": "expo"
+        },
+        {
+          "atMs": 1040,
+          "x": 1576.3
+        },
+        {
+          "atMs": 2360,
+          "x": 641.3,
+          "y": 358.3,
+          "scale": 1,
+          "ease": "inout",
+          "radius": 32.7
+        },
+        {
+          "atMs": 6820
+        },
+        {
+          "atMs": 7240,
+          "x": 702.74,
+          "scale": 1.0965,
+          "radius": 35.87,
+          "ease": "in",
+          "pow": 2.8,
+          "shadowAlpha": 1
+        },
+        {
+          "atMs": 7280,
+          "x": 720.57,
+          "scale": 1.1245,
+          "radius": 36.79,
+          "ease": "linear",
+          "shadowAlpha": 0.9908
+        },
+        {
+          "atMs": 7320,
+          "x": 741.41,
+          "scale": 1.1573,
+          "radius": 37.86,
+          "ease": "linear",
+          "shadowAlpha": 0.9718
+        },
+        {
+          "atMs": 7360,
+          "x": 765.49,
+          "scale": 1.1951,
+          "radius": 39.1,
+          "ease": "linear",
+          "shadowAlpha": 0.9455
+        },
+        {
+          "atMs": 7400,
+          "x": 792.99,
+          "scale": 1.2383,
+          "radius": 40.52,
+          "ease": "linear",
+          "shadowAlpha": 0.9123
+        },
+        {
+          "atMs": 7420,
+          "scale": 1.262,
+          "x": 808.1,
+          "ease": "linear",
+          "radius": 41.3,
+          "shadowAlpha": 0.8933
+        },
+        {
+          "atMs": 7640,
+          "x": 1256.52,
+          "scale": 1.9833,
+          "radius": 64.88,
+          "ease": "in",
+          "pow": 1.4,
+          "shadowAlpha": 0.5661
+        },
+        {
+          "atMs": 7840,
+          "x": 1476.61,
+          "scale": 2.3373,
+          "radius": 76.45,
+          "ease": "in",
+          "pow": 0.8,
+          "shadowAlpha": 0
+        }
+      ],
+      "role": "product-voice",
+      "_note": "The customer's own site, drawn — the screen the product is reading.",
+      "interior": {
+        "preset": "site-page",
+        "brand": {
+          "name": "Lantern",
+          "domain": "lantern.com",
+          "accent": [
+            255,
+            197,
+            61
+          ],
+          "accent2": [
+            255,
+            107,
+            90
+          ],
+          "ink": [
+            20,
+            16,
+            25
+          ],
+          "paper": [
+            255,
+            253,
+            247
+          ]
+        },
+        "sidebar": {
+          "w": 307,
+          "domain": "lantern.com",
+          "status": "Building Brand Kit",
+          "orb": {
+            "colour": [
+              255,
+              107,
+              90
+            ]
+          }
+        },
+        "hero": {
+          "lines": [
+            "From first idea to first sale."
+          ],
+          "body": "Anyone can earn their first sale online. Start with what you already know, see what sticks, and get paid.",
+          "cta": {
+            "label": "Start selling"
+          },
+          "search": {
+            "placeholder": "Search the market…"
+          },
+          "note": "Built with makers, in the open."
+        },
+        "highlight": {
+          "atMs": 2600,
+          "durMs": 260,
+          "staggerMs": 80,
+          "colour": [
+            151,
+            194,
+            255
+          ],
+          "alpha": 0.55
+        },
+        "sections": [
+          {
+            "kind": "cards",
+            "items": [
+              {
+                "heading": "Sell anything",
+                "art": true
+              },
+              {
+                "heading": "Make your own way",
+                "body": "Whether you need more balance, flexibility, or just a different gig, we make it easy to chart a new path."
+              }
+            ]
+          },
+          {
+            "kind": "loop",
+            "labels": [
+              "The Lantern Loop",
+              "Start small",
+              "Learn quickly",
+              "Get better together"
+            ]
+          },
+          {
+            "kind": "claim",
+            "lines": [
+              "We want you to try things, lots of things,",
+              "and find out what works."
+            ],
+            "cta": {
+              "label": "Find out how"
+            }
+          },
+          {
+            "kind": "grid",
+            "items": [
+              {
+                "label": "Hand-poured candles"
+              },
+              {
+                "label": "Ukulele lessons"
+              },
+              {
+                "label": "Sourdough starter kit"
+              },
+              {
+                "label": "Watercolour prints"
+              },
+              {
+                "label": "Lo-fi sample pack"
+              },
+              {
+                "label": "Knitting patterns"
+              },
+              {
+                "label": "Photography presets"
+              },
+              {
+                "label": "Zine collection"
+              }
+            ]
+          },
+          {
+            "kind": "strip",
+            "stat": "$2,140,880",
+            "label": "paid out to makers"
+          }
+        ],
+        "stickers": [
+          {
+            "x": 140,
+            "y": 150,
+            "r": 34,
+            "rot": -14,
+            "kind": "coin",
+            "colour": [
+              255,
+              197,
+              61
+            ]
+          },
+          {
+            "x": 860,
+            "y": 110,
+            "r": 26,
+            "rot": 10,
+            "kind": "coin",
+            "colour": [
+              183,
+              156,
+              255
+            ]
+          },
+          {
+            "x": 760,
+            "y": 330,
+            "r": 40,
+            "rot": 22,
+            "kind": "blob",
+            "colour": [
+              47,
+              207,
+              166
+            ]
+          },
+          {
+            "x": 40,
+            "y": 340,
+            "r": 20,
+            "rot": -8,
+            "kind": "coin",
+            "colour": [
+              255,
+              107,
+              90
+            ]
+          }
+        ],
+        "scroll": [
+          {
+            "atMs": 0,
+            "y": 0,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2400,
+            "y": 0,
+            "ease": "inout"
+          },
+          {
+            "atMs": 4300,
+            "y": 588,
+            "ease": "inout"
+          },
+          {
+            "atMs": 5800,
+            "y": 1408,
+            "ease": "inout"
+          },
+          {
+            "atMs": 6800,
+            "y": 1480,
+            "ease": "inout"
+          },
+          {
+            "atMs": 7840,
+            "y": 1650,
+            "ease": "linear"
+          }
+        ]
+      }
+    },
+    {
+      "id": "extract-kit-comp",
+      "preset": "media-window",
+      "startMs": 20920,
+      "durationMs": 2720,
+      "index": null,
+      "w": 1051.3,
+      "h": 592,
+      "radius": 32.7,
+      "face": [
+        252,
+        252,
+        252
+      ],
+      "label": null,
+      "keys": [
+        {
+          "atMs": 0,
+          "x": 702.74,
+          "y": 358.3,
+          "scale": 1.0965,
+          "radius": 35.87,
+          "opacity": 0
+        },
+        {
+          "atMs": 40,
+          "x": 720.57,
+          "scale": 1.1245,
+          "radius": 36.79,
+          "opacity": 0.0131,
+          "ease": "linear"
+        },
+        {
+          "atMs": 80,
+          "x": 741.41,
+          "scale": 1.1573,
+          "radius": 37.86,
+          "opacity": 0.0398,
+          "ease": "linear"
+        },
+        {
+          "atMs": 120,
+          "x": 765.49,
+          "scale": 1.1951,
+          "radius": 39.1,
+          "opacity": 0.0761,
+          "ease": "linear"
+        },
+        {
+          "atMs": 160,
+          "x": 792.99,
+          "scale": 1.2383,
+          "radius": 40.52,
+          "opacity": 0.1207,
+          "ease": "linear"
+        },
+        {
+          "atMs": 180,
+          "x": 808.1,
+          "scale": 1.262,
+          "radius": 41.3,
+          "opacity": 0.1457,
+          "ease": "linear"
+        },
+        {
+          "atMs": 400,
+          "x": 1256.52,
+          "scale": 1.9833,
+          "radius": 64.88,
+          "opacity": 0.5227,
+          "ease": "in",
+          "pow": 1.4
+        },
+        {
+          "atMs": 600,
+          "x": 1476.61,
+          "scale": 2.3373,
+          "radius": 76.45,
+          "opacity": 1,
+          "ease": "in",
+          "pow": 0.8
+        },
+        {
+          "atMs": 840,
+          "x": 1576.5,
+          "y": 356,
+          "ease": "in",
+          "pow": 0.8,
+          "scale": 2.498,
+          "radius": 81.7
+        },
+        {
+          "atMs": 1800
+        },
+        {
+          "atMs": 2620,
+          "scale": 1.124,
+          "ease": "in",
+          "pow": 2.4,
+          "x": 719.1,
+          "radius": 36.8
+        }
+      ],
+      "role": "product-voice",
+      "_note": "The brand kit the product just built, drawn.",
+      "interior": {
+        "preset": "brand-sheet",
+        "brand": {
+          "name": "Lantern",
+          "accent": [
+            255,
+            197,
+            61
+          ],
+          "accent2": [
+            255,
+            107,
+            90
+          ],
+          "ink": [
+            20,
+            16,
+            25
+          ],
+          "paper": [
+            255,
+            255,
+            255
+          ]
+        },
+        "header": {
+          "title": "Building Brand Kit",
+          "size": 32,
+          "orb": {
+            "r": 22,
+            "hi": [
+              255,
+              240,
+              214
+            ],
+            "mid": [
+              255,
+              197,
+              61
+            ],
+            "lo": [
+              255,
+              107,
+              90
+            ]
+          }
+        },
+        "wordmark": {
+          "text": "Lantern",
+          "size": 56,
+          "weight": 800,
+          "tracking": -0.02,
+          "colour": [
+            150,
+            148,
+            160
+          ]
+        },
+        "swatches": [
+          {
+            "hex": "#FFC53D",
+            "colour": [
+              255,
+              197,
+              61
+            ]
+          },
+          {
+            "hex": "#141019",
+            "colour": [
+              20,
+              16,
+              25
+            ]
+          },
+          {
+            "hex": "#FFFFFF",
+            "colour": [
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "hex": "#F5F3EE",
+            "colour": [
+              245,
+              243,
+              238
+            ]
+          },
+          {
+            "hex": "#2FCFA6",
+            "colour": [
+              47,
+              207,
+              166
+            ],
+            "label": "from illustrations"
+          },
+          {
+            "hex": "#FF6B5A",
+            "colour": [
+              255,
+              107,
+              90
+            ],
+            "label": "from illustrations"
+          },
+          {
+            "hex": "#B79CFF",
+            "colour": [
+              183,
+              156,
+              255
+            ],
+            "label": "from illustrations"
+          },
+          {
+            "hex": "#FFE9A8",
+            "colour": [
+              255,
+              233,
+              168
+            ],
+            "label": "from illustrations"
+          },
+          {
+            "hex": "#6B6875",
+            "colour": [
+              107,
+              104,
+              117
+            ],
+            "label": "from illustrations"
+          }
+        ],
+        "rows": [
+          {
+            "kind": "type",
+            "left": {
+              "headline": "From first idea to first sale.",
+              "body": "Anyone can earn their first sale online. Start with what you already know…"
+            },
+            "right": {
+              "nav": [
+                "Guides",
+                "Discover",
+                "Pricing",
+                "Features"
+              ],
+              "heading": "Make your own way",
+              "body": "Whether you want more balance, flexibility, or just a different sort of week, we make it easy to chart your own road."
+            }
+          },
+          {
+            "kind": "icons",
+            "cells": [
+              {
+                "tiles": [
+                  {
+                    "kind": "blob",
+                    "colour": [
+                      255,
+                      197,
+                      61
+                    ]
+                  },
+                  {
+                    "kind": "blob2",
+                    "colour": [
+                      47,
+                      207,
+                      166
+                    ]
+                  },
+                  {
+                    "kind": "blob",
+                    "colour": [
+                      255,
+                      107,
+                      90
+                    ]
+                  },
+                  {
+                    "kind": "magnifier",
+                    "colour": [
+                      20,
+                      16,
+                      25
+                    ]
+                  }
+                ]
+              },
+              {
+                "tiles": [
+                  {
+                    "kind": "avatar",
+                    "colour": [
+                      183,
+                      156,
+                      255
+                    ]
+                  },
+                  {
+                    "kind": "avatar",
+                    "colour": [
+                      255,
+                      233,
+                      168
+                    ]
+                  },
+                  {
+                    "kind": "chip",
+                    "colour": [
+                      255,
+                      197,
+                      61
+                    ],
+                    "mark": "L"
+                  },
+                  {
+                    "kind": "spark",
+                    "colour": [
+                      107,
+                      104,
+                      117
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "grid",
+            "cards": [
+              {
+                "search": "Search the market…",
+                "button": "Start selling",
+                "buttonColour": [
+                  255,
+                  197,
+                  61
+                ],
+                "buttonInk": [
+                  20,
+                  16,
+                  25
+                ],
+                "thumb": {
+                  "colours": [
+                    [
+                      255,
+                      197,
+                      61
+                    ],
+                    [
+                      255,
+                      107,
+                      90
+                    ]
+                  ]
+                },
+                "caption": "Handmade ceramics · $24"
+              },
+              {
+                "search": "Search the market…",
+                "button": "Start selling",
+                "buttonColour": [
+                  20,
+                  16,
+                  25
+                ],
+                "buttonInk": [
+                  255,
+                  255,
+                  255
+                ],
+                "thumb": {
+                  "colours": [
+                    [
+                      47,
+                      207,
+                      166
+                    ],
+                    [
+                      183,
+                      156,
+                      255
+                    ]
+                  ]
+                },
+                "caption": "Digital patterns · $12"
+              }
+            ]
+          }
+        ],
+        "reveal": {
+          "atMs": 0,
+          "staggerMs": 120,
+          "durMs": 280
+        },
+        "font": null
+      }
+    },
+    {
+      "id": "extract-success-card",
+      "preset": "media-window",
+      "startMs": 23480,
+      "durationMs": 2250,
+      "index": null,
+      "w": 1051.3,
+      "h": 592,
+      "radius": 32.7,
+      "face": [
+        252,
+        251,
+        252
+      ],
+      "label": null,
+      "keys": [
+        {
+          "atMs": 0,
+          "x": 641.3,
+          "y": 358.3,
+          "w": 0,
+          "h": 0,
+          "radius": 0
+        },
+        {
+          "atMs": 20
+        },
+        {
+          "atMs": 620,
+          "x": 641.3,
+          "y": 358,
+          "w": 1013,
+          "h": 570,
+          "radius": 31.5,
+          "ease": "inout"
+        },
+        {
+          "atMs": 720,
+          "w": 1051.3,
+          "h": 592,
+          "radius": 32.7
+        },
+        {
+          "atMs": 1000,
+          "scale": 1.0051,
+          "ease": "in",
+          "pow": 2.2,
+          "radius": 32.9
+        },
+        {
+          "atMs": 1400,
+          "scale": 1.081,
+          "ease": "in",
+          "pow": 1.6,
+          "radius": 35.3
+        },
+        {
+          "atMs": 1640,
+          "scale": 1.2397,
+          "ease": "in",
+          "pow": 1.4,
+          "radius": 40.5
+        },
+        {
+          "atMs": 1720,
+          "scale": 1.3691,
+          "ease": "in",
+          "pow": 1.2,
+          "radius": 44.8
+        },
+        {
+          "atMs": 1780,
+          "scale": 1.5919,
+          "ease": "in",
+          "pow": 1.6,
+          "radius": 52.1
+        },
+        {
+          "atMs": 1840,
+          "scale": 1.9226,
+          "ease": "linear",
+          "radius": 62.9
+        },
+        {
+          "atMs": 1880,
+          "scale": 2.0362,
+          "ease": "linear",
+          "radius": 66.6
+        },
+        {
+          "atMs": 1960,
+          "scale": 2.1623,
+          "ease": "linear",
+          "radius": 70.7
+        },
+        {
+          "atMs": 2120,
+          "scale": 2.2865,
+          "ease": "linear",
+          "radius": 74.8
+        },
+        {
+          "atMs": 2250,
+          "scale": 2.3308,
+          "ease": "linear",
+          "radius": 76.2
+        }
+      ],
+      "role": "product-voice",
+      "_note": "Deliberately near-empty: the success line is drawn over it by extract-success.",
+      "interior": null
+    },
+    {
+      "id": "extract-success",
+      "preset": "orb-roll",
+      "role": "product-voice",
+      "startMs": 24150,
+      "durationMs": 3200,
+      "font": "Georgia, 'Times New Roman', serif",
+      "words": [
+        "Brand kit created successfully"
+      ],
+      "focusAtMs": 24450,
+      "stepMs": 4000,
+      "holdMs": 3600,
+      "size": 21,
+      "x": 544,
+      "focusY": 360,
+      "spacingPx": 120,
+      "tiltDeg": 0,
+      "blurPer": 14,
+      "growBelow": 0,
+      "colour": [
+        25,
+        22,
+        26
+      ],
+      "fade": [
+        228,
+        224,
+        232
+      ],
+      "fadeOutAtMs": 26800,
+      "fadeOutDurMs": 400,
+      "orbs": [
+        {
+          "keys": [
+            {
+              "atMs": 24150,
+              "x": 509,
+              "y": 360,
+              "r": 4
+            },
+            {
+              "atMs": 24500,
+              "x": 509,
+              "y": 360,
+              "r": 22
+            },
+            {
+              "atMs": 26900,
+              "x": 509,
+              "y": 360,
+              "r": 22
+            },
+            {
+              "atMs": 27300,
+              "x": 509,
+              "y": 360,
+              "r": 0
+            }
+          ],
+          "skins": [
+            {
+              "atMs": 24150,
+              "hi": [
+                205,
+                255,
+                175
+              ],
+              "mid": [
+                95,
+                210,
+                85
+              ],
+              "lo": [
+                45,
+                155,
+                60
+              ]
+            }
+          ]
+        }
+      ],
+      "camera": {
+        "originX": 650,
+        "originY": 360,
+        "keys": [
+          {
+            "atMs": 0,
+            "scale": 0.7621
+          },
+          {
+            "atMs": 330,
+            "scale": 0.7673,
+            "ease": "in",
+            "pow": 2.2
+          },
+          {
+            "atMs": 730,
+            "scale": 0.8253,
+            "ease": "in",
+            "pow": 1.6
+          },
+          {
+            "atMs": 970,
+            "scale": 0.9464,
+            "ease": "in",
+            "pow": 1.4
+          },
+          {
+            "atMs": 1050,
+            "scale": 1.0452,
+            "ease": "in",
+            "pow": 1.2
+          },
+          {
+            "atMs": 1110,
+            "scale": 1.2153,
+            "ease": "in",
+            "pow": 1.6
+          },
+          {
+            "atMs": 1170,
+            "scale": 1.4678,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1210,
+            "scale": 1.5545,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1290,
+            "scale": 1.6508,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1450,
+            "scale": 1.7456,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1690,
+            "scale": 1.808,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1970,
+            "scale": 1.8356,
+            "ease": "linear"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s3-magic",
+      "role": "brand",
+      "preset": "type-on",
+      "startMs": 27100,
+      "durationMs": 1500,
+      "text": "and like magic",
+      "cps": 55,
+      "size": 78,
+      "weight": 500,
+      "caret": false,
+      "font": "Georgia, 'Iowan Old Style', 'Times New Roman', serif",
+      "ramp": [
+        [
+          40,
+          22,
+          56
+        ],
+        [
+          84,
+          34,
+          120
+        ],
+        [
+          150,
+          44,
+          168
+        ],
+        [
+          214,
+          88,
+          216
+        ],
+        [
+          240,
+          150,
+          235
+        ]
+      ],
+      "stops": [
+        0,
+        0.59,
+        0.69,
+        0.79,
+        0.9
+      ],
+      "exitAtMs": 28200,
+      "exitDurMs": 400,
+      "camera": {
+        "originX": 640,
+        "originY": 360,
+        "keys": [
+          {
+            "atMs": 0,
+            "x": 0
+          },
+          {
+            "atMs": 1500,
+            "x": 26,
+            "ease": "linear"
+          }
+        ]
+      },
+      "letterRiseDy": 10,
+      "letterRiseDurMs": 200
+    },
+    {
+      "id": "s3-extract-wash",
+      "role": "brand",
+      "preset": "radial-glow",
+      "startMs": 28540,
+      "durationMs": 2360,
+      "colour": [
+        184,
+        105,
+        254
+      ],
+      "peakAlpha": 0.127,
+      "core": 0.257,
+      "falloff": 1.55,
+      "aspect": 1.178,
+      "blend": "normal",
+      "keys": [
+        {
+          "atMs": 300,
+          "alpha": 0,
+          "x": 462,
+          "y": 360,
+          "r": 482
+        },
+        {
+          "atMs": 380,
+          "alpha": 0.158,
+          "x": 464,
+          "y": 360,
+          "r": 484
+        },
+        {
+          "atMs": 420,
+          "alpha": 0.336,
+          "x": 468,
+          "y": 360,
+          "r": 486
+        },
+        {
+          "atMs": 460,
+          "alpha": 0.561,
+          "x": 487,
+          "y": 360,
+          "r": 488
+        },
+        {
+          "atMs": 500,
+          "alpha": 0.7,
+          "x": 515,
+          "y": 360,
+          "r": 510
+        },
+        {
+          "atMs": 540,
+          "alpha": 0.852,
+          "x": 539,
+          "y": 359,
+          "r": 515
+        },
+        {
+          "atMs": 580,
+          "alpha": 0.919,
+          "x": 560,
+          "y": 359,
+          "r": 530
+        },
+        {
+          "atMs": 620,
+          "alpha": 0.973,
+          "x": 574,
+          "y": 360,
+          "r": 545
+        },
+        {
+          "atMs": 660,
+          "alpha": 0.995,
+          "x": 587,
+          "y": 359,
+          "r": 553
+        },
+        {
+          "atMs": 700,
+          "alpha": 1,
+          "x": 599,
+          "y": 360,
+          "r": 562
+        },
+        {
+          "atMs": 780,
+          "alpha": 1,
+          "x": 618,
+          "y": 359,
+          "r": 580
+        },
+        {
+          "atMs": 860,
+          "alpha": 1,
+          "x": 626,
+          "y": 360,
+          "r": 592
+        },
+        {
+          "atMs": 940,
+          "alpha": 1,
+          "x": 630,
+          "y": 359,
+          "r": 598
+        },
+        {
+          "atMs": 1020,
+          "alpha": 1,
+          "x": 633,
+          "y": 359,
+          "r": 601
+        },
+        {
+          "atMs": 2340,
+          "alpha": 1,
+          "x": 633,
+          "y": 359,
+          "r": 604
+        }
+      ]
+    },
+    {
+      "id": "s3-extracted",
+      "role": "brand",
+      "preset": "type-on",
+      "startMs": 28550,
+      "durationMs": 2500,
+      "text": "your brand is extracted",
+      "cps": 32,
+      "size": 86,
+      "weight": 500,
+      "caret": false,
+      "font": "Georgia, 'Iowan Old Style', 'Times New Roman', serif",
+      "ramp": [
+        [
+          40,
+          33,
+          46
+        ],
+        [
+          85,
+          22,
+          134
+        ],
+        [
+          87,
+          20,
+          138
+        ],
+        [
+          82,
+          36,
+          114
+        ],
+        [
+          150,
+          110,
+          180
+        ],
+        [
+          236,
+          222,
+          248
+        ]
+      ],
+      "stops": [
+        0,
+        0.3,
+        0.62,
+        0.84,
+        0.93,
+        1
+      ],
+      "exitAtMs": 30650,
+      "exitDurMs": 400,
+      "camera": {
+        "originX": 640,
+        "originY": 360,
+        "keys": [
+          {
+            "atMs": 0,
+            "scale": 1
+          },
+          {
+            "atMs": 2500,
+            "scale": 1.045,
+            "ease": "linear"
+          }
+        ]
+      },
+      "letterRiseDy": 14,
+      "letterRiseDurMs": 220
+    },
+    {
+      "id": "s3-generate-any",
+      "role": "brand",
+      "preset": "gradient-sweep",
+      "startMs": 30900,
+      "durationMs": 2400,
+      "lines": [
+        {
+          "text": "Generate any brand asset",
+          "atMs": 0
+        }
+      ],
+      "size": 84,
+      "weight": 500,
+      "font": "Georgia, 'Iowan Old Style', 'Times New Roman', serif",
+      "revealStepMs": 24,
+      "revealDurMs": 120,
+      "blurIn": 3,
+      "coolDelayMs": 310,
+      "coolStepMs": 24,
+      "coolDurMs": 500,
+      "ramp": [
+        [
+          201,
+          199,
+          203
+        ],
+        [
+          176,
+          70,
+          196
+        ],
+        [
+          176,
+          70,
+          196
+        ],
+        [
+          124,
+          42,
+          146
+        ],
+        [
+          24,
+          20,
+          28
+        ]
+      ],
+      "exit": {
+        "atMs": 1550,
+        "durMs": 750,
+        "blur": 14
+      },
+      "camera": {
+        "originX": 640,
+        "originY": 360,
+        "keys": [
+          {
+            "atMs": 0,
+            "scale": 1
+          },
+          {
+            "atMs": 2400,
+            "scale": 1.05,
+            "ease": "linear"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s3-loop1-card",
+      "role": "product-voice",
+      "preset": "prompt-card",
+      "startMs": 33300,
+      "durationMs": 4650,
+      "blurInMs": 500,
+      "exitAtMs": 4400,
+      "exitDurMs": 250,
+      "exitBlur": 14,
+      "question": {
+        "size": 38,
+        "words": [
+          {
+            "text": "What",
+            "atMs": 0
+          },
+          {
+            "text": "would",
+            "atMs": 40
+          },
+          {
+            "text": "you",
+            "atMs": 80
+          },
+          {
+            "text": "like",
+            "atMs": 140
+          },
+          {
+            "text": "to",
+            "atMs": 200
+          },
+          {
+            "text": "create?",
+            "atMs": 260,
+            "fromScale": 1.3,
+            "fromDy": 20
+          }
+        ]
+      },
+      "typed": {
+        "text": "A hiring poster",
+        "typeAtMs": 650,
+        "cps": 18
+      },
+      "brand": "Lantern",
+      "dropdown": {
+        "openAtMs": 2250,
+        "selectAtMs": 2850,
+        "closeAtMs": 3750,
+        "option": "Lantern",
+        "colour": [
+          255,
+          197,
+          61
+        ]
+      },
+      "pressAtMs": 4380,
+      "camera": [
+        {
+          "atMs": 0,
+          "s": 1,
+          "px": 640,
+          "py": 360
+        },
+        {
+          "atMs": 850,
+          "s": 1,
+          "px": 640,
+          "py": 360
+        },
+        {
+          "atMs": 1250,
+          "s": 2.2,
+          "px": 430,
+          "py": 400
+        },
+        {
+          "atMs": 1950,
+          "s": 2.2,
+          "px": 430,
+          "py": 400,
+          "ease": "linear"
+        },
+        {
+          "atMs": 2250,
+          "s": 2.4,
+          "px": 780,
+          "py": 398,
+          "ease": "inout"
+        },
+        {
+          "atMs": 2600,
+          "s": 1.9,
+          "px": 836,
+          "py": 396,
+          "ease": "inout"
+        },
+        {
+          "atMs": 3750,
+          "s": 1.85,
+          "px": 843,
+          "py": 396,
+          "ease": "linear"
+        },
+        {
+          "atMs": 4150,
+          "s": 2.3,
+          "px": 880,
+          "py": 396
+        },
+        {
+          "atMs": 4650,
+          "s": 2.35,
+          "px": 884,
+          "py": 398,
+          "ease": "linear"
+        }
+      ],
+      "pillH": 100
+    },
+    {
+      "id": "s3-poster-lantern",
+      "preset": "poster-reveal",
+      "startMs": 37950,
+      "durationMs": 2950,
+      "bg": [
+        20,
+        16,
+        25
+      ],
+      "ink": [
+        255,
+        252,
+        244
+      ],
+      "sub": [
+        163,
+        155,
+        146
+      ],
+      "accentA": [
+        255,
+        197,
+        61
+      ],
+      "accentB": [
+        255,
+        107,
+        90
+      ],
+      "wordmark": "Lantern",
+      "w": 901,
+      "h": 458,
+      "cx": 640,
+      "cy": 360,
+      "ground": [
+        252,
+        251,
+        253
+      ],
+      "lines": [
+        "WE'RE",
+        "HIRING",
+        "MAKERS."
+      ],
+      "caption": "Remote-first · Ship in your first week · lantern.com/jobs",
+      "headSize": 76,
+      "capSize": 17,
+      "arch": {
+        "cx": 0.8,
+        "cy": 0.6,
+        "r": 0.42,
+        "sw": 0.05,
+        "opacity": 0.85
+      },
+      "mode": "blur",
+      "scaleFrom": 1.389,
+      "scaleDurMs": 2150,
+      "scalePow": 1.227,
+      "blurFromPx": 40,
+      "blurDurMs": 2150,
+      "blurPow": 1.15,
+      "fadeInMs": 800,
+      "outAtMs": 2200,
+      "outDurMs": 811,
+      "outScale": 0.72,
+      "outPow": 2.59,
+      "role": "product-voice",
+      "_note": "DIEGETIC — the asset the product generated for the brand chosen above.",
+      "markSrc": "../../../templates/birch/aperture-mark.png"
+    },
+    {
+      "id": "s3-gen1",
+      "preset": "prompt-card",
+      "mode": "generating",
+      "startMs": 37980,
+      "durationMs": 2000,
+      "orb": {
+        "x": 540,
+        "y": 357,
+        "r": 28
+      },
+      "label": "Generating",
+      "doneLabel": "Done!",
+      "doneAtMs": 1440,
+      "inMs": 200,
+      "outMs": 250,
+      "role": "product-voice",
+      "_note": "DIEGETIC — the product working, then done."
+    },
+    {
+      "id": "s3-loop2-card",
+      "role": "product-voice",
+      "preset": "prompt-card",
+      "startMs": 41100,
+      "durationMs": 4400,
+      "blurInMs": 400,
+      "exitAtMs": 4150,
+      "exitDurMs": 300,
+      "exitBlur": 14,
+      "question": {
+        "size": 38,
+        "words": [
+          {
+            "text": "What",
+            "atMs": 0,
+            "fromScale": 1.2,
+            "fromDy": 40
+          },
+          {
+            "text": "would",
+            "atMs": 90,
+            "fromScale": 1.2,
+            "fromDy": 40
+          },
+          {
+            "text": "you",
+            "atMs": 180,
+            "fromScale": 1.25,
+            "fromDy": 40
+          },
+          {
+            "text": "like",
+            "atMs": 280,
+            "fromScale": 1.45,
+            "fromDy": 44
+          },
+          {
+            "text": "to",
+            "atMs": 380,
+            "fromScale": 1.6,
+            "fromDy": 48
+          },
+          {
+            "text": "create?",
+            "atMs": 480,
+            "fromScale": 1.9,
+            "fromDy": 54
+          }
+        ]
+      },
+      "typed": {
+        "text": "Company merch",
+        "typeAtMs": 1050,
+        "cps": 16
+      },
+      "brand": "Ashvale",
+      "dropdown": {
+        "openAtMs": 2500,
+        "selectAtMs": 3100,
+        "closeAtMs": 3500,
+        "option": "Ashvale",
+        "colour": [
+          232,
+          221,
+          196
+        ]
+      },
+      "pressAtMs": 4200,
+      "camera": [
+        {
+          "atMs": 0,
+          "s": 1,
+          "px": 640,
+          "py": 360
+        },
+        {
+          "atMs": 1000,
+          "s": 1,
+          "px": 640,
+          "py": 360
+        },
+        {
+          "atMs": 1400,
+          "s": 1.55,
+          "px": 560,
+          "py": 415
+        },
+        {
+          "atMs": 2400,
+          "s": 1.55,
+          "px": 560,
+          "py": 415,
+          "ease": "linear"
+        },
+        {
+          "atMs": 2700,
+          "s": 1.75,
+          "px": 836,
+          "py": 396,
+          "ease": "inout"
+        },
+        {
+          "atMs": 3400,
+          "s": 1.75,
+          "px": 836,
+          "py": 396,
+          "ease": "linear"
+        },
+        {
+          "atMs": 3800,
+          "s": 2.3,
+          "px": 893,
+          "py": 398
+        },
+        {
+          "atMs": 4400,
+          "s": 2.5,
+          "px": 903,
+          "py": 412,
+          "ease": "linear"
+        }
+      ],
+      "pillH": 100
+    },
+    {
+      "id": "s3-poster-ashvale",
+      "preset": "poster-reveal",
+      "startMs": 45500,
+      "durationMs": 1580,
+      "bg": [
+        18,
+        34,
+        28
+      ],
+      "ink": [
+        244,
+        238,
+        224
+      ],
+      "sub": [
+        148,
+        164,
+        146
+      ],
+      "accentA": [
+        198,
+        106,
+        66
+      ],
+      "accentB": [
+        139,
+        166,
+        132
+      ],
+      "wordmark": "Ashvale",
+      "w": 1064,
+      "h": 598,
+      "cx": 640,
+      "cy": 360,
+      "ground": [
+        252,
+        252,
+        253
+      ],
+      "lines": [
+        "MADE",
+        "FOR",
+        "MORNINGS."
+      ],
+      "caption": "Heavyweight cotton · Printed in the same room we roast in",
+      "headSize": 104,
+      "capSize": 21,
+      "mode": "mosaic",
+      "riseDyPx": 338,
+      "riseAtMs": 290,
+      "riseDurMs": 810,
+      "frontAtMs": 290,
+      "frontKeys": [
+        {
+          "atMs": 290,
+          "f": 0
+        },
+        {
+          "atMs": 380,
+          "f": 0.056
+        },
+        {
+          "atMs": 460,
+          "f": 0.105
+        },
+        {
+          "atMs": 540,
+          "f": 0.179
+        },
+        {
+          "atMs": 620,
+          "f": 0.262
+        },
+        {
+          "atMs": 700,
+          "f": 0.361
+        },
+        {
+          "atMs": 780,
+          "f": 0.44
+        },
+        {
+          "atMs": 860,
+          "f": 0.56
+        },
+        {
+          "atMs": 940,
+          "f": 0.638
+        },
+        {
+          "atMs": 1020,
+          "f": 0.721
+        },
+        {
+          "atMs": 1100,
+          "f": 0.814
+        },
+        {
+          "atMs": 1180,
+          "f": 0.879
+        },
+        {
+          "atMs": 1260,
+          "f": 0.939
+        },
+        {
+          "atMs": 1340,
+          "f": 0.981
+        },
+        {
+          "atMs": 1380,
+          "f": 1
+        }
+      ],
+      "tileW": 20,
+      "tileH": 12,
+      "band": 54,
+      "streak": 0.5,
+      "jitter": 1.2,
+      "seed": 7,
+      "outAtMs": 1060,
+      "outDurMs": 535,
+      "outScale": 0.72,
+      "outPow": 2.82,
+      "role": "product-voice",
+      "_note": "DIEGETIC — the asset the product generated for the brand chosen above.",
+      "markSrc": "../../../templates/birch/aperture-mark.png"
+    },
+    {
+      "id": "s3-loop3-card",
+      "role": "product-voice",
+      "preset": "prompt-card",
+      "startMs": 47080,
+      "durationMs": 4350,
+      "blurInMs": 350,
+      "exitAtMs": 4100,
+      "exitDurMs": 250,
+      "exitBlur": 14,
+      "question": {
+        "size": 38,
+        "words": [
+          {
+            "text": "What",
+            "atMs": 40
+          },
+          {
+            "text": "would",
+            "atMs": 120
+          },
+          {
+            "text": "you",
+            "atMs": 200
+          },
+          {
+            "text": "like",
+            "atMs": 290
+          },
+          {
+            "text": "to",
+            "atMs": 370
+          },
+          {
+            "text": "create?",
+            "atMs": 470,
+            "fromScale": 1.4,
+            "fromDy": 34
+          }
+        ]
+      },
+      "typed": {
+        "text": "Bold recruiting poster",
+        "typeAtMs": 800,
+        "cps": 22
+      },
+      "brand": "Quarry",
+      "dropdown": {
+        "openAtMs": 2300,
+        "selectAtMs": 2900,
+        "closeAtMs": 3300,
+        "option": "Quarry",
+        "colour": [
+          176,
+          186,
+          198
+        ]
+      },
+      "pressAtMs": 4050,
+      "camera": [
+        {
+          "atMs": 0,
+          "s": 1,
+          "px": 640,
+          "py": 360
+        },
+        {
+          "atMs": 900,
+          "s": 1,
+          "px": 640,
+          "py": 360
+        },
+        {
+          "atMs": 1300,
+          "s": 1.55,
+          "px": 640,
+          "py": 415
+        },
+        {
+          "atMs": 2200,
+          "s": 1.55,
+          "px": 640,
+          "py": 415,
+          "ease": "linear"
+        },
+        {
+          "atMs": 2500,
+          "s": 1.65,
+          "px": 836,
+          "py": 396,
+          "ease": "inout"
+        },
+        {
+          "atMs": 3200,
+          "s": 1.65,
+          "px": 836,
+          "py": 396,
+          "ease": "linear"
+        },
+        {
+          "atMs": 3600,
+          "s": 2.3,
+          "px": 893,
+          "py": 398
+        },
+        {
+          "atMs": 4350,
+          "s": 2.45,
+          "px": 903,
+          "py": 408,
+          "ease": "linear"
+        }
+      ],
+      "pillH": 100
+    },
+    {
+      "id": "s3-poster-quarry",
+      "preset": "poster-reveal",
+      "startMs": 51430,
+      "durationMs": 2470,
+      "bg": [
+        10,
+        10,
+        12
+      ],
+      "ink": [
+        238,
+        240,
+        244
+      ],
+      "sub": [
+        138,
+        141,
+        152
+      ],
+      "accentA": [
+        0,
+        209,
+        178
+      ],
+      "accentB": [
+        110,
+        120,
+        255
+      ],
+      "wordmark": "Quarry",
+      "w": 441,
+      "h": 656,
+      "cx": 640,
+      "cy": 360,
+      "ground": [
+        253,
+        252,
+        253
+      ],
+      "lines": [
+        "BUILD",
+        "HARD",
+        "THINGS."
+      ],
+      "caption": "Twelve weeks · Applications open · The Quarry Residency",
+      "headSize": 70,
+      "capSize": 14,
+      "arch": {
+        "cx": 0.52,
+        "cy": 0.3,
+        "r": 0.3,
+        "sw": 0.062,
+        "foot": 0.545,
+        "opacity": 0.9
+      },
+      "mode": "mosaic",
+      "riseDyPx": 367,
+      "riseAtMs": 500,
+      "riseDurMs": 830,
+      "frontAtMs": 500,
+      "frontKeys": [
+        {
+          "atMs": 500,
+          "f": 0
+        },
+        {
+          "atMs": 610,
+          "f": 0.088
+        },
+        {
+          "atMs": 650,
+          "f": 0.121
+        },
+        {
+          "atMs": 690,
+          "f": 0.155
+        },
+        {
+          "atMs": 730,
+          "f": 0.196
+        },
+        {
+          "atMs": 770,
+          "f": 0.239
+        },
+        {
+          "atMs": 810,
+          "f": 0.282
+        },
+        {
+          "atMs": 850,
+          "f": 0.347
+        },
+        {
+          "atMs": 890,
+          "f": 0.39
+        },
+        {
+          "atMs": 930,
+          "f": 0.434
+        },
+        {
+          "atMs": 970,
+          "f": 0.502
+        },
+        {
+          "atMs": 1010,
+          "f": 0.566
+        },
+        {
+          "atMs": 1050,
+          "f": 0.609
+        },
+        {
+          "atMs": 1090,
+          "f": 0.653
+        },
+        {
+          "atMs": 1130,
+          "f": 0.713
+        },
+        {
+          "atMs": 1170,
+          "f": 0.739
+        },
+        {
+          "atMs": 1210,
+          "f": 0.78
+        },
+        {
+          "atMs": 1250,
+          "f": 0.852
+        },
+        {
+          "atMs": 1290,
+          "f": 0.873
+        },
+        {
+          "atMs": 1330,
+          "f": 0.918
+        },
+        {
+          "atMs": 1370,
+          "f": 0.96
+        },
+        {
+          "atMs": 1410,
+          "f": 0.983
+        },
+        {
+          "atMs": 1450,
+          "f": 1
+        }
+      ],
+      "tileW": 17,
+      "tileH": 12,
+      "band": 66,
+      "streak": 0.5,
+      "jitter": 1.2,
+      "seed": 3,
+      "outAtMs": 1470,
+      "outDurMs": 1025,
+      "outScale": 0.6,
+      "outPow": 4,
+      "role": "product-voice",
+      "_note": "DIEGETIC — the asset the product generated for the brand chosen above.",
+      "markSrc": "../../../templates/birch/aperture-mark.png"
+    },
+    {
+      "id": "closer-try-today",
+      "preset": "scale-in",
+      "role": "brand",
+      "startMs": 53950,
+      "durationMs": 1660,
+      "text": "Try today",
+      "font": "Georgia, 'Times New Roman', serif",
+      "size": 73,
+      "cx": 640,
+      "baseline": 352,
+      "colour": [
+        25,
+        25,
+        25
+      ],
+      "scaleFrom": 2.9,
+      "settleDurMs": 1100,
+      "blur": 9,
+      "enterDy": 220,
+      "exitAtMs": 55150,
+      "exitDurMs": 430,
+      "exitScale": 0.78,
+      "exitBlur": 12,
+      "exitFade": true,
+      "fade": false
+    },
+    {
+      "id": "closer-url-at",
+      "preset": "scale-in",
+      "role": "brand",
+      "startMs": 55520,
+      "durationMs": 1930,
+      "text": "at",
+      "font": "Georgia, 'Times New Roman', serif",
+      "size": 74,
+      "cx": 435.5,
+      "baseline": 405,
+      "colour": [
+        25,
+        25,
+        25
+      ],
+      "scaleFrom": 1.35,
+      "settleDurMs": 430,
+      "blur": 16,
+      "enterDy": 55,
+      "exitAtMs": 57080,
+      "exitDurMs": 330,
+      "exitScale": 0.94,
+      "exitBlur": 22,
+      "exitFade": true
+    },
+    {
+      "id": "closer-url-domain",
+      "preset": "scale-in",
+      "role": "brand",
+      "startMs": 55680,
+      "durationMs": 1770,
+      "text": "birch.studio",
+      "font": "Georgia, 'Times New Roman', serif",
+      "size": 74,
+      "cx": 679.5,
+      "baseline": 405,
+      "colour": [
+        25,
+        25,
+        25
+      ],
+      "scaleFrom": 1.35,
+      "settleDurMs": 430,
+      "blur": 16,
+      "enterDy": 55,
+      "exitAtMs": 57080,
+      "exitDurMs": 330,
+      "exitScale": 0.94,
+      "exitBlur": 22,
+      "exitFade": true
+    },
+    {
+      "id": "closer-marks",
+      "preset": "petal-drift",
+      "role": "brand",
+      "startMs": 56050,
+      "durationMs": 1420,
+      "flowers": [
+        {
+          "seed": 3,
+          "petals": 7,
+          "keys": [
+            {
+              "atMs": 120,
+              "x": 700,
+              "y": 493,
+              "r": 44,
+              "rot": -4,
+              "blur": 1,
+              "o": 0
+            },
+            {
+              "atMs": 170,
+              "x": 703,
+              "y": 496,
+              "r": 87,
+              "rot": -2,
+              "blur": 1,
+              "o": 1
+            },
+            {
+              "atMs": 260,
+              "x": 709,
+              "y": 500,
+              "r": 113,
+              "rot": 0,
+              "blur": 3,
+              "o": 1
+            },
+            {
+              "atMs": 360,
+              "x": 707,
+              "y": 500,
+              "r": 127,
+              "rot": 1,
+              "blur": 4,
+              "o": 1
+            },
+            {
+              "atMs": 860,
+              "x": 713,
+              "y": 467,
+              "r": 133,
+              "rot": 4,
+              "blur": 6,
+              "o": 1
+            },
+            {
+              "atMs": 1260,
+              "x": 711,
+              "y": 453,
+              "r": 136,
+              "rot": 7,
+              "blur": 9,
+              "o": 1
+            },
+            {
+              "atMs": 1420,
+              "x": 709,
+              "y": 446,
+              "r": 138,
+              "rot": 8,
+              "blur": 13,
+              "o": 0
+            }
+          ]
+        },
+        {
+          "seed": 5,
+          "petals": 6,
+          "keys": [
+            {
+              "atMs": 230,
+              "x": 357,
+              "y": 280,
+              "r": 18,
+              "rot": -6,
+              "blur": 2,
+              "o": 0
+            },
+            {
+              "atMs": 330,
+              "x": 360,
+              "y": 287,
+              "r": 37,
+              "rot": -4,
+              "blur": 2,
+              "o": 1
+            },
+            {
+              "atMs": 430,
+              "x": 371,
+              "y": 291,
+              "r": 60,
+              "rot": -2,
+              "blur": 3,
+              "o": 1
+            },
+            {
+              "atMs": 860,
+              "x": 363,
+              "y": 256,
+              "r": 64,
+              "rot": 1,
+              "blur": 4,
+              "o": 1
+            },
+            {
+              "atMs": 1260,
+              "x": 357,
+              "y": 247,
+              "r": 67,
+              "rot": 3,
+              "blur": 6,
+              "o": 1
+            },
+            {
+              "atMs": 1420,
+              "x": 355,
+              "y": 242,
+              "r": 68,
+              "rot": 4,
+              "blur": 10,
+              "o": 0
+            }
+          ]
+        },
+        {
+          "seed": 8,
+          "petals": 6,
+          "keys": [
+            {
+              "atMs": 340,
+              "x": 878,
+              "y": 268,
+              "r": 12,
+              "rot": 8,
+              "blur": 2,
+              "o": 0
+            },
+            {
+              "atMs": 440,
+              "x": 883,
+              "y": 273,
+              "r": 27,
+              "rot": 6,
+              "blur": 2,
+              "o": 1
+            },
+            {
+              "atMs": 860,
+              "x": 887,
+              "y": 233,
+              "r": 60,
+              "rot": 3,
+              "blur": 4,
+              "o": 1
+            },
+            {
+              "atMs": 1260,
+              "x": 884,
+              "y": 213,
+              "r": 67,
+              "rot": 1,
+              "blur": 6,
+              "o": 1
+            },
+            {
+              "atMs": 1420,
+              "x": 882,
+              "y": 207,
+              "r": 68,
+              "rot": 0,
+              "blur": 10,
+              "o": 0
+            }
+          ]
+        }
+      ],
+      "mark": {
+        "src": "../../../templates/birch/aperture-mark.png"
+      }
+    },
+    {
+      "id": "closer-logo-mark",
+      "preset": "logo-lockup",
+      "role": "brand",
+      "startMs": 57400,
+      "durationMs": 1790,
+      "text": "",
+      "font": "'Times New Roman', Georgia, serif",
+      "italic": true,
+      "size": 108,
+      "colour": [
+        5,
+        5,
+        5
+      ],
+      "markSvg": "../../../templates/birch/aperture-mark.png",
+      "markScale": 1.78,
+      "markGap": 0,
+      "ground": [
+        252,
+        252,
+        252
+      ],
+      "scaleFrom": 1.06,
+      "settleDurMs": 420,
+      "creep": 0,
+      "fadeInMs": 260,
+      "blurInMs": 300,
+      "blurInPx": 16,
+      "riseDy": 64,
+      "riseDurMs": 380,
+      "camera": {
+        "originX": 640,
+        "originY": 360,
+        "keys": [
+          {
+            "atMs": 0,
+            "x": -116
+          }
+        ]
+      }
+    },
+    {
+      "id": "closer-wordmark",
+      "preset": "type-on",
+      "role": "brand",
+      "startMs": 57400,
+      "durationMs": 1790,
+      "text": "Birch",
+      "font": "'Times New Roman', Georgia, serif",
+      "italic": true,
+      "size": 108,
+      "weight": 430,
+      "cps": 200,
+      "caret": false,
+      "ramp": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5
+        ]
+      ],
+      "letterFall": {
+        "fromDx": -92,
+        "fromDy": -30,
+        "durMs": 360,
+        "ease": "back",
+        "pow": 1.15,
+        "staggerMs": 55,
+        "fade": true
+      },
+      "camera": {
+        "originX": 640,
+        "originY": 360,
+        "keys": [
+          {
+            "atMs": 0,
+            "x": 73,
+            "y": -7
+          }
+        ]
+      }
+    }
+  ],
+  "_marker": "birch-tpl-final-B4K",
+  "_acts": [
+    "0.0-4.8s   opener — three serif claims on white, each cooling through a pink→ink gradient front, ending in a burst of brand marks.",
+    "4.8-7.8s   the ask — the domain field, typed, then punched into on a black submit.",
+    "7.8-13.7s  the read — an orb loader with rolling status labels, brand marks tumbling past.",
+    "13.7-25.7s the evidence — the customer's site scrolling inside a card, then the brand-kit sheet, then the success card. Painterly grounds behind the card edges.",
+    "25.7-33.3s the turn — 'and like magic' → 'your brand is extracted' → 'Generate any brand asset'.",
+    "33.3-53.5s the loop, three times — prompt card (type a request, pick a brand, submit) → the generated poster revealed by a pixel-sort dissolve.",
+    "53.5-59.0s the closer — 'Try today' → the URL → marks drifting up → the lockup, dead still to the last frame."
+  ]
+}

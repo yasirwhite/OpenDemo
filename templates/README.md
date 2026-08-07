@@ -28,8 +28,10 @@ memorable, no meaning to collide with product words. See
 
 Read `templates/index.json`, match its `style`/`tags` against what the user's
 product needs, and confirm the pick with the user before doing any work.
-There is currently one template: **cedar** (kinetic typography, two product
-slots, ~36s).
+The registry is the only list — do not rely on a count written here. As of
+this writing it holds **cedar** (kinetic typography, two product slots, ~36s)
+and **birch** (kinetic typography for a brand engine, drawn product screens,
+three media windows, ~59s).
 
 ## Using a template: the flow
 
@@ -74,6 +76,32 @@ slots, ~36s).
 
 Keep scratch work (mock apps, recordings, intermediate renders) in
 `.demo-build/` — it is gitignored.
+
+## Crafting a story (learned from the film that won)
+
+The strongest launch film we've produced was not the template-faithful cut —
+it was the one that dramatized the product's own loop as a story. The
+principles, in the order they mattered:
+
+- **Show the wish, then answer it.** A bare typed line on an empty frame
+  ("Make me a demo") — no interface, no product — answered by a real demo
+  appearing. Then, later, the *same wish made specific inside the product*
+  ("Use OpenDemo to make a StackRender launch"), answered by the film's
+  hardest cut. **Rhyme, don't repeat:** two typed beats work when the second
+  escalates the first. First act you ask; second act you ask for something
+  real, and what answers you is the product working.
+- **Every ask on screen gets its payoff on screen.** A prompt without its
+  result, or a result without its ask, breaks the story.
+- **Narrate capability as beats, not features.** "Pick a template." before a
+  carousel that *demonstrates* picking — segments flying past, decelerating,
+  landing on one that grows into the playing window. The viewer learns the
+  product by watching it happen, never by being told.
+- **New beats must be built in-theme.** When the user asks for something no
+  preset covers (a cursor that clicks, a template carousel, a prompt pill),
+  build it from the film's existing motion vocabulary — the same easing
+  families, grounds, type voice and window grammar. That is why invented
+  beats read as part of the film instead of insertions. Never animate outside
+  the template's own character.
 
 ## Directing rules that carry over from the 2D flow
 

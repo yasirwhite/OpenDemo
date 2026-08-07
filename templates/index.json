@@ -14,6 +14,19 @@
       "tags": ["kinetic-text", "two-tone-grounds", "product-slots", "type-on", "feature-pills"],
       "derivedFrom": "the mem launch film, measured frame-by-frame",
       "config": "cedar/template.json"
+    },
+    {
+      "slug": "birch",
+      "name": "Birch",
+      "style": "kinetic-typography brand-engine launch film",
+      "category": "typography-led",
+      "durationMs": 58960,
+      "aspect": "16:9",
+      "fps": 25,
+      "slots": 3,
+      "tags": ["kinetic-text", "gradient-sweep", "brand-mark-drift", "orb-loader", "drawn-interiors", "media-windows", "prompt-loop", "poster-reveal", "painterly-grounds"],
+      "derivedFrom": "the Bloom launch film, measured frame-by-frame",
+      "config": "birch/template.json"
     }
   ]
 }

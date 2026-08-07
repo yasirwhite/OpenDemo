@@ -10,6 +10,10 @@ Watch OpenDemo fully execute a local login flow from a tiny JSON instruction fil
 
 ## Usage
 
+**Browse the template gallery: [yasirwhite.github.io/OpenDemo](https://yasirwhite.github.io/OpenDemo/)** —
+pick a template and copy its prompt, or just ask your assistant and it will
+choose one for you.
+
 Just ask your AI assistant to build the demo for you.
 
 **Example Prompt:**

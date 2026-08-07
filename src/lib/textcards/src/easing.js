@@ -25,7 +25,15 @@ export const easeOut = (t) => 1 - Math.pow(1 - t, 3);
  */
 export const easeIn = (t, p = 3.4) => Math.pow(t, p);
 export const easeOutQuint = (t) => 1 - Math.pow(1 - t, 5);
-export const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+/**
+ * Symmetric S, each half raised to `p`. 3 (the default) is the cubic the
+ * media-window punches and camera drifts have always used. Lower is a gentler
+ * S: the Bloom film's ground dissolves measure at p 1.5-1.85, where a cubic
+ * leaves too slowly and arrives too abruptly (0.10-0.14 of the travel off at
+ * the quarter points, ~1.5 frames of timing error each side).
+ */
+export const easeInOut = (t, p = 3) =>
+  (t < 0.5 ? Math.pow(2, p - 1) * Math.pow(t, p) : 1 - Math.pow(-2 * t + 2, p) / 2);
 export const expoOut = (t) => (t >= 1 ? 1 : 1 - Math.pow(2, -10 * t));
 
 /**
@@ -40,6 +48,39 @@ export const backOut = (t, s = 1.4) => {
   const u = t - 1;
   return 1 + u * u * ((s + 1) * u + s);
 };
+
+/**
+ * REMAINING fraction (1 -> ~0) of a true exponential settle: per-frame delta
+ * decays by a constant factor, which is what the Comet film's word rises
+ * measure as (x0.83-0.88/frame at 25fps, tau 0.21-0.29s). Time constant is
+ * dur/4, so at `start + dur` only e^-4 (~1.8%, sub-pixel at these travels)
+ * remains — `dur` is "when it reads as settled", which is what an author can
+ * actually time off a reference. Never clamps, so the tail keeps creeping the
+ * way the measured curves do.
+ */
+export const settleDecay = (t, start, dur) =>
+  t <= start ? 1 : Math.exp((-4 * (t - start)) / Math.max(1e-6, dur));
+
+/**
+ * Easing lookup by config-facing name, for the channels that take an `ease`
+ * string (rise-into-place, media-window keys, per-scene camera). `pow` feeds
+ * the parameterised curves. Unknown/absent names fall back to `fallback`
+ * (default cubic ease-out) so a typo degrades gracefully instead of throwing
+ * mid-render.
+ */
+export function easeByName(name, pow, fallback = easeOut) {
+  switch (name) {
+    case "linear": return linear;
+    case "in":     return (p) => easeIn(p, pow ?? 2.6);
+    case "out":    return easeOut;
+    case "quint":  return easeOutQuint;
+    case "inout":  return (t) => easeInOut(t, pow ?? 3);
+    case "expo":   return expoOut;
+    case "back":   return (p) => backOut(p, pow ?? 1.4);
+    case "mem":    return memReveal;
+    default:       return fallback;
+  }
+}
 
 /** Per-item stagger: returns this item's local progress. */
 export function staggered(t, start, dur, index, stepMs, totalMs) {

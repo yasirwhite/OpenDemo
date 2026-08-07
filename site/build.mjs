@@ -39,7 +39,7 @@ body{margin:0;font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sa
 a{color:inherit;text-decoration:none}
 aside{width:232px;flex-shrink:0;border-right:1px solid var(--line);padding:1.5rem 1rem;position:sticky;top:0;height:100vh;overflow-y:auto}
 .brand{display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:1.05rem;padding:0 .5rem;margin-bottom:1.75rem}
-.brand .dot{width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,#e8483a,#7c6cf5);flex-shrink:0}
+.brand img.dot{width:24px;height:24px;object-fit:contain;flex-shrink:0}
 .navlabel{font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);padding:.5rem .5rem .35rem;margin-top:.75rem}
 .nav a{display:flex;justify-content:space-between;align-items:center;padding:.42rem .5rem;border-radius:8px;color:var(--sub);font-size:.9rem}
 .nav a:hover{background:var(--panel);color:var(--ink)}
@@ -86,7 +86,7 @@ const sidebar = () => {
     return `<a href="#${slug}">${esc(label)} ${n ? `<span class="count">${n}</span>` : `<span class="count soon">soon</span>`}</a>`;
   }).join("");
   return `<aside>
-  <a class="brand" href="#"><span class="dot"></span>OpenDemo</a>
+  <a class="brand" href="#"><img class="dot" src="assets/opendemo-mark.png" alt="">OpenDemo</a>
   <nav class="nav">
     <div class="navlabel">Library</div>
     <a href="#templates">Templates <span class="count">${templates.length}</span></a>
@@ -109,17 +109,26 @@ const templateCard = (t) => {
   <div class="tmeta">${esc(t.style)} · ${secs(t.durationMs)} · ${t.slots} slot${t.slots === 1 ? "" : "s"}</div></div></button>`;
 };
 
-const showcaseCard = (e) => `
-<div class="tcard" style="cursor:default"><div class="tbody">
+const showcaseCard = (e) => {
+  const vid = e.videoUrl && /\.mp4($|\?)/.test(e.videoUrl)
+    ? `<video class="thumb" src="${esc(e.videoUrl)}" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video>`
+    : "";
+  return `
+<div class="tcard" style="cursor:default">${vid}<div class="tbody">
   <div class="tname">${esc(e.title)}</div>
   <div class="tmeta">${e.repo ? `<a href="${esc(e.repo)}" style="color:var(--accent)">project repo</a>` : ""}${e.videoUrl ? ` · <a href="${esc(e.videoUrl)}" style="color:var(--accent)">watch</a>` : ""}${e.templates?.length ? ` · ${e.templates.map(esc).join(", ")}` : ""}</div>
   ${e.note ? `<div class="tmeta">${esc(e.note)}</div>` : ""}
 </div></div>`;
+};
 
 const comingSoon = () => `<div class="soonbox"><strong>Coming soon</strong></div>`;
 
 // ---- build ----
 mkdirSync(OUT, { recursive: true });
+
+// the OpenDemo aperture mark (canonical raster lives with the birch template assets)
+mkdirSync(join(OUT, "assets"), { recursive: true });
+copyFileSync(join(ROOT, "templates/birch/aperture-mark.png"), join(OUT, "assets", "opendemo-mark.png"));
 
 for (const t of templates) {
   const prev = previewsOf(t.slug);

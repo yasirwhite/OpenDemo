@@ -111,7 +111,17 @@ template attempted: reference + engagement, what shipped, the absolute path of
 the side-by-side, and an honest caveat list (what is still off, what needs a
 human eye). A skipped or failed night still gets a report saying why.
 
-Commit and push: the new `templates/<slug>/` folders, `templates/index.json`,
-`references/references.json`, `references/launch-scouting.json`, and the
-report. Nothing binary — deliverables and media stay in `.demo-build/` and
-`references/media/`.
+**Do NOT commit or push.** The morning human review gates the gallery:
+overnight build → morning feedback → only if satisfied, ship (commit + push
+publishes the templates and redeploys the gallery site). Leave everything in
+the working tree and end the report with a **Ship checklist**: the exact paths
+to commit on approval (`templates/`, the report, `references/*.json`, and any
+engine changes the templates depend on). Nothing binary, ever — deliverables
+and media stay in `.demo-build/` and `references/media/`.
+
+## 9. After the human review
+
+Once feedback lands: apply requested corrections, ship on approval, and then
+append a **per-reference "what the rebuild missed" note** to
+`docs/reference-matching.md` — the misses the human caught (motion nuances,
+vetting blind spots) are the raw material for making the next night better.

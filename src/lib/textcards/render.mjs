@@ -47,8 +47,15 @@ const AT = opt("--at", null);
 const PNG = opt("--png", null);
 const SHEET = has("--sheet");
 const SHEET_TIMES = (opt("--times", "") || "").split(",").filter(Boolean).map(Number);
+// --html <file> renders a PRIVATE copy of the stage (its own index.html +
+// dist/bundle.js) instead of the shared one. Two people rendering different
+// films at once otherwise race on dist/bundle.js: A builds, B builds, A
+// screenshots B's film. Snapshot the bundle after your build, point --html at
+// the snapshot, and your render cannot be overwritten mid-flight. Omitted =
+// the shared stage, exactly as before.
+const HTML = opt("--html", null);
 
-const url = "file://" + resolve(__dirname, "index.html").replace(/\\/g, "/");
+const url = "file://" + resolve(HTML ?? resolve(__dirname, "index.html")).replace(/\\/g, "/");
 
 const browser = await chromium.launch({ headless: true, args: ["--force-device-scale-factor=1"] });
 const page = await browser.newPage({ viewport: { width: 1280, height: 720 }, deviceScaleFactor: 1 });
@@ -60,8 +67,26 @@ await page.waitForFunction("window.__ready === true", { timeout: 20000 });
 const DURATION = await page.evaluate("window.DURATION");
 const stage = await page.$("#root");
 
+// prepareFrame(t) seeks any footage bound to a window (src/video-sources.js)
+// and resolves only once the decoder has produced that picture. It MUST be
+// awaited before renderAtTime: screenshotting mid-seek captures the previous
+// frame, which is invisible in a still and reads as a tear in motion. Configs
+// without footage resolve immediately, so this is a no-op for them.
 async function shoot(t) {
-  await page.evaluate((tt) => window.renderAtTime(tt), t);
+  await page.evaluate(async (tt) => {
+    if (window.prepareFrame) await window.prepareFrame(tt);
+    window.renderAtTime(tt);
+    // A <video> is composited on its own layer, and the seeked picture is not
+    // guaranteed to be in a committed frame the instant renderAtTime returns —
+    // the first capture after a layer is created can come back with the
+    // previous picture. Two rAFs put a committed compositor frame between the
+    // DOM update and the screenshot. This waits for the compositor only; it
+    // decides nothing about WHAT is drawn, so the frame stays a pure function
+    // of t. Configs with no footage never take this path.
+    if (window.__hasVideo) {
+      await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+    }
+  }, t);
   return stage.screenshot({ type: "png" });
 }
 
@@ -76,11 +101,20 @@ if (AT != null) {
 
 if (SHEET) {
   const times = SHEET_TIMES.length ? SHEET_TIMES : [0.5, 1.2, 2.8, 3.1, 3.6, 4.3, 5.0, 6.8, 7.6, 8.9, 9.6, 10.3];
-  const dir = resolve(__dirname, "sheet");
+  // --sheetdir keeps two people sheeting different films out of each other's
+  // frames; omitted = ./sheet as before.
+  const SHEETDIR = opt("--sheetdir", null);
+  const dir = SHEETDIR ? resolve(SHEETDIR) : resolve(__dirname, "sheet");
   mkdirSync(dir, { recursive: true });
   let i = 0;
   for (const t of times) {
-    writeFileSync(join(dir, `s_${String(i).padStart(2, "0")}.png`), await shoot(t));
+    // In a private sheet dir, name by timestamp — a sheet is compared against
+    // the reference at the SAME t and s_07.png does not say which t that was.
+    // The default dir keeps the s_NN names other tooling already reads.
+    const name = SHEETDIR
+      ? `t_${String(Math.round(t * 1000)).padStart(6, "0")}.png`
+      : `s_${String(i).padStart(2, "0")}.png`;
+    writeFileSync(join(dir, name), await shoot(t));
     i++;
   }
   console.log(`${i} frames -> ${dir}`);

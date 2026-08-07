@@ -11,6 +11,26 @@
       "spec": "1920x1080, 30fps, 46.0s",
       "notes": "docs/reference-matching.md#kite-product-film-46s-1920x1080-30fps",
       "usedBy": "src/lib/cinematic3d/presets/ - all six presets are shots from this film"
+    },
+    {
+      "id": "comet",
+      "file": "comet-launch-film.mp4",
+      "url": "https://video.twimg.com/amplify_video/1942968083217629184/vid/avc1/1280x720/Glh1ut3Pjcg513Yn.mp4?tag=14",
+      "md5": "a69ca276a0c3191852fb9560fa2c5f41",
+      "bytes": 6373802,
+      "spec": "1280x720, 25fps, 72.0s",
+      "notes": "docs/reference-matching.md",
+      "usedBy": "templates/aspen/ - full film rebuilt frame-by-frame; media-window + camera + rise-into-place work"
+    },
+    {
+      "id": "bloom",
+      "file": "bloom-launch-film.mp4",
+      "url": "https://video.twimg.com/amplify_video/1995946169890111488/vid/avc1/1920x1080/T_Knr-GStN-on6Yl.mp4?tag=21",
+      "md5": "7d6a70cc4b521c08f312d39316cae8ad",
+      "bytes": 11046825,
+      "spec": "1920x1080, 25fps, 59.0s",
+      "notes": "docs/reference-matching.md",
+      "usedBy": "templates/birch/ - full film rebuilt frame-by-frame; gradient grounds + interiors + loader work"
     }
   ]
 }

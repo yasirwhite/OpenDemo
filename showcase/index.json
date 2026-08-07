@@ -11,5 +11,18 @@
     "`prompt`: the prompt a visitor can copy to get the same kind of result.",
     "`repo`: the featured project's GitHub URL - free publicity is the point."
   ],
-  "entries": []
+  "entries": [
+    {
+      "title": "Nextly — demo video",
+      "category": "oss-demo",
+      "videoUrl": "https://github.com/yasirwhite/OpenDemo/releases/download/showcase-media/nextly-demo.mp4",
+      "note": "Open-source project demo created with OpenDemo."
+    },
+    {
+      "title": "StackRender — demo video",
+      "category": "oss-demo",
+      "videoUrl": "https://github.com/yasirwhite/OpenDemo/releases/download/showcase-media/stackrender-demo.mp4",
+      "note": "Open-source project demo created with OpenDemo."
+    }
+  ]
 }

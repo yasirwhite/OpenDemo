@@ -92,6 +92,13 @@ src/lib/cinematic3d/configs/*.json
 # scratch for demo builds (recordings, 3D passes, mock apps)
 .demo-build/
 
+# gallery site build output — CI rebuilds this from site/build.mjs on every deploy
+_site/
+
+# the author's working rulebook for generated demo videos — read before planning
+# a video, not after the first render
+VIDEO_PRINCIPLES.md
+
 # audio beds live on the author's machine, never in the repo
 *.mp3
 *.wav
