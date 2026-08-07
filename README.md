@@ -5,9 +5,9 @@ Build exciting demos for free using your own AI
 ***No cloud services or API keys |*** Just clone `OpenDemo` and prompt the model you already use.
 
 ### Demo
-The OpenDemo launch film — written, animated and rendered by OpenDemo itself:
+![OpenDemo launch film](./examples/opendemo-launch.gif)
 
-[▶ Watch the launch film](./examples/opendemo-launch.mp4)
+*Written, animated and rendered by OpenDemo itself.*
 
 ## Usage
 
