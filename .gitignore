@@ -76,6 +76,7 @@ result-*
 
 # ...except the demo fixture the example config and tests render against.
 !examples/login-demo.mp4
+!examples/opendemo-launch.mp4
 
 # Reference films — fetched on demand, never committed. See references/README.md.
 references/media/

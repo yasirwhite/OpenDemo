@@ -5,14 +5,16 @@ Build exciting demos for free using your own AI
 ***No cloud services or API keys |*** Just clone `OpenDemo` and prompt the model you already use.
 
 ### Demo
-Watch OpenDemo fully execute a local login flow from a tiny JSON instruction file:
-![Demo](./examples/login-demo.gif)
+The OpenDemo launch film — written, animated and rendered by OpenDemo itself:
+
+[▶ Watch the launch film](./examples/opendemo-launch.mp4)
 
 ## Usage
 
 **Browse the template gallery: [yasirwhite.github.io/OpenDemo](https://yasirwhite.github.io/OpenDemo/)** —
-pick a template and copy its prompt, or just ask your assistant and it will
-choose one for you.
+pick a template and copy the prompt
+
+**OR**
 
 Just ask your AI assistant to build the demo for you.
 
