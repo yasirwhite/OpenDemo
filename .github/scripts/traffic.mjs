@@ -86,7 +86,7 @@ console.log(`${rows.length} days on record (+${added} new, ${revised} revised)`)
 // Deliberately minimal: unique cloners is the only metric that matters here.
 // The full per-day history still accumulates in the JSON store.
 const block = `${START}
-## Clone stats
+## Stats
 
 | | |
 |---|---|

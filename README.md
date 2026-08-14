@@ -61,14 +61,14 @@ Because OpenDemo's cinematic video rendering engine is heavily powered by a comp
 ## How to use (For AI Agents)
 If you are an AI agent attempting to create a demo video using OpenDemo, please carefully read the [AGENT_README.md](./AGENT_README.md) for instructions on how to easily structure your configuration files and generate a new demo.
 
-## Acknowledgements
-OpenDemo is built as an automated, agent-native extension of the archived OpenScreen project. A huge thank you to the original OpenScreen creator (Siddarth Vaddem) for laying the foundation of this cinematic rendering pipeline!
-
 <!-- traffic:start -->
-## Clone stats
+## Stats
 
 | | |
 |---|---|
 | **Unique cloners** | 64 |
 | **Last updated** | 2026-08-14 |
 <!-- traffic:end -->
+
+## Acknowledgements
+OpenDemo is built as an automated, agent-native extension of the archived OpenScreen project. A huge thank you to the original OpenScreen creator (Siddarth Vaddem) for laying the foundation of this cinematic rendering pipeline!
