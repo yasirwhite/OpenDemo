@@ -63,3 +63,38 @@ If you are an AI agent attempting to create a demo video using OpenDemo, please 
 
 ## Acknowledgements
 OpenDemo is built as an automated, agent-native extension of the archived OpenScreen project. A huge thank you to the original OpenScreen creator (Siddarth Vaddem) for laying the foundation of this cinematic rendering pipeline!
+
+<!-- traffic:start -->
+## Clone stats
+
+| | |
+|---|---|
+| **Total clones** | 107 |
+| **Unique cloners** | 64 |
+| **Days tracked** | 14 |
+| **Last updated** | 2026-08-14 |
+
+Last 14 days:
+
+```
+2026-07-31  █████                           9  (8 unique)
+2026-08-01  █                               2  (2 unique)
+2026-08-02  █                               1  (1 unique)
+2026-08-03  █                               1  (1 unique)
+2026-08-04  █                               1  (1 unique)
+2026-08-05  ████████████████████████████   53  (23 unique)
+2026-08-06  █████                           9  (6 unique)
+2026-08-07  ██████████                     18  (9 unique)
+2026-08-08  ███                             6  (6 unique)
+2026-08-09  █                               1  (1 unique)
+2026-08-10  █                               1  (1 unique)
+2026-08-11  █                               2  (2 unique)
+2026-08-12  █                               1  (1 unique)
+2026-08-13  █                               2  (2 unique)
+```
+
+<sub>GitHub keeps only 14 days of traffic, so this is accumulated daily by
+[`.github/workflows/traffic.yml`](.github/workflows/traffic.yml) into
+[`.github/traffic/clones.json`](.github/traffic/clones.json). Clone counts include CI
+and mirrors — "unique cloners" is the more meaningful number.</sub>
+<!-- traffic:end -->
