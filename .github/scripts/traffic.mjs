@@ -83,39 +83,15 @@ writeFileSync(
 console.log(`${rows.length} days on record (+${added} new, ${revised} revised)`);
 
 // ---- render the README block ------------------------------------------------
-const last14 = rows.slice(-14);
-const peak = Math.max(1, ...last14.map(([, v]) => v.count));
-
-// A text bar chart rather than an image: no external service to depend on, it
-// renders identically on github.com and in an editor, and it cannot 404 later.
-const chart = last14
-  .map(
-    ([d, v]) =>
-      `${d}  ${"█".repeat(Math.round((v.count / peak) * 28)).padEnd(28)} ` +
-      `${String(v.count).padStart(4)}  (${v.uniques} unique)`
-  )
-  .join("\n");
-
+// Deliberately minimal: unique cloners is the only metric that matters here.
+// The full per-day history still accumulates in the JSON store.
 const block = `${START}
 ## Clone stats
 
 | | |
 |---|---|
-| **Total clones** | ${total} |
 | **Unique cloners** | ${totalUniq} |
-| **Days tracked** | ${rows.length} |
 | **Last updated** | ${stamp} |
-
-Last 14 days:
-
-\`\`\`
-${chart || "no data yet"}
-\`\`\`
-
-<sub>GitHub keeps only 14 days of traffic, so this is accumulated daily by
-[\`.github/workflows/traffic.yml\`](.github/workflows/traffic.yml) into
-[\`.github/traffic/clones.json\`](.github/traffic/clones.json). Clone counts include CI
-and mirrors — "unique cloners" is the more meaningful number.</sub>
 ${END}`;
 
 let readme = readFileSync(README, "utf8");
