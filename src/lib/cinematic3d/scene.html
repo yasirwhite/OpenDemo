@@ -399,9 +399,37 @@ const phone = register("iphone", phoneRoot);
 phone.screen = devices.__phoneScreen;
 
 // ---- framed panel + bare screen -----------------------------------------
-function makePlane(name, PW, thickness, framed) {
+// SCREEN ASPECT. The flat panel and bare screen were fixed at 2200x1400, so a
+// portrait capture — a phone recording — came out stretched across a landscape
+// face. The shape now follows the source, and `screenAspect` in the config
+// overrides it when a film wants a specific one.
+const DEFAULT_ASPECT = 2200 / 1400;
+const SCREEN_ASPECT = await (async () => {
+  const forced = Number(CONFIG.screenAspect);
+  if (Number.isFinite(forced) && forced > 0) return forced;
+  if (!CONFIG.source) return DEFAULT_ASPECT;   // placeholder renders, e.g. previews
+  try {
+    const v = document.createElement("video");
+    v.src = CONFIG.source; v.muted = true; v.preload = "metadata";
+    await new Promise((res, rej) => { v.onloadedmetadata = res; v.onerror = rej; });
+    return v.videoWidth && v.videoHeight ? v.videoWidth / v.videoHeight : DEFAULT_ASPECT;
+  } catch { return DEFAULT_ASPECT; }
+})();
+
+function makePlane(name, PW0, thickness, framed, aspect = SCREEN_ASPECT) {
   const root = new THREE.Group();
-  const PH = PW * (1400 / 2200);
+  // HEIGHT is the invariant, not area. The panel floats above a mirrored floor
+  // (mirrorRoot is the scene flipped about y=0), so its height is what decides
+  // whether it stays clear of that floor. Preserving area instead made a
+  // portrait face ~47 units tall against the landscape face's 25, which pushed
+  // its bottom edge below y=0 — and the reflection then folded up THROUGH the
+  // panel, printing mirrored UI text across it.
+  //
+  // Holding the height and letting width follow the aspect keeps every shot's
+  // vertical framing and floor clearance exactly as tuned, and reproduces the
+  // original PW/PH exactly at the default aspect.
+  const PH = PW0 * (1400 / 2200);
+  const PW = PH * aspect;
   if (framed) {
     const sh = new THREE.Shape(); const r = 0.8, w = PW / 2, h = PH / 2;
     sh.moveTo(-w + r, -h); sh.lineTo(w - r, -h); sh.quadraticCurveTo(w, -h, w, -h + r);

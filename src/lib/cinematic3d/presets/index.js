@@ -11,6 +11,8 @@ import raw_2d, { note as raw_2d_note, nativeDurationMs as raw_2d_ms } from "./ra
 import floating_panel, { note as floating_panel_note, nativeDurationMs as floating_panel_ms } from "./floating-panel.js";
 import laptop_hold, { note as laptop_hold_note, nativeDurationMs as laptop_hold_ms } from "./laptop-hold.js";
 import phone_showcase, { note as phone_showcase_note, nativeDurationMs as phone_showcase_ms } from "./phone-showcase.js";
+import phone_arrive, { note as phone_arrive_note, nativeDurationMs as phone_arrive_ms } from "./phone-arrive.js";
+import phone_hold, { note as phone_hold_note, nativeDurationMs as phone_hold_ms } from "./phone-hold.js";
 
 export { RIG, C } from "./rig.js";
 
@@ -51,6 +53,8 @@ export const PRESETS = {
   "floating-panel": floating_panel,
   "laptop-hold": laptop_hold,
   "phone-showcase": phone_showcase,
+  "phone-arrive": phone_arrive,
+  "phone-hold": phone_hold,
 };
 
 // What each shot was tuned at, in ms. A scene may run at any duration, but the
@@ -63,6 +67,8 @@ export const PRESET_NATIVE_MS = {
   "floating-panel": floating_panel_ms,
   "laptop-hold": laptop_hold_ms,
   "phone-showcase": phone_showcase_ms,
+  "phone-arrive": phone_arrive_ms,
+  "phone-hold": phone_hold_ms,
 };
 
 export const PRESET_NOTES = {
@@ -72,6 +78,8 @@ export const PRESET_NOTES = {
   "floating-panel": floating_panel_note,
   "laptop-hold": laptop_hold_note,
   "phone-showcase": phone_showcase_note,
+  "phone-arrive": phone_arrive_note,
+  "phone-hold": phone_hold_note,
 };
 
 /**

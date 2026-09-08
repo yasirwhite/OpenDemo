@@ -46,6 +46,28 @@ re-deriving it per demo is how these films get worse, not better.
 | `focus` | what to zoom on. Shape depends on the preset (see below). |
 | `cursor` | pointer keyframes for this scene — see The cursor below. |
 | `orbit` | override the camera sweep the preset ships with. See below. |
+| `screenAspect` | *(top level)* force the flat panel / bare screen shape. See below. |
+
+### Screen shape follows the source
+
+The framed `panel` and bare `screen` used to be a fixed 2200x1400 landscape
+face, so a **portrait capture — any phone recording — came out stretched** across
+it. The shape is now taken from the source video's own dimensions, and the face
+keeps the same on-screen *area* it was framed for, so a portrait source becomes a
+tall panel of the same size rather than a squashed wide one.
+
+Override it at the top level of the config when a film wants a specific shape:
+
+```jsonc
+{ "source": "./phone-capture.mp4", "screenAspect": 0.45 }   // width / height
+```
+
+Omit it and the source decides. With no `source` at all (placeholder renders,
+preview stills) it falls back to the original 2200/1400.
+
+Note this is about the *flat* devices. `iphone` and `macbook` are modelled
+geometry with their own screens — a portrait capture belongs on the phone, and
+`phone-arrive` / `phone-hold` / `phone-showcase` already put it there.
 
 ### Orbit: retuning a preset's camera sweep
 
@@ -106,7 +128,44 @@ actually looks like** (three moments per shot: start, middle, end).
 | `laptop-punch-reveal` | **the workhorse.** A feature being used — see the pattern below. |
 | `floating-panel` | closing beat. Screen floats over a reflective ground, can dissolve out. |
 | `laptop-hold` | a long walkthrough that needs room to breathe. Almost no movement. |
-| `phone-showcase` | mobile captures. Spins in, demos, flash-zooms, spins out. |
+| `phone-showcase` | a mobile capture that is the **whole film in one shot**. Spins in, demos, flash-zooms, spins out. |
+| `phone-arrive` | opener for a mobile sequence. Spins in once and stays. |
+| `phone-hold` | the middle of a mobile sequence. Slow downward pan, no spin, no zoom. |
+
+### A device enters once and leaves once
+
+`phone-showcase` is a complete arc — arrival, demo, exit. It is right when one
+shot is the entire mobile film, and wrong the moment you use it for several
+scenes in a row: the phone then flies in and out on *every* cut, so the film
+reads as a stack of separate adverts instead of one continuous look at a
+product.
+
+For a sequence, build the arc across the scenes instead:
+
+```jsonc
+{ "preset": "phone-arrive",   "duration": 3.6 },   // comes in, once
+{ "preset": "phone-hold",     "duration": 4.5 },   // pans, stays
+{ "preset": "phone-hold",     "duration": 3.5 },   // pans, stays
+{ "preset": "floating-panel", "duration": 4.9 }    // screen detaches, dissolves — the discard
+```
+
+The same rule applies to the laptop shots: `laptop-reveal` opens, `laptop-hold`
+sustains. Do not re-reveal a device the viewer is already looking at.
+
+### Zooms must be motivated
+
+A punch-in is a sentence: *look at this, it matters*. It only means that if it
+happens **when** something matters.
+
+`phone-showcase` fires a flash-zoom at a fixed 0.52 of whatever scene it is
+given. Across one shot that is a designed beat; reused across a sequence it
+zooms on whatever happens to be on screen at that instant, and the viewer learns
+the zoom means nothing. `phone-hold` deliberately has no zoom for this reason.
+
+So: never take a zoom because the preset ships with one. Either the scene has a
+moment worth punching into — in which case use a preset that accepts `focus` and
+time it to that moment — or it does not, and the shot should hold. One earned
+zoom in a film beats six automatic ones. See also AGENT_README's zooming rules.
 
 Adding one: drop `presets/<slug>.js` exporting `default` (the builder) and `note`
 (one line on when to use it), register it in `presets/index.js`, then run
