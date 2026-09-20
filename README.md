@@ -66,8 +66,8 @@ If you are an AI agent attempting to create a demo video using OpenDemo, please 
 
 | | |
 |---|---|
-| **Unique cloners** | 184 |
-| **Last updated** | 2026-09-19 |
+| **Unique cloners** | 188 |
+| **Last updated** | 2026-09-20 |
 <!-- traffic:end -->
 
 ## Acknowledgements
