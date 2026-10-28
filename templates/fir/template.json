@@ -1,0 +1,2865 @@
+{
+  "_about": [
+    "TEMPLATE 'fir' + WORKED EXAMPLE — a rebuild of Intercom's 'Meet Fin 2' launch film",
+    "(66.2s), measured frame-by-frame at 60fps. The copy is the original film's demo",
+    "dialogue: to retarget this template to another product, rewrite the role-tagged",
+    "scenes per templates/fir/README.md and keep every timing exactly as-is — the",
+    "timings are the template.",
+    "",
+    "Build and render:",
+    "  node src/lib/textcards/build.mjs --config templates/fir/template.json",
+    "  node src/lib/textcards/render.mjs --out fin.mp4 --fps 60",
+    "",
+    "The fir presets live in templates/fir/presets/ and are registered into the",
+    "shared registry by src/lib/textcards/src/presets/index.jsx. Scene-by-scene",
+    "measurement notes: templates/fir/reference-notes.md."
+  ],
+  "video": {
+    "width": 1280,
+    "height": 720,
+    "fps": 60,
+    "durationMs": 66215
+  },
+  "ground": [
+    {
+      "fromMs": 0,
+      "colour": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "fromMs": 62233,
+      "colour": [
+        255,
+        255,
+        255
+      ]
+    },
+    {
+      "fromMs": 62283,
+      "colour": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "logo-open",
+      "role": "brand",
+      "preset": "fir-lockup",
+      "startMs": 0,
+      "durationMs": 3450,
+      "markSize": 80.2,
+      "cx": 639.7,
+      "cy": 350.2,
+      "bgColour": [
+        0,
+        0,
+        0
+      ],
+      "markBg": [
+        255,
+        255,
+        255
+      ],
+      "markFg": [
+        0,
+        0,
+        0
+      ],
+      "markRadius": 0.125,
+      "enter": {
+        "atMs": 500,
+        "mode": "pop",
+        "fromScale": 1.726,
+        "tauMs": 96,
+        "fadeAtMs": 533,
+        "fadeMs": 67
+      },
+      "glyph": {
+        "barStaggerMs": 70,
+        "barTauMs": 180,
+        "smileAtMs": 85,
+        "smileMs": 270
+      },
+      "slide": {
+        "atMs": 1530,
+        "durMs": 450,
+        "bez": [
+          0.504,
+          0.374,
+          0,
+          0.887
+        ]
+      },
+      "wordmark": {
+        "text": "intercom",
+        "size": 110,
+        "weight": 600,
+        "tracking": -4.4,
+        "baseline": 391,
+        "inkWidth": 401.4,
+        "inkDx": 6.7,
+        "atMs": 1640,
+        "durMs": 406,
+        "bez": [
+          0.096,
+          0.307,
+          0,
+          0.882
+        ],
+        "rampPx": 34,
+        "colour": [
+          255,
+          255,
+          255
+        ],
+        "strokePx": 1.4
+      },
+      "lockupLeft": 390,
+      "lockupRight": 888.3,
+      "fadeOutAtMs": 3152,
+      "fadeOutMs": 291
+    },
+    {
+      "id": "fir-ground",
+      "role": "feature",
+      "preset": "fir-ground",
+      "startMs": 3150,
+      "durationMs": 59080,
+      "profile": [
+        [
+          0,
+          [
+            192,
+            192,
+            254
+          ]
+        ],
+        [
+          150,
+          [
+            190,
+            188,
+            254
+          ]
+        ],
+        [
+          222,
+          [
+            188,
+            186,
+            254
+          ]
+        ],
+        [
+          252,
+          [
+            137,
+            134,
+            253
+          ]
+        ],
+        [
+          420,
+          [
+            134,
+            131,
+            253
+          ]
+        ],
+        [
+          560,
+          [
+            131,
+            127,
+            251
+          ]
+        ],
+        [
+          628,
+          [
+            138,
+            134,
+            253
+          ]
+        ],
+        [
+          660,
+          [
+            165,
+            162,
+            252
+          ]
+        ],
+        [
+          690,
+          [
+            194,
+            194,
+            254
+          ]
+        ],
+        [
+          720,
+          [
+            200,
+            198,
+            252
+          ]
+        ]
+      ],
+      "profileDriftPxPerSec": 0,
+      "base": [
+        134,
+        136,
+        252
+      ],
+      "profileFadeX": {
+        "x0": 90,
+        "x1": 620,
+        "minAlpha": 0.18
+      },
+      "grainAlpha": 0.075,
+      "grainDarkAlpha": 0.07,
+      "panels": [
+        {
+          "id": "white",
+          "type": "flat",
+          "colour": [
+            255,
+            255,
+            255
+          ],
+          "fromMs": 27450,
+          "edgeKeys": [
+            {
+              "atMs": 27450,
+              "x": 636
+            },
+            {
+              "atMs": 45140,
+              "x": 636
+            },
+            {
+              "atMs": 46000,
+              "x": 874.7,
+              "ease": "inout",
+              "pow": 2.5
+            }
+          ]
+        },
+        {
+          "id": "landscape",
+          "type": "painterly",
+          "anchor": "left",
+          "fromMs": 14083,
+          "toMs": 28550,
+          "palette": {
+            "sky": [
+              200,
+              216,
+              208
+            ],
+            "skyPale": [
+              222,
+              230,
+              208
+            ],
+            "teal": [
+              136,
+              166,
+              170
+            ],
+            "field": [
+              182,
+              199,
+              195
+            ],
+            "olive": [
+              143,
+              154,
+              122
+            ],
+            "dark": [
+              120,
+              138,
+              108
+            ],
+            "stops": [
+              [
+                0,
+                [
+                  216,
+                  225,
+                  206
+                ]
+              ],
+              [
+                10,
+                [
+                  212,
+                  221,
+                  203
+                ]
+              ],
+              [
+                17,
+                [
+                  186,
+                  203,
+                  195
+                ]
+              ],
+              [
+                40,
+                [
+                  174,
+                  190,
+                  188
+                ]
+              ],
+              [
+                60,
+                [
+                  172,
+                  193,
+                  190
+                ]
+              ],
+              [
+                66,
+                [
+                  166,
+                  190,
+                  185
+                ]
+              ],
+              [
+                70,
+                [
+                  136,
+                  170,
+                  163
+                ]
+              ],
+              [
+                73.2,
+                [
+                  92,
+                  130,
+                  136
+                ]
+              ],
+              [
+                77,
+                [
+                  178,
+                  183,
+                  126
+                ]
+              ],
+              [
+                82,
+                [
+                  140,
+                  145,
+                  114
+                ]
+              ],
+              [
+                91,
+                [
+                  138,
+                  142,
+                  108
+                ]
+              ],
+              [
+                100,
+                [
+                  126,
+                  128,
+                  96
+                ]
+              ]
+            ],
+            "blobs": [
+              {
+                "left": "-14%",
+                "top": "-10%",
+                "width": "58%",
+                "height": "24%",
+                "colour": [
+                  226,
+                  233,
+                  212
+                ],
+                "blur": 42,
+                "opacity": 0.85
+              },
+              {
+                "right": "-14%",
+                "top": "-10%",
+                "width": "52%",
+                "height": "26%",
+                "colour": [
+                  104,
+                  146,
+                  154
+                ],
+                "blur": 44,
+                "opacity": 0.85
+              },
+              {
+                "right": "-10%",
+                "top": "42%",
+                "width": "56%",
+                "height": "16%",
+                "colour": [
+                  200,
+                  216,
+                  204
+                ],
+                "blur": 38,
+                "opacity": 0.5
+              },
+              {
+                "left": "-12%",
+                "top": "20%",
+                "width": "44%",
+                "height": "14%",
+                "colour": [
+                  196,
+                  212,
+                  202
+                ],
+                "blur": 34,
+                "opacity": 0.35
+              },
+              {
+                "left": "-10%",
+                "top": "76%",
+                "width": "46%",
+                "height": "7%",
+                "colour": [
+                  192,
+                  192,
+                  116
+                ],
+                "blur": 24,
+                "opacity": 0.5
+              },
+              {
+                "right": "-10%",
+                "top": "20%",
+                "width": "46%",
+                "height": "15%",
+                "colour": [
+                  138,
+                  168,
+                  180
+                ],
+                "blur": 38,
+                "opacity": 0.45
+              }
+            ]
+          },
+          "edgeKeys": [
+            {
+              "atMs": 14083,
+              "x": 635.3
+            },
+            {
+              "atMs": 27650,
+              "x": 635.3
+            },
+            {
+              "atMs": 27683,
+              "x": 644
+            },
+            {
+              "atMs": 27717,
+              "x": 654
+            },
+            {
+              "atMs": 27750,
+              "x": 670.7
+            },
+            {
+              "atMs": 27783,
+              "x": 694
+            },
+            {
+              "atMs": 27817,
+              "x": 724.7
+            },
+            {
+              "atMs": 27850,
+              "x": 768.7
+            },
+            {
+              "atMs": 27883,
+              "x": 820
+            },
+            {
+              "atMs": 27917,
+              "x": 884.7
+            },
+            {
+              "atMs": 27950,
+              "x": 963.3
+            },
+            {
+              "atMs": 27983,
+              "x": 1046
+            },
+            {
+              "atMs": 28017,
+              "x": 1114.7
+            },
+            {
+              "atMs": 28050,
+              "x": 1170
+            },
+            {
+              "atMs": 28083,
+              "x": 1214.7
+            },
+            {
+              "atMs": 28117,
+              "x": 1250
+            },
+            {
+              "atMs": 28150,
+              "x": 1274.7
+            },
+            {
+              "atMs": 28167,
+              "x": 1280
+            }
+          ]
+        }
+      ],
+      "borders": [
+        {
+          "rect": [
+            0,
+            0,
+            874.67,
+            722
+          ],
+          "colour": [
+            245,
+            144,
+            102
+          ],
+          "thickness": 18.1,
+          "inset": 0,
+          "radius": 0,
+          "inMs": 55833,
+          "fadeInMs": 300,
+          "outMs": 57267,
+          "fadeOutMs": 300
+        },
+        {
+          "rect": [
+            874.67,
+            0,
+            1280,
+            722
+          ],
+          "colour": [
+            245,
+            144,
+            102
+          ],
+          "thickness": 18.1,
+          "inset": 0,
+          "radius": 0,
+          "inMs": 57567,
+          "fadeInMs": 300,
+          "outMs": 58683,
+          "fadeOutMs": 300
+        }
+      ]
+    },
+    {
+      "id": "chat-track-order",
+      "role": "product-voice",
+      "preset": "fir-chat-card",
+      "startMs": 3300,
+      "durationMs": 13840,
+      "card": {
+        "x": 418.7,
+        "y": 53.3,
+        "w": 468.7,
+        "h": 700,
+        "radius": 14,
+        "keys": [
+          {
+            "atMs": 0,
+            "dy": 666.7
+          },
+          {
+            "atMs": 83,
+            "dy": 666.7,
+            "blurY": 17
+          },
+          {
+            "atMs": 100,
+            "dy": 690,
+            "blurY": 17
+          },
+          {
+            "atMs": 117,
+            "dy": 534.7,
+            "blurY": 17
+          },
+          {
+            "atMs": 133,
+            "dy": 428.7,
+            "blurY": 17
+          },
+          {
+            "atMs": 150,
+            "dy": 327.4,
+            "blurY": 16
+          },
+          {
+            "atMs": 167,
+            "dy": 236.7,
+            "blurY": 14.5
+          },
+          {
+            "atMs": 183,
+            "dy": 166,
+            "blurY": 11.3
+          },
+          {
+            "atMs": 200,
+            "dy": 100.7,
+            "blurY": 10.5
+          },
+          {
+            "atMs": 217,
+            "dy": 49.4,
+            "blurY": 8.2
+          },
+          {
+            "atMs": 233,
+            "dy": 11.4,
+            "blurY": 6.1
+          },
+          {
+            "atMs": 250,
+            "dy": -14.6,
+            "blurY": 4.2
+          },
+          {
+            "atMs": 267,
+            "dy": -31.3,
+            "blurY": 2.7
+          },
+          {
+            "atMs": 283,
+            "dy": -40.6,
+            "blurY": 1.4
+          },
+          {
+            "atMs": 300,
+            "dy": -43.3,
+            "blurY": 0
+          },
+          {
+            "atMs": 317,
+            "dy": -40
+          },
+          {
+            "atMs": 333,
+            "dy": -40
+          },
+          {
+            "atMs": 350,
+            "dy": -34.7
+          },
+          {
+            "atMs": 367,
+            "dy": -28
+          },
+          {
+            "atMs": 383,
+            "dy": -22.7
+          },
+          {
+            "atMs": 400,
+            "dy": -17.3
+          },
+          {
+            "atMs": 417,
+            "dy": -12
+          },
+          {
+            "atMs": 433,
+            "dy": -8
+          },
+          {
+            "atMs": 450,
+            "dy": -4
+          },
+          {
+            "atMs": 467,
+            "dy": -1.3
+          },
+          {
+            "atMs": 483,
+            "dy": 0
+          },
+          {
+            "atMs": 500,
+            "dy": 1.3
+          },
+          {
+            "atMs": 517,
+            "dy": 2.67
+          },
+          {
+            "atMs": 600,
+            "dy": 2.67
+          },
+          {
+            "atMs": 617,
+            "dy": 1.3
+          },
+          {
+            "atMs": 683,
+            "dy": 0
+          }
+        ]
+      },
+      "header": {
+        "name": "Fin",
+        "sub": "Agent",
+        "chip": "AI"
+      },
+      "mark": {
+        "bg": [
+          17,
+          17,
+          17
+        ],
+        "fg": [
+          255,
+          255,
+          255
+        ]
+      },
+      "items": [
+        {
+          "kind": "user",
+          "y": 20,
+          "atMs": 940,
+          "enterMs": 80,
+          "enterFrom": 0.9,
+          "text": "I'd like to track my order."
+        },
+        {
+          "kind": "bot",
+          "y": 102.7,
+          "atMs": 1755,
+          "enterMs": 90,
+          "enterFrom": 0.86,
+          "text": "Sure thing! One minute 👀",
+          "avatar": true,
+          "avatarY": 23.4,
+          "avatarHideAtMs": 2470
+        },
+        {
+          "kind": "thinking",
+          "y": 197.6,
+          "x": 82,
+          "atMs": 2460,
+          "enterMs": 90,
+          "enterFrom": 0.9,
+          "text": "Thinking...",
+          "hideAtMs": 3160,
+          "hideFadeMs": 60,
+          "avatar": true,
+          "avatarY": -8.9,
+          "avatarFace": "think"
+        },
+        {
+          "kind": "bot",
+          "y": 186.7,
+          "atMs": 3170,
+          "w": 332,
+          "enterMs": 220,
+          "enterFrom": 0.78,
+          "paras": [
+            {
+              "text": "Your order is out for delivery!"
+            },
+            {
+              "text": "The estimated arrival time is around\n11AM tomorrow.",
+              "bold": true
+            }
+          ],
+          "fadeMs": 400
+        },
+        {
+          "kind": "map",
+          "y": 318.7,
+          "atMs": 3220,
+          "w": 332,
+          "h": 161.3,
+          "enterMs": 180,
+          "enterFrom": 0.3,
+          "anchor": "bottom left",
+          "pill": "Open in App",
+          "activeStep": 2,
+          "avatar": true,
+          "avatarY": 121,
+          "avatarAtMs": 3400,
+          "avatarHideAtMs": 6180,
+          "avatarFadeMs": 70,
+          "fadeMs": 380
+        },
+        {
+          "kind": "bot",
+          "y": 503.3,
+          "atMs": 6220,
+          "enterMs": 110,
+          "enterFrom": 0.86,
+          "text": "Did that answer your question?",
+          "avatar": true,
+          "avatarY": 22
+        }
+      ],
+      "popouts": [
+        {
+          "itemIndex": 3,
+          "srcW": 332,
+          "srcH": 110.7,
+          "rect": [
+            389.3,
+            280.7,
+            520.7,
+            171.3
+          ],
+          "keys": [
+            {
+              "atMs": 7750,
+              "p": 0
+            },
+            {
+              "atMs": 7800,
+              "p": 0.017
+            },
+            {
+              "atMs": 7850,
+              "p": 0.034
+            },
+            {
+              "atMs": 7900,
+              "p": 0.07
+            },
+            {
+              "atMs": 7950,
+              "p": 0.115
+            },
+            {
+              "atMs": 8000,
+              "p": 0.19
+            },
+            {
+              "atMs": 8050,
+              "p": 0.29
+            },
+            {
+              "atMs": 8100,
+              "p": 0.41
+            },
+            {
+              "atMs": 8150,
+              "p": 0.545
+            },
+            {
+              "atMs": 8200,
+              "p": 0.675
+            },
+            {
+              "atMs": 8250,
+              "p": 0.785
+            },
+            {
+              "atMs": 8300,
+              "p": 0.855
+            },
+            {
+              "atMs": 8350,
+              "p": 0.912
+            },
+            {
+              "atMs": 8400,
+              "p": 0.95
+            },
+            {
+              "atMs": 8450,
+              "p": 0.978
+            },
+            {
+              "atMs": 8500,
+              "p": 0.991
+            },
+            {
+              "atMs": 8567,
+              "p": 1
+            },
+            {
+              "atMs": 12700,
+              "p": 1
+            },
+            {
+              "atMs": 12750,
+              "p": 0.975
+            },
+            {
+              "atMs": 12800,
+              "p": 0.94
+            },
+            {
+              "atMs": 12850,
+              "p": 0.868
+            },
+            {
+              "atMs": 12900,
+              "p": 0.767
+            },
+            {
+              "atMs": 12950,
+              "p": 0.62
+            },
+            {
+              "atMs": 13000,
+              "p": 0.433
+            },
+            {
+              "atMs": 13050,
+              "p": 0.278
+            },
+            {
+              "atMs": 13100,
+              "p": 0.16
+            },
+            {
+              "atMs": 13150,
+              "p": 0.088
+            },
+            {
+              "atMs": 13200,
+              "p": 0.04
+            },
+            {
+              "atMs": 13250,
+              "p": 0.012
+            },
+            {
+              "atMs": 13300,
+              "p": 0
+            }
+          ],
+          "langFadeMs": 115,
+          "langs": [
+            {
+              "paras": [
+                {
+                  "text": "Your order is out for delivery!"
+                },
+                {
+                  "text": "The estimated arrival time is around\n11AM tomorrow.",
+                  "bold": true
+                }
+              ]
+            },
+            {
+              "outAtMs": 11000,
+              "inAtMs": 11250,
+              "paras": [
+                {
+                  "text": "¡Tu pedido ya está disponible para entrega!"
+                },
+                {
+                  "text": "La hora estimada de llegada es\nalrededor de las 11 a. m. de mañana.",
+                  "bold": true
+                }
+              ]
+            },
+            {
+              "outAtMs": 11650,
+              "inAtMs": 11885,
+              "paras": [
+                {
+                  "text": "Ihre Bestellung ist zur Auslieferung bereit!"
+                },
+                {
+                  "text": "Die voraussichtliche Ankunftszeit ist\nmorgen gegen 11 Uhr.",
+                  "bold": true
+                }
+              ]
+            },
+            {
+              "outAtMs": 12300,
+              "inAtMs": 12535,
+              "paras": [
+                {
+                  "text": "您的订单已准备好发货！",
+                  "tracking": "0.11em"
+                },
+                {
+                  "text": "预计抵达时间为明天上午11点左右。",
+                  "bold": true,
+                  "tracking": "0.11em"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "threadFade": {
+        "atMs": 13500,
+        "durMs": 360
+      }
+    },
+    {
+      "id": "s3-card",
+      "role": "product-voice",
+      "preset": "fir-chat-card",
+      "startMs": 17140,
+      "durationMs": 14210,
+      "card": {
+        "x": 418.3,
+        "y": 53.3,
+        "w": 468.7,
+        "h": 700,
+        "radius": 16,
+        "keys": [
+          {
+            "atMs": 10,
+            "dx": 0,
+            "dy": 0,
+            "blur": 0
+          },
+          {
+            "atMs": 160,
+            "dx": 0,
+            "dy": 0,
+            "blur": 0,
+            "ease": "linear"
+          },
+          {
+            "atMs": 210,
+            "dx": 4,
+            "dy": 0,
+            "blur": 0,
+            "ease": "linear"
+          },
+          {
+            "atMs": 260,
+            "dx": 10.7,
+            "dy": 0,
+            "blur": 0.11,
+            "ease": "linear"
+          },
+          {
+            "atMs": 310,
+            "dx": 21.3,
+            "dy": 0,
+            "blur": 0.37,
+            "ease": "linear"
+          },
+          {
+            "atMs": 360,
+            "dx": 38.7,
+            "dy": 0,
+            "blur": 0.8,
+            "ease": "linear"
+          },
+          {
+            "atMs": 410,
+            "dx": 62.7,
+            "dy": 0,
+            "blur": 1.38,
+            "ease": "linear"
+          },
+          {
+            "atMs": 460,
+            "dx": 97.3,
+            "dy": -0.57,
+            "blur": 2.11,
+            "ease": "linear"
+          },
+          {
+            "atMs": 510,
+            "dx": 141.3,
+            "dy": -1.14,
+            "blur": 2.99,
+            "ease": "linear"
+          },
+          {
+            "atMs": 560,
+            "dx": 189.3,
+            "dy": -1.71,
+            "blur": 4.03,
+            "ease": "linear"
+          },
+          {
+            "atMs": 610,
+            "dx": 226.7,
+            "dy": -2.29,
+            "blur": 2.99,
+            "ease": "linear"
+          },
+          {
+            "atMs": 660,
+            "dx": 257.3,
+            "dy": -2.86,
+            "blur": 2.11,
+            "ease": "linear"
+          },
+          {
+            "atMs": 710,
+            "dx": 276,
+            "dy": -3.43,
+            "blur": 1.36,
+            "ease": "linear"
+          },
+          {
+            "atMs": 760,
+            "dx": 289.3,
+            "dy": -4,
+            "blur": 0.8,
+            "ease": "linear"
+          },
+          {
+            "atMs": 810,
+            "dx": 298.7,
+            "dy": -4,
+            "blur": 0.37,
+            "ease": "linear"
+          },
+          {
+            "atMs": 860,
+            "dx": 302.7,
+            "dy": -4,
+            "blur": 0.11,
+            "ease": "linear"
+          },
+          {
+            "atMs": 910,
+            "dx": 304,
+            "dy": -4,
+            "blur": 0,
+            "ease": "linear"
+          },
+          {
+            "atMs": 960,
+            "dx": 305.3,
+            "dy": -4,
+            "blur": 0,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1060,
+            "dx": 305.3,
+            "dy": -4,
+            "blur": 0,
+            "ease": "linear"
+          },
+          {
+            "atMs": 13460,
+            "dy": -4,
+            "blur": 0
+          },
+          {
+            "atMs": 13610,
+            "dy": -4,
+            "blur": 0
+          },
+          {
+            "atMs": 13643,
+            "dy": -2,
+            "blur": 0.6
+          },
+          {
+            "atMs": 13677,
+            "dy": 2,
+            "blur": 1.2
+          },
+          {
+            "atMs": 13710,
+            "dy": 10.7,
+            "blur": 2.2
+          },
+          {
+            "atMs": 13743,
+            "dy": 24.7,
+            "blur": 3.4
+          },
+          {
+            "atMs": 13777,
+            "dy": 46.7,
+            "blur": 5
+          },
+          {
+            "atMs": 13810,
+            "dy": 78.7,
+            "blur": 6.6
+          },
+          {
+            "atMs": 13843,
+            "dy": 119.3,
+            "blur": 8.2
+          },
+          {
+            "atMs": 13877,
+            "dy": 172,
+            "blur": 10
+          },
+          {
+            "atMs": 13910,
+            "dy": 238,
+            "blur": 11.6
+          },
+          {
+            "atMs": 13943,
+            "dy": 320.7,
+            "blur": 13.4
+          },
+          {
+            "atMs": 13977,
+            "dy": 412,
+            "blur": 15
+          },
+          {
+            "atMs": 14010,
+            "dy": 496,
+            "blur": 14
+          },
+          {
+            "atMs": 14043,
+            "dy": 566.7,
+            "blur": 13
+          },
+          {
+            "atMs": 14077,
+            "dy": 632,
+            "blur": 12
+          },
+          {
+            "atMs": 14110,
+            "dy": 692,
+            "blur": 10
+          },
+          {
+            "atMs": 14160,
+            "dy": 720,
+            "blur": 0
+          }
+        ]
+      },
+      "layout": {
+        "rightPad": 22.7
+      },
+      "header": {
+        "name": "Fin",
+        "sub": "Agent",
+        "chip": "AI"
+      },
+      "mark": {
+        "bg": [
+          0,
+          0,
+          0
+        ],
+        "fg": [
+          254,
+          254,
+          254
+        ]
+      },
+      "items": [
+        {
+          "kind": "user",
+          "y": 20.7,
+          "atMs": 1815,
+          "enterMs": 165,
+          "enterFrom": 1,
+          "text": "I want to update my booking.",
+          "w": 270.7,
+          "fadeMs": 162
+        },
+        {
+          "kind": "thinking",
+          "text": "",
+          "y": 115,
+          "atMs": 2150,
+          "enterMs": 30,
+          "avatar": true,
+          "avatarFace": "think",
+          "avatarY": -9,
+          "avatarAtMs": 2150,
+          "avatarInMs": 340,
+          "hideAtMs": 3180,
+          "hideFadeMs": 200,
+          "avatarAnimAtMs": 2410
+        },
+        {
+          "kind": "thinking",
+          "text": "Thinking...",
+          "y": 115,
+          "colour": [
+            122,
+            122,
+            120
+          ],
+          "atMs": 2235,
+          "enterMs": 30,
+          "fadeMs": 20,
+          "enterFrom": 1,
+          "hideAtMs": 3180,
+          "hideFadeMs": 200
+        },
+        {
+          "kind": "answercard",
+          "y": 105.3,
+          "atMs": 3455,
+          "enterMs": 140,
+          "enterFrom": 1,
+          "w": 365.3,
+          "avatar": true,
+          "avatarY": 187.3,
+          "avatarHideAtMs": 8485,
+          "avatarFadeMs": 292,
+          "paras": [
+            {
+              "text": "Yes, you can change the date of your\nstay for up to seven days before it is due\nto begin."
+            }
+          ],
+          "source": {
+            "label": "Source",
+            "title": "Booking amendments"
+          },
+          "footer": {
+            "chip": "AI",
+            "label": "Answer"
+          },
+          "footerPadV": 13.9,
+          "fadeMs": 140,
+          "avatarAtMs": 3455,
+          "avatarInMs": 140
+        },
+        {
+          "kind": "bot",
+          "y": 358.7,
+          "atMs": 8615,
+          "enterMs": 385,
+          "enterFrom": 1,
+          "text": "Would you like me to update it for you?",
+          "w": 348,
+          "avatar": true,
+          "avatarY": 22,
+          "avatarHideAtMs": 10180,
+          "avatarFadeMs": 292,
+          "fadeMs": 385,
+          "avatarAtMs": 8615,
+          "avatarInMs": 385
+        },
+        {
+          "kind": "pills",
+          "y": 449.3,
+          "atMs": 9335,
+          "enterMs": 325,
+          "enterFrom": 1,
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "size": 15.7,
+          "rightPad": 26,
+          "fadeMs": 325
+        },
+        {
+          "kind": "bot",
+          "y": 497.3,
+          "atMs": 10180,
+          "enterMs": 340,
+          "enterFrom": 1,
+          "text": "I'm on it! 🐝",
+          "w": 135.3,
+          "avatar": true,
+          "avatarY": 22,
+          "avatarKeepOnPop": true,
+          "fadeMs": 340,
+          "avatarAtMs": 10180,
+          "avatarInMs": 340
+        }
+      ],
+      "popouts": [
+        {
+          "itemIndex": 3,
+          "rect": [
+            718.7,
+            179.3,
+            476
+          ],
+          "keys": [
+            {
+              "atMs": 3970,
+              "p": 0
+            },
+            {
+              "atMs": 4540,
+              "p": 1,
+              "ease": "inout",
+              "pow": 2
+            },
+            {
+              "atMs": 7940,
+              "p": 1
+            },
+            {
+              "atMs": 8440,
+              "p": 0,
+              "ease": "inout",
+              "pow": 2
+            }
+          ],
+          "shadow": {
+            "dy": 3,
+            "blur": 8,
+            "alpha": 0.2
+          }
+        },
+        {
+          "itemIndex": 4,
+          "rect": [
+            697.3,
+            466,
+            518.7
+          ],
+          "keys": [
+            {
+              "atMs": 9130,
+              "p": 0
+            },
+            {
+              "atMs": 9210,
+              "p": 0.13,
+              "ease": "in",
+              "pow": 1.5
+            },
+            {
+              "atMs": 9310,
+              "p": 0.36,
+              "ease": "linear"
+            },
+            {
+              "atMs": 9410,
+              "p": 0.63,
+              "ease": "linear"
+            },
+            {
+              "atMs": 9510,
+              "p": 0.84,
+              "ease": "linear"
+            },
+            {
+              "atMs": 9610,
+              "p": 0.955,
+              "ease": "linear"
+            },
+            {
+              "atMs": 9730,
+              "p": 1,
+              "ease": "out"
+            },
+            {
+              "atMs": 10640,
+              "p": 1
+            },
+            {
+              "atMs": 11180,
+              "p": 0,
+              "ease": "inout",
+              "pow": 2
+            }
+          ],
+          "shadow": {
+            "dy": 3,
+            "blur": 8,
+            "alpha": 0.2
+          }
+        },
+        {
+          "itemIndex": 6,
+          "rect": [
+            788.7,
+            597.3,
+            227.3
+          ],
+          "keys": [
+            {
+              "atMs": 11550,
+              "p": 0
+            },
+            {
+              "atMs": 12040,
+              "p": 1,
+              "ease": "inout",
+              "pow": 2
+            },
+            {
+              "atMs": 13030,
+              "p": 1
+            },
+            {
+              "atMs": 13340,
+              "p": 0,
+              "ease": "inout",
+              "pow": 2
+            }
+          ],
+          "shadow": {
+            "dy": 3,
+            "blur": 8,
+            "alpha": 0.2
+          }
+        }
+      ],
+      "type": {
+        "lineH": 1.47,
+        "blockSkew": 0
+      }
+    },
+    {
+      "id": "fir-flow",
+      "role": "feature",
+      "preset": "fir-emoji-flow",
+      "startMs": 17150,
+      "durationMs": 45080,
+      "elements": [
+        {
+          "kind": "line",
+          "x0": 278.7,
+          "y": 342,
+          "thickness": 21.3,
+          "colour": [
+            7,
+            73,
+            245
+          ],
+          "keys": [
+            {
+              "atMs": 1083,
+              "tip": 278.7
+            },
+            {
+              "atMs": 1140,
+              "tip": 346,
+              "ease": "linear"
+            }
+          ],
+          "outMs": 31100,
+          "outFadeMs": 550
+        },
+        {
+          "kind": "arrow",
+          "x0": 498.7,
+          "y": 341.3,
+          "thickness": 20.7,
+          "headW": 27.3,
+          "headH": 37.3,
+          "colour": [
+            7,
+            73,
+            245
+          ],
+          "maxTip": 870,
+          "soft": 181.3,
+          "keys": [
+            {
+              "atMs": 13930,
+              "tip": 498.7,
+              "head": 0
+            },
+            {
+              "atMs": 13950,
+              "tip": 518,
+              "head": 0
+            },
+            {
+              "atMs": 13970,
+              "tip": 546,
+              "head": 0
+            },
+            {
+              "atMs": 13990,
+              "tip": 574.1,
+              "head": 0
+            },
+            {
+              "atMs": 14010,
+              "tip": 602.1,
+              "head": 0
+            },
+            {
+              "atMs": 14030,
+              "tip": 630.2,
+              "head": 0
+            },
+            {
+              "atMs": 14050,
+              "tip": 658.2,
+              "head": 0
+            },
+            {
+              "atMs": 14070,
+              "tip": 686.3,
+              "head": 0
+            },
+            {
+              "atMs": 14090,
+              "tip": 714.4,
+              "head": 0
+            },
+            {
+              "atMs": 14110,
+              "tip": 742.4,
+              "head": 0
+            },
+            {
+              "atMs": 14130,
+              "tip": 770.5,
+              "head": 0
+            },
+            {
+              "atMs": 14150,
+              "tip": 798.5,
+              "head": 0
+            },
+            {
+              "atMs": 14170,
+              "tip": 826.6,
+              "head": 0
+            },
+            {
+              "atMs": 14190,
+              "tip": 854.6,
+              "head": 0
+            },
+            {
+              "atMs": 14210,
+              "tip": 882.7,
+              "head": 0.1452
+            },
+            {
+              "atMs": 14230,
+              "tip": 910.7,
+              "head": 0.3
+            },
+            {
+              "atMs": 14250,
+              "tip": 938.8,
+              "head": 0.4547
+            },
+            {
+              "atMs": 14270,
+              "tip": 966.8,
+              "head": 0.6094
+            },
+            {
+              "atMs": 14290,
+              "tip": 994.9,
+              "head": 0.7641
+            },
+            {
+              "atMs": 14310,
+              "tip": 1022.9,
+              "head": 0.9188
+            },
+            {
+              "atMs": 14330,
+              "tip": 1051,
+              "head": 1
+            },
+            {
+              "atMs": 14350,
+              "tip": 1079,
+              "head": 1
+            },
+            {
+              "atMs": 14370,
+              "tip": 1107.1,
+              "head": 1
+            },
+            {
+              "atMs": 14390,
+              "tip": 1135.2,
+              "head": 1
+            },
+            {
+              "atMs": 14410,
+              "tip": 1163.2,
+              "head": 1
+            }
+          ],
+          "outMs": 31100,
+          "outFadeMs": 550
+        },
+        {
+          "kind": "line",
+          "x0": 309.3,
+          "x1": 447.3,
+          "y": 338,
+          "thickness": 21,
+          "colour": [
+            6,
+            72,
+            246
+          ],
+          "keys": [
+            {
+              "atMs": 32545,
+              "tip": 309.3
+            },
+            {
+              "atMs": 32583,
+              "tip": 447.3,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "kind": "elbow",
+          "mode": "ghost",
+          "x0": 497,
+          "y0": 338.7,
+          "yTop": 167,
+          "x1": 1039.3,
+          "thickness": 20.7,
+          "headW": 39.3,
+          "headH": 32.7,
+          "cornerR": 21,
+          "ghostColour": [
+            178,
+            178,
+            178
+          ],
+          "ghostWidth": 1.4,
+          "dash": "2 2",
+          "inMs": 35800,
+          "inFadeMs": 290
+        },
+        {
+          "kind": "elbow",
+          "mode": "ghost",
+          "x0": 497,
+          "y0": 338.7,
+          "yTop": 433.7,
+          "x1": 1039.3,
+          "thickness": 20.7,
+          "headW": 39.3,
+          "headH": 32.7,
+          "cornerR": 21,
+          "ghostColour": [
+            178,
+            178,
+            178
+          ],
+          "ghostWidth": 1.4,
+          "dash": "2 2",
+          "inMs": 35800,
+          "inFadeMs": 290
+        },
+        {
+          "kind": "elbow",
+          "mode": "ghost",
+          "x0": 497,
+          "y0": 338.7,
+          "yTop": 519,
+          "x1": 1039.3,
+          "thickness": 20.7,
+          "headW": 39.3,
+          "headH": 32.7,
+          "cornerR": 21,
+          "ghostColour": [
+            178,
+            178,
+            178
+          ],
+          "ghostWidth": 1.4,
+          "dash": "2 2",
+          "inMs": 35900,
+          "inFadeMs": 400
+        },
+        {
+          "kind": "elbow",
+          "mode": "fill",
+          "x0": 497,
+          "y0": 338.7,
+          "yTop": 250.3,
+          "x1": 1039.3,
+          "thickness": 20.7,
+          "headW": 39.3,
+          "headH": 32.7,
+          "cornerR": 21,
+          "colour": [
+            6,
+            72,
+            246
+          ],
+          "soft": 43,
+          "inMs": 36124,
+          "inFadeMs": 1,
+          "keys": [
+            {
+              "atMs": 36124,
+              "rise": 0,
+              "tip": 497,
+              "head": 0
+            },
+            {
+              "atMs": 36168,
+              "rise": 1,
+              "tip": 550.4,
+              "head": 0,
+              "ease": "linear"
+            },
+            {
+              "atMs": 36462,
+              "tip": 1035.1,
+              "head": 0,
+              "ease": "linear"
+            },
+            {
+              "atMs": 36490,
+              "tip": 1039.3,
+              "head": 0.85,
+              "ease": "linear"
+            },
+            {
+              "atMs": 36502,
+              "head": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "kind": "routeTile",
+          "x": 506,
+          "y": 338.7,
+          "size": 115.3,
+          "bg": [
+            217,
+            217,
+            216
+          ],
+          "fg": [
+            26,
+            26,
+            26
+          ],
+          "revealSoft": 45,
+          "keys": [
+            {
+              "atMs": 32552,
+              "reveal": 0,
+              "opacity": 0
+            },
+            {
+              "atMs": 32620,
+              "reveal": 1,
+              "opacity": 0.9,
+              "ease": "linear"
+            },
+            {
+              "atMs": 32630,
+              "opacity": 1,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "kind": "markTile",
+          "size": 152,
+          "bg": [
+            0,
+            0,
+            0
+          ],
+          "fg": [
+            254,
+            254,
+            254
+          ],
+          "radius": 0.196,
+          "mouth": "grin",
+          "glyph": {
+            "radius": 0.196,
+            "barW": 0.083,
+            "barPitch": 0.181,
+            "barTop": 0.194,
+            "barH": 0.332,
+            "midTop": 0.138,
+            "midH": 0.424,
+            "mouthCx": 0.502,
+            "mouthCy": 0.67,
+            "mouthRx": 0.194,
+            "mouthRy": 0.157
+          },
+          "keys": [
+            {
+              "atMs": -120,
+              "x": 463,
+              "y": 616,
+              "scale": 0.2763
+            },
+            {
+              "atMs": 1170,
+              "x": 422,
+              "y": 340,
+              "scale": 1,
+              "ease": "inout",
+              "pow": 2.3
+            },
+            {
+              "atMs": 20750,
+              "scale": 1,
+              "y": 340
+            },
+            {
+              "atMs": 20850,
+              "scale": 1,
+              "y": 340
+            },
+            {
+              "atMs": 20950,
+              "scale": 1.0175,
+              "y": 341.33
+            },
+            {
+              "atMs": 21050,
+              "scale": 1.0437,
+              "y": 343.32
+            },
+            {
+              "atMs": 21150,
+              "scale": 1.0873,
+              "y": 346.63
+            },
+            {
+              "atMs": 21250,
+              "scale": 1.1135,
+              "y": 348.63
+            },
+            {
+              "atMs": 21317,
+              "scale": 1.131,
+              "y": 349.96
+            },
+            {
+              "atMs": 21417,
+              "scale": 1.1397,
+              "y": 350.62
+            },
+            {
+              "atMs": 21850,
+              "scale": 1.1397,
+              "y": 350.62
+            },
+            {
+              "atMs": 21917,
+              "scale": 1.1266,
+              "y": 349.62
+            },
+            {
+              "atMs": 21983,
+              "scale": 1.1048,
+              "y": 347.96
+            },
+            {
+              "atMs": 22050,
+              "scale": 1.0742,
+              "y": 345.64
+            },
+            {
+              "atMs": 22117,
+              "scale": 1.0349,
+              "y": 342.65
+            },
+            {
+              "atMs": 22183,
+              "scale": 1.0175,
+              "y": 341.33
+            },
+            {
+              "atMs": 22250,
+              "scale": 1,
+              "y": 340
+            },
+            {
+              "atMs": 31140,
+              "x": 422,
+              "y": 340,
+              "scale": 1
+            },
+            {
+              "atMs": 32000,
+              "x": 233,
+              "ease": "inout",
+              "pow": 2.5
+            }
+          ]
+        },
+        {
+          "kind": "person",
+          "chars": [
+            "👩🏽‍💻"
+          ],
+          "size": 84,
+          "inMs": 13920,
+          "inFadeMs": 30,
+          "keys": [
+            {
+              "atMs": 21883,
+              "scale": 1,
+              "x": 921.3,
+              "y": 282.8
+            },
+            {
+              "atMs": 21950,
+              "scale": 1.01,
+              "x": 920.79,
+              "y": 282.12
+            },
+            {
+              "atMs": 22017,
+              "scale": 1.021,
+              "x": 920.24,
+              "y": 281.36
+            },
+            {
+              "atMs": 22083,
+              "scale": 1.042,
+              "x": 919.17,
+              "y": 279.92
+            },
+            {
+              "atMs": 22150,
+              "scale": 1.073,
+              "x": 917.6,
+              "y": 277.8
+            },
+            {
+              "atMs": 22217,
+              "scale": 1.094,
+              "x": 916.53,
+              "y": 276.36
+            },
+            {
+              "atMs": 22283,
+              "scale": 1.104,
+              "x": 916.03,
+              "y": 275.68
+            },
+            {
+              "atMs": 22417,
+              "scale": 1.125,
+              "x": 914.96,
+              "y": 274.24
+            },
+            {
+              "atMs": 22450,
+              "scale": 1.125,
+              "x": 914.96,
+              "y": 274.24
+            },
+            {
+              "atMs": 26250,
+              "scale": 1.125,
+              "x": 914.96,
+              "y": 274.24
+            },
+            {
+              "atMs": 26317,
+              "scale": 1.104,
+              "x": 916.03,
+              "y": 275.68
+            },
+            {
+              "atMs": 26383,
+              "scale": 1.094,
+              "x": 916.53,
+              "y": 276.36
+            },
+            {
+              "atMs": 26450,
+              "scale": 1.073,
+              "x": 917.6,
+              "y": 277.8
+            },
+            {
+              "atMs": 26517,
+              "scale": 1.052,
+              "x": 918.66,
+              "y": 279.24
+            },
+            {
+              "atMs": 26583,
+              "scale": 1.021,
+              "x": 920.24,
+              "y": 281.36
+            },
+            {
+              "atMs": 26650,
+              "scale": 1.01,
+              "x": 920.79,
+              "y": 282.12
+            },
+            {
+              "atMs": 26750,
+              "scale": 1,
+              "x": 921.3,
+              "y": 282.8
+            },
+            {
+              "atMs": 31140,
+              "x": 921.3,
+              "y": 282.8,
+              "scale": 1
+            },
+            {
+              "atMs": 32000,
+              "x": 1055.3,
+              "ease": "inout",
+              "pow": 2.5
+            },
+            {
+              "atMs": 35850,
+              "x": 1055.3,
+              "y": 282.8
+            },
+            {
+              "atMs": 36900,
+              "x": 1085.7,
+              "y": 157.5,
+              "ease": "inout",
+              "pow": 2.1
+            }
+          ]
+        },
+        {
+          "kind": "person",
+          "chars": [
+            "👨🏻‍💻"
+          ],
+          "size": 84,
+          "inMs": 13948,
+          "inFadeMs": 30,
+          "keys": [
+            {
+              "atMs": 21883,
+              "scale": 1,
+              "x": 993.3,
+              "y": 283.1
+            },
+            {
+              "atMs": 21950,
+              "scale": 1.01,
+              "x": 993.51,
+              "y": 282.42
+            },
+            {
+              "atMs": 22017,
+              "scale": 1.021,
+              "x": 993.75,
+              "y": 281.67
+            },
+            {
+              "atMs": 22083,
+              "scale": 1.042,
+              "x": 994.19,
+              "y": 280.24
+            },
+            {
+              "atMs": 22150,
+              "scale": 1.073,
+              "x": 994.85,
+              "y": 278.12
+            },
+            {
+              "atMs": 22217,
+              "scale": 1.094,
+              "x": 995.3,
+              "y": 276.69
+            },
+            {
+              "atMs": 22283,
+              "scale": 1.104,
+              "x": 995.52,
+              "y": 276.01
+            },
+            {
+              "atMs": 22417,
+              "scale": 1.125,
+              "x": 995.96,
+              "y": 274.58
+            },
+            {
+              "atMs": 22450,
+              "scale": 1.125,
+              "x": 995.96,
+              "y": 274.58
+            },
+            {
+              "atMs": 26250,
+              "scale": 1.125,
+              "x": 995.96,
+              "y": 274.58
+            },
+            {
+              "atMs": 26317,
+              "scale": 1.104,
+              "x": 995.52,
+              "y": 276.01
+            },
+            {
+              "atMs": 26383,
+              "scale": 1.094,
+              "x": 995.3,
+              "y": 276.69
+            },
+            {
+              "atMs": 26450,
+              "scale": 1.073,
+              "x": 994.85,
+              "y": 278.12
+            },
+            {
+              "atMs": 26517,
+              "scale": 1.052,
+              "x": 994.41,
+              "y": 279.55
+            },
+            {
+              "atMs": 26583,
+              "scale": 1.021,
+              "x": 993.75,
+              "y": 281.67
+            },
+            {
+              "atMs": 26650,
+              "scale": 1.01,
+              "x": 993.51,
+              "y": 282.42
+            },
+            {
+              "atMs": 26750,
+              "scale": 1,
+              "x": 993.3,
+              "y": 283.1
+            },
+            {
+              "atMs": 31140,
+              "x": 993.3,
+              "y": 283.1,
+              "scale": 1
+            },
+            {
+              "atMs": 32000,
+              "x": 1123.3,
+              "ease": "inout",
+              "pow": 2.5
+            },
+            {
+              "atMs": 35850,
+              "x": 1123.3,
+              "y": 283.1
+            },
+            {
+              "atMs": 36900,
+              "x": 1085.7,
+              "y": 251.1,
+              "ease": "inout",
+              "pow": 2.1
+            },
+            {
+              "atMs": 37450,
+              "scale": 1
+            },
+            {
+              "atMs": 37730,
+              "scale": 1.17,
+              "ease": "out"
+            },
+            {
+              "atMs": 38650,
+              "scale": 1.17
+            },
+            {
+              "atMs": 39100,
+              "scale": 1,
+              "ease": "out"
+            }
+          ]
+        },
+        {
+          "kind": "person",
+          "chars": [
+            "👩🏼‍💻"
+          ],
+          "size": 84,
+          "inMs": 13920,
+          "inFadeMs": 30,
+          "keys": [
+            {
+              "atMs": 21883,
+              "scale": 1,
+              "x": 921.3,
+              "y": 375.2
+            },
+            {
+              "atMs": 21950,
+              "scale": 1.01,
+              "x": 920.79,
+              "y": 375.44
+            },
+            {
+              "atMs": 22017,
+              "scale": 1.021,
+              "x": 920.24,
+              "y": 375.7
+            },
+            {
+              "atMs": 22083,
+              "scale": 1.042,
+              "x": 919.17,
+              "y": 376.2
+            },
+            {
+              "atMs": 22150,
+              "scale": 1.073,
+              "x": 917.6,
+              "y": 376.94
+            },
+            {
+              "atMs": 22217,
+              "scale": 1.094,
+              "x": 916.53,
+              "y": 377.45
+            },
+            {
+              "atMs": 22283,
+              "scale": 1.104,
+              "x": 916.03,
+              "y": 377.69
+            },
+            {
+              "atMs": 22417,
+              "scale": 1.125,
+              "x": 914.96,
+              "y": 378.19
+            },
+            {
+              "atMs": 22450,
+              "scale": 1.125,
+              "x": 914.96,
+              "y": 378.19
+            },
+            {
+              "atMs": 26250,
+              "scale": 1.125,
+              "x": 914.96,
+              "y": 378.19
+            },
+            {
+              "atMs": 26317,
+              "scale": 1.104,
+              "x": 916.03,
+              "y": 377.69
+            },
+            {
+              "atMs": 26383,
+              "scale": 1.094,
+              "x": 916.53,
+              "y": 377.45
+            },
+            {
+              "atMs": 26450,
+              "scale": 1.073,
+              "x": 917.6,
+              "y": 376.94
+            },
+            {
+              "atMs": 26517,
+              "scale": 1.052,
+              "x": 918.66,
+              "y": 376.44
+            },
+            {
+              "atMs": 26583,
+              "scale": 1.021,
+              "x": 920.24,
+              "y": 375.7
+            },
+            {
+              "atMs": 26650,
+              "scale": 1.01,
+              "x": 920.79,
+              "y": 375.44
+            },
+            {
+              "atMs": 26750,
+              "scale": 1,
+              "x": 921.3,
+              "y": 375.2
+            },
+            {
+              "atMs": 31140,
+              "x": 921.3,
+              "y": 375.2,
+              "scale": 1
+            },
+            {
+              "atMs": 32000,
+              "x": 1055.3,
+              "ease": "inout",
+              "pow": 2.5
+            },
+            {
+              "atMs": 35850,
+              "x": 1055.3,
+              "y": 375.2
+            },
+            {
+              "atMs": 36900,
+              "x": 1085.7,
+              "y": 418.5,
+              "ease": "inout",
+              "pow": 2.1
+            }
+          ]
+        },
+        {
+          "kind": "person",
+          "chars": [
+            "👨🏾‍💻"
+          ],
+          "size": 84,
+          "inMs": 13948,
+          "inFadeMs": 30,
+          "keys": [
+            {
+              "atMs": 21883,
+              "scale": 1,
+              "x": 993.3,
+              "y": 380.9
+            },
+            {
+              "atMs": 21950,
+              "scale": 1.01,
+              "x": 993.51,
+              "y": 381.2
+            },
+            {
+              "atMs": 22017,
+              "scale": 1.021,
+              "x": 993.75,
+              "y": 381.52
+            },
+            {
+              "atMs": 22083,
+              "scale": 1.042,
+              "x": 994.19,
+              "y": 382.14
+            },
+            {
+              "atMs": 22150,
+              "scale": 1.073,
+              "x": 994.85,
+              "y": 383.06
+            },
+            {
+              "atMs": 22217,
+              "scale": 1.094,
+              "x": 995.3,
+              "y": 383.68
+            },
+            {
+              "atMs": 22283,
+              "scale": 1.104,
+              "x": 995.52,
+              "y": 383.98
+            },
+            {
+              "atMs": 22417,
+              "scale": 1.125,
+              "x": 995.96,
+              "y": 384.6
+            },
+            {
+              "atMs": 22450,
+              "scale": 1.125,
+              "x": 995.96,
+              "y": 384.6
+            },
+            {
+              "atMs": 26250,
+              "scale": 1.125,
+              "x": 995.96,
+              "y": 384.6
+            },
+            {
+              "atMs": 26317,
+              "scale": 1.104,
+              "x": 995.52,
+              "y": 383.98
+            },
+            {
+              "atMs": 26383,
+              "scale": 1.094,
+              "x": 995.3,
+              "y": 383.68
+            },
+            {
+              "atMs": 26450,
+              "scale": 1.073,
+              "x": 994.85,
+              "y": 383.06
+            },
+            {
+              "atMs": 26517,
+              "scale": 1.052,
+              "x": 994.41,
+              "y": 382.44
+            },
+            {
+              "atMs": 26583,
+              "scale": 1.021,
+              "x": 993.75,
+              "y": 381.52
+            },
+            {
+              "atMs": 26650,
+              "scale": 1.01,
+              "x": 993.51,
+              "y": 381.2
+            },
+            {
+              "atMs": 26750,
+              "scale": 1,
+              "x": 993.3,
+              "y": 380.9
+            },
+            {
+              "atMs": 31140,
+              "x": 993.3,
+              "y": 380.9,
+              "scale": 1
+            },
+            {
+              "atMs": 32000,
+              "x": 1123.3,
+              "ease": "inout",
+              "pow": 2.5
+            },
+            {
+              "atMs": 35850,
+              "x": 1123.3,
+              "y": 380.9
+            },
+            {
+              "atMs": 36900,
+              "x": 1085.7,
+              "y": 524.9,
+              "ease": "inout",
+              "pow": 2.1
+            }
+          ]
+        },
+        {
+          "kind": "label",
+          "x": 202,
+          "y": 428.3,
+          "text": "Customer",
+          "size": 21.5,
+          "colour": [
+            20,
+            20,
+            20
+          ],
+          "inMs": 920,
+          "inFadeMs": 370,
+          "outMs": 30980,
+          "outFadeMs": 390
+        },
+        {
+          "kind": "label",
+          "x": 422,
+          "y": 428.3,
+          "text": "Fin 2",
+          "size": 21.5,
+          "colour": [
+            20,
+            20,
+            20
+          ],
+          "inMs": 2170,
+          "inFadeMs": 430,
+          "outMs": 31100,
+          "outFadeMs": 650
+        },
+        {
+          "kind": "emoji",
+          "char": "🤔",
+          "size": 182,
+          "keys": [
+            {
+              "atMs": 130,
+              "x": -110,
+              "y": 324.8,
+              "ease": "in",
+              "pow": 2
+            },
+            {
+              "atMs": 200,
+              "x": -72.7,
+              "y": 324.8,
+              "ease": "linear"
+            },
+            {
+              "atMs": 250,
+              "x": -54,
+              "y": 324.8,
+              "ease": "linear"
+            },
+            {
+              "atMs": 300,
+              "x": -31.3,
+              "y": 324.8,
+              "ease": "linear"
+            },
+            {
+              "atMs": 350,
+              "x": -4.7,
+              "y": 324.8,
+              "ease": "linear"
+            },
+            {
+              "atMs": 400,
+              "x": 27.3,
+              "y": 324.8,
+              "ease": "linear"
+            },
+            {
+              "atMs": 450,
+              "x": 62,
+              "y": 324.8,
+              "ease": "linear"
+            },
+            {
+              "atMs": 500,
+              "x": 92.7,
+              "y": 324.8,
+              "ease": "linear"
+            },
+            {
+              "atMs": 550,
+              "x": 119.3,
+              "y": 324.8,
+              "ease": "linear"
+            },
+            {
+              "atMs": 600,
+              "x": 140.7,
+              "y": 324.8,
+              "ease": "linear"
+            },
+            {
+              "atMs": 650,
+              "x": 158,
+              "y": 324.8,
+              "ease": "linear"
+            },
+            {
+              "atMs": 700,
+              "x": 171.3,
+              "y": 324.8,
+              "ease": "linear"
+            },
+            {
+              "atMs": 750,
+              "x": 183.3,
+              "y": 324.8,
+              "ease": "linear"
+            },
+            {
+              "atMs": 800,
+              "x": 190,
+              "y": 324.8,
+              "ease": "linear"
+            },
+            {
+              "atMs": 850,
+              "x": 195.3,
+              "y": 324.8,
+              "ease": "linear"
+            },
+            {
+              "atMs": 900,
+              "x": 198,
+              "y": 324.8,
+              "ease": "linear"
+            },
+            {
+              "atMs": 1000,
+              "x": 203,
+              "y": 324.8,
+              "ease": "linear"
+            },
+            {
+              "atMs": 31140,
+              "x": 203
+            },
+            {
+              "atMs": 31450,
+              "x": 129.3,
+              "ease": "in",
+              "pow": 2.4
+            },
+            {
+              "atMs": 31750,
+              "x": -80,
+              "ease": "linear"
+            },
+            {
+              "atMs": 31910,
+              "x": -173.3,
+              "ease": "linear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "outro-lockup",
+      "role": "brand",
+      "preset": "fir-lockup",
+      "startMs": 62283,
+      "durationMs": 3932,
+      "markSize": 79.7,
+      "cx": 640.33,
+      "cy": 359,
+      "bgColour": [
+        0,
+        0,
+        0
+      ],
+      "markBg": [
+        255,
+        255,
+        255
+      ],
+      "markFg": [
+        0,
+        0,
+        0
+      ],
+      "markRadius": 0.125,
+      "enter": {
+        "atMs": 0,
+        "mode": "shrink",
+        "fromScale": 4.368,
+        "bez": [
+          0.1,
+          0.85,
+          0.25,
+          1
+        ],
+        "durMs": 679,
+        "originY": 0.6175,
+        "fadeAtMs": -20,
+        "fadeMs": 1
+      },
+      "glyph": {
+        "barDelaysMs": [
+          0,
+          18,
+          92
+        ],
+        "bez": [
+          0.05,
+          0.3,
+          0,
+          0.7
+        ],
+        "durMs": [
+          500,
+          642,
+          617
+        ],
+        "smileAtMs": 84,
+        "smileMs": 592,
+        "smileBez": [
+          0.05,
+          0.4,
+          0.5,
+          1
+        ]
+      },
+      "slide": {
+        "atMs": 792,
+        "durMs": 438,
+        "bez": [
+          0.7,
+          0.35,
+          0.1,
+          0.9
+        ]
+      },
+      "wordmark": {
+        "text": "intercom",
+        "size": 108.9,
+        "weight": 600,
+        "tracking": -4.36,
+        "baseline": 399,
+        "inkWidth": 397.4,
+        "inkDx": 6.63,
+        "atMs": 792,
+        "durMs": 263,
+        "bez": [
+          0.95,
+          0.4,
+          0.45,
+          0.7
+        ],
+        "rampPx": 12,
+        "colour": [
+          255,
+          255,
+          255
+        ],
+        "strokePx": 1.39,
+        "reveal": "head",
+        "gapPx": 17.6,
+        "rampHoldP": 0.84
+      },
+      "lockupLeft": 392.2,
+      "lockupRight": 887
+    }
+  ]
+}

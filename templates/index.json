@@ -29,6 +29,19 @@
       "config": "birch/template.json"
     },
     {
+      "slug": "fir",
+      "name": "Fir",
+      "style": "AI-agent chat-demo launch film",
+      "category": "demo-led",
+      "durationMs": 66215,
+      "aspect": "16:9",
+      "fps": 60,
+      "slots": 0,
+      "tags": ["chat-ui", "answer-popouts", "language-cycle", "emoji-flow-diagram", "split-screen", "routing-diagram", "grainy-lavender-grounds", "painterly-panel", "border-highlights", "logo-bookends"],
+      "derivedFrom": "the Intercom 'Meet Fin 2' launch film, measured frame-by-frame at 60fps",
+      "config": "fir/template.json"
+    },
+    {
       "slug": "aspen",
       "name": "Aspen",
       "style": "cinematic product-demo launch film",

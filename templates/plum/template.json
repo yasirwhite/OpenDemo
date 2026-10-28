@@ -1,0 +1,2665 @@
+{
+  "_about": "plum — a product-tour film for an AI customer agent, derived frame-by-frame from HubSpot's 'Breeze Customer Agent | Spotlight Fall 2025' (82.04s, 1920x1080 @30fps). Stage px = reference frame px / 1.5. Render at --fps 30; for a 1080p master use a deviceScaleFactor-1.5 driver (see README).",
+  "_sections": "S1 desk/goals 0-7.45 | S2 chat lead-qual 7.45-16.9 | S3 chat support 16.9-40.5 | S4 desk/reporting 40.5-50.1 | S5 window/overview+stats 50.1-58.0 | S6 window/meet+deploy 58.0-62.1 | S7 window/channels 62.1-68.4 | S8 desk/deployed chat 68.4-75.55 | S9 spotlight sweep + endcard 75.55-82.04",
+  "video": {
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "durationMs": 82040
+  },
+  "ground": [
+    {
+      "fromMs": 0,
+      "colour": [
+        246,
+        246,
+        244
+      ]
+    }
+  ],
+  "brand": {
+    "_note": "The retarget surface. agent = the AI agent brand inside the demo; account = the admin account name; platform = the admin platform chrome; endcard = the closing campaign mark.",
+    "agent": "TitanAssist",
+    "agentLabel": "Titan Assist",
+    "agentSub": "Powered by AI",
+    "account": "CQ Consulting",
+    "accountInitials": "CQ",
+    "searchLabel": "Search HubSpot",
+    "endcardWordmark": "Spotlight"
+  },
+  "scenes": [
+    {
+      "_measured": "full decode f0000-f0227 (2026-09-08). Cut at 7.400 exactly: last desk frame 7.367, first chat frame 7.400. Camera is a linear push 1.0000->1.1004 about (631,363) stage px (frame origin 946.5,544.5; screen height 570->627 frame px). Interior: nav items pop at 0/133/200/300/400 ms, page heading 300, Generate-leads card 467; every block arrives opaque and settles up 64 app px with tau 140 ms. One scroll of 744.5 app px runs 1.300->5.800 s (easeInOut pow 1.7 fits the measured cumulative trace to 11 px of 745; peak 261 app px/s at 3.5 s) then the page is dead still to the cut. Cursor drifts down the empty nav column and leaves the screen bottom at ~5.45 s.",
+      "id": "s1-desk-goals",
+      "preset": "plum-desk",
+      "role": "product-voice",
+      "startMs": 0,
+      "durationMs": 7400,
+      "searchLabel": "Search HubSpot",
+      "account": "CQ Consulting",
+      "accountInitials": "CQ",
+      "camera": {
+        "originX": 631,
+        "originY": 363,
+        "keys": [
+          {
+            "atMs": 0,
+            "scale": 1,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "atMs": 7400,
+            "scale": 1.1004,
+            "x": 0,
+            "y": 0,
+            "ease": "linear"
+          }
+        ]
+      },
+      "interior": {
+        "kind": "goals",
+        "cues": {
+          "nav": [
+            0,
+            133,
+            200,
+            300,
+            400
+          ],
+          "head": 300,
+          "card": 467
+        },
+        "riseY": 64,
+        "enterMs": 560,
+        "scrollRamp": {
+          "atMs": 1300,
+          "durMs": 4500,
+          "dist": 744.5,
+          "pow": 1.7
+        },
+        "cursor": {
+          "size": 34,
+          "keys": [
+            {
+              "atMs": 0,
+              "x": 304,
+              "y": 480
+            },
+            {
+              "atMs": 700,
+              "x": 304,
+              "y": 483,
+              "ease": "linear"
+            },
+            {
+              "atMs": 1300,
+              "x": 304,
+              "y": 493,
+              "ease": "linear"
+            },
+            {
+              "atMs": 2000,
+              "x": 303,
+              "y": 540,
+              "ease": "linear"
+            },
+            {
+              "atMs": 2600,
+              "x": 308,
+              "y": 582,
+              "ease": "linear"
+            },
+            {
+              "atMs": 3200,
+              "x": 314,
+              "y": 629,
+              "ease": "linear"
+            },
+            {
+              "atMs": 3800,
+              "x": 320,
+              "y": 681,
+              "ease": "linear"
+            },
+            {
+              "atMs": 4400,
+              "x": 327,
+              "y": 731,
+              "ease": "linear"
+            },
+            {
+              "atMs": 5000,
+              "x": 333,
+              "y": 778,
+              "ease": "linear"
+            },
+            {
+              "atMs": 5400,
+              "x": 336,
+              "y": 806,
+              "ease": "linear"
+            },
+            {
+              "atMs": 7400,
+              "x": 351,
+              "y": 946,
+              "ease": "linear"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "s2-chat-lead",
+      "preset": "plum-chat-page",
+      "role": "user-voice",
+      "_measured": "Boundaries by full decode: first frame film n=222 (t=7.400), last n=504 (t=16.800), S3 starts 16.8333. Card 505x919 at (391, 88) with headerH 110, fontPx 18 (stage px = ref px / 1.5). Whole page (widget AND blurred backdrop) drifts up at a constant -37.5 px/s (measured -1.25 px/frame off the header bottom, the composer border and the backdrop seams — no parallax between them). Thread scroll: four ease-inout steps of 115 / 343 / 217 / 95 px. New messages appear full size with text pre-laid, entering translateY(+72px) and settling exponentially (x0.787 per frame -> tau 139ms). See templates/plum/work/scenes/2/.",
+      "startMs": 7400,
+      "durationMs": 9433,
+      "panelW": 505,
+      "panelH": 919,
+      "panelX": 391,
+      "panelY": 88,
+      "headerH": 110,
+      "fontPx": 20,
+      "pageTint": [
+        249,
+        248,
+        246
+      ],
+      "backdrop": {
+        "tint": [
+          249,
+          248,
+          246
+        ],
+        "blur": 7,
+        "radius": 16,
+        "shadow": "none",
+        "tiles": [
+          [
+            14,
+            -420,
+            371,
+            632
+          ],
+          [
+            14,
+            268,
+            371,
+            384
+          ],
+          [
+            14,
+            708,
+            371,
+            302
+          ],
+          [
+            14,
+            1066,
+            371,
+            600
+          ]
+        ]
+      },
+      "metrics": {
+        "pad": 30,
+        "bubMax": 283,
+        "gutter": 52,
+        "avatar": 31,
+        "labelRowH": 18,
+        "labelGap": 20,
+        "bubGap": 4,
+        "lineGap": 28,
+        "msgGap": 18,
+        "markSize": 50,
+        "headPad": 30,
+        "headGap": 14,
+        "headRaise": 9,
+        "nameSize": 21,
+        "subSize": 17,
+        "labelSize": 15,
+        "timeSize": 14,
+        "bubRadius": 12,
+        "lineHeight": 1.5,
+        "bubPadT": 19,
+        "bubPadX": 18,
+        "bubPadB": 12,
+        "timeGap": 9,
+        "composerH": 59,
+        "composerBottom": 54,
+        "composerPadX": 25,
+        "composerFont": 17,
+        "composerIcon": 22,
+        "custBg": [
+          6,
+          67,
+          62
+        ],
+        "entryDy": 72,
+        "entryTau": 139,
+        "linkTrack": -0.35,
+        "labelLead": 100,
+        "composerBar": 129
+      },
+      "panelKeys": [
+        {
+          "atMs": 0,
+          "v": 0
+        },
+        {
+          "atMs": 9433,
+          "v": -353.7,
+          "ease": "linear"
+        }
+      ],
+      "backdropKeys": [
+        {
+          "atMs": 0,
+          "v": 0
+        },
+        {
+          "atMs": 9433,
+          "v": -353.7,
+          "ease": "linear"
+        }
+      ],
+      "_scroll": "Four eased scroll steps, each fitted by least squares to the measured per-frame content trace of the full decode (fit.mjs): travel 114.7 / 343.2 / 216.5 / 104.5 px, easeInOut pow 3.85 / 4.65 / 4.45 / 5.85, rmse 1.2-2.8 px. Base 95 calibrated so the rendered thread sits where the reference's does at every hold.",
+      "scrollKeys": [
+        {
+          "atMs": 0,
+          "v": 95
+        },
+        {
+          "atMs": 1333,
+          "v": 209.7,
+          "ease": "inout",
+          "pow": 3.85
+        },
+        {
+          "atMs": 1767,
+          "v": 209.7
+        },
+        {
+          "atMs": 3367,
+          "v": 552.9,
+          "ease": "inout",
+          "pow": 4.65
+        },
+        {
+          "atMs": 3500,
+          "v": 552.9
+        },
+        {
+          "atMs": 5033,
+          "v": 769.4,
+          "ease": "inout",
+          "pow": 4.45
+        },
+        {
+          "atMs": 5167,
+          "v": 769.4
+        },
+        {
+          "atMs": 7233,
+          "v": 873.9,
+          "ease": "inout",
+          "pow": 5.85
+        }
+      ],
+      "brand": {
+        "name": "TitanAssist",
+        "sub": "Powered by AI",
+        "label": "TitanAssist"
+      },
+      "messages": [
+        {
+          "who": "cust",
+          "time": "10:04 AM",
+          "atMs": -1,
+          "lines": [
+            "We're evaluating compressors for my manufacturing facility—light assembly and packaging lines."
+          ]
+        },
+        {
+          "who": "bot",
+          "time": "10:04 AM",
+          "atMs": -1,
+          "lines": [
+            "Got it! And approximately how many hours per day will the compressor be running?"
+          ]
+        },
+        {
+          "who": "cust",
+          "time": "10:05 AM",
+          "atMs": -1,
+          "lines": [
+            "Around 8 hours a day, 5 days a week."
+          ]
+        },
+        {
+          "who": "bot",
+          "time": "10:05 AM",
+          "atMs": -1,
+          "lines": [
+            "Thanks! That helps. One more question—what power requirements are you working with? (e.g., 230V single-phase, 460V three-phase, etc.)"
+          ]
+        },
+        {
+          "who": "cust",
+          "time": "10:06 AM",
+          "atMs": 1167,
+          "lines": [
+            "460V three-phase"
+          ]
+        },
+        {
+          "who": "bot",
+          "time": "10:06 AM",
+          "atMs": 2900,
+          "lines": [
+            "Perfect, thanks for all the info. Based on what you've told me, one of our rotary screw compressors might be the right fit. I'll connect you with a product specialist who can walk you through the best options and pricing."
+          ]
+        },
+        {
+          "who": "bot",
+          "time": "10:06 AM",
+          "atMs": 4600,
+          "linkLine": 1,
+          "noLabel": true,
+          "gapTop": 11,
+          "lineGaps": [
+            0,
+            0,
+            28
+          ],
+          "lines": [
+            "You can book a meeting here: ☞",
+            [
+              "",
+              "Schedule a call with Titan Sales"
+            ],
+            "Let me know if you need anything else in the meantime!"
+          ]
+        },
+        {
+          "who": "cust",
+          "time": "10:08 AM",
+          "atMs": 6533,
+          "gapTop": 15,
+          "lines": [
+            "Thanks! Just booked a time"
+          ]
+        }
+      ]
+    },
+    {
+      "_measured": "S3 boundaries re-cut by full decode: last S2 frame 16.800s, first S3 frame 16.8334s, last S3 frame 40.3667s, first S4 frame 40.400s. startMs/durationMs are chosen inside those gaps so liveAt() flips on exactly those frames. In-scene punch-out is a single-frame cut at 18.700 (18.6667 punched -> 18.700 home). Camera is a PURE SCALE about (640,368) after the punch; the widget's own page-space drift is the constant -6.626 px/s in panelKeys.",
+      "id": "s3-chat-support",
+      "preset": "plum-chat-wide",
+      "role": "user-voice",
+      "startMs": 16820,
+      "durationMs": 23565,
+      "panelW": 504,
+      "panelH": 914,
+      "panelX": 392,
+      "panelY": 45.83,
+      "headerH": 110,
+      "fontPx": 19.6,
+      "camera": {
+        "originX": 640,
+        "originY": 368,
+        "keys": [
+          {
+            "atMs": 0,
+            "scale": 1.2695,
+            "x": 0,
+            "y": 106.33
+          },
+          {
+            "atMs": 1855,
+            "scale": 1.2695,
+            "x": 0,
+            "y": 106.33
+          },
+          {
+            "atMs": 1880,
+            "scale": 1.00463,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "atMs": 2180,
+            "scale": 0.99537,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2680,
+            "scale": 0.97354,
+            "ease": "linear"
+          },
+          {
+            "atMs": 3180,
+            "scale": 0.94907,
+            "ease": "linear"
+          },
+          {
+            "atMs": 3680,
+            "scale": 0.92394,
+            "ease": "linear"
+          },
+          {
+            "atMs": 4180,
+            "scale": 0.90079,
+            "ease": "linear"
+          },
+          {
+            "atMs": 4680,
+            "scale": 0.87963,
+            "ease": "linear"
+          },
+          {
+            "atMs": 5180,
+            "scale": 0.86177,
+            "ease": "linear"
+          },
+          {
+            "atMs": 5680,
+            "scale": 0.84722,
+            "ease": "linear"
+          },
+          {
+            "atMs": 6180,
+            "scale": 0.83664,
+            "ease": "linear"
+          },
+          {
+            "atMs": 6680,
+            "scale": 0.82738,
+            "ease": "linear"
+          },
+          {
+            "atMs": 7180,
+            "scale": 0.81812,
+            "ease": "linear"
+          },
+          {
+            "atMs": 8180,
+            "scale": 0.80159,
+            "ease": "linear"
+          },
+          {
+            "atMs": 9180,
+            "scale": 0.78704,
+            "ease": "linear"
+          },
+          {
+            "atMs": 10180,
+            "scale": 0.77315,
+            "ease": "linear"
+          },
+          {
+            "atMs": 11180,
+            "scale": 0.76124,
+            "ease": "linear"
+          },
+          {
+            "atMs": 12180,
+            "scale": 0.75,
+            "ease": "linear"
+          },
+          {
+            "atMs": 13180,
+            "scale": 0.74008,
+            "ease": "linear"
+          },
+          {
+            "atMs": 15180,
+            "scale": 0.72222,
+            "ease": "linear"
+          },
+          {
+            "atMs": 17180,
+            "scale": 0.70899,
+            "ease": "linear"
+          },
+          {
+            "atMs": 19180,
+            "scale": 0.69841,
+            "ease": "linear"
+          },
+          {
+            "atMs": 21180,
+            "scale": 0.69048,
+            "ease": "linear"
+          },
+          {
+            "atMs": 23180,
+            "scale": 0.68783,
+            "ease": "linear"
+          },
+          {
+            "atMs": 23565,
+            "scale": 0.68783,
+            "ease": "linear"
+          }
+        ]
+      },
+      "panelKeys": [
+        {
+          "atMs": 1880,
+          "v": 0
+        },
+        {
+          "atMs": 23565,
+          "v": -143.68,
+          "ease": "linear"
+        }
+      ],
+      "_scroll": "Nine eased steps. Windows come from the per-frame diff-trace humps (each symmetric about its own peak, so `inout`), then shifted -40ms at the start and -80ms at the end: the reference's step crosses half travel at p=0.46 with a long tail, and against the raw hump window a symmetric S lagged it by 0.14 of the travel (44px) mid-ramp; the shifted window cuts that to 0.06. Targets are anchored on the reference's own thread coordinates — each hold's V (customer-bubble top or bottom, de-zoomed and de-drifted) subtracted from that message's y in THIS layout.",
+      "scrollKeys": [
+        {
+          "atMs": 2610,
+          "v": 0
+        },
+        {
+          "atMs": 3930,
+          "v": 314,
+          "ease": "inout"
+        },
+        {
+          "atMs": 4470,
+          "v": 314
+        },
+        {
+          "atMs": 5570,
+          "v": 421,
+          "ease": "inout"
+        },
+        {
+          "atMs": 6070,
+          "v": 421
+        },
+        {
+          "atMs": 7270,
+          "v": 606,
+          "ease": "inout"
+        },
+        {
+          "atMs": 10510,
+          "v": 606
+        },
+        {
+          "atMs": 11570,
+          "v": 858,
+          "ease": "inout"
+        },
+        {
+          "atMs": 13940,
+          "v": 858
+        },
+        {
+          "atMs": 15000,
+          "v": 1053,
+          "ease": "inout"
+        },
+        {
+          "atMs": 16210,
+          "v": 1053
+        },
+        {
+          "atMs": 17170,
+          "v": 1189,
+          "ease": "inout"
+        },
+        {
+          "atMs": 17840,
+          "v": 1189
+        },
+        {
+          "atMs": 18800,
+          "v": 1349,
+          "ease": "inout"
+        },
+        {
+          "atMs": 19510,
+          "v": 1349
+        },
+        {
+          "atMs": 20570,
+          "v": 1689,
+          "ease": "inout"
+        },
+        {
+          "atMs": 21410,
+          "v": 1689
+        },
+        {
+          "atMs": 22200,
+          "v": 1809,
+          "ease": "inout"
+        }
+      ],
+      "brand": {
+        "name": "TitanAssist",
+        "sub": "Powered by AI",
+        "label": "Titan Assist"
+      },
+      "messages": [
+        {
+          "who": "bot",
+          "time": "7:14 PM",
+          "atMs": 113,
+          "lines": [
+            "Hi there! 👋 I'm TitanAssist, your AI customer agent. How can I help you today?"
+          ]
+        },
+        {
+          "who": "cust",
+          "time": "7:14 PM",
+          "atMs": 1013,
+          "lines": [
+            "Do you carry replacement filters for the TS-900 series dust collectors?"
+          ]
+        },
+        {
+          "who": "bot",
+          "time": "7:14 PM",
+          "atMs": 1913,
+          "lines": [
+            "Yes, we do! Our high-efficiency pleated filters for the TS-900 series are in stock and compatible with both Gen 1 and Gen 2 models."
+          ]
+        },
+        {
+          "who": "bot",
+          "time": "7:14 PM",
+          "atMs": 2580,
+          "lines": [
+            [
+              "Here's a link to the product page: ☞ ",
+              {
+                "t": "TS-900 Series Filters",
+                "link": true
+              }
+            ],
+            "You'll find product specs, pricing, and estimated ship times on that page.",
+            "Let me know if you need help with installation guides or bulk orders!"
+          ]
+        },
+        {
+          "who": "cust",
+          "time": "7:17 PM",
+          "atMs": 5247,
+          "lines": [
+            "This was very helpful. Thanks!"
+          ]
+        },
+        {
+          "who": "bot",
+          "time": "7:17 PM",
+          "atMs": 6947,
+          "lines": [
+            "You're welcome! Reach out anytime if you have more questions."
+          ]
+        },
+        {
+          "who": "cust",
+          "time": "7:19 PM",
+          "atMs": 11180,
+          "lines": [
+            "One more question: I ordered a pressure relief valve for one of our Titan rotary compressors last week, but I haven't gotten a shipping update yet. Can you check on that?"
+          ]
+        },
+        {
+          "who": "bot",
+          "time": "7:19 PM",
+          "atMs": 14813,
+          "lines": [
+            [
+              "Of course! Could you share your ",
+              {
+                "t": "order number",
+                "b": true
+              },
+              " or the ",
+              {
+                "t": "email address",
+                "b": true
+              },
+              " used at checkout?"
+            ]
+          ]
+        },
+        {
+          "who": "cust",
+          "time": "7:20 PM",
+          "atMs": 17013,
+          "lines": [
+            "Order #T39881, j.morris@westironfabrication.com"
+          ]
+        },
+        {
+          "who": "bot",
+          "time": "7:20 PM",
+          "atMs": 18680,
+          "lines": [
+            "Thanks, checking on your order now..."
+          ]
+        },
+        {
+          "who": "bot",
+          "time": "7:21 PM",
+          "atMs": 20147,
+          "lines": [
+            [
+              "Got it! That order was placed on ",
+              {
+                "t": "July 11th",
+                "b": true
+              },
+              " for a ",
+              {
+                "t": "Model PRV-300 pressure relief valve",
+                "b": true
+              },
+              ". It shipped on ",
+              {
+                "t": "July 16th",
+                "b": true
+              },
+              " via FedEx Ground."
+            ],
+            [
+              "Your tracking number is ",
+              {
+                "t": "781234567889",
+                "plum": true
+              },
+              ", and delivery is estimated by ",
+              {
+                "t": "July 20th",
+                "b": true
+              },
+              ". I've also sent that info to your email."
+            ]
+          ]
+        },
+        {
+          "who": "cust",
+          "time": "7:22 PM",
+          "atMs": 22047,
+          "lines": [
+            "Thanks for the update!"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s4-desk-reporting",
+      "preset": "plum-desk",
+      "role": "product-voice",
+      "_measured": "Boundaries re-cut on the full decode: hard cut IN at 40.400 (dec/d0014), hard cut OUT at 50.000 (d0302). No monitor tilt — the screen's page/top-bar boundary is flat to -0.05 deg and its left/right edges are vertical to 1 px over 600 rows, so the prior 'tilted framing' reading is wrong; the framing is a pure centre-anchored pull. 1/scale is linear in t (constant-speed dolly), 0.011938 per s, which the 5 linear keys below sample every 2.4 s (max curve error 0.06%).",
+      "startMs": 40400,
+      "durationMs": 9600,
+      "searchLabel": "Search HubSpot",
+      "account": "CQ Consulting",
+      "accountInitials": "CQ",
+      "camera": {
+        "originX": 640,
+        "originY": 360,
+        "keys": [
+          {
+            "atMs": 0,
+            "scale": 1.374,
+            "x": 2.5,
+            "y": 0
+          },
+          {
+            "atMs": 2400,
+            "scale": 1.3223,
+            "x": 2.5,
+            "y": 0,
+            "ease": "linear"
+          },
+          {
+            "atMs": 4800,
+            "scale": 1.2743,
+            "x": 2.5,
+            "y": 0,
+            "ease": "linear"
+          },
+          {
+            "atMs": 7200,
+            "scale": 1.2297,
+            "x": 2.5,
+            "y": 0,
+            "ease": "linear"
+          },
+          {
+            "atMs": 9600,
+            "scale": 1.1881,
+            "x": 2.5,
+            "y": 0,
+            "ease": "linear"
+          }
+        ]
+      },
+      "interior": {
+        "kind": "reporting",
+        "title": "Customer agent",
+        "pageTitle": "Reporting",
+        "enterMs": 600,
+        "riseY": 56,
+        "cues": {
+          "nav": [
+            85,
+            185
+          ],
+          "perf": 350,
+          "service": 1020,
+          "serviceTiles": 1450,
+          "sales": 1720,
+          "salesTiles": 2050
+        },
+        "count": {
+          "atMs": [
+            465,
+            565,
+            670
+          ],
+          "durMs": 1710,
+          "pow": 3.02
+        },
+        "scrollRamp": {
+          "atMs": 3225,
+          "durMs": 3510,
+          "dist": 594,
+          "pow": 1.5
+        },
+        "chartRamp": {
+          "atMs": 6080,
+          "durMs": 3730,
+          "pow": 2.9
+        },
+        "metrics": {
+          "resolution": 68,
+          "handoff": 10,
+          "conversations": 53948,
+          "firstReply": "1 sec",
+          "resolutionTime": "12 mins",
+          "handled": "20,478",
+          "topics": "28",
+          "meetings": "47",
+          "leads": "29",
+          "revenue": "$103,489"
+        }
+      }
+    },
+    {
+      "id": "s5-window-overview",
+      "preset": "plum-admin-window",
+      "role": "product-voice",
+      "_measured": "Full decode 49.9-58.1s. Hard cut IN at 50.000, hard cut OUT at 57.900. Window rect on the 1920x1080 ref: x 311.5 y 78.5 1296x922 r 13.5 (axis-aligned, NO tilt) -> stage 207.67,52.33 864x614.67 r9. Ground rgb(250,249,247). Shadow: blur 240 ref px, alpha 0.29, offset 0, and it does NOT scale with the punch (post-punch falloff below the window is identical in screen px). Punch = INSTANT single-frame scale cut at 52.0333 abs (frame 1561) to scale 2.6679 about a content offset of -751.7,-1789.7 ref px; fitted least-squares on 4 rail/card x-correspondences (residual <1 px). Pan: starts on the SAME frame as the punch and runs 5.633 s to 57.667, total -1739.8 ref px (-1159.9 stage) with zero vertical motion; velocity ramps 10.5->13.6 ref px/frame by 52.4, plateaus to 54.0, then decays to 0 (v ~ (T-t)^0.55). Keys below sample the measured curve; residual velocity steps <=1.1 stage px/frame. Dead still 57.667-57.900.",
+      "startMs": 50000,
+      "durationMs": 7900,
+      "searchLabel": "Search HubSpot",
+      "account": "CQ Consulting",
+      "accountInitials": "CQ",
+      "window": {
+        "x": 207.67,
+        "y": 52.33,
+        "w": 864,
+        "h": 614.67,
+        "r": 9
+      },
+      "rail": "measured",
+      "bg": "rgb(250,249,247)",
+      "shadow": "0 0 160px rgba(28,24,30,0.29), 0 2px 8px rgba(28,24,30,0.06)",
+      "shadowScale": 2.6679,
+      "shadowScaleAtMs": 2020,
+      "camera": {
+        "originX": 0,
+        "originY": 0,
+        "keys": [
+          {
+            "atMs": 0,
+            "scale": 1,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "atMs": 2010,
+            "scale": 1,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "atMs": 2020,
+            "scale": 2.6679,
+            "x": -501.1,
+            "y": -1193.1
+          },
+          {
+            "atMs": 2033,
+            "x": -501.1,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2133,
+            "x": -522.7,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2233,
+            "x": -546.2,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2333,
+            "x": -571.1,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2533,
+            "x": -622.2,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2833,
+            "x": -702.9,
+            "ease": "linear"
+          },
+          {
+            "atMs": 3233,
+            "x": -812.4,
+            "ease": "linear"
+          },
+          {
+            "atMs": 3633,
+            "x": -921.3,
+            "ease": "linear"
+          },
+          {
+            "atMs": 4033,
+            "x": -1027.7,
+            "ease": "linear"
+          },
+          {
+            "atMs": 4433,
+            "x": -1130.3,
+            "ease": "linear"
+          },
+          {
+            "atMs": 4833,
+            "x": -1228.5,
+            "ease": "linear"
+          },
+          {
+            "atMs": 5233,
+            "x": -1320.5,
+            "ease": "linear"
+          },
+          {
+            "atMs": 5633,
+            "x": -1405.5,
+            "ease": "linear"
+          },
+          {
+            "atMs": 6033,
+            "x": -1482.3,
+            "ease": "linear"
+          },
+          {
+            "atMs": 6333,
+            "x": -1533.3,
+            "ease": "linear"
+          },
+          {
+            "atMs": 6633,
+            "x": -1577.9,
+            "ease": "linear"
+          },
+          {
+            "atMs": 6933,
+            "x": -1614.2,
+            "ease": "linear"
+          },
+          {
+            "atMs": 7233,
+            "x": -1641.4,
+            "ease": "linear"
+          },
+          {
+            "atMs": 7467,
+            "x": -1655.3,
+            "ease": "linear"
+          },
+          {
+            "atMs": 7600,
+            "x": -1659.7,
+            "ease": "linear"
+          },
+          {
+            "atMs": 7667,
+            "x": -1660.9,
+            "ease": "linear"
+          },
+          {
+            "atMs": 7900,
+            "x": -1660.9,
+            "ease": "linear"
+          }
+        ]
+      },
+      "interior": {
+        "kind": "overview",
+        "pickupAtMs": 0,
+        "pillAtMs": [
+          100,
+          200,
+          300
+        ],
+        "attentionAtMs": 400,
+        "attBtnAtMs": 500,
+        "attCardsAtMs": 600,
+        "perfAtMs": 1000,
+        "perfBtnAtMs": 1100,
+        "statAtMs": [
+          1200,
+          1300,
+          1400,
+          1500,
+          1600
+        ]
+      }
+    },
+    {
+      "id": "s6-window-meet",
+      "preset": "plum-admin-window",
+      "role": "product-voice",
+      "_measured": "Full decode 57.77-62.25s (work/scenes/6/dec, f0005 = 57.900). Hard cut IN at 57.900, hard cut OUT at 62.000 (S7 resumes un-punched at scale 1.114 — the punch is an INSERT inside one continuous creep). Window rect on the 1920x1080 ref: x 312 y 80 1296x920 -> stage 208,53.33 864x613.33. CAMERA: pure scale about frame centre, NO pan, LINEAR 1.000 -> 1.1118 over 0 -> 2.650s (measured +0.042194/s; window left edge walks 312 -> 240 dead straight, and (960-L)/(540-T) holds at 1.405 so there is no translate). PUNCH: instant single-frame scale cut on f0085 = 60.5667 abs = 2.667 rel, to scale 2.565 x 598.1 y -469.9 (solved on 3 x-correspondences: window left 195, card left 450, card right 1862.5; residual <1 ref px), then byte-identical hold to the cut — winL/railR/cardL/winB are pixel-identical f0085..f0127. CONTENT: the page (header band included, no sticky header) scrolls 226 ref px between 0.90 and 3.40s on a symmetric S; that scroll, not the camera, lifts the Deploy card into the punch framing. Elements arrive staggered and each settles exponentially from +34/+24/+16/+14 ref px. CURSOR: keys are the measured per-frame arrow-tip trace at 200ms; glyph is arrow -> hand on f0099 (3.133s rel, the pointer settling onto the Deploy button) -> arrow on f0124 (3.967s rel). The reference button NEVER depresses (fill stays #fff and its borders stay at ref y 618.5/690 for f0104..f0127) - the glyph flip back to arrow IS the click, 4 frames before the cut.",
+      "startMs": 57900,
+      "durationMs": 4100,
+      "searchLabel": "Search HubSpot",
+      "account": "CQ Consulting",
+      "accountInitials": "CQ",
+      "window": {
+        "x": 208,
+        "y": 53.33,
+        "w": 864,
+        "h": 613.33,
+        "r": 9
+      },
+      "rail": "measured",
+      "bg": "rgb(250,249,247)",
+      "shadow": "0 0 160px rgba(28,24,30,0.29), 0 2px 8px rgba(28,24,30,0.06)",
+      "shadowScale": 2.565,
+      "shadowScaleAtMs": 2650,
+      "camera": {
+        "originX": 640,
+        "originY": 360,
+        "keys": [
+          {
+            "atMs": 0,
+            "scale": 1,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "atMs": 2650,
+            "scale": 1.111813,
+            "x": 0,
+            "y": 0,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2650,
+            "scale": 2.565,
+            "x": 598.1,
+            "y": -469.9
+          },
+          {
+            "atMs": 4100,
+            "scale": 2.565,
+            "x": 598.1,
+            "y": -469.9
+          }
+        ]
+      },
+      "interior": {
+        "kind": "meet",
+        "cues": {
+          "h1": 0,
+          "body": 100,
+          "btn": 233,
+          "gs": 367,
+          "cards": [
+            400,
+            500,
+            600,
+            700
+          ]
+        },
+        "_scroll": "The measured cumulative page-scroll trace in ref px, read every 200 ms off the content's own landmark (the 'See how it works' button pre-punch, a card glyph post-punch, de-zoomed and stitched across the punch), then resampled to 100 ms through a monotone cubic so no authored key steps the velocity by more than ~0.6 ref px/frame. A fitted easeInOut ran up to 8 ref px behind mid-ramp, so the trace is used directly.",
+        "scrollKeys": [
+          {
+            "atMs": 0,
+            "v": 0
+          },
+          {
+            "atMs": 1000,
+            "v": 0
+          },
+          {
+            "atMs": 1100,
+            "v": 2.32,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1200,
+            "v": 7,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1300,
+            "v": 13.38,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1400,
+            "v": 21.6,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1500,
+            "v": 30.87,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1600,
+            "v": 41.5,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1700,
+            "v": 53.6,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1800,
+            "v": 66.8,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1900,
+            "v": 80.65,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2000,
+            "v": 95.1,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2100,
+            "v": 110.03,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2200,
+            "v": 125.1,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2300,
+            "v": 139.92,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2400,
+            "v": 154.4,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2500,
+            "v": 168.62,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2600,
+            "v": 181.7,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2700,
+            "v": 192.94,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2800,
+            "v": 202.6,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2900,
+            "v": 210.89,
+            "ease": "linear"
+          },
+          {
+            "atMs": 3000,
+            "v": 217.4,
+            "ease": "linear"
+          },
+          {
+            "atMs": 3100,
+            "v": 222.4,
+            "ease": "linear"
+          },
+          {
+            "atMs": 3200,
+            "v": 225.2,
+            "ease": "linear"
+          },
+          {
+            "atMs": 3300,
+            "v": 225.68,
+            "ease": "linear"
+          },
+          {
+            "atMs": 3400,
+            "v": 226,
+            "ease": "linear"
+          },
+          {
+            "atMs": 4100,
+            "v": 226,
+            "ease": "linear"
+          }
+        ]
+      },
+      "cursor": {
+        "size": 30,
+        "glyphKeys": [
+          {
+            "atMs": 0,
+            "glyph": "arrow2",
+            "dx": -1.7,
+            "dy": -1.7
+          },
+          {
+            "atMs": 3120,
+            "glyph": "hand",
+            "dx": -11.5,
+            "dy": -6
+          },
+          {
+            "atMs": 3950,
+            "glyph": "arrow2",
+            "dx": -1.7,
+            "dy": -1.7
+          }
+        ],
+        "keys": [
+          {
+            "atMs": 0,
+            "x": 699.4,
+            "y": 375.8
+          },
+          {
+            "atMs": 400,
+            "x": 697.7,
+            "y": 375.9,
+            "ease": "linear"
+          },
+          {
+            "atMs": 600,
+            "x": 684.7,
+            "y": 383.6,
+            "ease": "linear"
+          },
+          {
+            "atMs": 800,
+            "x": 663.4,
+            "y": 399.9,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1000,
+            "x": 633.7,
+            "y": 433.3,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1200,
+            "x": 600.3,
+            "y": 476.7,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1400,
+            "x": 560.9,
+            "y": 530.1,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1600,
+            "x": 518.2,
+            "y": 595.2,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1800,
+            "x": 471.7,
+            "y": 665.6,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2000,
+            "x": 424,
+            "y": 735,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2200,
+            "x": 379.1,
+            "y": 792.8,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2400,
+            "x": 338.8,
+            "y": 837.7,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2600,
+            "x": 303.3,
+            "y": 865.7,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2800,
+            "x": 272.6,
+            "y": 879.7,
+            "ease": "linear"
+          },
+          {
+            "atMs": 3000,
+            "x": 249,
+            "y": 885.9,
+            "ease": "linear"
+          },
+          {
+            "atMs": 3433,
+            "x": 228.8,
+            "y": 891,
+            "ease": "linear"
+          },
+          {
+            "atMs": 4100,
+            "x": 228.8,
+            "y": 891,
+            "ease": "linear"
+          }
+        ]
+      }
+    },
+    {
+      "_measured": "Full decode 61.8-68.5s (work/scenes/7/dec, f0001 = 61.800). Hard cut IN at 62.000, hard cut OUT at 68.333 (winR walks 1843.5 -> 1839.5 on f0197). WINDOW: S7 resumes the S6 creep un-punched and DEAD STILL - ref 240,28 1440x1024 is pixel-identical f0007..f0039, i.e. the S6 window (312,80 1296x920) at scale 1.1118 about frame centre. Stage 160,18.67 960x682.67. PUNCH: instant single-frame scale cut on f0040 = 63.100 abs = 1.100 rel, scale 1.6117 about frame centre with x -184.54 y -254.12; solved least-squares on 3 x-correspondences (table left 603.5, table right 1630.5, window right 1680; residual <0.5 ref px) and confirmed on 7 row separators + the window bottom in y (spread 1.5 px), and the cursor path is continuous across it. NO zoom or pan before the punch and NO horizontal motion after it: tabL 109.05 and winR 1843.50 are constant to 0.06 px for all 157 punched frames. AFTER PUNCH: one eased-inout VERTICAL CAMERA PAN of 200.2 punched ref px (133.5 stage) from 1.100 to 6.27 s - window bottom and table content move together (83.2 vs 79.3 px over f0040-f0089, inside the separator estimator noise), so there is NO page scroll at all; velocity ramps 0.5 -> 1.8 px/frame by 1.45 s, plateaus to 3.8 s, decays to 0 by 6.15 s. Keys below sample the measured trace every 200 ms. ENTRY: body is empty at 62.000 with Overview active; the tab underline SLIDES Overview -> Manage over 100-233 ms and the labels swap weight at 267; nav items pop top-down 267/400/467/533/567, credits pill 600, h1 633, caption 700, search pill + Deploy button 733, table 833. Each block switches on opaque 27 ref px low and settles exponentially (0.705 of the remainder per frame, fitted on the Deploy button top edge 394.85 -> 368.68). CURSOR: keys are the measured arrow-tip trace (blob tracker, work/scenes/7/tools/cc1.txt) at 133-167 ms, converted to app px; it wanders up-right, all but stops at 3.9-4.4 s, then runs to the Deploy button and holds. Glyph arrow -> hand on f0171 = 5.467 rel (entering the button) -> arrow on f0190 = 6.100 rel; the button NEVER depresses, so the flip back to arrow IS the click, 7 frames before the cut.",
+      "id": "s7-window-channels",
+      "preset": "plum-admin-window",
+      "role": "product-voice",
+      "startMs": 62000,
+      "durationMs": 6320,
+      "searchLabel": "Search HubSpot",
+      "account": "CQ Consulting",
+      "accountInitials": "CQ",
+      "window": {
+        "x": 160,
+        "y": 18.67,
+        "w": 960,
+        "h": 682.67,
+        "r": 10
+      },
+      "rail": "measured",
+      "bg": "rgb(249,249,247)",
+      "shadow": "0 0 160px rgba(28,24,30,0.29), 0 2px 8px rgba(28,24,30,0.06)",
+      "shadowScale": 1.6117,
+      "shadowScaleAtMs": 1100,
+      "camera": {
+        "originX": 640,
+        "originY": 360,
+        "keys": [
+          {
+            "atMs": 0,
+            "scale": 1,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "atMs": 1100,
+            "scale": 1,
+            "x": 0,
+            "y": 0,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1100,
+            "scale": 1.6117,
+            "x": -184.54,
+            "y": -254.12
+          },
+          {
+            "atMs": 1300,
+            "y": -251.06,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1500,
+            "y": -244.68,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1700,
+            "y": -237.74,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1900,
+            "y": -230.8,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2100,
+            "y": -223.69,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2300,
+            "y": -216.53,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2500,
+            "y": -209.62,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2700,
+            "y": -202.63,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2900,
+            "y": -195.87,
+            "ease": "linear"
+          },
+          {
+            "atMs": 3100,
+            "y": -189.37,
+            "ease": "linear"
+          },
+          {
+            "atMs": 3300,
+            "y": -182.74,
+            "ease": "linear"
+          },
+          {
+            "atMs": 3500,
+            "y": -176.19,
+            "ease": "linear"
+          },
+          {
+            "atMs": 3700,
+            "y": -170.01,
+            "ease": "linear"
+          },
+          {
+            "atMs": 3900,
+            "y": -163.94,
+            "ease": "linear"
+          },
+          {
+            "atMs": 4100,
+            "y": -158.36,
+            "ease": "linear"
+          },
+          {
+            "atMs": 4300,
+            "y": -152.79,
+            "ease": "linear"
+          },
+          {
+            "atMs": 4500,
+            "y": -147.61,
+            "ease": "linear"
+          },
+          {
+            "atMs": 4700,
+            "y": -142.54,
+            "ease": "linear"
+          },
+          {
+            "atMs": 4900,
+            "y": -138.11,
+            "ease": "linear"
+          },
+          {
+            "atMs": 5100,
+            "y": -134.2,
+            "ease": "linear"
+          },
+          {
+            "atMs": 5300,
+            "y": -130.21,
+            "ease": "linear"
+          },
+          {
+            "atMs": 5500,
+            "y": -126.95,
+            "ease": "linear"
+          },
+          {
+            "atMs": 5700,
+            "y": -124.31,
+            "ease": "linear"
+          },
+          {
+            "atMs": 5900,
+            "y": -122.44,
+            "ease": "linear"
+          },
+          {
+            "atMs": 6100,
+            "y": -121.16,
+            "ease": "linear"
+          },
+          {
+            "atMs": 6300,
+            "y": -120.94,
+            "ease": "linear"
+          },
+          {
+            "atMs": 6320,
+            "y": -120.94,
+            "ease": "linear"
+          }
+        ]
+      },
+      "interior": {
+        "kind": "channels",
+        "cues": {
+          "nav": [
+            267,
+            400,
+            467,
+            533,
+            567
+          ],
+          "creds": 567,
+          "h1": 600,
+          "cap": 733,
+          "pill": 733,
+          "btn": 733,
+          "table": 833
+        },
+        "riseRef": 27,
+        "riseMs": 380,
+        "tabSlideKeys": [
+          {
+            "atMs": 100,
+            "v": 0
+          },
+          {
+            "atMs": 233,
+            "v": 1,
+            "ease": "inout"
+          }
+        ],
+        "tabBoldAtMs": 267
+      },
+      "cursor": {
+        "size": 29,
+        "glyphKeys": [
+          {
+            "atMs": 0,
+            "glyph": "arrow2"
+          },
+          {
+            "atMs": 5466,
+            "glyph": "hand",
+            "dx": -13.9,
+            "dy": -1.9
+          },
+          {
+            "atMs": 6099,
+            "glyph": "arrow2"
+          }
+        ],
+        "keys": [
+          {
+            "atMs": 0,
+            "x": 230.5,
+            "y": 889.8,
+            "ease": "linear"
+          },
+          {
+            "atMs": 133,
+            "x": 231.6,
+            "y": 888.8,
+            "ease": "linear"
+          },
+          {
+            "atMs": 267,
+            "x": 236.6,
+            "y": 885.7,
+            "ease": "linear"
+          },
+          {
+            "atMs": 400,
+            "x": 243.7,
+            "y": 880.7,
+            "ease": "linear"
+          },
+          {
+            "atMs": 533,
+            "x": 252.8,
+            "y": 874.6,
+            "ease": "linear"
+          },
+          {
+            "atMs": 667,
+            "x": 265.9,
+            "y": 865.5,
+            "ease": "linear"
+          },
+          {
+            "atMs": 800,
+            "x": 280.1,
+            "y": 855.4,
+            "ease": "linear"
+          },
+          {
+            "atMs": 933,
+            "x": 296.3,
+            "y": 843.3,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1067,
+            "x": 315.5,
+            "y": 829.1,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1100,
+            "x": 321,
+            "y": 825.2,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1267,
+            "x": 347.3,
+            "y": 806.7,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1433,
+            "x": 374.9,
+            "y": 783.9,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1600,
+            "x": 404.4,
+            "y": 757.1,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1767,
+            "x": 433.9,
+            "y": 728.6,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1933,
+            "x": 463.4,
+            "y": 697.3,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2100,
+            "x": 491.6,
+            "y": 664.8,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2267,
+            "x": 519.2,
+            "y": 631.5,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2433,
+            "x": 548.1,
+            "y": 599.1,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2600,
+            "x": 577.6,
+            "y": 570.5,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2767,
+            "x": 609.6,
+            "y": 546.2,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2933,
+            "x": 642.2,
+            "y": 527.8,
+            "ease": "linear"
+          },
+          {
+            "atMs": 3100,
+            "x": 674.2,
+            "y": 513.9,
+            "ease": "linear"
+          },
+          {
+            "atMs": 3267,
+            "x": 703,
+            "y": 503.7,
+            "ease": "linear"
+          },
+          {
+            "atMs": 3433,
+            "x": 728.8,
+            "y": 496.1,
+            "ease": "linear"
+          },
+          {
+            "atMs": 3600,
+            "x": 751.4,
+            "y": 489.9,
+            "ease": "linear"
+          },
+          {
+            "atMs": 3767,
+            "x": 769.5,
+            "y": 485.6,
+            "ease": "linear"
+          },
+          {
+            "atMs": 3933,
+            "x": 782.1,
+            "y": 482.9,
+            "ease": "linear"
+          },
+          {
+            "atMs": 4100,
+            "x": 791.5,
+            "y": 481,
+            "ease": "linear"
+          },
+          {
+            "atMs": 4267,
+            "x": 794.6,
+            "y": 480.3,
+            "ease": "linear"
+          },
+          {
+            "atMs": 4433,
+            "x": 799,
+            "y": 479.4,
+            "ease": "linear"
+          },
+          {
+            "atMs": 4600,
+            "x": 821,
+            "y": 474.7,
+            "ease": "linear"
+          },
+          {
+            "atMs": 4767,
+            "x": 876.2,
+            "y": 463.5,
+            "ease": "linear"
+          },
+          {
+            "atMs": 4933,
+            "x": 1001,
+            "y": 438.2,
+            "ease": "linear"
+          },
+          {
+            "atMs": 5100,
+            "x": 1172.3,
+            "y": 403,
+            "ease": "linear"
+          },
+          {
+            "atMs": 5267,
+            "x": 1263.9,
+            "y": 383.6,
+            "ease": "linear"
+          },
+          {
+            "atMs": 5433,
+            "x": 1302.8,
+            "y": 375.3,
+            "ease": "linear"
+          },
+          {
+            "atMs": 6320,
+            "x": 1302.8,
+            "y": 375.3,
+            "ease": "linear"
+          }
+        ]
+      }
+    },
+    {
+      "_measured": "Full decode 67.95-77.75 s (work/scenes/8/dec, d0012 = 68.3333 = first S8 frame, d0279 = 77.2333 = last CLEAN S8 frame). Hard cut IN at 68.333. The S9 wash starts at 77.2667 (d0280), NOT 77.333: the page ground goes 248,247,245 -> 238,236,237 -> 229,225,226 on d0279/280/281, so the last two frames the segmenter gave S8 already belong to the dissolve. CAMERA: pure scale about the screen centre, no pan. The monitor's screen rect was tracked on 271 frames (track.mjs, subpixel white/bezel crossings); 1/w is LINEAR in t (rel rmse 0.010%, vs 0.22% for w itself) = a constant-speed dolly, 1/scale = 0.86250 + 0.012234 t with scale measured against this preset's own screen rect at camera 1.0 (1081.65 x 606.05 frame px, centre 956.94,542.15 -> the +0.52,+0.94 stage px translate below). The screen centre is dead still to 1.6 frame px over the whole 9 s, so x/y are pinned. 7 keys sample the 1/t curve; max chord error 0.14 frame px. CONTENT ZOOM: a SECOND, independent scale inside the screen - the widget header measures 454.15 app px wide at t0 and 411.4 at t 8.97 while the screen only shrinks 0.887. Linear at 1.07146 %/s about content (706.6,402.2), least-squares over 260 frames, max residual 0.7 px. S9 now opens at 77.233 (its own measurement agrees with mine to 0.014% on scale), so this scene ends one frame earlier: last S8 frame 77.200. SCROLL: three eased steps, windows and powers refitted MINIMAX against the landmark trace (bubbles.mjs tracks bubble edges on the doubly-stabilised view) so the worst frame, not the average, is bounded: 0->280 over 2372-4163 ms pow 5.4 (max 3.8 px, rmse 1.7), 280->371 over 4268-5860 pow 4.8 (max 1.7, rmse 0.8), 371->537 over 5867-7602 pow 5.2 (max 2.5, rmse 1.1), then DEAD STILL 7602-8880 (the reference is byte-flat from 7400 to the dissolve). Base 9.3 seats this layout's thread where the reference's sits. MESSAGES pop with no fade at 100/1000/1900/3233/5167/6933 ms, entering +45 px and settling x0.78/frame (tau 134 ms). Layout: panel 503,20 454x820, header 98, fontPx 18 (line box 27 exactly: a 3-line bubble is 133 px, a 5-line one 187, both measured).",
+      "id": "s8-desk-sitechat",
+      "preset": "plum-desk",
+      "role": "user-voice",
+      "startMs": 68333,
+      "durationMs": 8880,
+      "camera": {
+        "originX": 637.96,
+        "originY": 361.435,
+        "keys": [
+          {
+            "atMs": 0,
+            "scale": 1.15942,
+            "x": 0.52,
+            "y": 0.94
+          },
+          {
+            "atMs": 1500,
+            "scale": 1.13527,
+            "x": 0.52,
+            "y": 0.94,
+            "ease": "linear"
+          },
+          {
+            "atMs": 3000,
+            "scale": 1.1121,
+            "x": 0.52,
+            "y": 0.94,
+            "ease": "linear"
+          },
+          {
+            "atMs": 4500,
+            "scale": 1.08985,
+            "x": 0.52,
+            "y": 0.94,
+            "ease": "linear"
+          },
+          {
+            "atMs": 6000,
+            "scale": 1.06849,
+            "x": 0.52,
+            "y": 0.94,
+            "ease": "linear"
+          },
+          {
+            "atMs": 7500,
+            "scale": 1.04794,
+            "x": 0.52,
+            "y": 0.94,
+            "ease": "linear"
+          },
+          {
+            "atMs": 8925,
+            "scale": 1.02914,
+            "x": 0.52,
+            "y": 0.94,
+            "ease": "linear"
+          }
+        ]
+      },
+      "interior": {
+        "kind": "sitechat",
+        "zoom": {
+          "rate": 0.0107146,
+          "ox": 706.6,
+          "oy": 402.2
+        },
+        "page": {
+          "x": -160,
+          "y": -110,
+          "w": 1780,
+          "h": 1120,
+          "ground": [
+            250,
+            250,
+            248
+          ],
+          "blur": 5,
+          "radius": 14,
+          "tiles": [
+            [
+              0,
+              0,
+              1100,
+              243
+            ],
+            [
+              0,
+              292,
+              274,
+              340
+            ],
+            [
+              327,
+              292,
+              773,
+              340
+            ],
+            [
+              0,
+              686,
+              274,
+              324
+            ],
+            [
+              327,
+              686,
+              773,
+              324
+            ]
+          ]
+        },
+        "panelShadow": "16px 6px 150px rgba(26,34,38,0.18), 0 2px 8px rgba(26,34,38,0.05)",
+        "panelX": 503,
+        "panelY": 20,
+        "panelW": 455.4,
+        "panelH": 820,
+        "headerH": 98,
+        "fontPx": 20.2,
+        "radius": 8,
+        "brand": {
+          "name": "TitanAssist",
+          "sub": "Powered by AI",
+          "label": "Titan Assist"
+        },
+        "metrics": {
+          "pad": 27,
+          "bubMax": 282,
+          "gutter": 47,
+          "avatar": 28,
+          "labelRowH": 19,
+          "labelGap": 18,
+          "bubGap": 3.8,
+          "lineGap": 27,
+          "msgGap": 11.5,
+          "markSize": 44,
+          "headPad": 27,
+          "headGap": 12.6,
+          "headRaise": 9,
+          "nameSize": 19,
+          "subSize": 15,
+          "labelSize": 13.5,
+          "timeSize": 12.6,
+          "bubRadius": 11,
+          "lineHeight": 1.337,
+          "bubPadT": 17,
+          "bubPadX": 16,
+          "bubPadB": 11,
+          "timeGap": 8,
+          "composerH": 53,
+          "composerBottom": 47,
+          "composerPadX": 22.5,
+          "composerFont": 15.3,
+          "composerIcon": 20,
+          "custBg": [
+            14,
+            74,
+            70
+          ],
+          "entryDy": 45,
+          "entryTau": 134,
+          "linkTrack": -0.35,
+          "composerBar": 114
+        },
+        "scrollKeys": [
+          {
+            "atMs": 0,
+            "v": 9.3
+          },
+          {
+            "atMs": 2372,
+            "v": 9.3
+          },
+          {
+            "atMs": 4163,
+            "v": 289.3,
+            "ease": "inout",
+            "pow": 5.4
+          },
+          {
+            "atMs": 4268,
+            "v": 289.3
+          },
+          {
+            "atMs": 5860,
+            "v": 380.3,
+            "ease": "inout",
+            "pow": 4.8
+          },
+          {
+            "atMs": 5867,
+            "v": 380.3
+          },
+          {
+            "atMs": 7602,
+            "v": 546.3,
+            "ease": "inout",
+            "pow": 5.2
+          }
+        ],
+        "messages": [
+          {
+            "who": "bot",
+            "time": "7:14 PM",
+            "atMs": 100,
+            "lines": [
+              "Hi there! 👋 I'm TitanAssist, your AI customer agent. How can I help you today?"
+            ]
+          },
+          {
+            "who": "cust",
+            "time": "7:14 PM",
+            "atMs": 1000,
+            "lines": [
+              "Do you carry replacement filters for the TS-900 series dust collectors?"
+            ]
+          },
+          {
+            "who": "bot",
+            "time": "7:14 PM",
+            "atMs": 1900,
+            "lines": [
+              "Yes, we do! Our high-efficiency pleated filters for the TS-900 series are in stock and compatible with both Gen 1 and Gen 2 models."
+            ]
+          },
+          {
+            "who": "bot",
+            "time": "7:14 PM",
+            "atMs": 3233,
+            "linkLine": 0,
+            "noLabel": true,
+            "gapTop": 8.2,
+            "lines": [
+              [
+                "Here's a link to the product page: ☞ ",
+                "TS-900 Series Filters"
+              ],
+              "You'll find product specs, pricing, and estimated ship times on that page.",
+              "Let me know if you need help with installation guides or bulk orders!"
+            ]
+          },
+          {
+            "who": "cust",
+            "time": "7:17 PM",
+            "atMs": 5167,
+            "lines": [
+              "This was very helpful. Thanks!"
+            ]
+          },
+          {
+            "who": "bot",
+            "time": "7:17 PM",
+            "atMs": 6933,
+            "lines": [
+              "You're welcome! Reach out anytime if you have more questions."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "s9a-desk-spotlight",
+      "preset": "plum-desk",
+      "role": "brand",
+      "_measured": "Full decode 76.9-82.04 s (work/scenes/9/dec, f0001 = t 76.900, f%04d k -> t = 76.9 + (k-1)/30; probe.mjs/trace.mjs/strace.mjs/wtrace.mjs/reveal.mjs). NO CUT anywhere in scene 9 - the desk shot runs continuously out of S8 and the outro is three chained mechanisms. (1) WASH: a spatially UNIFORM linear cross-dissolve of the chat page into the end-card plate, alpha 0 at 77.241 -> 1 at 77.769 (528 ms; measured 0.048/frame on the page white, and alpha is 0.482-0.523 at ten points spread across the screen at 77.533, so the prior diagonal sweep was wrong). The wordmark resolves separately, left to right, to ~78.15. (2) CAMERA: S8's pull is still running at scene start - relative scale falls linearly at 0.0143/s until 77.700, then the monitor is DEAD STILL 77.700-78.267 (screen top/bottom byte-identical f0031-f0042), then the dive: slow, accelerating hard through 79.0-79.3 (peak ~0.06 scale/frame at 79.13), decelerating into full-bleed. Scale is a pure scale about (633.4,363.8) stage = the fixed point of the plate screen rect -> frame mapping; sampled from the measured trace (screen-rect chroma edges to 79.20, then wordmark ink area, which agree to 0.5% where they overlap). Verified: at scene start the screen's left edge lands at frame x 399.3 (reference 399.27). (3) The screen is EXACTLY full-bleed at 79.500 - frame borders are uniform plate colour at f0079 and still carry a bezel band at f0077 - which is where s9b takes over. Prior config fired the sweep at 75.61 (1.7 s early), held 3 s dead and split at 79.35: all three wrong.",
+      "startMs": 77233,
+      "durationMs": 2267,
+      "camera": {
+        "originX": 633.4,
+        "originY": 363.8,
+        "keys": [
+          {
+            "atMs": 0,
+            "scale": 1.02933,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "atMs": 467,
+            "scale": 1.0225,
+            "x": 0,
+            "y": 0,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1034,
+            "scale": 1.0225,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "atMs": 1067,
+            "scale": 1.023,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1167,
+            "scale": 1.02664,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1267,
+            "scale": 1.03254,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1367,
+            "scale": 1.04335,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1467,
+            "scale": 1.05888,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1567,
+            "scale": 1.08546,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1633,
+            "scale": 1.11289,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1700,
+            "scale": 1.15479,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1767,
+            "scale": 1.22785,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1800,
+            "scale": 1.28308,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1833,
+            "scale": 1.35081,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1867,
+            "scale": 1.42293,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1900,
+            "scale": 1.48616,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1933,
+            "scale": 1.54547,
+            "ease": "linear"
+          },
+          {
+            "atMs": 1967,
+            "scale": 1.59461,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2000,
+            "scale": 1.63379,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2033,
+            "scale": 1.6755,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2067,
+            "scale": 1.72136,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2100,
+            "scale": 1.74238,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2133,
+            "scale": 1.75072,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2167,
+            "scale": 1.75879,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2200,
+            "scale": 1.76866,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2233,
+            "scale": 1.777,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2267,
+            "scale": 1.781,
+            "ease": "linear"
+          }
+        ]
+      },
+      "interior": {
+        "kind": "spotlight",
+        "washAtMs": 8,
+        "washMs": 528,
+        "_reveal": "solid/soft are fractions of the screen width, read off the reference's per-column alpha (reveal.mjs, alpha = (peak-ground)/(255-ground)). The fully-opaque edge sits at 0.350 at 77.433, 0.476 at 77.533, 0.567 at 77.667, 0.635 at 77.800, 0.657 at 77.967, past the stop by 78.133; the soft ramp ahead of it NARROWS from 0.27 to 0.05 as the mark lands, which is why a fixed-width wipe reads wrong. The mark itself spans 0.281-0.721 of the screen.",
+        "solidKeys": [
+          { "atMs": 0, "v": 0.200 },
+          { "atMs": 200, "v": 0.372 },
+          { "atMs": 234, "v": 0.415 },
+          { "atMs": 300, "v": 0.478 },
+          { "atMs": 367, "v": 0.528 },
+          { "atMs": 434, "v": 0.567 },
+          { "atMs": 500, "v": 0.597 },
+          { "atMs": 567, "v": 0.625 },
+          { "atMs": 634, "v": 0.652 },
+          { "atMs": 734, "v": 0.680 },
+          { "atMs": 900, "v": 0.740 },
+          { "atMs": 1000, "v": 1.100 }
+        ],
+        "softKeys": [
+          { "atMs": 0, "v": 0.250 },
+          { "atMs": 300, "v": 0.250 },
+          { "atMs": 434, "v": 0.210 },
+          { "atMs": 567, "v": 0.163 },
+          { "atMs": 634, "v": 0.131 },
+          { "atMs": 734, "v": 0.097 },
+          { "atMs": 900, "v": 0.050 }
+        ],
+        "bloomKeys": [
+          {
+            "atMs": 0,
+            "v": 1
+          },
+          {
+            "atMs": 900,
+            "v": 1
+          },
+          {
+            "atMs": 1234,
+            "v": 0
+          }
+        ],
+        "wordmark": "Spotlight",
+        "dxK": -0.0038,
+        "gradA": [
+          108,
+          38,
+          75
+        ],
+        "gradB": [
+          50,
+          6,
+          33
+        ],
+        "dot": [
+          227,
+          55,
+          7
+        ],
+        "under": {
+          "_note": "MIRRORS s8-desk-sitechat.interior at its last frame: same panel rect / type / brand, thread settled at its final scroll (546.3) with every message already in. Regenerate from s8 if s8 changes.",
+          "panelX": 503,
+          "panelY": 20,
+          "panelW": 455.4,
+          "panelH": 820,
+          "headerH": 98,
+          "fontPx": 20.2,
+          "brand": {
+            "name": "TitanAssist",
+            "sub": "Powered by AI",
+            "label": "Titan Assist"
+          },
+          "scrollKeys": [
+            {
+              "atMs": 0,
+              "v": 546.3
+            }
+          ],
+          "messages": [
+            {
+              "who": "bot",
+              "time": "7:14 PM",
+              "atMs": 0,
+              "lines": [
+                "Hi there! 👋 I'm TitanAssist, your AI customer agent. How can I help you today?"
+              ]
+            },
+            {
+              "who": "cust",
+              "time": "7:14 PM",
+              "atMs": 0,
+              "lines": [
+                "Do you carry replacement filters for the TS-900 series dust collectors?"
+              ]
+            },
+            {
+              "who": "bot",
+              "time": "7:14 PM",
+              "atMs": 0,
+              "lines": [
+                "Yes, we do! Our high-efficiency pleated filters for the TS-900 series are in stock and compatible with both Gen 1 and Gen 2 models."
+              ]
+            },
+            {
+              "who": "bot",
+              "time": "7:14 PM",
+              "atMs": 0,
+              "linkLine": 0,
+              "noLabel": true,
+              "gapTop": 12.5,
+              "lines": [
+                [
+                  "Here's a link to the product page: ☞ ",
+                  "TS-900 Series Filters"
+                ],
+                "You'll find product specs, pricing, and estimated ship times on that page.",
+                "Let me know if you need help with installation guides or bulk orders!"
+              ]
+            },
+            {
+              "who": "cust",
+              "time": "7:17 PM",
+              "atMs": 0,
+              "lines": [
+                "This was very helpful. Thanks!"
+              ]
+            },
+            {
+              "who": "bot",
+              "time": "7:17 PM",
+              "atMs": 0,
+              "lines": [
+                "You're welcome! Reach out anytime if you have more questions."
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "s9b-endcard",
+      "preset": "plum-endcard",
+      "role": "brand",
+      "_measured": "Takes over at 79.500, the frame where the monitor screen is exactly full-bleed (s9a's dive ends on the same geometry). The dive still has a residual settle: the plate keeps growing +1.77% over 79.500-79.733 (wordmark ink area f0079->f0086, decelerating) and then the picture is BYTE-IDENTICAL f0084..f0153 - the film ends on this frame at 82.04 with no fade to black. Ground sampled on a 9x8 grid at f0120: light plateau rgb(108,38,75) bottom-left, dark rgb(50,6,33) top-right, iso-lines curved (ellipse radial from (-200,1500), see plum-endcard.jsx). Settled white wordmark bbox x 533-1336 y 444-643 (core y 447-640), stop rgb(227,55,7), whole mark centred on frame x 957.",
+      "startMs": 79500,
+      "durationMs": 2540,
+      "camera": {
+        "originX": 640,
+        "originY": 360,
+        "keys": [
+          {
+            "atMs": 0,
+            "scale": 1,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "atMs": 33,
+            "scale": 1.00459,
+            "ease": "linear"
+          },
+          {
+            "atMs": 67,
+            "scale": 1.00786,
+            "ease": "linear"
+          },
+          {
+            "atMs": 100,
+            "scale": 1.01093,
+            "ease": "linear"
+          },
+          {
+            "atMs": 133,
+            "scale": 1.01286,
+            "ease": "linear"
+          },
+          {
+            "atMs": 167,
+            "scale": 1.01485,
+            "ease": "linear"
+          },
+          {
+            "atMs": 200,
+            "scale": 1.01617,
+            "ease": "linear"
+          },
+          {
+            "atMs": 233,
+            "scale": 1.01771,
+            "ease": "linear"
+          },
+          {
+            "atMs": 2540,
+            "scale": 1.01771
+          }
+        ]
+      },
+      "wordmark": "Spotlight",
+      "weight": 600,
+      "sizeK": 0.10502,
+      "dyK": -0.02792,
+      "dxK": -0.0038,
+      "track": -0.0235,
+      "gradA": [
+        108,
+        38,
+        75
+      ],
+      "gradB": [
+        50,
+        6,
+        33
+      ],
+      "dot": [
+        227,
+        55,
+        7
+      ]
+    }
+  ],
+  "_vo": {
+    "_note": "VO cue map derived from the reference auto-captions (breeze-hubspot.en.vtt). in/out in seconds on the film clock. For an internal clone, mux the reference track; for a retarget, re-record these lines into the same windows.",
+    "cues": [
+      {
+        "in": 0.4,
+        "out": 3.28,
+        "text": "Breeze customer agent is your 24/7 AI"
+      },
+      {
+        "in": 3.28,
+        "out": 5.52,
+        "text": "concierge that helps you generate leads"
+      },
+      {
+        "in": 5.52,
+        "out": 8.72,
+        "text": "and instantly resolves customer issues."
+      },
+      {
+        "in": 8.72,
+        "out": 10.88,
+        "text": "Customer agent naturally answers their"
+      },
+      {
+        "in": 10.88,
+        "out": 13.04,
+        "text": "questions, qualifies their needs, books"
+      },
+      {
+        "in": 13.04,
+        "out": 15.44,
+        "text": "sales meetings, and creates contacts in"
+      },
+      {
+        "in": 15.44,
+        "out": 18.24,
+        "text": "your CRM in real time. Need instant"
+      },
+      {
+        "in": 18.24,
+        "out": 20.16,
+        "text": "support? It quickly handles everything"
+      },
+      {
+        "in": 20.16,
+        "out": 23.2,
+        "text": "from simple FAQs to tasks like password"
+      },
+      {
+        "in": 23.2,
+        "out": 25.92,
+        "text": "resets and order tracking. Always"
+      },
+      {
+        "in": 25.92,
+        "out": 27.84,
+        "text": "personalizing the experience using your"
+      },
+      {
+        "in": 27.84,
+        "out": 30.8,
+        "text": "CRM data. No more balancing customers"
+      },
+      {
+        "in": 30.8,
+        "out": 32.88,
+        "text": "between teams. Customer Agent"
+      },
+      {
+        "in": 32.88,
+        "out": 34.96,
+        "text": "automatically understands if someone"
+      },
+      {
+        "in": 34.96,
+        "out": 37.6,
+        "text": "needs sales help or service and"
+      },
+      {
+        "in": 37.6,
+        "out": 40.08,
+        "text": "seamlessly handles both, providing a"
+      },
+      {
+        "in": 40.08,
+        "out": 43.04,
+        "text": "smooth experience without dead ends. And"
+      },
+      {
+        "in": 43.04,
+        "out": 45.76,
+        "text": "it gets results. Customer Agent resolves"
+      },
+      {
+        "in": 45.76,
+        "out": 47.92,
+        "text": "over half of all conversations"
+      },
+      {
+        "in": 47.92,
+        "out": 50.64,
+        "text": "automatically, meaning happier customers"
+      },
+      {
+        "in": 50.64,
+        "out": 53.44,
+        "text": "and fewer waiting on hold. With built-in"
+      },
+      {
+        "in": 53.44,
+        "out": 55.36,
+        "text": "dashboards, you see exactly how many"
+      },
+      {
+        "in": 55.36,
+        "out": 56.96,
+        "text": "meetings have been booked, leads"
+      },
+      {
+        "in": 56.96,
+        "out": 58.88,
+        "text": "generated, and how it's driving your"
+      },
+      {
+        "in": 58.88,
+        "out": 61.76,
+        "text": "business forward. Best of all, Customer"
+      },
+      {
+        "in": 61.76,
+        "out": 63.68,
+        "text": "Agent works everywhere your customers"
+      },
+      {
+        "in": 63.68,
+        "out": 67.36,
+        "text": "already are. Chat, email, voice, or"
+      },
+      {
+        "in": 67.36,
+        "out": 70.4,
+        "text": "social. It's got your back anytime,"
+      },
+      {
+        "in": 70.4,
+        "out": 73.12,
+        "text": "anywhere. Go live in minutes and turn"
+      },
+      {
+        "in": 73.12,
+        "out": 75.68,
+        "text": "questions into qualified leads. Deliver"
+      },
+      {
+        "in": 75.68,
+        "out": 78.32,
+        "text": "amazing support and grow your business"
+      },
+      {
+        "in": 78.32,
+        "out": 81.32,
+        "text": "effortlessly."
+      }
+    ]
+  }
+}

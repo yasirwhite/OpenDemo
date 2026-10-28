@@ -35,6 +35,15 @@ import { ApertureFold } from "./aperture-fold.jsx";
 import { ApertureIgnite } from "./aperture-ignite.jsx";
 import { SitePage } from "./site-page.jsx";
 import { BrandSheet } from "./brand-sheet.jsx";
+import { FIR_PRESETS } from "../../../../../templates/fir/presets/index.jsx";
+import { SARU_PRESETS } from "../../../../../templates/saru/presets/index.jsx";
+// plum template presets live with the template (templates/plum/presets/) —
+// registered here so configs reach them by slug like any other preset.
+import * as PlumChatPage from "../../../../../templates/plum/presets/plum-chat-page.jsx";
+import * as PlumChatWide from "../../../../../templates/plum/presets/plum-chat-wide.jsx";
+import * as PlumDesk from "../../../../../templates/plum/presets/plum-desk.jsx";
+import * as PlumAdminWindow from "../../../../../templates/plum/presets/plum-admin-window.jsx";
+import * as PlumEndcard from "../../../../../templates/plum/presets/plum-endcard.jsx";
 
 const s = (ms) => ms / 1000;
 
@@ -1307,6 +1316,19 @@ export const PRESETS = {
       return <PhoneChat t={t} from={s(c.startMs)} to={s(c.startMs + c.durationMs)} cfg={cfg} />;
     },
   },
+
+  // ── plum template presets (templates/plum/presets/) ─────────────────────
+  "plum-chat-page": { note: PlumChatPage.note, nativeMs: PlumChatPage.nativeMs, params: {}, render: PlumChatPage.PlumChatPage },
+  "plum-chat-wide": { note: PlumChatWide.note, nativeMs: PlumChatWide.nativeMs, params: {}, render: PlumChatWide.PlumChatWide },
+  "plum-desk": { note: PlumDesk.note, nativeMs: PlumDesk.nativeMs, params: {}, render: PlumDesk.PlumDesk },
+  "plum-admin-window": { note: PlumAdminWindow.note, nativeMs: PlumAdminWindow.nativeMs, params: {}, render: PlumAdminWindow.PlumAdminWindow },
+  "plum-endcard": { note: PlumEndcard.note, nativeMs: PlumEndcard.nativeMs, params: {}, render: PlumEndcard.PlumEndcard },
+
+  // ── fir template presets (templates/fir/presets/) ────────────────────────
+  ...FIR_PRESETS,
+
+  // ── saru template presets (templates/saru/presets/) ──────────────────────
+  ...SARU_PRESETS,
 };
 
 export const PRESET_NOTES = Object.fromEntries(

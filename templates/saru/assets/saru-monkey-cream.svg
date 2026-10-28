@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Cream-stroke copy of saru-monkey-logo.svg, for DARK grounds.
+
+  The shipped mark is dark brown #554A42 line art, which is all but invisible on
+  the film's near-black endcard plate. Geometry, viewBox and stroke widths are
+  byte-for-byte the original's; only the stroke colour changes, to the portal's
+  own cream #F7F4ED — so the mark reads as the same drawing lit from the other
+  side rather than as a second, redrawn logo. The original is left untouched.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 1024" role="img" aria-labelledby="title desc">
+  <title id="title">Saru monkey logo (cream)</title>
+  <desc id="desc">Minimal cream line-art monkey mark on a transparent background, for dark grounds.</desc>
+  <g fill="none" stroke="#F7F4ED" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M480 344 C548 194 693 117 823 141 C969 167 1078 269 1107 383" stroke-width="69"/>
+    <path d="M610 824 C485 816 388 740 366 644 C348 568 378 493 442 459 C506 424 577 447 607 495 C636 542 620 599 578 618 C548 632 521 628 510 621" stroke-width="66"/>
+    <path d="M1080 530
+             C1079 451 1031 381 958 365
+             C884 349 808 385 779 451
+             C748 522 771 588 830 638
+             C897 694 936 759 932 850
+             C928 917 978 905 1024 890
+             C1112 861 1172 793 1184 715
+             C1196 635 1159 568 1080 530 Z"
+          stroke-width="42"/>
+    <path d="M882 523 C911 480 962 476 990 516" stroke-width="25"/>
+    <path d="M1088 594 L1104 611" stroke-width="27"/>
+    <path d="M963 665 C1009 730 1090 749 1165 719" stroke-width="25"/>
+  </g>
+</svg>
