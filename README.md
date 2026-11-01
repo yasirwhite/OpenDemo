@@ -30,13 +30,15 @@ Ask your AI assistant:
 It asks whether you want a simple walkthrough or a launch video *(alpha)*,
 then records, edits and hands you an .mp4.
 
-Want a specific look? Pick a template in the
-[gallery](https://yasirwhite.github.io/OpenDemo/) and copy its prompt.
-
 **To change the video**, ask your model, or open it in OpenDemo's editor with
 `node OpenDemo/run-demo.mjs <DEMO.json>` (your model can give you the exact command).
 
 **AI agents:** start with [AGENT_README.md](./AGENT_README.md).
+
+## Templates
+
+Want a specific look? Browse the [template gallery](https://yasirwhite.github.io/OpenDemo/)
+and copy a prompt.
 
 <!-- traffic:start -->
 ## Stats
