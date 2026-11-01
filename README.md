@@ -1,65 +1,42 @@
 # OpenDemo
 
-Build exciting demos for free using your own AI
+Build exciting demo videos for free with the AI you already use.
 
-***No cloud services or API keys |*** Just clone `OpenDemo` and prompt the model you already use.
+***No cloud services or API keys.*** Clone OpenDemo and prompt your model.
 
-### Demo
 ![OpenDemo launch film](./examples/opendemo-launch.gif)
 
 *Written, animated and rendered by OpenDemo itself.*
 
+## Setup
+
+Needs Node 22. Run once:
+
+```bash
+git clone https://github.com/yasirwhite/OpenDemo
+cd OpenDemo
+npm install
+npm run build
+```
+
 ## Usage
 
-**Browse the template gallery: [yasirwhite.github.io/OpenDemo](https://yasirwhite.github.io/OpenDemo/)** —
-pick a template and copy the prompt
+Ask your AI assistant:
 
-**OR**
-
-Just ask your AI assistant to build the demo for you.
-
-**Example Prompt:**
-```bash
+```
 > Use OpenDemo to generate a video of my new AI recipe app, ChefBot, showing the user onboarding flow.
 ```
 
-The AI will ask which kind of demo you want, generate the config, plan the
-video edits, and hand you a polished .mp4
+It asks whether you want a simple walkthrough or a launch video *(alpha)*,
+then records, edits and hands you an .mp4.
 
-*Build exciting demos for free using your own AI — it records the demo, edits
-it, and makes it exciting.*
+Want a specific look? Pick a template in the
+[gallery](https://yasirwhite.github.io/OpenDemo/) and copy its prompt.
 
----
+**To change the video**, ask your model, or open it in OpenDemo's editor with
+`node OpenDemo/run-demo.mjs <DEMO.json>` (your model can give you the exact command).
 
-If you (the human) want to make changes:
-1) Ask your model to edit the video, or
-2) manually edit your video with OpenDemo's built-in editor. 
-
-To use the editor, run the demo command, which you can get by asking your model for it. It will look something like `node OpenDemo/run-demo.mjs <DEMO.json>`
-
----
-
-## Two kinds of demo
-
-Your AI will ask which one you want before it starts:
-
-**Simple walkthrough** — a clean screen recording of the product, zoomed and
-paced automatically. Good for docs, onboarding and feature tours. Stable.
-
-**Exciting launch video** *(alpha)* — your recording placed inside 3D product
-shots and cut together with kinetic typography, in the style of a real product
-launch film. Good for ProductHunt, YouTube and launch day.
-
-## Installation & Setup
-Because OpenDemo's cinematic video rendering engine is heavily powered by a compiled React application running invisibly in the background, you **must** build the project once before the engine can function.
-
-1. Install dependencies: `npm install`
-2. Build the engine: `npm run build`
-
-*You only need to do this once. Once built, you can run as many demos as you want!*
-
-## How to use (For AI Agents)
-If you are an AI agent attempting to create a demo video using OpenDemo, please carefully read the [AGENT_README.md](./AGENT_README.md) for instructions on how to easily structure your configuration files and generate a new demo.
+**AI agents:** start with [AGENT_README.md](./AGENT_README.md).
 
 <!-- traffic:start -->
 ## Stats
