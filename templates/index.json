@@ -1,45 +1,66 @@
 {
-  "//": "Template registry. One entry per templates/<slug>/ folder. Agents pick templates from here; the gallery site will be generated from here. Categories are free-form for now - when the list outgrows a flat folder, these fields are how it gets reorganized.",
-  "templates": [
-    {
-      "slug": "cedar",
-      "name": "Cedar",
-      "style": "kinetic-typography launch film",
-      "category": "typography-led",
-      "durationMs": 35822,
-      "aspect": "16:9",
-      "fps": 60,
-      "bpm": 116,
-      "slots": 2,
-      "tags": ["kinetic-text", "two-tone-grounds", "product-slots", "type-on", "feature-pills"],
-      "derivedFrom": "the mem launch film, measured frame-by-frame",
-      "config": "cedar/template.json"
-    },
-    {
-      "slug": "birch",
-      "name": "Birch",
-      "style": "kinetic-typography brand-engine launch film",
-      "category": "typography-led",
-      "durationMs": 58960,
-      "aspect": "16:9",
-      "fps": 25,
-      "slots": 3,
-      "tags": ["kinetic-text", "gradient-sweep", "brand-mark-drift", "orb-loader", "drawn-interiors", "media-windows", "prompt-loop", "poster-reveal", "painterly-grounds"],
-      "derivedFrom": "the Bloom launch film, measured frame-by-frame",
-      "config": "birch/template.json"
-    },
-    {
-      "slug": "aspen",
-      "name": "Aspen",
-      "style": "cinematic product-demo launch film",
-      "category": "demo-led",
-      "durationMs": 71960,
-      "aspect": "16:9",
-      "fps": 25,
-      "slots": 10,
-      "tags": ["serif-claims", "orb-roll", "noun-column", "media-windows", "template-carousel", "full-bleed-punch", "voice-mode-slot", "cream-grounds", "cosmic-close", "logo-lockup"],
-      "derivedFrom": "the Perplexity Comet launch film, measured frame-by-frame",
-      "config": "aspen/template.json"
-    }
-  ]
+	"//": "Template registry. One entry per templates/<slug>/ folder. Agents pick templates from here; the gallery site will be generated from here. Categories are free-form for now - when the list outgrows a flat folder, these fields are how it gets reorganized.",
+	"templates": [
+		{
+			"slug": "cedar",
+			"name": "Cedar",
+			"style": "kinetic-typography launch film",
+			"category": "typography-led",
+			"durationMs": 35822,
+			"aspect": "16:9",
+			"fps": 60,
+			"bpm": 116,
+			"slots": 2,
+			"tags": ["kinetic-text", "two-tone-grounds", "product-slots", "type-on", "feature-pills"],
+			"derivedFrom": "the mem launch film, measured frame-by-frame",
+			"config": "cedar/template.json"
+		},
+		{
+			"slug": "birch",
+			"name": "Birch",
+			"style": "kinetic-typography brand-engine launch film",
+			"category": "typography-led",
+			"durationMs": 58960,
+			"aspect": "16:9",
+			"fps": 25,
+			"slots": 3,
+			"tags": [
+				"kinetic-text",
+				"gradient-sweep",
+				"brand-mark-drift",
+				"orb-loader",
+				"drawn-interiors",
+				"media-windows",
+				"prompt-loop",
+				"poster-reveal",
+				"painterly-grounds"
+			],
+			"derivedFrom": "the Bloom launch film, measured frame-by-frame",
+			"config": "birch/template.json"
+		},
+		{
+			"slug": "aspen",
+			"name": "Aspen",
+			"style": "cinematic product-demo launch film",
+			"category": "demo-led",
+			"durationMs": 71960,
+			"aspect": "16:9",
+			"fps": 25,
+			"slots": 10,
+			"tags": [
+				"serif-claims",
+				"orb-roll",
+				"noun-column",
+				"media-windows",
+				"template-carousel",
+				"full-bleed-punch",
+				"voice-mode-slot",
+				"cream-grounds",
+				"cosmic-close",
+				"logo-lockup"
+			],
+			"derivedFrom": "the Perplexity Comet launch film, measured frame-by-frame",
+			"config": "aspen/template.json"
+		}
+	]
 }
