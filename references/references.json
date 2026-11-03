@@ -31,6 +31,16 @@
 			"spec": "1920x1080, 25fps, 59.0s",
 			"notes": "docs/reference-matching.md",
 			"usedBy": "templates/birch/ - full film rebuilt frame-by-frame; gradient grounds + interiors + loader work"
+		},
+		{
+			"id": "rork-max",
+			"file": "rork-max-launch-film.mp4",
+			"url": "https://video.twimg.com/amplify_video/2024564636914503680/vid/avc1/1920x1080/0pjX9GH2cqKMDIme.mp4?tag=21",
+			"md5": "287f02439030db0a5e27a7c71178d6ec",
+			"bytes": 9348626,
+			"spec": "1920x1080, 60fps, 60.0s",
+			"notes": "templates/juniper/reference-notes.md",
+			"usedBy": "templates/juniper/ - full film rebuilt frame-by-frame on a 30fps clock; device comps with kinetic side labels, device morphs, tier toggle + bloom, drawn builder window, bento grid"
 		}
 	]
 }

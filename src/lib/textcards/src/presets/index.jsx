@@ -15,6 +15,9 @@
  */
 
 import React from "react";
+// juniper template presets live with the template (templates/juniper/presets/) —
+// registered here so configs reach them by slug like any other preset.
+import { JUNIPER_PRESETS } from "../../../../../templates/juniper/presets/index.jsx";
 import { rgb } from "../easing.js";
 import {
 	ClipWord,
@@ -2584,6 +2587,9 @@ export const PRESETS = {
 			return <PhoneChat t={t} from={s(c.startMs)} to={s(c.startMs + c.durationMs)} cfg={cfg} />;
 		},
 	},
+
+	// ── juniper template presets (templates/juniper/presets/) ────────────────
+	...JUNIPER_PRESETS,
 };
 
 export const PRESET_NOTES = Object.fromEntries(

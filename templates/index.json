@@ -61,6 +61,34 @@
 			],
 			"derivedFrom": "the Perplexity Comet launch film, measured frame-by-frame",
 			"config": "aspen/template.json"
+		},
+		{
+			"slug": "juniper",
+			"name": "Juniper",
+			"style": "multi-device launch film for an AI app builder",
+			"category": "device-led",
+			"durationMs": 60000,
+			"aspect": "16:9",
+			"fps": 30,
+			"slots": 16,
+			"tags": [
+				"device-comps",
+				"kinetic-side-labels",
+				"device-morphs",
+				"word-roll",
+				"tier-toggle",
+				"warm-bloom",
+				"word-flashes",
+				"push-ins",
+				"whip-ins",
+				"drawn-builder-ui",
+				"publish-popover",
+				"bento-grid",
+				"off-white-ground",
+				"dot-and-url-endcard"
+			],
+			"derivedFrom": "the Rork Max launch film, measured frame-by-frame on a 30fps clock",
+			"config": "juniper/template.json"
 		}
 	]
 }
