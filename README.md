@@ -45,8 +45,8 @@ and copy a prompt.
 
 | | |
 |---|---|
-| **Unique cloners** | 408 |
-| **Last updated** | 2026-10-31 |
+| **Unique cloners** | 435 |
+| **Last updated** | 2026-11-04 |
 <!-- traffic:end -->
 
 ## Acknowledgements
