@@ -1,44 +1,42 @@
 # OpenDemo
 
-Build exciting demo videos for free with the AI you already use.
-
-***No cloud services or API keys.*** Clone OpenDemo and prompt your model.
+Build exciting demos for free using your own AI. No cloud services or API keys: clone OpenDemo and prompt the model you already use.
 
 ![OpenDemo launch film](./examples/opendemo-launch.gif)
 
 *Written, animated and rendered by OpenDemo itself.*
 
+## Usage
+
+Copy this prompt into your AI assistant and swap in your own app:
+
+```text
+Use OpenDemo to generate a video of my new AI recipe app, ChefBot, showing the user onboarding flow.
+```
+
+Your AI asks which kind of demo you want, records your app, edits the video and hands you an .mp4.
+
+## Two kinds of demo
+
+- **Simple walkthrough:** a clean, auto-zoomed screen recording. Good for docs, onboarding and feature tours.
+- **Launch video** *(alpha)*: your recording inside 3D product shots, cut with animated text. Good for Product Hunt, YouTube and launch day.
+
+## Changing the video
+
+Ask your AI to make the change, or open OpenDemo's built-in editor. Your AI can give you the exact command; it looks like `node OpenDemo/run-demo.mjs <DEMO.json>`.
+
 ## Setup
 
-Needs Node 22. Run once:
+Run these once, before your first demo:
 
 ```bash
-git clone https://github.com/yasirwhite/OpenDemo
-cd OpenDemo
 npm install
 npm run build
 ```
 
-## Usage
+## For AI agents
 
-Ask your AI assistant:
-
-```
-> Use OpenDemo to generate a video of my new AI recipe app, ChefBot, showing the user onboarding flow.
-```
-
-It asks whether you want a simple walkthrough or a launch video *(alpha)*,
-then records, edits and hands you an .mp4.
-
-**To change the video**, ask your model, or open it in OpenDemo's editor with
-`node OpenDemo/run-demo.mjs <DEMO.json>` (your model can give you the exact command).
-
-**AI agents:** start with [AGENT_README.md](./AGENT_README.md).
-
-## Templates
-
-Want a specific look? Browse the [template gallery](https://yasirwhite.github.io/OpenDemo/)
-and copy a prompt.
+Read [AGENT_README.md](./AGENT_README.md) for how to write the config and make a demo.
 
 <!-- traffic:start -->
 ## Stats
@@ -50,4 +48,5 @@ and copy a prompt.
 <!-- traffic:end -->
 
 ## Acknowledgements
-OpenDemo is built as an automated, agent-native extension of the archived OpenScreen project. A huge thank you to the original OpenScreen creator (Siddarth Vaddem) for laying the foundation of this cinematic rendering pipeline!
+
+OpenDemo builds on the archived OpenScreen project. Thank you to its creator, Siddarth Vaddem, for the foundation of the rendering pipeline.
