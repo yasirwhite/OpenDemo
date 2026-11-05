@@ -43,8 +43,8 @@ Read [AGENT_README.md](./AGENT_README.md) for how to write the config and make a
 
 | | |
 |---|---|
-| **Unique cloners** | 435 |
-| **Last updated** | 2026-11-04 |
+| **Unique cloners** | 447 |
+| **Last updated** | 2026-11-05 |
 <!-- traffic:end -->
 
 ## Acknowledgements
