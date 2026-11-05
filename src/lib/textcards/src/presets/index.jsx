@@ -15,6 +15,9 @@
  */
 
 import React from "react";
+// maple template presets live with the template (templates/maple/presets/) —
+// registered here so configs reach them by slug like any other preset.
+import { MAPLE_PRESETS } from "../../../../../templates/maple/presets/index.jsx";
 import { rgb } from "../easing.js";
 import {
 	ClipWord,
@@ -2584,6 +2587,9 @@ export const PRESETS = {
 			return <PhoneChat t={t} from={s(c.startMs)} to={s(c.startMs + c.durationMs)} cfg={cfg} />;
 		},
 	},
+
+	// ── maple template presets (templates/maple/presets/) ───────────────────
+	...MAPLE_PRESETS,
 };
 
 export const PRESET_NOTES = Object.fromEntries(
