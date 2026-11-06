@@ -31,6 +31,16 @@
 			"spec": "1920x1080, 25fps, 59.0s",
 			"notes": "docs/reference-matching.md",
 			"usedBy": "templates/birch/ - full film rebuilt frame-by-frame; gradient grounds + interiors + loader work"
+		},
+		{
+			"id": "claude-opus-5-5",
+			"file": "claude-opus-5-5-launch-film.mp4",
+			"url": "https://video.twimg.com/amplify_video/2102432417352929280/vid/avc1/1920x1080/yilx3O9YWu7w9vaX.mp4?tag=29",
+			"md5": "28ea80c0a5fdf957dead79408c25d944",
+			"bytes": 13134325,
+			"spec": "1920x1080, 25fps, 20.0s",
+			"notes": "templates/alder/reference-notes.md",
+			"usedBy": "templates/alder/ - full film rebuilt frame-by-frame; horizon-arc match-cut montage of texture plates, serif line riding and bending to the arc, accelerating cut rhythm, planet-horizon glow bookend with name card and wordmark"
 		}
 	]
 }

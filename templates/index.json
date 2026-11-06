@@ -61,6 +61,32 @@
 			],
 			"derivedFrom": "the Perplexity Comet launch film, measured frame-by-frame",
 			"config": "aspen/template.json"
+		},
+		{
+			"slug": "alder",
+			"name": "Alder",
+			"style": "horizon-montage launch film for a model or brand moment",
+			"category": "montage-led",
+			"durationMs": 20000,
+			"aspect": "16:9",
+			"fps": 25,
+			"slots": 36,
+			"tags": [
+				"match-cut-on-shape",
+				"horizon-plates",
+				"accelerating-cuts",
+				"texture-montage",
+				"image-slots",
+				"serif-line-on-arc",
+				"stepped-type-scale",
+				"bent-type",
+				"planet-limb-bookend",
+				"end-card-pan",
+				"seamless-loop",
+				"film-grain"
+			],
+			"derivedFrom": "the Claude Opus 5.5 launch film, measured frame-by-frame on its 25fps clock",
+			"config": "alder/template.json"
 		}
 	]
 }

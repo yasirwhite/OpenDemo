@@ -10,6 +10,7 @@
  * Usage:
  *   node src/lib/textcards/render.mjs [--out out.mp4] [--fps 60]
  *   node src/lib/textcards/render.mjs --at 3.2 --png frame.png   (single frame)
+ *   node src/lib/textcards/render.mjs --scale 1.5 ...            (1920x1080 output)
  *   node src/lib/textcards/render.mjs --sheet --times 1,2,3      (contact sheet)
  */
 
@@ -58,13 +59,20 @@ const SHEET_TIMES = (opt("--times", "") || "").split(",").filter(Boolean).map(Nu
 // the snapshot, and your render cannot be overwritten mid-flight. Omitted =
 // the shared stage, exactly as before.
 const HTML = opt("--html", null);
+// --scale <n> renders the 1280x720 stage at device scale n: 1.5 gives
+// 1920x1080 frames with the same layout (type and vectors are re-rasterised,
+// not upscaled). Omitted = 1, exactly as before.
+const SCALE = parseFloat(opt("--scale", "1"));
 
 const url = "file://" + resolve(HTML ?? resolve(__dirname, "index.html")).replace(/\\/g, "/");
 
-const browser = await chromium.launch({ headless: true, args: ["--force-device-scale-factor=1"] });
+const browser = await chromium.launch({
+	headless: true,
+	args: [`--force-device-scale-factor=${SCALE}`],
+});
 const page = await browser.newPage({
 	viewport: { width: 1280, height: 720 },
-	deviceScaleFactor: 1,
+	deviceScaleFactor: SCALE,
 });
 page.on("pageerror", (e) => console.log("PAGEERROR:", e.message));
 page.on("console", (m) => {

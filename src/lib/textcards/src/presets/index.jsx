@@ -15,6 +15,9 @@
  */
 
 import React from "react";
+// alder template presets live with the template (templates/alder/presets/) —
+// registered here so configs reach them by slug like any other preset.
+import { ALDER_PRESETS } from "../../../../../templates/alder/presets/index.jsx";
 import { rgb } from "../easing.js";
 import {
 	ClipWord,
@@ -2584,6 +2587,9 @@ export const PRESETS = {
 			return <PhoneChat t={t} from={s(c.startMs)} to={s(c.startMs + c.durationMs)} cfg={cfg} />;
 		},
 	},
+
+	// ── alder template presets (templates/alder/presets/) ───────────────────
+	...ALDER_PRESETS,
 };
 
 export const PRESET_NOTES = Object.fromEntries(
