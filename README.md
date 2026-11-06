@@ -1,6 +1,6 @@
 # OpenDemo
 
-Your coding agent makes your launch video. Free, runs locally, no API keys.
+AI that makes your video. Free, runs locally, no API keys.
 
 ## One prompt
 
