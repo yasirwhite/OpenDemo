@@ -1,18 +1,18 @@
 # OpenDemo
 
-Your coding agent makes your demo video. Free, runs locally, no API keys.
+Your coding agent makes your launch video. Free, runs locally, no API keys.
 
 ## One prompt
 
 Paste this into Claude Code, Codex or Cursor:
 
 ```text
-Clone github.com/yasirwhite/OpenDemo and use it to make a demo video of my app at https://myapp.dev
+Clone github.com/yasirwhite/OpenDemo and use it to make a launch video for my app at https://myapp.dev
 ```
 
 Your agent sets it up, records your app, edits the video and hands you an .mp4.
 
-![Demo videos made with OpenDemo for proschi, syntaxia and on-record](./examples/merged-showcase.gif)
+![Launch videos made with OpenDemo for proschi, syntaxia and on-record](./examples/merged-showcase.gif)
 
 *Made with OpenDemo and merged into the READMEs of [proschi](https://github.com/gvart/proschi), [syntaxia](https://github.com/EbadShelby/syntaxia-dev) and [on-record](https://github.com/CarsonGodwin/on-record).*
 
@@ -20,7 +20,7 @@ Your agent sets it up, records your app, edits the video and hands you an .mp4.
 
 ## More
 
-**Launch videos** *(alpha)*: pick a look from the [template gallery](https://yasirwhite.github.io/OpenDemo/) and copy its prompt. Your recording goes inside 3D product shots, cut with animated text. Good for Product Hunt, Show HN and X.
+**Templates** *(alpha)*: pick a look from the [template gallery](https://yasirwhite.github.io/OpenDemo/) and copy its prompt. Your recording goes inside 3D product shots, cut with animated text. Good for Product Hunt, Show HN and X.
 
 ![OpenDemo launch film](./examples/opendemo-launch.gif)
 
