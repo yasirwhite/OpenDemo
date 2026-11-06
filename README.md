@@ -1,59 +1,40 @@
 # OpenDemo
 
-**Your coding agent makes your demo video.**
+Your coding agent makes your demo video. Free, runs locally, no API keys.
 
-Point Claude Code, Codex or Cursor at your app and get a README GIF or a launch film. Free, runs locally, no API keys.
+## One prompt
 
-Built for developers who just shipped something and need to show it, without opening a video editor.
-
-![Demo videos made with OpenDemo and merged into the READMEs of proschi, syntaxia and on-record](./examples/merged-showcase.gif)
-
-*Demos made with OpenDemo and merged into their READMEs by the maintainers of [proschi](https://github.com/gvart/proschi), [syntaxia](https://github.com/EbadShelby/syntaxia-dev) and [on-record](https://github.com/CarsonGodwin/on-record).*
-
-## Make a README GIF for your repo
-
-Paste this into your coding agent and swap in your own app:
+Paste this into Claude Code, Codex or Cursor:
 
 ```text
-Use OpenDemo to make a 20-second README GIF of my app at https://myapp.dev, showing how you create a new project.
+Clone github.com/yasirwhite/OpenDemo and use it to make a demo video of my app at https://myapp.dev
 ```
 
-Your agent records your app in a browser, zooms in on the moments that matter, edits the cut and hands you an .mp4. Ask for a GIF too and it converts one sized for your README.
+Your agent sets it up, records your app, edits the video and hands you an .mp4.
 
-## Make a launch video for Product Hunt, Show HN or X
+![Demo videos made with OpenDemo for proschi, syntaxia and on-record](./examples/merged-showcase.gif)
 
-Pick a look from the **[template gallery](https://yasirwhite.github.io/OpenDemo/)** and copy its prompt, or ask directly:
+*Made with OpenDemo and merged into the READMEs of [proschi](https://github.com/gvart/proschi), [syntaxia](https://github.com/EbadShelby/syntaxia-dev) and [on-record](https://github.com/CarsonGodwin/on-record).*
 
-```text
-Use OpenDemo to make a 30-second launch video for ChefBot, my AI recipe app.
-```
+---
 
-Launch videos *(alpha)* put your recording inside 3D product shots, cut with animated text.
+## More
+
+**Launch videos** *(alpha)*: pick a look from the [template gallery](https://yasirwhite.github.io/OpenDemo/) and copy its prompt. Your recording goes inside 3D product shots, cut with animated text. Good for Product Hunt, Show HN and X.
 
 ![OpenDemo launch film](./examples/opendemo-launch.gif)
 
 *Written, animated and rendered by OpenDemo itself.*
 
-## Works with
+**README GIF:** add "and a GIF for my README" to the prompt.
 
-Claude Code, Codex, Cursor, or any coding agent that can run commands on your machine. OpenDemo records web apps (anything that runs in a browser, local or deployed). Recording and rendering happen on your machine, so nothing is uploaded and there is nothing to pay for.
+**Changes:** ask your agent, or open the built-in editor with `node OpenDemo/run-demo.mjs <DEMO.json>`.
 
-## Setup
+**What it records:** web apps, local or deployed. Everything runs on your machine.
 
-Run these once, before your first demo:
+**Setting it up yourself:** `npm install` then `npm run build`, once.
 
-```bash
-npm install
-npm run build
-```
-
-## Changing the video
-
-Ask your agent to make the change, or open OpenDemo's built-in editor. Your agent can give you the exact command; it looks like `node OpenDemo/run-demo.mjs <DEMO.json>`.
-
-## For AI agents
-
-Read [AGENT_README.md](./AGENT_README.md) for how to write the config and make a demo.
+**For AI agents:** read [AGENT_README.md](./AGENT_README.md).
 
 <!-- traffic:start -->
 ## Stats
