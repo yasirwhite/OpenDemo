@@ -21,6 +21,9 @@ import { JUNIPER_PRESETS } from "../../../../../templates/juniper/presets/index.
 // maple template presets live with the template (templates/maple/presets/) —
 // registered here so configs reach them by slug like any other preset.
 import { MAPLE_PRESETS } from "../../../../../templates/maple/presets/index.jsx";
+// alder template presets live with the template (templates/alder/presets/) —
+// registered here so configs reach them by slug like any other preset.
+import { ALDER_PRESETS } from "../../../../../templates/alder/presets/index.jsx";
 import { rgb } from "../easing.js";
 import {
 	ClipWord,
@@ -2595,6 +2598,8 @@ export const PRESETS = {
 	...JUNIPER_PRESETS,
 	// ── maple template presets (templates/maple/presets/) ───────────────────
 	...MAPLE_PRESETS,
+	// ── alder template presets (templates/alder/presets/) ───────────────────
+	...ALDER_PRESETS,
 };
 
 export const PRESET_NOTES = Object.fromEntries(

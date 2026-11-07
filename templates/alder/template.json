@@ -1,0 +1,3480 @@
+{
+	"_about": "alder: a 20s horizon-montage launch film, derived frame-by-frame from a 20.0s model-launch film (1920x1080 @25fps). Authored on the 1280x720 stage (stage px = reference px / 1.5) and rendered at device scale 1.5: render.mjs --fps 25 --scale 1.5. Placeholder product: Lumen 2, by Alder. Every shot is the curved edge of something laid across the middle of the frame as a horizon; hard cuts land on that edge, accelerating, while a three-beat serif line stands on it and steps larger at every cut. A planet-limb horizon opens the film and the end card pans up onto it, so the film loops.",
+	"_sections": "S1 planet-limb horizon, haze breathing outward 0-1.24 | S2 36 horizon plates (image slots with generated stand-in textures), cuts accelerating 1.04s -> 0.20s, 1.24-15.96 | S3 the line on the horizon, 'Look' over 5 plates 8.72-10.68, 'a little' over 5 10.68-12.48, 'closer' over 13 12.48-15.96, re-set larger at every cut and bent to the later plates | S4 name card 15.96-17.28, wordmark 17.28-20.00, the whole card pans up 545 px 18.20-20.00 and lands on the opening frame",
+	"_slots": "36 image slots, 'plate-01'..'plate-36' (s2-plate-NN: set 'src' to a photo; it is clipped to the body below the edge, top-aligned at the edge, so frame the photo with its subject's curved edge near the top). Each slot's 'label' says what the reference showed there. Without 'src' the plate's 'layers' generate a stand-in texture in the reference's colours.",
+	"video": {
+		"width": 1920,
+		"height": 1080,
+		"fps": 25,
+		"durationMs": 20000
+	},
+	"ground": [
+		{
+			"fromMs": 0,
+			"colour": [
+				0,
+				0,
+				0
+			]
+		}
+	],
+	"scenes": [
+		{
+			"id": "s1-horizon",
+			"preset": "alder-horizon",
+			"startMs": 0,
+			"durationMs": 1240,
+			"edgeY": 344,
+			"glow": [
+				[
+					0,
+					1
+				],
+				[
+					1240,
+					1.18
+				]
+			]
+		},
+		{
+			"id": "s2-plate-01",
+			"preset": "alder-plate",
+			"startMs": 1240,
+			"durationMs": 1040,
+			"slot": "plate-01",
+			"label": "macro: the rim of a glass dish of amber liquid against a starry dark",
+			"edge": {
+				"ay": 342,
+				"sag": 86,
+				"style": "rough",
+				"amp": 5,
+				"freq": 0.03,
+				"seed": 1
+			},
+			"sky": {
+				"colour": [
+					22,
+					24,
+					26
+				]
+			},
+			"body": {
+				"colour": [
+					150,
+					118,
+					58
+				],
+				"colour2": [
+					205,
+					160,
+					60
+				],
+				"depth": 300
+			},
+			"layers": [
+				{
+					"kind": "cells",
+					"region": "sky",
+					"count": 260,
+					"r": [
+						0.5,
+						1.6
+					],
+					"fill": [
+						[
+							230,
+							225,
+							210
+						]
+					],
+					"alpha": 0.55,
+					"alphaJitter": 0.8,
+					"seed": 2
+				},
+				{
+					"kind": "noise",
+					"freq": [
+						0.006,
+						0.012
+					],
+					"colours": [
+						[
+							120,
+							88,
+							36
+						],
+						[
+							185,
+							145,
+							58
+						],
+						[
+							222,
+							182,
+							86
+						]
+					],
+					"contrast": 1.5,
+					"opacity": 0.85,
+					"seed": 3
+				},
+				{
+					"kind": "rings",
+					"period": 70,
+					"colours": [
+						[
+							255,
+							230,
+							160
+						],
+						[
+							120,
+							90,
+							40
+						]
+					],
+					"fillRatio": 0.12,
+					"opacity": 0.35,
+					"offset": 60,
+					"seed": 4,
+					"blur": 2
+				},
+				{
+					"kind": "beads",
+					"region": "all",
+					"r": [
+						10,
+						18
+					],
+					"gap": [
+						6,
+						24
+					],
+					"offset": 22,
+					"fill": [
+						[
+							150,
+							140,
+							120
+						],
+						[
+							120,
+							110,
+							100
+						]
+					],
+					"stroke": [
+						235,
+						225,
+						205
+					],
+					"strokeWidth": 2.5,
+					"shine": [
+						255,
+						255,
+						255
+					],
+					"alpha": 0.75,
+					"seed": 5
+				}
+			],
+			"rims": [
+				{
+					"colour": [
+						225,
+						210,
+						180
+					],
+					"width": 8,
+					"offset": 8,
+					"blur": 4,
+					"alpha": 0.55
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-02",
+			"preset": "alder-plate",
+			"startMs": 2280,
+			"durationMs": 1040,
+			"slot": "plate-02",
+			"label": "macro: a smooth amber disc edge on black, a few dark specks",
+			"edge": {
+				"ay": 355,
+				"sag": 68
+			},
+			"sky": {
+				"colour": [
+					2,
+					8,
+					6
+				]
+			},
+			"body": {
+				"colour": [
+					196,
+					142,
+					50
+				],
+				"colour2": [
+					175,
+					110,
+					36
+				],
+				"depth": 420
+			},
+			"layers": [
+				{
+					"kind": "noise",
+					"freq": 0.004,
+					"colours": [
+						[
+							175,
+							115,
+							40
+						],
+						[
+							205,
+							150,
+							58
+						],
+						[
+							225,
+							175,
+							80
+						]
+					],
+					"contrast": 1.2,
+					"opacity": 0.6,
+					"seed": 6
+				},
+				{
+					"kind": "cells",
+					"count": 14,
+					"r": [
+						1,
+						4
+					],
+					"fill": [
+						[
+							60,
+							20,
+							10
+						]
+					],
+					"inset": 60,
+					"depth": 200,
+					"alpha": 0.9,
+					"seed": 7
+				}
+			],
+			"rims": [
+				{
+					"colour": [
+						120,
+						30,
+						20
+					],
+					"width": 8,
+					"offset": -2,
+					"blur": 4,
+					"alpha": 0.85
+				},
+				{
+					"colour": [
+						235,
+						185,
+						90
+					],
+					"width": 10,
+					"offset": 10,
+					"blur": 6,
+					"alpha": 0.5
+				}
+			],
+			"blur": 0.8,
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-03",
+			"preset": "alder-plate",
+			"startMs": 3320,
+			"durationMs": 440,
+			"slot": "plate-03",
+			"label": "macro: a bread crust dome against white",
+			"edge": {
+				"ay": 346,
+				"sag": 132,
+				"style": "rough",
+				"amp": 3,
+				"freq": 0.05,
+				"seed": 3
+			},
+			"sky": {
+				"colour": [
+					223,
+					225,
+					222
+				]
+			},
+			"body": {
+				"colour": [
+					117,
+					62,
+					31
+				]
+			},
+			"layers": [
+				{
+					"kind": "noise",
+					"freq": 0.07,
+					"colours": [
+						[
+							60,
+							30,
+							12
+						],
+						[
+							125,
+							68,
+							33
+						],
+						[
+							180,
+							115,
+							62
+						]
+					],
+					"contrast": 2,
+					"octaves": 3,
+					"seed": 8
+				},
+				{
+					"kind": "hatch",
+					"count": 500,
+					"colours": [
+						[
+							200,
+							150,
+							100
+						]
+					],
+					"length": 8,
+					"width": 1.4,
+					"angle": 20,
+					"spread": 40,
+					"alpha": 0.5,
+					"depth": 420,
+					"seed": 9
+				},
+				{
+					"kind": "lines",
+					"count": 2,
+					"colours": [
+						[
+							235,
+							225,
+							210
+						]
+					],
+					"width": 5,
+					"length": 520,
+					"angle": 40,
+					"spread": 30,
+					"box": [
+						600,
+						420,
+						1200,
+						640
+					],
+					"alpha": 0.9,
+					"seed": 10
+				}
+			],
+			"rims": [
+				{
+					"colour": [
+						205,
+						175,
+						135
+					],
+					"width": 2,
+					"alpha": 0.7
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-04",
+			"preset": "alder-plate",
+			"startMs": 3760,
+			"durationMs": 240,
+			"slot": "plate-04",
+			"label": "macro: a red-orange grainy surface under a teal sky",
+			"edge": {
+				"ay": 358,
+				"sag": 78
+			},
+			"sky": {
+				"colour": [
+					47,
+					165,
+					147
+				]
+			},
+			"body": {
+				"colour": [
+					226,
+					77,
+					31
+				]
+			},
+			"layers": [
+				{
+					"kind": "noise",
+					"freq": 0.06,
+					"colours": [
+						[
+							175,
+							40,
+							18
+						],
+						[
+							226,
+							77,
+							31
+						],
+						[
+							252,
+							145,
+							70
+						]
+					],
+					"contrast": 1.9,
+					"octaves": 3,
+					"seed": 11
+				}
+			],
+			"rims": [
+				{
+					"colour": [
+						40,
+						60,
+						30
+					],
+					"width": 3,
+					"alpha": 0.9
+				},
+				{
+					"colour": [
+						130,
+						210,
+						130
+					],
+					"width": 2,
+					"offset": -3,
+					"alpha": 0.6
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-05",
+			"preset": "alder-plate",
+			"startMs": 4000,
+			"durationMs": 240,
+			"slot": "plate-05",
+			"label": "macro: a glossy blue dome crazed with white cracks, on black",
+			"edge": {
+				"ay": 345,
+				"sag": 132
+			},
+			"sky": {
+				"colour": [
+					25,
+					19,
+					21
+				]
+			},
+			"body": {
+				"colour": [
+					100,
+					118,
+					136
+				],
+				"colour2": [
+					60,
+					80,
+					130
+				],
+				"depth": 360
+			},
+			"layers": [
+				{
+					"kind": "noise",
+					"turbulence": true,
+					"freq": 0.045,
+					"colours": [
+						[
+							235,
+							242,
+							250
+						],
+						[
+							62,
+							82,
+							128
+						],
+						[
+							48,
+							64,
+							108
+						],
+						[
+							48,
+							64,
+							108
+						],
+						[
+							60,
+							80,
+							126
+						],
+						[
+							80,
+							104,
+							146
+						],
+						[
+							110,
+							134,
+							170
+						]
+					],
+					"contrast": 1.1,
+					"octaves": 3,
+					"seed": 12
+				}
+			],
+			"rims": [
+				{
+					"colour": [
+						205,
+						222,
+						240
+					],
+					"width": 14,
+					"blur": 9,
+					"offset": 4,
+					"alpha": 0.8
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-06",
+			"preset": "alder-plate",
+			"startMs": 4240,
+			"durationMs": 520,
+			"slot": "plate-06",
+			"label": "flat: chalk construction lines on a blue board, one big arc",
+			"edge": {
+				"ay": 345,
+				"sag": 95
+			},
+			"sky": {
+				"colour": [
+					57,
+					102,
+					140
+				]
+			},
+			"body": {
+				"colour": [
+					57,
+					102,
+					140
+				]
+			},
+			"layers": [
+				{
+					"kind": "noise",
+					"region": "all",
+					"freq": 0.5,
+					"colours": [
+						[
+							50,
+							94,
+							132
+						],
+						[
+							66,
+							112,
+							150
+						]
+					],
+					"contrast": 1,
+					"octaves": 1,
+					"opacity": 0.6,
+					"seed": 13
+				},
+				{
+					"kind": "lines",
+					"region": "all",
+					"count": 16,
+					"colours": [
+						[
+							235,
+							240,
+							240
+						]
+					],
+					"width": 3,
+					"length": 520,
+					"spread": 160,
+					"alpha": 0.9,
+					"seed": 14
+				},
+				{
+					"kind": "spokes",
+					"count": 9,
+					"colours": [
+						[
+							235,
+							240,
+							240
+						]
+					],
+					"width": 2.4,
+					"depth": 420,
+					"alpha": 0.9,
+					"seed": 15
+				}
+			],
+			"rims": [
+				{
+					"colour": [
+						235,
+						240,
+						240
+					],
+					"width": 4
+				},
+				{
+					"colour": [
+						235,
+						240,
+						240
+					],
+					"width": 2.5,
+					"offset": 26,
+					"alpha": 0.8
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-07",
+			"preset": "alder-plate",
+			"startMs": 4760,
+			"durationMs": 600,
+			"slot": "plate-07",
+			"label": "macro: white marbled mineral dome on black",
+			"edge": {
+				"ay": 357,
+				"sag": 120,
+				"style": "rough",
+				"amp": 4,
+				"freq": 0.04,
+				"seed": 7
+			},
+			"sky": {
+				"colour": [
+					15,
+					17,
+					16
+				]
+			},
+			"body": {
+				"colour": [
+					168,
+					174,
+					176
+				]
+			},
+			"layers": [
+				{
+					"kind": "noise",
+					"freq": 0.011,
+					"colours": [
+						[
+							25,
+							25,
+							25
+						],
+						[
+							110,
+							112,
+							114
+						],
+						[
+							228,
+							230,
+							230
+						],
+						[
+							250,
+							250,
+							250
+						]
+					],
+					"contrast": 2.4,
+					"seed": 16
+				}
+			],
+			"rims": [
+				{
+					"colour": [
+						240,
+						240,
+						240
+					],
+					"width": 3,
+					"alpha": 0.8
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-08",
+			"preset": "alder-plate",
+			"startMs": 5360,
+			"durationMs": 520,
+			"slot": "plate-08",
+			"label": "macro: the edge of a green leaf against cream",
+			"edge": {
+				"ay": 360,
+				"sag": 72
+			},
+			"sky": {
+				"colour": [
+					235,
+					221,
+					198
+				]
+			},
+			"body": {
+				"colour": [
+					110,
+					134,
+					33
+				],
+				"colour2": [
+					86,
+					112,
+					24
+				],
+				"depth": 300
+			},
+			"layers": [
+				{
+					"kind": "noise",
+					"freq": 0.04,
+					"colours": [
+						[
+							72,
+							98,
+							20
+						],
+						[
+							110,
+							134,
+							33
+						],
+						[
+							150,
+							170,
+							60
+						]
+					],
+					"contrast": 1.5,
+					"opacity": 0.75,
+					"seed": 17
+				},
+				{
+					"kind": "spokes",
+					"count": 16,
+					"colours": [
+						[
+							160,
+							176,
+							76
+						]
+					],
+					"width": 2,
+					"alpha": 0.6,
+					"depth": 700,
+					"seed": 18
+				},
+				{
+					"kind": "cells",
+					"count": 3,
+					"r": [
+						16,
+						30
+					],
+					"fill": [
+						[
+							206,
+							194,
+							70
+						]
+					],
+					"inset": 90,
+					"depth": 260,
+					"alpha": 0.7,
+					"seed": 19
+				}
+			],
+			"rims": [
+				{
+					"colour": [
+						62,
+						82,
+						22
+					],
+					"width": 3
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-09",
+			"preset": "alder-plate",
+			"startMs": 5880,
+			"durationMs": 560,
+			"slot": "plate-09",
+			"label": "macro: a dark ribbed, castellated rim against a teal sky",
+			"edge": {
+				"ay": 362,
+				"sag": 50,
+				"style": "rough",
+				"amp": 36,
+				"freq": 0.035,
+				"seed": 9
+			},
+			"sky": {
+				"colour": [
+					62,
+					162,
+					180
+				]
+			},
+			"body": {
+				"colour": [
+					35,
+					21,
+					22
+				]
+			},
+			"layers": [
+				{
+					"kind": "noise",
+					"freq": [
+						0.08,
+						0.02
+					],
+					"colours": [
+						[
+							10,
+							5,
+							7
+						],
+						[
+							36,
+							18,
+							22
+						],
+						[
+							95,
+							65,
+							75
+						]
+					],
+					"contrast": 2.1,
+					"seed": 20
+				},
+				{
+					"kind": "spokes",
+					"count": 22,
+					"colours": [
+						[
+							15,
+							8,
+							10
+						]
+					],
+					"width": 9,
+					"alpha": 0.7,
+					"depth": 600,
+					"seed": 21
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-10",
+			"preset": "alder-plate",
+			"startMs": 6440,
+			"durationMs": 600,
+			"slot": "plate-10",
+			"label": "macro: red droplets standing on a pink membrane, on black",
+			"edge": {
+				"ay": 400,
+				"sag": 140
+			},
+			"sky": {
+				"colour": [
+					8,
+					11,
+					5
+				]
+			},
+			"body": {
+				"colour": [
+					165,
+					40,
+					80
+				],
+				"colour2": [
+					135,
+					22,
+					52
+				],
+				"depth": 300
+			},
+			"layers": [
+				{
+					"kind": "noise",
+					"freq": 0.018,
+					"colours": [
+						[
+							112,
+							16,
+							44
+						],
+						[
+							150,
+							30,
+							64
+						],
+						[
+							200,
+							90,
+							135
+						]
+					],
+					"contrast": 1.6,
+					"opacity": 0.8,
+					"seed": 22
+				},
+				{
+					"kind": "beads",
+					"region": "all",
+					"r": [
+						16,
+						48
+					],
+					"gap": [
+						30,
+						150
+					],
+					"offset": 0,
+					"sit": 0.72,
+					"fill": [
+						[
+							150,
+							30,
+							22
+						],
+						[
+							195,
+							55,
+							40
+						],
+						[
+							120,
+							25,
+							20
+						]
+					],
+					"shine": [
+						255,
+						180,
+						160
+					],
+					"seed": 23
+				}
+			],
+			"rims": [
+				{
+					"colour": [
+						245,
+						205,
+						225
+					],
+					"width": 6,
+					"offset": 2,
+					"blur": 2,
+					"alpha": 0.8
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-11",
+			"preset": "alder-plate",
+			"startMs": 7040,
+			"durationMs": 520,
+			"slot": "plate-11",
+			"label": "macro: a terracotta rim painted with a key-pattern band, on black",
+			"edge": {
+				"ay": 357,
+				"sag": 160,
+				"style": "rough",
+				"amp": 9,
+				"freq": 0.05,
+				"seed": 11
+			},
+			"sky": {
+				"colour": [
+					21,
+					23,
+					20
+				]
+			},
+			"body": {
+				"colour": [
+					168,
+					122,
+					106
+				],
+				"colour2": [
+					135,
+					100,
+					88
+				],
+				"depth": 300
+			},
+			"layers": [
+				{
+					"kind": "noise",
+					"freq": 0.05,
+					"colours": [
+						[
+							125,
+							88,
+							76
+						],
+						[
+							168,
+							124,
+							108
+						],
+						[
+							205,
+							165,
+							150
+						]
+					],
+					"contrast": 1.6,
+					"opacity": 0.7,
+					"seed": 24
+				},
+				{
+					"kind": "band",
+					"motif": "key",
+					"offset": 78,
+					"height": 44,
+					"period": 64,
+					"width": 6,
+					"colours": [
+						[
+							40,
+							62,
+							56
+						]
+					]
+				}
+			],
+			"rims": [
+				{
+					"colour": [
+						70,
+						55,
+						50
+					],
+					"width": 9,
+					"offset": 24,
+					"alpha": 0.6
+				},
+				{
+					"colour": [
+						70,
+						55,
+						50
+					],
+					"width": 7,
+					"offset": 128,
+					"alpha": 0.6
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-12",
+			"preset": "alder-plate",
+			"startMs": 7560,
+			"durationMs": 560,
+			"slot": "plate-12",
+			"label": "macro: tooled leather with a row of stitch holes, thread loops, under beige",
+			"edge": {
+				"ay": 362,
+				"sag": 95
+			},
+			"sky": {
+				"colour": [
+					202,
+					183,
+					148
+				]
+			},
+			"body": {
+				"colour": [
+					185,
+					112,
+					46
+				],
+				"colour2": [
+					205,
+					135,
+					62
+				],
+				"depth": 300
+			},
+			"layers": [
+				{
+					"kind": "noise",
+					"freq": 0.09,
+					"colours": [
+						[
+							150,
+							85,
+							35
+						],
+						[
+							190,
+							120,
+							55
+						],
+						[
+							218,
+							152,
+							82
+						]
+					],
+					"contrast": 1.4,
+					"seed": 25
+				},
+				{
+					"kind": "beads",
+					"region": "all",
+					"r": [
+						2.5,
+						4.5
+					],
+					"gap": [
+						10,
+						22
+					],
+					"offset": 46,
+					"fill": [
+						[
+							40,
+							25,
+							15
+						]
+					],
+					"seed": 26
+				},
+				{
+					"kind": "lines",
+					"region": "all",
+					"count": 3,
+					"colours": [
+						[
+							190,
+							40,
+							40
+						],
+						[
+							40,
+							60,
+							40
+						]
+					],
+					"width": 2.5,
+					"length": 70,
+					"angle": -70,
+					"spread": 60,
+					"box": [
+						560,
+						300,
+						760,
+						380
+					],
+					"seed": 27
+				}
+			],
+			"rims": [
+				{
+					"colour": [
+						150,
+						95,
+						45
+					],
+					"width": 3
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-13",
+			"preset": "alder-plate",
+			"startMs": 8120,
+			"durationMs": 600,
+			"slot": "plate-13",
+			"label": "flat: an illuminated page: a green ring band, a painted frieze sliding across it",
+			"edge": {
+				"ay": 375,
+				"sag": 120
+			},
+			"sky": {
+				"colour": [
+					226,
+					207,
+					160
+				]
+			},
+			"body": {
+				"colour": [
+					226,
+					207,
+					160
+				]
+			},
+			"layers": [
+				{
+					"kind": "noise",
+					"region": "all",
+					"freq": 0.02,
+					"colours": [
+						[
+							212,
+							190,
+							140
+						],
+						[
+							236,
+							220,
+							175
+						]
+					],
+					"contrast": 1.2,
+					"opacity": 0.8,
+					"seed": 28
+				},
+				{
+					"kind": "blobs",
+					"region": "sky",
+					"count": 9,
+					"size": 220,
+					"box": [
+						-300,
+						120,
+						1500,
+						360
+					],
+					"colours": [
+						[
+							168,
+							98,
+							52
+						],
+						[
+							140,
+							76,
+							42
+						],
+						[
+							60,
+							40,
+							30
+						]
+					],
+					"driftPxPerS": 60,
+					"seed": 29
+				}
+			],
+			"rims": [
+				{
+					"colour": [
+						150,
+						172,
+						80
+					],
+					"width": 34,
+					"offset": 16,
+					"alpha": 0.95
+				},
+				{
+					"colour": [
+						105,
+						128,
+						58
+					],
+					"width": 3,
+					"offset": 34
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-14",
+			"preset": "alder-plate",
+			"startMs": 8720,
+			"durationMs": 320,
+			"slot": "plate-14",
+			"label": "macro: a spinning wooden disc, motion-blurred, violet rim light",
+			"edge": {
+				"ay": 368,
+				"sag": 60
+			},
+			"sky": {
+				"colour": [
+					28,
+					28,
+					27
+				]
+			},
+			"body": {
+				"colour": [
+					161,
+					102,
+					60
+				]
+			},
+			"layers": [
+				{
+					"kind": "noise",
+					"freq": [
+						0.0025,
+						0.06
+					],
+					"colours": [
+						[
+							88,
+							54,
+							34
+						],
+						[
+							161,
+							102,
+							60
+						],
+						[
+							222,
+							182,
+							142
+						]
+					],
+					"contrast": 1.7,
+					"seed": 30
+				}
+			],
+			"rims": [
+				{
+					"colour": [
+						150,
+						110,
+						225
+					],
+					"width": 7,
+					"offset": -3,
+					"blur": 4,
+					"alpha": 0.9
+				}
+			],
+			"blur": 1.5,
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-15",
+			"preset": "alder-plate",
+			"startMs": 9040,
+			"durationMs": 400,
+			"slot": "plate-15",
+			"label": "macro: a tomato skin edge on black",
+			"edge": {
+				"ay": 360,
+				"sag": 102,
+				"style": "rough",
+				"amp": 4,
+				"freq": 0.01,
+				"seed": 15
+			},
+			"sky": {
+				"colour": [
+					3,
+					7,
+					6
+				]
+			},
+			"body": {
+				"colour": [
+					194,
+					71,
+					43
+				]
+			},
+			"layers": [
+				{
+					"kind": "cells",
+					"region": "sky",
+					"count": 50,
+					"r": [
+						0.5,
+						1.5
+					],
+					"fill": [
+						[
+							200,
+							210,
+							210
+						]
+					],
+					"alpha": 0.5,
+					"seed": 31
+				},
+				{
+					"kind": "noise",
+					"freq": 0.06,
+					"colours": [
+						[
+							150,
+							40,
+							25
+						],
+						[
+							200,
+							72,
+							46
+						],
+						[
+							242,
+							135,
+							102
+						]
+					],
+					"contrast": 2,
+					"octaves": 3,
+					"seed": 32
+				}
+			],
+			"rims": [
+				{
+					"colour": [
+						242,
+						152,
+						122
+					],
+					"width": 3,
+					"offset": 2,
+					"alpha": 0.6
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-16",
+			"preset": "alder-plate",
+			"startMs": 9440,
+			"durationMs": 320,
+			"slot": "plate-16",
+			"label": "macro: a false-colour (thermal) mineral, red/yellow over green",
+			"edge": {
+				"ay": 362,
+				"sag": 72,
+				"style": "rough",
+				"amp": 6,
+				"freq": 0.04,
+				"seed": 16
+			},
+			"sky": {
+				"colour": [
+					110,
+					73,
+					58
+				]
+			},
+			"body": {
+				"colour": [
+					60,
+					218,
+					136
+				]
+			},
+			"layers": [
+				{
+					"kind": "noise",
+					"region": "sky",
+					"freq": [
+						0.012,
+						0.03
+					],
+					"colours": [
+						[
+							60,
+							30,
+							45
+						],
+						[
+							140,
+							45,
+							40
+						],
+						[
+							120,
+							80,
+							55
+						],
+						[
+							180,
+							160,
+							60
+						],
+						[
+							70,
+							150,
+							90
+						]
+					],
+					"contrast": 2,
+					"seed": 33
+				},
+				{
+					"kind": "noise",
+					"freq": 0.05,
+					"colours": [
+						[
+							40,
+							170,
+							110
+						],
+						[
+							80,
+							232,
+							150
+						],
+						[
+							165,
+							242,
+							120
+						]
+					],
+					"contrast": 1.6,
+					"seed": 34
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-17",
+			"preset": "alder-plate",
+			"startMs": 9760,
+			"durationMs": 440,
+			"slot": "plate-17",
+			"label": "flat: a woodcut engraving, white on black",
+			"edge": {
+				"ay": 359,
+				"sag": 97,
+				"style": "rough",
+				"amp": 5,
+				"freq": 0.08,
+				"seed": 17
+			},
+			"sky": {
+				"colour": [
+					3,
+					5,
+					2
+				]
+			},
+			"body": {
+				"colour": [
+					230,
+					225,
+					214
+				]
+			},
+			"layers": [
+				{
+					"kind": "hatch",
+					"count": 2600,
+					"colours": [
+						[
+							20,
+							18,
+							16
+						]
+					],
+					"length": 22,
+					"width": 2.2,
+					"angle": 90,
+					"spread": 24,
+					"depth": 400,
+					"seed": 35
+				},
+				{
+					"kind": "hatch",
+					"count": 300,
+					"colours": [
+						[
+							20,
+							18,
+							16
+						]
+					],
+					"length": 40,
+					"width": 1.5,
+					"angle": 0,
+					"spread": 10,
+					"depth": 400,
+					"seed": 36
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-18",
+			"preset": "alder-plate",
+			"startMs": 10200,
+			"durationMs": 480,
+			"slot": "plate-18",
+			"label": "macro: a dark disc with a thin rainbow (iridescent) rim",
+			"edge": {
+				"ay": 351,
+				"sag": 92
+			},
+			"sky": {
+				"colour": [
+					18,
+					21,
+					14
+				]
+			},
+			"body": {
+				"colour": [
+					68,
+					75,
+					91
+				]
+			},
+			"layers": [
+				{
+					"kind": "noise",
+					"freq": 0.02,
+					"colours": [
+						[
+							48,
+							54,
+							68
+						],
+						[
+							72,
+							80,
+							96
+						],
+						[
+							100,
+							108,
+							122
+						]
+					],
+					"contrast": 1.4,
+					"seed": 37
+				}
+			],
+			"rims": [
+				{
+					"colour": [
+						225,
+						70,
+						55
+					],
+					"width": 6,
+					"offset": -14,
+					"blur": 2
+				},
+				{
+					"colour": [
+						235,
+						190,
+						80
+					],
+					"width": 6,
+					"offset": -9,
+					"blur": 2
+				},
+				{
+					"colour": [
+						120,
+						205,
+						125
+					],
+					"width": 5,
+					"offset": -4,
+					"blur": 2
+				},
+				{
+					"colour": [
+						100,
+						140,
+						235
+					],
+					"width": 6,
+					"offset": 1,
+					"blur": 2
+				},
+				{
+					"colour": [
+						155,
+						90,
+						205
+					],
+					"width": 8,
+					"offset": 7,
+					"blur": 3
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-19",
+			"preset": "alder-plate",
+			"startMs": 10680,
+			"durationMs": 320,
+			"slot": "plate-19",
+			"label": "macro: an out-of-focus warm glow over a dark red curve",
+			"edge": {
+				"ay": 345,
+				"sag": 127
+			},
+			"sky": {
+				"colour": [
+					205,
+					112,
+					48
+				],
+				"colour2": [
+					150,
+					42,
+					22
+				],
+				"angle": 180,
+				"stops": [
+					0.15,
+					0.55
+				]
+			},
+			"body": {
+				"colour": [
+					40,
+					14,
+					15
+				]
+			},
+			"rims": [
+				{
+					"colour": [
+						200,
+						40,
+						30
+					],
+					"width": 34,
+					"blur": 16,
+					"offset": 6,
+					"alpha": 0.85
+				}
+			],
+			"blur": 3,
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-20",
+			"preset": "alder-plate",
+			"startMs": 11000,
+			"durationMs": 400,
+			"slot": "plate-20",
+			"label": "macro: a deep red glow behind a dark rough rim",
+			"edge": {
+				"ay": 360,
+				"sag": 126,
+				"style": "rough",
+				"amp": 12,
+				"freq": 0.03,
+				"seed": 20
+			},
+			"sky": {
+				"colour": [
+					140,
+					40,
+					14
+				],
+				"colour2": [
+					62,
+					9,
+					4
+				],
+				"angle": 160,
+				"stops": [
+					0.05,
+					0.6
+				]
+			},
+			"body": {
+				"colour": [
+					19,
+					0,
+					3
+				]
+			},
+			"blur": 1.5,
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-21",
+			"preset": "alder-plate",
+			"startMs": 11400,
+			"durationMs": 320,
+			"slot": "plate-21",
+			"label": "macro: denim over a red floral print, frayed edge",
+			"edge": {
+				"ay": 347,
+				"sag": 47,
+				"style": "fur",
+				"amp": 7,
+				"seed": 21
+			},
+			"sky": {
+				"colour": [
+					52,
+					70,
+					90
+				]
+			},
+			"body": {
+				"colour": [
+					154,
+					71,
+					62
+				]
+			},
+			"layers": [
+				{
+					"kind": "noise",
+					"region": "sky",
+					"freq": [
+						0.35,
+						0.06
+					],
+					"colours": [
+						[
+							30,
+							44,
+							66
+						],
+						[
+							58,
+							78,
+							102
+						],
+						[
+							95,
+							115,
+							138
+						]
+					],
+					"contrast": 1.6,
+					"octaves": 2,
+					"seed": 38
+				},
+				{
+					"kind": "noise",
+					"freq": 0.02,
+					"colours": [
+						[
+							120,
+							42,
+							38
+						],
+						[
+							165,
+							80,
+							66
+						],
+						[
+							200,
+							110,
+							90
+						]
+					],
+					"contrast": 1.8,
+					"seed": 39
+				},
+				{
+					"kind": "blobs",
+					"count": 16,
+					"size": 130,
+					"colours": [
+						[
+							190,
+							100,
+							80
+						],
+						[
+							125,
+							45,
+							40
+						],
+						[
+							170,
+							60,
+							55
+						]
+					],
+					"seed": 40
+				}
+			],
+			"rims": [
+				{
+					"colour": [
+						205,
+						195,
+						185
+					],
+					"width": 3,
+					"alpha": 0.8
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-22",
+			"preset": "alder-plate",
+			"startMs": 11720,
+			"durationMs": 320,
+			"slot": "plate-22",
+			"label": "macro: a false-colour (thermal) ribbed dish, yellow and magenta",
+			"edge": {
+				"ay": 351,
+				"sag": 154
+			},
+			"sky": {
+				"colour": [
+					207,
+					198,
+					76
+				]
+			},
+			"body": {
+				"colour": [
+					175,
+					59,
+					103
+				]
+			},
+			"layers": [
+				{
+					"kind": "stripes",
+					"region": "sky",
+					"width": 34,
+					"colours": [
+						[
+							222,
+							212,
+							82
+						],
+						[
+							232,
+							125,
+							150
+						],
+						[
+							205,
+							62,
+							140
+						],
+						[
+							240,
+							232,
+							104
+						],
+						[
+							120,
+							200,
+							122
+						]
+					],
+					"blur": 9,
+					"seed": 41
+				},
+				{
+					"kind": "rings",
+					"period": 44,
+					"colours": [
+						[
+							175,
+							59,
+							103
+						],
+						[
+							200,
+							90,
+							130
+						],
+						[
+							150,
+							40,
+							110
+						],
+						[
+							220,
+							170,
+							90
+						]
+					],
+					"fillRatio": 1,
+					"blur": 7,
+					"seed": 42
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-23",
+			"preset": "alder-plate",
+			"startMs": 12040,
+			"durationMs": 440,
+			"slot": "plate-23",
+			"label": "macro: white lace edge on black",
+			"edge": {
+				"ay": 354,
+				"sag": 73,
+				"style": "scallop",
+				"amp": 18,
+				"period": 70,
+				"seed": 23
+			},
+			"sky": {
+				"colour": [
+					2,
+					4,
+					2
+				]
+			},
+			"body": {
+				"colour": [
+					70,
+					70,
+					68
+				]
+			},
+			"layers": [
+				{
+					"kind": "cells",
+					"count": 520,
+					"r": [
+						4,
+						20
+					],
+					"stroke": [
+						236,
+						236,
+						230
+					],
+					"strokeWidth": 2.6,
+					"alpha": 0.9,
+					"depth": 420,
+					"seed": 43
+				},
+				{
+					"kind": "cells",
+					"count": 260,
+					"r": [
+						6,
+						22
+					],
+					"fill": [
+						[
+							225,
+							225,
+							220
+						]
+					],
+					"alpha": 0.55,
+					"depth": 420,
+					"seed": 66
+				},
+				{
+					"kind": "hatch",
+					"count": 900,
+					"colours": [
+						[
+							230,
+							230,
+							224
+						]
+					],
+					"length": 10,
+					"width": 1.2,
+					"spread": 180,
+					"depth": 420,
+					"alpha": 0.7,
+					"seed": 44
+				}
+			],
+			"rims": [
+				{
+					"colour": [
+						236,
+						236,
+						230
+					],
+					"width": 4
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-24",
+			"preset": "alder-plate",
+			"startMs": 12480,
+			"durationMs": 280,
+			"slot": "plate-24",
+			"label": "macro: an agate slice, cream bands with a dark rind, under magenta",
+			"edge": {
+				"ay": 378,
+				"sag": 120,
+				"style": "rough",
+				"amp": 6,
+				"freq": 0.03,
+				"seed": 24
+			},
+			"sky": {
+				"colour": [
+					146,
+					57,
+					126
+				]
+			},
+			"body": {
+				"colour": [
+					221,
+					202,
+					196
+				]
+			},
+			"layers": [
+				{
+					"kind": "rings",
+					"period": 30,
+					"offset": 16,
+					"colours": [
+						[
+							238,
+							228,
+							218
+						],
+						[
+							212,
+							152,
+							192
+						],
+						[
+							244,
+							238,
+							232
+						],
+						[
+							182,
+							122,
+							162
+						]
+					],
+					"fillRatio": 1,
+					"blur": 2,
+					"seed": 45
+				}
+			],
+			"rims": [
+				{
+					"colour": [
+						40,
+						40,
+						30
+					],
+					"width": 12,
+					"offset": 5,
+					"alpha": 0.9
+				},
+				{
+					"colour": [
+						232,
+						232,
+						140
+					],
+					"width": 3,
+					"offset": 13,
+					"alpha": 0.9
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-25",
+			"preset": "alder-plate",
+			"startMs": 12760,
+			"durationMs": 240,
+			"slot": "plate-25",
+			"label": "flat: blue crayon arcs on pale-blue paper",
+			"edge": {
+				"ay": 425,
+				"sag": 100,
+				"style": "rough",
+				"amp": 4,
+				"freq": 0.05,
+				"seed": 25
+			},
+			"sky": {
+				"colour": [
+					160,
+					194,
+					242
+				]
+			},
+			"body": {
+				"colour": [
+					160,
+					194,
+					242
+				]
+			},
+			"layers": [
+				{
+					"kind": "noise",
+					"region": "all",
+					"freq": 0.6,
+					"colours": [
+						[
+							150,
+							186,
+							236
+						],
+						[
+							172,
+							204,
+							248
+						]
+					],
+					"contrast": 1,
+					"octaves": 1,
+					"opacity": 0.7,
+					"seed": 46
+				}
+			],
+			"rims": [
+				{
+					"colour": [
+						42,
+						92,
+						222
+					],
+					"width": 22,
+					"blur": 2,
+					"alpha": 0.85
+				},
+				{
+					"colour": [
+						42,
+						92,
+						222
+					],
+					"width": 18,
+					"offset": 150,
+					"blur": 2,
+					"alpha": 0.8
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-26",
+			"preset": "alder-plate",
+			"startMs": 13000,
+			"durationMs": 320,
+			"slot": "plate-26",
+			"label": "macro: a golden fuzzy dome (pollen, moss) on black",
+			"edge": {
+				"ay": 340,
+				"sag": 212,
+				"style": "fur",
+				"amp": 14,
+				"seed": 26
+			},
+			"sky": {
+				"colour": [
+					0,
+					1,
+					0
+				]
+			},
+			"body": {
+				"colour": [
+					153,
+					96,
+					19
+				]
+			},
+			"layers": [
+				{
+					"kind": "cells",
+					"region": "sky",
+					"count": 120,
+					"r": [
+						0.6,
+						1.8
+					],
+					"fill": [
+						[
+							200,
+							150,
+							60
+						]
+					],
+					"alpha": 0.7,
+					"seed": 47
+				},
+				{
+					"kind": "noise",
+					"freq": 0.08,
+					"colours": [
+						[
+							90,
+							50,
+							10
+						],
+						[
+							160,
+							100,
+							20
+						],
+						[
+							222,
+							172,
+							72
+						]
+					],
+					"contrast": 2,
+					"octaves": 3,
+					"seed": 48
+				}
+			],
+			"rims": [
+				{
+					"colour": [
+						205,
+						155,
+						62
+					],
+					"width": 12,
+					"blur": 7,
+					"alpha": 0.55
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-27",
+			"preset": "alder-plate",
+			"startMs": 13320,
+			"durationMs": 320,
+			"slot": "plate-27",
+			"label": "macro: crumpled white ridges on black",
+			"edge": {
+				"ay": 365,
+				"sag": 116,
+				"style": "rough",
+				"amp": 22,
+				"freq": 0.012,
+				"seed": 27
+			},
+			"sky": {
+				"colour": [
+					1,
+					3,
+					0
+				]
+			},
+			"body": {
+				"colour": [
+					141,
+					138,
+					127
+				]
+			},
+			"layers": [
+				{
+					"kind": "noise",
+					"freq": [
+						0.012,
+						0.004
+					],
+					"colours": [
+						[
+							55,
+							55,
+							50
+						],
+						[
+							160,
+							158,
+							150
+						],
+						[
+							236,
+							233,
+							226
+						]
+					],
+					"contrast": 2.2,
+					"seed": 49
+				},
+				{
+					"kind": "spokes",
+					"count": 9,
+					"colours": [
+						[
+							40,
+							40,
+							38
+						]
+					],
+					"width": 18,
+					"alpha": 0.55,
+					"depth": 500,
+					"blur": 8,
+					"seed": 50
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-28",
+			"preset": "alder-plate",
+			"startMs": 13640,
+			"durationMs": 280,
+			"slot": "plate-28",
+			"label": "macro: a white plaster dish under a brown, shadowed ground",
+			"edge": {
+				"ay": 400,
+				"sag": 98
+			},
+			"sky": {
+				"colour": [
+					124,
+					99,
+					60
+				]
+			},
+			"body": {
+				"colour": [
+					214,
+					209,
+					190
+				]
+			},
+			"layers": [
+				{
+					"kind": "noise",
+					"region": "sky",
+					"freq": 0.012,
+					"colours": [
+						[
+							90,
+							70,
+							42
+						],
+						[
+							130,
+							104,
+							64
+						],
+						[
+							175,
+							150,
+							110
+						]
+					],
+					"contrast": 1.6,
+					"seed": 51
+				},
+				{
+					"kind": "noise",
+					"freq": 0.03,
+					"colours": [
+						[
+							175,
+							170,
+							152
+						],
+						[
+							214,
+							209,
+							190
+						],
+						[
+							236,
+							232,
+							220
+						]
+					],
+					"contrast": 1.4,
+					"seed": 52
+				}
+			],
+			"rims": [
+				{
+					"colour": [
+						60,
+						50,
+						40
+					],
+					"width": 6,
+					"offset": -2,
+					"blur": 3,
+					"alpha": 0.5
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-29",
+			"preset": "alder-plate",
+			"startMs": 13920,
+			"durationMs": 320,
+			"slot": "plate-29",
+			"label": "macro: wood grain end-on under a yellow sky",
+			"edge": {
+				"ay": 365,
+				"sag": 30
+			},
+			"sky": {
+				"colour": [
+					226,
+					200,
+					86
+				]
+			},
+			"body": {
+				"colour": [
+					200,
+					190,
+					170
+				]
+			},
+			"layers": [
+				{
+					"kind": "lines",
+					"region": "sky",
+					"count": 5,
+					"colours": [
+						[
+							60,
+							50,
+							30
+						]
+					],
+					"width": 1.4,
+					"length": 400,
+					"angle": 80,
+					"spread": 40,
+					"alpha": 0.7,
+					"seed": 53
+				},
+				{
+					"kind": "noise",
+					"freq": [
+						0.003,
+						0.06
+					],
+					"colours": [
+						[
+							22,
+							18,
+							14
+						],
+						[
+							165,
+							155,
+							136
+						]
+					],
+					"contrast": 3,
+					"seed": 54
+				}
+			],
+			"rims": [
+				{
+					"colour": [
+						40,
+						32,
+						25
+					],
+					"width": 3
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-30",
+			"preset": "alder-plate",
+			"startMs": 14240,
+			"durationMs": 240,
+			"slot": "plate-30",
+			"label": "flat: a paper-collage horizon, cut-out shapes on blue, under pale green",
+			"edge": {
+				"ay": 375,
+				"sag": 56,
+				"style": "rough",
+				"amp": 7,
+				"freq": 0.02,
+				"seed": 30
+			},
+			"sky": {
+				"colour": [
+					239,
+					244,
+					222
+				]
+			},
+			"body": {
+				"colour": [
+					50,
+					82,
+					112
+				]
+			},
+			"layers": [
+				{
+					"kind": "blobs",
+					"count": 16,
+					"size": 180,
+					"colours": [
+						[
+							242,
+							222,
+							100
+						],
+						[
+							200,
+							30,
+							40
+						],
+						[
+							60,
+							150,
+							90
+						],
+						[
+							70,
+							30,
+							20
+						],
+						[
+							180,
+							140,
+							220
+						],
+						[
+							232,
+							100,
+							40
+						]
+					],
+					"seed": 55
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-31",
+			"preset": "alder-plate",
+			"startMs": 14480,
+			"durationMs": 280,
+			"slot": "plate-31",
+			"label": "micrograph: plant-stem cells, teal vessels, under cream",
+			"edge": {
+				"ay": 365,
+				"sag": 119
+			},
+			"sky": {
+				"colour": [
+					232,
+					222,
+					210
+				]
+			},
+			"body": {
+				"colour": [
+					168,
+					189,
+					167
+				]
+			},
+			"layers": [
+				{
+					"kind": "cells",
+					"count": 1500,
+					"r": [
+						5,
+						12
+					],
+					"fill": [
+						[
+							222,
+							236,
+							216
+						],
+						[
+							242,
+							246,
+							236
+						]
+					],
+					"stroke": [
+						96,
+						128,
+						108
+					],
+					"strokeWidth": 1.6,
+					"depth": 420,
+					"seed": 56
+				},
+				{
+					"kind": "cells",
+					"count": 9,
+					"r": [
+						16,
+						34
+					],
+					"fill": [
+						[
+							40,
+							140,
+							130
+						]
+					],
+					"stroke": [
+						20,
+						60,
+						60
+					],
+					"strokeWidth": 4,
+					"inset": 30,
+					"depth": 300,
+					"seed": 57
+				}
+			],
+			"rims": [
+				{
+					"colour": [
+						40,
+						50,
+						110
+					],
+					"width": 5
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-32",
+			"preset": "alder-plate",
+			"startMs": 14760,
+			"durationMs": 280,
+			"slot": "plate-32",
+			"label": "macro: a dark disc rim in a field of red sparkle",
+			"edge": {
+				"ay": 358,
+				"sag": 92
+			},
+			"sky": {
+				"colour": [
+					39,
+					20,
+					14
+				]
+			},
+			"body": {
+				"colour": [
+					12,
+					13,
+					8
+				]
+			},
+			"layers": [
+				{
+					"kind": "cells",
+					"region": "sky",
+					"count": 2600,
+					"r": [
+						0.8,
+						2.4
+					],
+					"fill": [
+						[
+							200,
+							70,
+							40
+						],
+						[
+							240,
+							150,
+							90
+						]
+					],
+					"alpha": 0.95,
+					"alphaJitter": 0.6,
+					"seed": 58
+				},
+				{
+					"kind": "cells",
+					"count": 300,
+					"r": [
+						0.5,
+						1.4
+					],
+					"fill": [
+						[
+							160,
+							50,
+							30
+						]
+					],
+					"alpha": 0.6,
+					"seed": 59
+				}
+			],
+			"rims": [
+				{
+					"colour": [
+						125,
+						32,
+						22
+					],
+					"width": 4
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-33",
+			"preset": "alder-plate",
+			"startMs": 15040,
+			"durationMs": 280,
+			"slot": "plate-33",
+			"label": "flat: geometric construction lines (red, blue, ink) on white",
+			"edge": {
+				"ay": 365,
+				"sag": 239
+			},
+			"sky": {
+				"colour": [
+					249,
+					245,
+					236
+				]
+			},
+			"body": {
+				"colour": [
+					238,
+					232,
+					222
+				]
+			},
+			"layers": [
+				{
+					"kind": "lines",
+					"count": 14,
+					"colours": [
+						[
+							90,
+							80,
+							70
+						],
+						[
+							90,
+							80,
+							70
+						],
+						[
+							220,
+							62,
+							82
+						]
+					],
+					"width": 2.2,
+					"length": 900,
+					"angle": 58,
+					"spread": 8,
+					"box": [
+						0,
+						380,
+						1280,
+						720
+					],
+					"seed": 60
+				},
+				{
+					"kind": "lines",
+					"count": 14,
+					"colours": [
+						[
+							90,
+							80,
+							70
+						],
+						[
+							82,
+							152,
+							202
+						],
+						[
+							90,
+							80,
+							70
+						]
+					],
+					"width": 2.2,
+					"length": 900,
+					"angle": 122,
+					"spread": 8,
+					"box": [
+						0,
+						380,
+						1280,
+						720
+					],
+					"seed": 67
+				}
+			],
+			"rims": [
+				{
+					"colour": [
+						100,
+						110,
+						70
+					],
+					"width": 2.4
+				},
+				{
+					"colour": [
+						100,
+						110,
+						70
+					],
+					"width": 2,
+					"offset": 120,
+					"alpha": 0.8
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-34",
+			"preset": "alder-plate",
+			"startMs": 15320,
+			"durationMs": 240,
+			"slot": "plate-34",
+			"label": "flat: an ink sketch on parchment",
+			"edge": {
+				"ay": 372,
+				"sag": 110
+			},
+			"sky": {
+				"colour": [
+					214,
+					196,
+					148
+				]
+			},
+			"body": {
+				"colour": [
+					214,
+					196,
+					148
+				]
+			},
+			"layers": [
+				{
+					"kind": "noise",
+					"region": "all",
+					"freq": 0.015,
+					"colours": [
+						[
+							196,
+							176,
+							128
+						],
+						[
+							222,
+							206,
+							162
+						]
+					],
+					"contrast": 1.4,
+					"seed": 61
+				},
+				{
+					"kind": "hatch",
+					"count": 260,
+					"colours": [
+						[
+							30,
+							24,
+							18
+						]
+					],
+					"length": 120,
+					"width": 2.6,
+					"angle": 95,
+					"spread": 50,
+					"depth": 360,
+					"seed": 62
+				},
+				{
+					"kind": "lines",
+					"count": 10,
+					"colours": [
+						[
+							30,
+							24,
+							18
+						]
+					],
+					"width": 2,
+					"length": 220,
+					"spread": 180,
+					"box": [
+						100,
+						420,
+						1180,
+						700
+					],
+					"seed": 63
+				}
+			],
+			"rims": [
+				{
+					"colour": [
+						30,
+						24,
+						18
+					],
+					"width": 3
+				},
+				{
+					"colour": [
+						30,
+						24,
+						18
+					],
+					"width": 2,
+					"offset": -14,
+					"alpha": 0.8
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-35",
+			"preset": "alder-plate",
+			"startMs": 15560,
+			"durationMs": 200,
+			"slot": "plate-35",
+			"label": "macro: white fluff (seed head) against black",
+			"edge": {
+				"ay": 385,
+				"sag": 150,
+				"style": "fur",
+				"amp": 60,
+				"seed": 34
+			},
+			"sky": {
+				"colour": [
+					12,
+					14,
+					11
+				]
+			},
+			"body": {
+				"colour": [
+					216,
+					216,
+					212
+				]
+			},
+			"layers": [
+				{
+					"kind": "hatch",
+					"count": 700,
+					"colours": [
+						[
+							250,
+							250,
+							248
+						],
+						[
+							170,
+							170,
+							168
+						]
+					],
+					"length": 70,
+					"width": 3,
+					"angle": -90,
+					"spread": 70,
+					"depth": 300,
+					"seed": 64
+				}
+			],
+			"blur": 3.2,
+			"leadMs": 1
+		},
+		{
+			"id": "s2-plate-36",
+			"preset": "alder-plate",
+			"startMs": 15760,
+			"durationMs": 200,
+			"slot": "plate-36",
+			"label": "macro: orange mushroom gills under a pale cap rim, on black",
+			"edge": {
+				"ay": 362,
+				"sag": 106,
+				"style": "rough",
+				"amp": 5,
+				"freq": 0.06,
+				"seed": 35
+			},
+			"sky": {
+				"colour": [
+					17,
+					19,
+					16
+				]
+			},
+			"body": {
+				"colour": [
+					124,
+					46,
+					32
+				]
+			},
+			"layers": [
+				{
+					"kind": "spokes",
+					"count": 80,
+					"colours": [
+						[
+							80,
+							25,
+							15
+						],
+						[
+							196,
+							86,
+							50
+						],
+						[
+							150,
+							60,
+							35
+						]
+					],
+					"width": 7,
+					"depth": 700,
+					"seed": 65
+				}
+			],
+			"rims": [
+				{
+					"colour": [
+						232,
+						205,
+						175
+					],
+					"width": 5
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s3-line-1",
+			"preset": "alder-line",
+			"role": "brand",
+			"text": "Look",
+			"startMs": 8720,
+			"durationMs": 1960,
+			"steps": [
+				{
+					"atMs": 0,
+					"size": 46,
+					"y": 342,
+					"alpha": 0.9,
+					"blur": 0.8
+				},
+				{
+					"atMs": 320,
+					"size": 51,
+					"y": 342
+				},
+				{
+					"atMs": 720,
+					"size": 54,
+					"y": 343
+				},
+				{
+					"atMs": 1040,
+					"size": 59,
+					"y": 343
+				},
+				{
+					"atMs": 1480,
+					"size": 67,
+					"y": 345
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s3-line-2",
+			"preset": "alder-line",
+			"role": "brand",
+			"text": "a little",
+			"startMs": 10680,
+			"durationMs": 1800,
+			"steps": [
+				{
+					"atMs": 0,
+					"size": 72,
+					"y": 344,
+					"alpha": 0.6,
+					"blur": 1.6
+				},
+				{
+					"atMs": 320,
+					"size": 77,
+					"y": 346,
+					"alpha": 0.45,
+					"blur": 2.2
+				},
+				{
+					"atMs": 720,
+					"size": 81,
+					"y": 344,
+					"alpha": 0.9
+				},
+				{
+					"atMs": 1040,
+					"size": 86,
+					"y": 345,
+					"alpha": 0.95
+				},
+				{
+					"atMs": 1360,
+					"size": 88,
+					"y": 346
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s3-line-3",
+			"preset": "alder-line",
+			"role": "brand",
+			"text": "closer",
+			"startMs": 12480,
+			"durationMs": 3480,
+			"steps": [
+				{
+					"atMs": 0,
+					"size": 106,
+					"y": 347,
+					"colour": [
+						240,
+						230,
+						225
+					]
+				},
+				{
+					"atMs": 280,
+					"size": 107,
+					"y": 349,
+					"alpha": 0.6
+				},
+				{
+					"atMs": 520,
+					"size": 113,
+					"y": 345,
+					"alpha": 0.95,
+					"blur": 0.6
+				},
+				{
+					"atMs": 840,
+					"size": 113,
+					"y": 347,
+					"bend": 26
+				},
+				{
+					"atMs": 1160,
+					"size": 121,
+					"y": 352,
+					"alpha": 0.8
+				},
+				{
+					"atMs": 1440,
+					"size": 126,
+					"y": 352,
+					"alpha": 0.92
+				},
+				{
+					"atMs": 1760,
+					"size": 126,
+					"y": 350,
+					"colour": [
+						24,
+						22,
+						20
+					]
+				},
+				{
+					"atMs": 2000,
+					"size": 133,
+					"y": 352,
+					"colour": [
+						24,
+						22,
+						20
+					],
+					"bend": 24
+				},
+				{
+					"atMs": 2280,
+					"size": 141,
+					"y": 353,
+					"bend": 30
+				},
+				{
+					"atMs": 2560,
+					"size": 145,
+					"y": 352,
+					"colour": [
+						24,
+						22,
+						20
+					],
+					"bend": 36
+				},
+				{
+					"atMs": 2840,
+					"size": 150,
+					"y": 352,
+					"colour": [
+						24,
+						22,
+						20
+					],
+					"alpha": 0.8,
+					"bend": 40
+				},
+				{
+					"atMs": 3080,
+					"size": 154,
+					"y": 353,
+					"blur": 1.6,
+					"bend": 40
+				},
+				{
+					"atMs": 3280,
+					"size": 150,
+					"y": 352,
+					"bend": 18
+				}
+			],
+			"leadMs": 1
+		},
+		{
+			"id": "s4-horizon",
+			"preset": "alder-horizon",
+			"startMs": 15960,
+			"durationMs": 4040,
+			"edgeY": 344,
+			"pan": "end",
+			"leadMs": 1
+		},
+		{
+			"id": "s4-name",
+			"preset": "alder-title",
+			"role": "brand",
+			"text": "Lumen 2",
+			"startMs": 15960,
+			"durationMs": 1320,
+			"size": 64.5,
+			"y": 360,
+			"leadMs": 1
+		},
+		{
+			"id": "s4-wordmark",
+			"preset": "alder-title",
+			"role": "brand",
+			"text": "Alder",
+			"mark": true,
+			"startMs": 17280,
+			"durationMs": 2720,
+			"panFromMs": 15960,
+			"pan": "end",
+			"size": 70,
+			"y": 364,
+			"leadMs": 1
+		},
+		{
+			"id": "grain",
+			"preset": "alder-grain",
+			"startMs": 0,
+			"durationMs": 20000,
+			"amount": 0.14
+		}
+	]
+}

@@ -51,6 +51,16 @@
 			"spec": "1920x1080, 60fps, 30.0s",
 			"notes": "templates/maple/reference-notes.md",
 			"usedBy": "templates/maple/ - full film rebuilt frame-by-frame on a 30fps clock; vector-construction mark beats, black/white hard cuts, design-tool chrome, caret-tracking prompt, rolodex card flips, mockup montage, font-flash wordmark, lockup collapse"
+		},
+		{
+			"id": "claude-opus-5-5",
+			"file": "claude-opus-5-5-launch-film.mp4",
+			"url": "https://video.twimg.com/amplify_video/2102432417352929280/vid/avc1/1920x1080/yilx3O9YWu7w9vaX.mp4?tag=29",
+			"md5": "28ea80c0a5fdf957dead79408c25d944",
+			"bytes": 13134325,
+			"spec": "1920x1080, 25fps, 20.0s",
+			"notes": "templates/alder/reference-notes.md",
+			"usedBy": "templates/alder/ - full film rebuilt frame-by-frame; horizon-arc match-cut montage of texture plates, serif line riding and bending to the arc, accelerating cut rhythm, planet-horizon glow bookend with name card and wordmark"
 		}
 	]
 }
