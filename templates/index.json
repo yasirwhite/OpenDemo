@@ -89,6 +89,36 @@
 			],
 			"derivedFrom": "the Rork Max launch film, measured frame-by-frame on a 30fps clock",
 			"config": "juniper/template.json"
+		},
+		{
+			"slug": "maple",
+			"name": "Maple",
+			"style": "vector-construction launch film for a design / logo AI",
+			"category": "design-tool-led",
+			"durationMs": 30000,
+			"aspect": "16:9",
+			"fps": 30,
+			"slots": 9,
+			"tags": [
+				"black-white-hard-cuts",
+				"vector-construction",
+				"stroke-on-trace",
+				"anchor-nodes",
+				"corner-fillets",
+				"hatch-fill",
+				"hue-slider",
+				"selection-box-resize",
+				"caret-tracking-prompt",
+				"send-button-whip",
+				"rolodex-card-flips",
+				"gradient-cards",
+				"mockup-montage",
+				"font-flash",
+				"lockup-collapse",
+				"drawn-mark"
+			],
+			"derivedFrom": "the QuiverAI Arrow 1.0 launch film, measured frame-by-frame on a 30fps clock",
+			"config": "maple/template.json"
 		}
 	]
 }

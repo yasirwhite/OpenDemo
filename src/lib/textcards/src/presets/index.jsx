@@ -18,6 +18,9 @@ import React from "react";
 // juniper template presets live with the template (templates/juniper/presets/) —
 // registered here so configs reach them by slug like any other preset.
 import { JUNIPER_PRESETS } from "../../../../../templates/juniper/presets/index.jsx";
+// maple template presets live with the template (templates/maple/presets/) —
+// registered here so configs reach them by slug like any other preset.
+import { MAPLE_PRESETS } from "../../../../../templates/maple/presets/index.jsx";
 import { rgb } from "../easing.js";
 import {
 	ClipWord,
@@ -2590,6 +2593,8 @@ export const PRESETS = {
 
 	// ── juniper template presets (templates/juniper/presets/) ────────────────
 	...JUNIPER_PRESETS,
+	// ── maple template presets (templates/maple/presets/) ───────────────────
+	...MAPLE_PRESETS,
 };
 
 export const PRESET_NOTES = Object.fromEntries(
