@@ -23,6 +23,7 @@ node src/lib/textcards/render.mjs --at 3.4 --png /tmp/f.png        # one frame
 node src/lib/textcards/render.mjs --sheet --times 1,2.2,3.3        # contact sheet
 node src/lib/textcards/render.mjs --sheet --times 1,2.2 --sheetdir out/  # ...elsewhere
 node src/lib/textcards/render.mjs --html snap/index.html --out v.mp4     # private stage
+node src/lib/textcards/render.mjs --scale 1.5 --out v.mp4                # 1920x1080 (stage at device scale 1.5)
 ```
 
 `dist/bundle.js` is a single shared artefact, so two people rendering two films
