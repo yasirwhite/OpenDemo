@@ -11,7 +11,7 @@ Toolkit allowing your coding agents to make videos. Free, runs locally, no API k
 Paste this into Claude Code, Codex or Cursor:
 
 ```text
-Clone github.com/yasirwhite/OpenDemo and use it to make a launch video for my app at https://myapp.dev
+Clone github.com/yasirwhite/OpenDemo and use it to make a launch video for my app
 ```
 
 Your agent sets it up, records your app, edits the video and hands you an .mp4.
