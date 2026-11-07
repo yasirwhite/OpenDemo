@@ -2,6 +2,10 @@
 
 Toolkit allowing your coding agents to make videos. Free, runs locally, no API keys.
 
+![OpenDemo launch film](./examples/opendemo-launch.gif)
+
+*Written, animated and rendered by OpenDemo itself.*
+
 ## One prompt
 
 Paste this into Claude Code, Codex or Cursor:
@@ -25,10 +29,6 @@ Your agent sets it up, records your app, edits the video and hands you an .mp4.
 **Setting it up yourself:** `npm install` then `npm run build`, once.
 
 **For AI agents:** read [AGENT_README.md](./AGENT_README.md).
-
-*Written, animated and rendered by OpenDemo itself:*
-
-![OpenDemo launch film](./examples/opendemo-launch.gif)
 
 <!-- traffic:start -->
 ## Stats
