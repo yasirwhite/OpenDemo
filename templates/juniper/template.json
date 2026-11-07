@@ -1,0 +1,2168 @@
+{
+	"_about": "juniper — a 60s multi-device launch film for an AI app builder, derived frame-by-frame from the Rork Max launch film (@rork on X, 2026-02-19; 60.0s, 1920x1080 @60fps, rebuilt on a 30fps clock). Authored on the 1280x720 stage (stage px = reference px / 1.5) and rendered at device scale 1.5 for 1920x1080: render.mjs --fps 30 --scale 1.5. Placeholder product: Juniper Max (juniper.example), an AI that builds apps for every device. Copy is role-tagged; app screens are labelled product slots inside drawn device frames.",
+	"_sections": "S1 title stack + phone trio + push-in 0-3.933 | S2 toggle pill + Max bloom + word flashes + phone whip-in 3.933-7.8 | S3 phone comps x4 + phone->watch + watch comps 7.8-25.1 | S4 watch->tablet, tablet x2, tablet->TV, TV, TV->headset, headset 25.1-36.133 | S5 builder window: one click to install, no dev account, phone install, two clicks to ship 36.133-47.066 | S6 'If your device can do it, / Juniper Max can build it' + bento grid + end card 47.066-60",
+	"video": {
+		"width": 1920,
+		"height": 1080,
+		"fps": 30,
+		"durationMs": 60000
+	},
+	"ground": [
+		{
+			"fromMs": 0,
+			"colour": [254, 255, 253]
+		}
+	],
+	"scenes": [
+		{
+			"id": "s1-ground",
+			"preset": "juniper-ground",
+			"startMs": 0,
+			"durationMs": 3933,
+			"keys": [
+				{
+					"at": 0,
+					"colour": [254, 255, 253]
+				}
+			]
+		},
+		{
+			"id": "s1-phones",
+			"preset": "juniper-phone-trio",
+			"startMs": 0,
+			"durationMs": 3933,
+			"anchorMs": 3433.33,
+			"driftPxPerS": 8.7,
+			"phones": [
+				{
+					"cx": 241.5,
+					"width": 296,
+					"top": 363,
+					"amp": 76,
+					"decay": 0.88,
+					"label": "product UI — AR monster battle",
+					"face": "linear-gradient(180deg, rgb(206,200,192) 0%, rgb(178,170,164) 45%, rgb(196,120,110) 100%)",
+					"tone": "light"
+				},
+				{
+					"cx": 639.5,
+					"width": 304,
+					"top": 310,
+					"amp": 82,
+					"decay": 0.877,
+					"label": "product UI — map + camera view",
+					"face": "linear-gradient(180deg, rgb(178,212,238) 0%, rgb(196,220,236) 30%, rgb(104,150,74) 62%, rgb(86,160,70) 100%)",
+					"tone": "light"
+				},
+				{
+					"cx": 1037.5,
+					"width": 296,
+					"top": 363,
+					"amp": 58,
+					"decay": 0.89,
+					"label": "product UI — city map game",
+					"face": "linear-gradient(180deg, rgb(104,112,130) 0%, rgb(84,92,108) 100%)",
+					"tone": "dark"
+				}
+			],
+			"push": {
+				"atMs": 3433.33,
+				"durMs": 466.67,
+				"scale": 1.0885,
+				"dy": 87.4
+			}
+		},
+		{
+			"id": "s1-title-stack",
+			"preset": "juniper-title-stack",
+			"role": "brand",
+			"startMs": 0,
+			"durationMs": 3933,
+			"lines": [
+				{
+					"text": "Introducing Juniper",
+					"tier": "Max",
+					"size": 67,
+					"weight": 600,
+					"baseline": 117,
+					"atMs": 0,
+					"fade": "TITLE_FADE",
+					"rise": "TITLE_RISE"
+				},
+				{
+					"text": "The most powerful AI that can one-shot",
+					"size": 47,
+					"weight": 400,
+					"baseline": 184,
+					"atMs": 666.67,
+					"fade": "SUB1_FADE",
+					"rise": "SUB1_RISE"
+				},
+				{
+					"text": "almost any app, even AR games",
+					"size": 47,
+					"weight": 400,
+					"baseline": 231,
+					"atMs": 1200,
+					"fade": "SUB2_FADE",
+					"rise": "SUB2_RISE"
+				}
+			],
+			"row": {
+				"baseline": 283,
+				"size": 23,
+				"atMs": 1466.67,
+				"gap": 7,
+				"items": [
+					{
+						"text": "Powered",
+						"delay": 0
+					},
+					{
+						"text": "by",
+						"delay": 4
+					},
+					{
+						"tile": {
+							"bg": [236, 122, 58],
+							"icon": "code",
+							"size": 26,
+							"above": 21
+						},
+						"delay": 4
+					},
+					{
+						"text": "native code",
+						"delay": 8,
+						"ml": 2
+					}
+				]
+			},
+			"push": {
+				"atMs": 3433.33,
+				"durMs": 466.67,
+				"scale": 1.0885,
+				"dy": -72
+			},
+			"blurK": 0.18
+		},
+		{
+			"id": "s1-cursor",
+			"preset": "juniper-cursor-streak",
+			"startMs": 3850,
+			"durationMs": 83,
+			"size": 64,
+			"trail": 6,
+			"shutter": 0.5,
+			"keys": [
+				{
+					"at": -16.67,
+					"x": 948,
+					"y": 718
+				},
+				{
+					"at": 16.67,
+					"x": 870,
+					"y": 680
+				},
+				{
+					"at": 50,
+					"x": 792,
+					"y": 642
+				},
+				{
+					"at": 83.33,
+					"x": 688,
+					"y": 578
+				}
+			]
+		},
+		{
+			"id": "s2-ground",
+			"preset": "juniper-ground",
+			"startMs": 3933,
+			"durationMs": 3867,
+			"keys": [
+				{
+					"at": 0,
+					"colour": [254, 255, 253]
+				}
+			]
+		},
+		{
+			"id": "s2-bloom",
+			"preset": "juniper-warm-bloom",
+			"startMs": 5466,
+			"durationMs": 594
+		},
+		{
+			"id": "s2-pill",
+			"role": "brand",
+			"preset": "juniper-toggle-pill",
+			"startMs": 3933,
+			"durationMs": 1700,
+			"text": "Juniper Max"
+		},
+		{
+			"id": "s2-max",
+			"role": "brand",
+			"preset": "juniper-max-word",
+			"startMs": 5600,
+			"durationMs": 460,
+			"text": "Max"
+		},
+		{
+			"id": "s2-words",
+			"role": "brand",
+			"preset": "juniper-word-flash",
+			"startMs": 6066,
+			"durationMs": 967,
+			"words": [
+				{
+					"text": "can",
+					"atMs": 0
+				},
+				{
+					"text": "make",
+					"atMs": 233
+				},
+				{
+					"text": "beautiful",
+					"atMs": 466
+				},
+				{
+					"text": "real",
+					"atMs": 700
+				},
+				{
+					"text": "apps",
+					"atMs": 800
+				}
+			]
+		},
+		{
+			"id": "s2-label",
+			"role": "brand",
+			"preset": "juniper-label-assemble",
+			"startMs": 7033,
+			"durationMs": 767,
+			"lead": "for",
+			"device": "Phone",
+			"sub": "3D action running game",
+			"size": 67,
+			"right": 620,
+			"baseline": 384,
+			"subBaseline": 315.5,
+			"subAlign": "line",
+			"subCx": 442.5
+		},
+		{
+			"id": "s2-phone",
+			"preset": "juniper-phone-whip",
+			"startMs": 7433,
+			"durationMs": 367,
+			"landFrame": 11,
+			"left": 659,
+			"top": 25,
+			"width": 326,
+			"slotLabel": "product UI — 3D runner game",
+			"face": "linear-gradient(180deg, rgb(118,160,205) 0%, rgb(146,176,198) 30%, rgb(92,96,104) 52%, rgb(58,56,62) 100%)"
+		},
+		{
+			"id": "s3-ground",
+			"preset": "juniper-ground",
+			"startMs": 7800,
+			"durationMs": 17300,
+			"keys": [
+				{
+					"at": 0,
+					"colour": [254, 255, 253]
+				}
+			]
+		},
+		{
+			"id": "s3-watch",
+			"preset": "juniper-watch-comp",
+			"role": "feature",
+			"startMs": 7800,
+			"durationMs": 17300,
+			"x": 676,
+			"y": 72,
+			"enterAt": 11933.33,
+			"apps": [
+				{
+					"at": 0,
+					"slot": "product UI — chat assistant",
+					"face": "rgb(0,1,0)"
+				},
+				{
+					"at": 14633.33,
+					"slot": "product UI — retro 3D game",
+					"face": "linear-gradient(180deg, rgb(26,28,44) 0%, rgb(40,40,54) 45%, rgb(54,46,30) 75%, rgb(44,36,22) 100%)",
+					"flash": 1
+				}
+			]
+		},
+		{
+			"id": "s3-phone",
+			"preset": "juniper-phone-comp",
+			"role": "feature",
+			"startMs": 7800,
+			"durationMs": 12100,
+			"x": 659,
+			"y": 25,
+			"width": 326,
+			"exitAt": 11700,
+			"apps": [
+				{
+					"at": 0,
+					"slot": "product UI — 3D runner game",
+					"face": "linear-gradient(180deg, rgb(118,160,205) 0%, rgb(146,176,198) 30%, rgb(92,96,104) 52%, rgb(58,56,62) 100%)"
+				},
+				{
+					"at": 3000,
+					"slot": "product UI — flight tracker",
+					"face": "linear-gradient(170deg, rgb(28,32,44), rgb(14,16,24))",
+					"flash": 0.76
+				},
+				{
+					"at": 5966.67,
+					"slot": "product UI — habit tracker",
+					"face": "linear-gradient(170deg, rgb(54,56,60), rgb(30,31,34))",
+					"flash": 1
+				},
+				{
+					"at": 9000,
+					"slot": "product UI — virtual pet",
+					"face": "linear-gradient(180deg, rgb(18,18,24) 0%, rgb(42,42,84) 22%, rgb(30,30,56) 45%, rgb(20,20,26) 60%, rgb(14,14,18) 100%)",
+					"flash": 0.76
+				},
+				{
+					"at": 10100,
+					"slot": "product UI — virtual pet (home screen)",
+					"face": "linear-gradient(160deg, rgb(120,44,64) 0%, rgb(64,22,34) 42%, rgb(30,72,82) 100%)"
+				}
+			]
+		},
+		{
+			"id": "s3-label",
+			"preset": "juniper-side-label",
+			"role": "feature",
+			"startMs": 7800,
+			"durationMs": 17300,
+			"lead": "for",
+			"right": 620,
+			"baseline": 384,
+			"subBaseline": 315.5,
+			"subAlign": "line",
+			"subCx": 442.5,
+			"words": [
+				{
+					"at": 0,
+					"text": "Phone"
+				},
+				{
+					"at": 11966.67,
+					"text": "Watch"
+				}
+			],
+			"subs": [
+				{
+					"at": 0,
+					"text": "3D action running game"
+				},
+				{
+					"at": 2980,
+					"text": "Flight tracker with 3D map"
+				},
+				{
+					"at": 5966.67,
+					"text": "Habit tracker with widgets"
+				},
+				{
+					"at": 9000,
+					"text": "Virtual pet with live updates"
+				},
+				{
+					"at": 11986.67,
+					"text": "AI assistant chat app"
+				},
+				{
+					"at": 14633.33,
+					"text": "Retro 3D shooter"
+				}
+			]
+		},
+		{
+			"id": "s4-ground",
+			"preset": "juniper-ground",
+			"startMs": 25100,
+			"durationMs": 11033,
+			"keys": [
+				{
+					"at": 0,
+					"colour": [254, 255, 253]
+				}
+			]
+		},
+		{
+			"id": "s4-devices",
+			"role": "product-voice",
+			"preset": "juniper-device-stage",
+			"startMs": 25100,
+			"durationMs": 11033,
+			"pullback": {
+				"fromMs": 35600,
+				"toMs": 36133.33,
+				"to": 0.897,
+				"pow": 3,
+				"originX": 643,
+				"originY": 361
+			},
+			"devices": [
+				{
+					"kind": "watch",
+					"x": 676,
+					"y": 72,
+					"width": 348,
+					"slots": [
+						{
+							"label": "product UI — retro 3D game",
+							"face": "watch-game"
+						}
+					],
+					"exit": {
+						"atMs": 25100,
+						"curve": "whip-right"
+					}
+				},
+				{
+					"kind": "tablet",
+					"x": 262,
+					"y": 162,
+					"width": 763,
+					"enter": {
+						"atMs": 25366.67,
+						"curve": "rise"
+					},
+					"exit": {
+						"atMs": 30800,
+						"curve": "recede"
+					},
+					"slots": [
+						{
+							"label": "product UI — whiteboard notebook",
+							"face": "light",
+							"tone": "light"
+						},
+						{
+							"fromMs": 28133.33,
+							"label": "product UI — AR furniture planner",
+							"face": "ar",
+							"tone": "dark",
+							"washFrom": 0.74
+						}
+					]
+				},
+				{
+					"kind": "tv",
+					"x": 149,
+					"y": 146,
+					"width": 989,
+					"enter": {
+						"atMs": 31033.33,
+						"curve": "grow"
+					},
+					"exit": {
+						"atMs": 33133.33,
+						"curve": "recede"
+					},
+					"slots": [
+						{
+							"label": "product UI — movie picker",
+							"face": "tv"
+						}
+					]
+				},
+				{
+					"kind": "headset",
+					"x": 216,
+					"y": 160,
+					"width": 855,
+					"title": "My VR basketball",
+					"enter": {
+						"atMs": 33366.67,
+						"curve": "grow-window"
+					},
+					"slots": [
+						{
+							"label": "product UI — VR basketball",
+							"face": "passthrough"
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "s4-label",
+			"role": "feature",
+			"preset": "juniper-device-label",
+			"startMs": 25100,
+			"durationMs": 11033,
+			"pullback": {
+				"fromMs": 35600,
+				"toMs": 36133.33,
+				"to": 0.897,
+				"pow": 3,
+				"originX": 643,
+				"originY": 361
+			},
+			"states": [
+				{
+					"layout": "side",
+					"sub": "Retro 3D shooter",
+					"device": "Watch"
+				},
+				{
+					"atMs": 25100,
+					"layout": "top",
+					"travelMs": 25100,
+					"sub": "Whiteboard notebook app",
+					"subMs": 25166.67,
+					"device": "Tablet",
+					"wordMs": 25266.67,
+					"wordCurve": "roll-fast"
+				},
+				{
+					"atMs": 27833.33,
+					"sub": "AR Furniture Planner"
+				},
+				{
+					"atMs": 30833.33,
+					"sub": "Swipe-to-pick movie night",
+					"device": "TV",
+					"wordMs": 30866.67
+				},
+				{
+					"atMs": 33166.67,
+					"sub": "VR basketball",
+					"device": "Headset",
+					"wordMs": 33233.33
+				}
+			]
+		},
+		{
+			"id": "s5-ground",
+			"preset": "juniper-ground",
+			"startMs": 36133,
+			"durationMs": 10933,
+			"keys": [
+				{
+					"at": 0,
+					"colour": [254, 255, 253]
+				}
+			]
+		},
+		{
+			"id": "s5-headlines",
+			"role": "brand",
+			"preset": "juniper-rise-lines",
+			"startMs": 36133,
+			"durationMs": 10933,
+			"size": 66,
+			"canvas": [
+				{
+					"at": 0,
+					"s": 1.106,
+					"blurK": 30
+				},
+				{
+					"at": 33.7,
+					"s": 1.079
+				},
+				{
+					"at": 67,
+					"s": 1.06
+				},
+				{
+					"at": 100.3,
+					"s": 1.045
+				},
+				{
+					"at": 133.7,
+					"s": 1.034
+				},
+				{
+					"at": 167,
+					"s": 1.024
+				},
+				{
+					"at": 200.3,
+					"s": 1.019
+				},
+				{
+					"at": 233.7,
+					"s": 1.013
+				},
+				{
+					"at": 267,
+					"s": 1.009
+				},
+				{
+					"at": 300.3,
+					"s": 1.006
+				},
+				{
+					"at": 333.7,
+					"s": 1.004
+				},
+				{
+					"at": 367,
+					"s": 1.002
+				},
+				{
+					"at": 400.3,
+					"s": 1
+				},
+				{
+					"at": 10500.3,
+					"s": 1,
+					"blurK": 0
+				},
+				{
+					"at": 10533.7,
+					"s": 0.9979
+				},
+				{
+					"at": 10567,
+					"s": 0.9957
+				},
+				{
+					"at": 10600.3,
+					"s": 0.994
+				},
+				{
+					"at": 10633.7,
+					"s": 0.9915
+				},
+				{
+					"at": 10667,
+					"s": 0.989
+				},
+				{
+					"at": 10700.3,
+					"s": 0.985
+				},
+				{
+					"at": 10733.7,
+					"s": 0.979
+				},
+				{
+					"at": 10767,
+					"s": 0.972
+				},
+				{
+					"at": 10800.3,
+					"s": 0.962
+				},
+				{
+					"at": 10833.7,
+					"s": 0.949
+				},
+				{
+					"at": 10867,
+					"s": 0.932
+				},
+				{
+					"at": 10900.3,
+					"s": 0.906
+				},
+				{
+					"at": 10933.7,
+					"s": 0.872
+				}
+			],
+			"lines": [
+				{
+					"text": "One click to install apps",
+					"baseline": 120,
+					"startMs": -66.3,
+					"d0": 166,
+					"r": 0.865,
+					"c0": 255,
+					"rc": 0.86,
+					"blur0": 2.5,
+					"exitAtMs": 1850.3,
+					"exitMs": 160
+				},
+				{
+					"text": "on your {glyph} device",
+					"baseline": 201,
+					"startMs": 467,
+					"d0": 88,
+					"r": 0.88,
+					"c0": 170,
+					"rc": 0.87,
+					"exitAtMs": 1850.3,
+					"exitMs": 160
+				},
+				{
+					"text": "no $99 dev account",
+					"baseline": 120,
+					"startMs": 1867,
+					"d0": 95,
+					"r": 0.87,
+					"c0": 200,
+					"rc": 0.84,
+					"exitAtMs": 4100.3,
+					"exitMs": 170
+				},
+				{
+					"text": "no IDE setup",
+					"baseline": 201,
+					"startMs": 2300.3,
+					"d0": 90,
+					"r": 0.88,
+					"c0": 178,
+					"rc": 0.85,
+					"exitAtMs": 4100.3,
+					"exitMs": 170
+				},
+				{
+					"text": "Two clicks to ship to the store",
+					"baseline": 120,
+					"startMs": 7600.3,
+					"d0": 110,
+					"r": 0.77,
+					"c0": 215,
+					"rc": 0.78
+				}
+			]
+		},
+		{
+			"id": "s5-builder",
+			"role": "product-voice",
+			"preset": "juniper-builder-window",
+			"startMs": 36133,
+			"durationMs": 10933,
+			"canvas": [
+				{
+					"at": 0,
+					"s": 1.106,
+					"blurK": 30
+				},
+				{
+					"at": 33.7,
+					"s": 1.079
+				},
+				{
+					"at": 67,
+					"s": 1.06
+				},
+				{
+					"at": 100.3,
+					"s": 1.045
+				},
+				{
+					"at": 133.7,
+					"s": 1.034
+				},
+				{
+					"at": 167,
+					"s": 1.024
+				},
+				{
+					"at": 200.3,
+					"s": 1.019
+				},
+				{
+					"at": 233.7,
+					"s": 1.013
+				},
+				{
+					"at": 267,
+					"s": 1.009
+				},
+				{
+					"at": 300.3,
+					"s": 1.006
+				},
+				{
+					"at": 333.7,
+					"s": 1.004
+				},
+				{
+					"at": 367,
+					"s": 1.002
+				},
+				{
+					"at": 400.3,
+					"s": 1
+				},
+				{
+					"at": 10500.3,
+					"s": 1,
+					"blurK": 0
+				},
+				{
+					"at": 10533.7,
+					"s": 0.9979
+				},
+				{
+					"at": 10567,
+					"s": 0.9957
+				},
+				{
+					"at": 10600.3,
+					"s": 0.994
+				},
+				{
+					"at": 10633.7,
+					"s": 0.9915
+				},
+				{
+					"at": 10667,
+					"s": 0.989
+				},
+				{
+					"at": 10700.3,
+					"s": 0.985
+				},
+				{
+					"at": 10733.7,
+					"s": 0.979
+				},
+				{
+					"at": 10767,
+					"s": 0.972
+				},
+				{
+					"at": 10800.3,
+					"s": 0.962
+				},
+				{
+					"at": 10833.7,
+					"s": 0.949
+				},
+				{
+					"at": 10867,
+					"s": 0.932
+				},
+				{
+					"at": 10900.3,
+					"s": 0.906
+				},
+				{
+					"at": 10933.7,
+					"s": 0.872
+				}
+			],
+			"rect": [
+				{
+					"at": 0,
+					"x": 170,
+					"y": 268,
+					"s": 1
+				},
+				{
+					"at": 4000.3,
+					"x": 170,
+					"y": 268,
+					"s": 1
+				},
+				{
+					"at": 4033.7,
+					"x": 169.22,
+					"y": 266.91,
+					"s": 0.997
+				},
+				{
+					"at": 4067,
+					"x": 167.85,
+					"y": 264.99,
+					"s": 0.9917
+				},
+				{
+					"at": 4100.3,
+					"x": 165.7,
+					"y": 261.98,
+					"s": 0.9834
+				},
+				{
+					"at": 4133.7,
+					"x": 161.45,
+					"y": 256.04,
+					"s": 0.967
+				},
+				{
+					"at": 4167,
+					"x": 154.98,
+					"y": 246.97,
+					"s": 0.942
+				},
+				{
+					"at": 4200.3,
+					"x": 142.81,
+					"y": 229.94,
+					"s": 0.895
+				},
+				{
+					"at": 4233.7,
+					"x": 129.98,
+					"y": 211.99,
+					"s": 0.8455
+				},
+				{
+					"at": 4267,
+					"x": 122.86,
+					"y": 202.02,
+					"s": 0.818
+				},
+				{
+					"at": 4300.3,
+					"x": 118.56,
+					"y": 196.01,
+					"s": 0.8014
+				},
+				{
+					"at": 4333.7,
+					"x": 116.39,
+					"y": 192.96,
+					"s": 0.793
+				},
+				{
+					"at": 4367,
+					"x": 114.99,
+					"y": 191,
+					"s": 0.7876
+				},
+				{
+					"at": 4400.3,
+					"x": 114.31,
+					"y": 190.06,
+					"s": 0.785
+				},
+				{
+					"at": 4433.7,
+					"x": 113.54,
+					"y": 188.98,
+					"s": 0.782
+				},
+				{
+					"at": 7433.7,
+					"x": 113.5,
+					"y": 189,
+					"s": 0.782
+				},
+				{
+					"at": 7467,
+					"x": 114,
+					"y": 189.01,
+					"s": 0.7838
+				},
+				{
+					"at": 7500.3,
+					"x": 114.5,
+					"y": 189.02,
+					"s": 0.7857
+				},
+				{
+					"at": 7533.7,
+					"x": 115,
+					"y": 189.03,
+					"s": 0.7876
+				},
+				{
+					"at": 7567,
+					"x": 116,
+					"y": 189.04,
+					"s": 0.7915
+				},
+				{
+					"at": 7600.3,
+					"x": 118,
+					"y": 189.08,
+					"s": 0.7992
+				},
+				{
+					"at": 7633.7,
+					"x": 120,
+					"y": 189.11,
+					"s": 0.8069
+				},
+				{
+					"at": 7667,
+					"x": 123,
+					"y": 189.17,
+					"s": 0.8185
+				},
+				{
+					"at": 7700.3,
+					"x": 127,
+					"y": 189.24,
+					"s": 0.834
+				},
+				{
+					"at": 7733.7,
+					"x": 131,
+					"y": 189.31,
+					"s": 0.8494
+				},
+				{
+					"at": 7767,
+					"x": 137,
+					"y": 189.42,
+					"s": 0.8726
+				},
+				{
+					"at": 7800.3,
+					"x": 143,
+					"y": 189.52,
+					"s": 0.8958
+				},
+				{
+					"at": 7833.7,
+					"x": 151,
+					"y": 189.66,
+					"s": 0.9266
+				},
+				{
+					"at": 7867,
+					"x": 160,
+					"y": 189.82,
+					"s": 0.9614
+				},
+				{
+					"at": 7900.3,
+					"x": 167,
+					"y": 189.95,
+					"s": 0.9884
+				},
+				{
+					"at": 7933.7,
+					"x": 170,
+					"y": 190,
+					"s": 1
+				}
+			],
+			"zoom": [
+				{
+					"at": 0,
+					"z": 1
+				},
+				{
+					"at": 1867,
+					"z": 1
+				},
+				{
+					"at": 1900.3,
+					"z": 1.04
+				},
+				{
+					"at": 1933.7,
+					"z": 1.12
+				},
+				{
+					"at": 1967,
+					"z": 1.25
+				},
+				{
+					"at": 2000.3,
+					"z": 1.42
+				},
+				{
+					"at": 2033.7,
+					"z": 1.62
+				},
+				{
+					"at": 2067,
+					"z": 1.84
+				},
+				{
+					"at": 2100.3,
+					"z": 2.05
+				},
+				{
+					"at": 2133.7,
+					"z": 2.233
+				},
+				{
+					"at": 2167,
+					"z": 2.398
+				},
+				{
+					"at": 2200.3,
+					"z": 2.534
+				},
+				{
+					"at": 2233.7,
+					"z": 2.646
+				},
+				{
+					"at": 2267,
+					"z": 2.74
+				},
+				{
+					"at": 2300.3,
+					"z": 2.817
+				},
+				{
+					"at": 2333.7,
+					"z": 2.876
+				},
+				{
+					"at": 2367,
+					"z": 2.923
+				},
+				{
+					"at": 2400.3,
+					"z": 2.959
+				},
+				{
+					"at": 2433.7,
+					"z": 2.982
+				},
+				{
+					"at": 2467,
+					"z": 2.994
+				},
+				{
+					"at": 2500.3,
+					"z": 3
+				}
+			],
+			"title": "Elegant Productivity App",
+			"avatar": "M",
+			"share": "Share",
+			"publish": "Publish",
+			"live": "Live",
+			"status": [
+				{
+					"at": 0,
+					"label": "Maya’s Phone",
+					"dot": "green"
+				},
+				{
+					"at": 3000.3,
+					"label": "Signing",
+					"dot": "yellow"
+				},
+				{
+					"at": 4183.7,
+					"label": "Installing",
+					"dot": "yellow"
+				},
+				{
+					"at": 5317,
+					"label": "Maya’s Phone",
+					"dot": "green",
+					"fadeMs": 100,
+					"widthMs": 250
+				}
+			],
+			"chat": [
+				{
+					"p": "Everything's built and ready. Here's what was added:"
+				},
+				{
+					"h": "Voice Transcription → Auto Add Tasks",
+					"mt": 0
+				},
+				{
+					"li": "Tap the mic button in the “New Task” sheet to dictate tasks by voice",
+					"mt": 8
+				},
+				{
+					"li": "Uses the system speech framework for real-time transcription"
+				},
+				{
+					"li": "A live recording indicator shows when it's listening, with a “Done” button to stop"
+				},
+				{
+					"h": "Swipeable Timer ↔ Calendar",
+					"mt": 18
+				},
+				{
+					"li": "The focus timer and calendar are now in a swipeable page view — swipe left to see the calendar, right for the timer",
+					"mt": 8
+				},
+				{
+					"li": "Dot indicators show which page you're on"
+				},
+				{
+					"h": "Auto Date Detection",
+					"mt": 18
+				},
+				{
+					"li": "When you type (or dictate) something like “Review PR tomorrow” or “Meeting on Friday”, it automatically detects the date using a date detector",
+					"mt": 8
+				},
+				{
+					"li": "A blue date badge appears showing the detected due date, with an option to dismiss it"
+				},
+				{
+					"li": "When you add the task, the date phrase gets cleaned from the title and the due date is saved"
+				},
+				{
+					"li": "Tasks with dates appear on the calendar with dot indicators on those days"
+				},
+				{
+					"p": "The sample tasks now include some with due dates so you can see the calendar populated right away.",
+					"mt": 14
+				},
+				{
+					"box": "Add voice tasks, a calendar view, and automatic date planning.",
+					"files": [
+						"Models/TaskItem.jn",
+						"Services/SpeechRecognizer.jn",
+						"Utilities/DateParser.jn",
+						"Views/CalendarView.jn",
+						"Views/AddTaskSheet.jn",
+						"ContentView.jn",
+						"Views/TimerView.jn"
+					]
+				}
+			],
+			"previewSlot": "product UI — productivity app",
+			"toastAtMs": 5367,
+			"toastOutMs": 7533.7,
+			"toast": "Elegant Productivity App installed on Maya’s Phone",
+			"popover": {
+				"openAtMs": 8860.3,
+				"closeAtMs": 10500.3,
+				"title": "Share with your audience",
+				"sub": "Anyone with this link can instantly try your app",
+				"url": "card-app.juniper.example",
+				"copy": "Copy",
+				"cta": "Publish 3 changes",
+				"stores": "Stores",
+				"originX": 276,
+				"tiles": [
+					{
+						"title": "Phone Store",
+						"sub": "Submit for beta",
+						"bg": [64, 120, 240],
+						"icon": "store"
+					},
+					{
+						"title": "Mobile Store",
+						"sub": "Learn how to submit",
+						"bg": [52, 168, 83],
+						"icon": "play"
+					}
+				]
+			},
+			"zoomStreak": 10
+		},
+		{
+			"id": "s5-phone",
+			"preset": "juniper-install-phone",
+			"startMs": 40200,
+			"durationMs": 3800,
+			"keys": [
+				{
+					"at": 0,
+					"dx": 520,
+					"dy": 900,
+					"rot": -16,
+					"s": 1
+				},
+				{
+					"at": 33.3,
+					"dx": 420,
+					"dy": 730,
+					"rot": -14,
+					"s": 1
+				},
+				{
+					"at": 66.7,
+					"dx": 330,
+					"dy": 590,
+					"rot": -12,
+					"s": 1
+				},
+				{
+					"at": 100,
+					"dx": 255,
+					"dy": 446,
+					"rot": -10,
+					"s": 1
+				},
+				{
+					"at": 133.3,
+					"dx": 175,
+					"dy": 286,
+					"rot": -7.5,
+					"s": 1
+				},
+				{
+					"at": 166.7,
+					"dx": 105,
+					"dy": 160,
+					"rot": -4.5,
+					"s": 1
+				},
+				{
+					"at": 200,
+					"dx": 57,
+					"dy": 88,
+					"rot": -2.4,
+					"s": 1
+				},
+				{
+					"at": 233.3,
+					"dx": 36,
+					"dy": 47,
+					"rot": -1.3,
+					"s": 1
+				},
+				{
+					"at": 266.7,
+					"dx": 22,
+					"dy": 24,
+					"rot": -0.6,
+					"s": 1
+				},
+				{
+					"at": 300,
+					"dx": 10,
+					"dy": 11,
+					"rot": -0.25,
+					"s": 1
+				},
+				{
+					"at": 333.3,
+					"dx": 4,
+					"dy": 4,
+					"rot": -0.08,
+					"s": 1
+				},
+				{
+					"at": 366.7,
+					"dx": 0,
+					"dy": 0,
+					"rot": 0,
+					"s": 1
+				},
+				{
+					"at": 3366.7,
+					"dx": 0,
+					"dy": 0,
+					"rot": 0,
+					"s": 1
+				},
+				{
+					"at": 3400,
+					"dx": 1,
+					"dy": 1,
+					"rot": 0,
+					"s": 1
+				},
+				{
+					"at": 3433.3,
+					"dx": 3,
+					"dy": 6,
+					"rot": 0,
+					"s": 1.004
+				},
+				{
+					"at": 3466.7,
+					"dx": 7,
+					"dy": 15,
+					"rot": 0,
+					"s": 1.01
+				},
+				{
+					"at": 3500,
+					"dx": 14,
+					"dy": 32,
+					"rot": 0,
+					"s": 1.016
+				},
+				{
+					"at": 3533.3,
+					"dx": 22,
+					"dy": 58,
+					"rot": 0,
+					"s": 1.022
+				},
+				{
+					"at": 3566.7,
+					"dx": 33,
+					"dy": 116,
+					"rot": 0,
+					"s": 1.028
+				},
+				{
+					"at": 3600,
+					"dx": 48,
+					"dy": 218,
+					"rot": 0,
+					"s": 1.03
+				},
+				{
+					"at": 3633.3,
+					"dx": 65,
+					"dy": 345,
+					"rot": 0,
+					"s": 1.03
+				},
+				{
+					"at": 3666.7,
+					"dx": 87,
+					"dy": 430,
+					"rot": 0,
+					"s": 1.03
+				},
+				{
+					"at": 3700,
+					"dx": 116,
+					"dy": 590,
+					"rot": 0,
+					"s": 1.03
+				},
+				{
+					"at": 3733.3,
+					"dx": 150,
+					"dy": 700,
+					"rot": 0,
+					"s": 1.03
+				},
+				{
+					"at": 3766.7,
+					"dx": 190,
+					"dy": 820,
+					"rot": 0,
+					"s": 1.03
+				}
+			],
+			"launchAtMs": 1216.7,
+			"slotLabel": "product UI — productivity app"
+		},
+		{
+			"id": "s5-cursor",
+			"preset": "juniper-s5-cursor",
+			"startMs": 36133,
+			"durationMs": 10933,
+			"size": 36,
+			"keys": [
+				{
+					"at": 2300.3,
+					"x": 926,
+					"y": 790,
+					"o": 1,
+					"size": 40
+				},
+				{
+					"at": 2333.7,
+					"x": 922,
+					"y": 705
+				},
+				{
+					"at": 2367,
+					"x": 918,
+					"y": 615
+				},
+				{
+					"at": 2400.3,
+					"x": 912,
+					"y": 549
+				},
+				{
+					"at": 2433.7,
+					"x": 897,
+					"y": 504
+				},
+				{
+					"at": 2467,
+					"x": 880,
+					"y": 473
+				},
+				{
+					"at": 2500.3,
+					"x": 866,
+					"y": 452
+				},
+				{
+					"at": 2533.7,
+					"x": 853,
+					"y": 440
+				},
+				{
+					"at": 2600.3,
+					"x": 832,
+					"y": 412
+				},
+				{
+					"at": 2667,
+					"x": 818,
+					"y": 398
+				},
+				{
+					"at": 2733.7,
+					"x": 812,
+					"y": 393
+				},
+				{
+					"at": 2800.3,
+					"x": 806,
+					"y": 391,
+					"press": 0
+				},
+				{
+					"at": 2833.7,
+					"x": 805,
+					"y": 391,
+					"press": 1
+				},
+				{
+					"at": 2900.3,
+					"x": 805,
+					"y": 391,
+					"press": 0,
+					"o": 1
+				},
+				{
+					"at": 3000.3,
+					"x": 805,
+					"y": 391,
+					"o": 0
+				},
+				{
+					"at": 8133.7,
+					"x": 800,
+					"y": 820,
+					"o": 0,
+					"size": 52
+				},
+				{
+					"at": 8167,
+					"x": 812,
+					"y": 735,
+					"o": 1
+				},
+				{
+					"at": 8200.3,
+					"x": 839,
+					"y": 626
+				},
+				{
+					"at": 8233.7,
+					"x": 873,
+					"y": 525
+				},
+				{
+					"at": 8267,
+					"x": 889,
+					"y": 447
+				},
+				{
+					"at": 8300.3,
+					"x": 896,
+					"y": 392
+				},
+				{
+					"at": 8333.7,
+					"x": 899,
+					"y": 350
+				},
+				{
+					"at": 8367,
+					"x": 899,
+					"y": 322
+				},
+				{
+					"at": 8467,
+					"x": 896,
+					"y": 262
+				},
+				{
+					"at": 8567,
+					"x": 893,
+					"y": 232
+				},
+				{
+					"at": 8667,
+					"x": 890,
+					"y": 222
+				},
+				{
+					"at": 8767,
+					"x": 889,
+					"y": 219,
+					"press": 0
+				},
+				{
+					"at": 8800.3,
+					"x": 889,
+					"y": 219,
+					"press": 1
+				},
+				{
+					"at": 8867,
+					"x": 889,
+					"y": 219,
+					"press": 0
+				},
+				{
+					"at": 9267,
+					"x": 890,
+					"y": 219
+				},
+				{
+					"at": 9333.7,
+					"x": 891,
+					"y": 224
+				},
+				{
+					"at": 9400.3,
+					"x": 890,
+					"y": 229
+				},
+				{
+					"at": 9467,
+					"x": 885,
+					"y": 236
+				},
+				{
+					"at": 9533.7,
+					"x": 883,
+					"y": 243
+				},
+				{
+					"at": 9600.3,
+					"x": 881,
+					"y": 257
+				},
+				{
+					"at": 9667,
+					"x": 879,
+					"y": 285
+				},
+				{
+					"at": 9733.7,
+					"x": 874,
+					"y": 314
+				},
+				{
+					"at": 9800.3,
+					"x": 866,
+					"y": 350
+				},
+				{
+					"at": 9867,
+					"x": 856,
+					"y": 395
+				},
+				{
+					"at": 9933.7,
+					"x": 848,
+					"y": 435
+				},
+				{
+					"at": 10000.3,
+					"x": 842,
+					"y": 455
+				},
+				{
+					"at": 10067,
+					"x": 840,
+					"y": 471
+				},
+				{
+					"at": 10133.7,
+					"x": 839,
+					"y": 477
+				},
+				{
+					"at": 10200.3,
+					"x": 838,
+					"y": 484
+				},
+				{
+					"at": 10267,
+					"x": 838,
+					"y": 487
+				},
+				{
+					"at": 10400.3,
+					"x": 839,
+					"y": 486,
+					"press": 0
+				},
+				{
+					"at": 10433.7,
+					"x": 839,
+					"y": 486,
+					"press": 1
+				},
+				{
+					"at": 10500.3,
+					"x": 839,
+					"y": 486,
+					"press": 0,
+					"o": 1
+				},
+				{
+					"at": 10600.3,
+					"x": 839,
+					"y": 486,
+					"o": 0
+				}
+			]
+		},
+		{
+			"id": "s6-ground",
+			"preset": "juniper-ground",
+			"startMs": 47066,
+			"durationMs": 12934,
+			"keys": [
+				{
+					"at": 0,
+					"colour": [254, 255, 253]
+				},
+				{
+					"at": 2624,
+					"colour": [254, 255, 253]
+				},
+				{
+					"at": 2867,
+					"colour": [234, 236, 233]
+				},
+				{
+					"at": 7977,
+					"colour": [234, 236, 233]
+				},
+				{
+					"at": 8211,
+					"colour": [254, 255, 253]
+				}
+			]
+		},
+		{
+			"id": "s6-claim",
+			"role": "brand",
+			"preset": "juniper-claim-zoom",
+			"startMs": 47066,
+			"durationMs": 2717,
+			"lines": [
+				{
+					"parts": ["If your device can do it,"],
+					"atMs": -26,
+					"dy": 140
+				},
+				{
+					"parts": [
+						"Juniper ",
+						{
+							"t": "Max",
+							"grad": true
+						},
+						" can build it"
+					],
+					"atMs": 564,
+					"dy": 135,
+					"dx": -20
+				}
+			],
+			"camera": [
+				{
+					"at": -32.7,
+					"scale": 1.315
+				},
+				{
+					"at": 0.7,
+					"scale": 1.27
+				},
+				{
+					"at": 34,
+					"scale": 1.234
+				},
+				{
+					"at": 67.3,
+					"scale": 1.207
+				},
+				{
+					"at": 100.7,
+					"scale": 1.185
+				},
+				{
+					"at": 134,
+					"scale": 1.168
+				},
+				{
+					"at": 167.3,
+					"scale": 1.153
+				},
+				{
+					"at": 200.7,
+					"scale": 1.141
+				},
+				{
+					"at": 234,
+					"scale": 1.131
+				},
+				{
+					"at": 267.3,
+					"scale": 1.123
+				},
+				{
+					"at": 334,
+					"scale": 1.11
+				},
+				{
+					"at": 434,
+					"scale": 1.094
+				},
+				{
+					"at": 600.7,
+					"scale": 1.081
+				},
+				{
+					"at": 767.3,
+					"scale": 1.069
+				},
+				{
+					"at": 934,
+					"scale": 1.059
+				},
+				{
+					"at": 1134,
+					"scale": 1.047
+				},
+				{
+					"at": 1267.3,
+					"scale": 1.039
+				},
+				{
+					"at": 1467.3,
+					"scale": 1.029
+				},
+				{
+					"at": 1600.7,
+					"scale": 1.022
+				},
+				{
+					"at": 1800.7,
+					"scale": 1.013
+				},
+				{
+					"at": 1934,
+					"scale": 1.008
+				},
+				{
+					"at": 2134,
+					"scale": 1.001
+				},
+				{
+					"at": 2234,
+					"scale": 1
+				},
+				{
+					"at": 2300.7,
+					"scale": 1
+				},
+				{
+					"at": 2334,
+					"scale": 1.004
+				},
+				{
+					"at": 2367.3,
+					"scale": 1.008
+				},
+				{
+					"at": 2400.7,
+					"scale": 1.014
+				},
+				{
+					"at": 2434,
+					"scale": 1.022
+				},
+				{
+					"at": 2467.3,
+					"scale": 1.035
+				},
+				{
+					"at": 2500.7,
+					"scale": 1.05
+				},
+				{
+					"at": 2534,
+					"scale": 1.069
+				},
+				{
+					"at": 2567.3,
+					"scale": 1.094
+				},
+				{
+					"at": 2600.7,
+					"scale": 1.127
+				},
+				{
+					"at": 2634,
+					"scale": 1.169
+				},
+				{
+					"at": 2667.3,
+					"scale": 1.228
+				},
+				{
+					"at": 2700.7,
+					"scale": 1.31
+				},
+				{
+					"at": 2734,
+					"scale": 1.42
+				}
+			],
+			"fade": {
+				"durMs": 360
+			}
+		},
+		{
+			"id": "s6-bento",
+			"role": "feature",
+			"preset": "juniper-bento",
+			"startMs": 49766,
+			"durationMs": 5484,
+			"layout": {
+				"dir": "row",
+				"gaps": [12, 10.5],
+				"kids": [
+					{
+						"dir": "col",
+						"size": 366,
+						"gap": 8,
+						"kids": [
+							{
+								"card": "dev",
+								"size": 180.5
+							},
+							{
+								"card": "camera",
+								"size": 107.5
+							},
+							{
+								"dir": "row",
+								"size": 260.5,
+								"gap": 9.5,
+								"kids": [
+									{
+										"card": "island",
+										"size": 193
+									},
+									{
+										"card": "voice",
+										"size": 164
+									}
+								]
+							}
+						]
+					},
+					{
+						"dir": "col",
+						"size": 378.5,
+						"gap": 8,
+						"kids": [
+							{
+								"dir": "row",
+								"size": 180.5,
+								"gap": 14,
+								"kids": [
+									{
+										"card": "ar",
+										"size": 159.5
+									},
+									{
+										"card": "games",
+										"size": 205
+									}
+								]
+							},
+							{
+								"card": "chat",
+								"size": 185
+							},
+							{
+								"card": "anim",
+								"size": 182.5
+							}
+						]
+					},
+					{
+						"dir": "col",
+						"size": 361.5,
+						"gap": 8,
+						"kids": [
+							{
+								"dir": "col",
+								"size": 180.5,
+								"gap": 8,
+								"kids": [
+									{
+										"dir": "row",
+										"size": 86.5,
+										"gap": 10,
+										"kids": [
+											{
+												"card": "nfc",
+												"size": 175.5
+											},
+											{
+												"card": "focus",
+												"size": 176
+											}
+										]
+									},
+									{
+										"dir": "row",
+										"size": 86,
+										"gap": 10,
+										"kids": [
+											{
+												"card": "health",
+												"size": 175.5
+											},
+											{
+												"card": "home",
+												"size": 176
+											}
+										]
+									}
+								]
+							},
+							{
+								"card": "widgets",
+								"size": 252
+							},
+							{
+								"card": "bg",
+								"size": 115.5
+							}
+						]
+					}
+				]
+			},
+			"cards": {
+				"dev": {
+					"type": "devices",
+					"title": [
+						"For any ",
+						{
+							"glyph": true
+						},
+						" device"
+					]
+				},
+				"ar": {
+					"type": "icon",
+					"art": "layers",
+					"title": "AR & LiDAR"
+				},
+				"games": {
+					"type": "icon",
+					"art": "robot",
+					"title": "3D Games"
+				},
+				"nfc": {
+					"type": "side",
+					"art": "nfc",
+					"title": "NFC"
+				},
+				"focus": {
+					"type": "side",
+					"art": "tile",
+					"title": "Focus Time",
+					"bg": [104, 84, 226],
+					"glyph": "hourglass"
+				},
+				"health": {
+					"type": "side",
+					"art": "soft",
+					"glyph": "heart",
+					"title": "Health Data"
+				},
+				"home": {
+					"type": "side",
+					"art": "soft",
+					"glyph": "house",
+					"title": "Smart Home"
+				},
+				"camera": {
+					"type": "word",
+					"text": "Camera & Vision AI"
+				},
+				"chat": {
+					"type": "chat-game",
+					"text": "Chat Apps",
+					"bubble": "Let's play bro!",
+					"line1": "I scored 8 baskets!",
+					"line2": "Can you beat that? Tap to play!"
+				},
+				"widgets": {
+					"type": "widgets",
+					"title": "Widgets",
+					"slot": "product UI — widget app"
+				},
+				"island": {
+					"type": "phones",
+					"title": "Live\nBanners",
+					"slot": ""
+				},
+				"voice": {
+					"type": "orb",
+					"title": "Voice\nActions"
+				},
+				"anim": {
+					"type": "waves",
+					"title": "Animations"
+				},
+				"bg": {
+					"type": "word",
+					"text": "Background Tasks"
+				}
+			},
+			"enter": {
+				"atMs": 0.7
+			},
+			"exit": {
+				"atMs": 5034
+			}
+		},
+		{
+			"id": "s6-end",
+			"role": "brand",
+			"preset": "juniper-endcard",
+			"startMs": 55250,
+			"durationMs": 4750,
+			"markStyle": "juniper",
+			"lines": [
+				{
+					"parts": ["Start the next store hit"],
+					"atMs": 0,
+					"dx": -6
+				},
+				{
+					"parts": [
+						"with",
+						{
+							"mark": true
+						},
+						"Juniper Max"
+					],
+					"atMs": 333
+				}
+			],
+			"url": {
+				"text": "juniper.example/max",
+				"atMs": 1383
+			},
+			"outro": {
+				"atMs": 2250
+			},
+			"fade": {
+				"durMs": 750
+			}
+		}
+	]
+}
