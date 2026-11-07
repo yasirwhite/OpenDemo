@@ -15,15 +15,21 @@
  */
 
 import React from "react";
+// alder template presets live with the template (templates/alder/presets/) —
+// registered here so configs reach them by slug like any other preset.
+import { ALDER_PRESETS } from "../../../../../templates/alder/presets/index.jsx";
 // juniper template presets live with the template (templates/juniper/presets/) —
 // registered here so configs reach them by slug like any other preset.
 import { JUNIPER_PRESETS } from "../../../../../templates/juniper/presets/index.jsx";
 // maple template presets live with the template (templates/maple/presets/) —
 // registered here so configs reach them by slug like any other preset.
 import { MAPLE_PRESETS } from "../../../../../templates/maple/presets/index.jsx";
-// alder template presets live with the template (templates/alder/presets/) —
+// sequoia template presets live with the template (templates/sequoia/presets/) —
 // registered here so configs reach them by slug like any other preset.
-import { ALDER_PRESETS } from "../../../../../templates/alder/presets/index.jsx";
+import { SEQUOIA_PRESETS } from "../../../../../templates/sequoia/presets/index.jsx";
+// willow template presets live with the template (templates/willow/presets/) —
+// registered here so configs reach them by slug like any other preset.
+import { WILLOW_PRESETS } from "../../../../../templates/willow/presets/index.jsx";
 import { rgb } from "../easing.js";
 import {
 	ClipWord,
@@ -2600,6 +2606,10 @@ export const PRESETS = {
 	...MAPLE_PRESETS,
 	// ── alder template presets (templates/alder/presets/) ───────────────────
 	...ALDER_PRESETS,
+	// ── sequoia template presets (templates/sequoia/presets/) ──
+	...SEQUOIA_PRESETS,
+	// ── willow template presets (templates/willow/presets/) ──
+	...WILLOW_PRESETS,
 };
 
 export const PRESET_NOTES = Object.fromEntries(

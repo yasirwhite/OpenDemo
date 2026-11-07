@@ -145,6 +145,59 @@
 			],
 			"derivedFrom": "the Claude Opus 5.5 launch film, measured frame-by-frame on its 25fps clock",
 			"config": "alder/template.json"
+		},
+		{
+			"slug": "willow",
+			"name": "Willow",
+			"style": "character-led kinetic-typography launch film for an AI work companion",
+			"category": "typography-led",
+			"durationMs": 90000,
+			"aspect": "16:9",
+			"fps": 24,
+			"slots": 5,
+			"tags": [
+				"kinetic-text",
+				"halftone-grounds",
+				"tinted-word-swaps",
+				"chip-drum",
+				"prompt-composer",
+				"agent-cursors",
+				"chat-status-rows",
+				"character-art-slots",
+				"count-up-stats",
+				"testimonial-coverflow",
+				"logo-cloud",
+				"serif-wordmark-endcard"
+			],
+			"derivedFrom": "the Strawberry 1.0 launch film, measured frame-by-frame at 24fps",
+			"config": "willow/template.json"
+		},
+		{
+			"slug": "sequoia",
+			"name": "Sequoia",
+			"style": "continuous-camera type-and-UI launch film for an AI agent product",
+			"category": "typography-led",
+			"durationMs": 87533,
+			"aspect": "16:9",
+			"fps": 30,
+			"slots": 3,
+			"tags": [
+				"kinetic-text",
+				"inline-icons",
+				"continuous-camera",
+				"graphite-and-off-white",
+				"drawn-ui",
+				"refusal-chat",
+				"task-timeline",
+				"subagent-tree",
+				"benchmark-chart",
+				"word-drum",
+				"light-curtain-reveal",
+				"password-field",
+				"logo-lockup"
+			],
+			"derivedFrom": "the Aside launch film, measured frame-by-frame on a 30fps clock",
+			"config": "sequoia/template.json"
 		}
 	]
 }

@@ -61,6 +61,26 @@
 			"spec": "1920x1080, 25fps, 20.0s",
 			"notes": "templates/alder/reference-notes.md",
 			"usedBy": "templates/alder/ - full film rebuilt frame-by-frame; horizon-arc match-cut montage of texture plates, serif line riding and bending to the arc, accelerating cut rhythm, planet-horizon glow bookend with name card and wordmark"
+		},
+		{
+			"id": "strawberry",
+			"file": "strawberry-launch-film.mp4",
+			"url": "https://video.twimg.com/amplify_video/2114634365208567808/vid/avc1/1920x1080/vEUdui31QX_he24W.mp4?tag=29",
+			"md5": "b1d1de680d238b864bf2ab348a28b5cc",
+			"bytes": 20261414,
+			"spec": "1920x1080, 24fps, 90.0s",
+			"notes": "templates/willow/reference-notes.md",
+			"usedBy": "templates/willow/ - full film rebuilt frame-by-frame; halftone grounds, elastic kinetic type, chip drums, drawn UI cards, character-art slots"
+		},
+		{
+			"id": "aside",
+			"file": "aside-launch-film.mp4",
+			"url": "https://video.twimg.com/amplify_video/2069496109756825600/vid/avc1/1920x1080/ADbM3S2HA0gmxcKM.mp4?tag=28",
+			"md5": "1e7322ea7b740d5ea48f40eb14ec3bf3",
+			"bytes": 15118935,
+			"spec": "1920x1080, 29.97fps, 87.5s",
+			"notes": "templates/sequoia/reference-notes.md",
+			"usedBy": "templates/sequoia/ - full film rebuilt frame-by-frame on a 30fps clock; continuous-camera kinetic type, inline icons, drawn UI recreations, benchmark chart"
 		}
 	]
 }
