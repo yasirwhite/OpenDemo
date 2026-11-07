@@ -20,8 +20,6 @@ Your agent sets it up, records your app, edits the video and hands you an .mp4.
 
 ## More
 
-**Templates** *(alpha)*: pick a look from the [template gallery](https://yasirwhite.github.io/OpenDemo/) and copy its prompt. Your recording goes inside 3D product shots, cut with animated text. Good for Product Hunt, Show HN and X.
-
 ![OpenDemo launch film](./examples/opendemo-launch.gif)
 
 *Written, animated and rendered by OpenDemo itself.*
