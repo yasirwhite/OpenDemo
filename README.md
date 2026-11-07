@@ -1,6 +1,6 @@
 # OpenDemo
 
-AI that makes your video. Free, runs locally, no API keys.
+Toolkit allowing your coding agents to make videos. Free, runs locally, no API keys.
 
 ## One prompt
 
