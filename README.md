@@ -28,10 +28,6 @@ Your agent sets it up, records your app, edits the video and hands you an .mp4.
 
 **README GIF:** add "and a GIF for my README" to the prompt.
 
-**Changes:** ask your agent, or open the built-in editor with `node OpenDemo/run-demo.mjs <DEMO.json>`.
-
-**What it records:** web apps, local or deployed. Everything runs on your machine.
-
 **Setting it up yourself:** `npm install` then `npm run build`, once.
 
 **For AI agents:** read [AGENT_README.md](./AGENT_README.md).
