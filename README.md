@@ -20,15 +20,15 @@ Your agent sets it up, records your app, edits the video and hands you an .mp4.
 
 ## More
 
-![OpenDemo launch film](./examples/opendemo-launch.gif)
-
-*Written, animated and rendered by OpenDemo itself.*
-
 **README GIF:** add "and a GIF for my README" to the prompt.
 
 **Setting it up yourself:** `npm install` then `npm run build`, once.
 
 **For AI agents:** read [AGENT_README.md](./AGENT_README.md).
+
+*Written, animated and rendered by OpenDemo itself:*
+
+![OpenDemo launch film](./examples/opendemo-launch.gif)
 
 <!-- traffic:start -->
 ## Stats
