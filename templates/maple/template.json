@@ -1,0 +1,525 @@
+{
+	"_about": "maple: a 30s vector-construction launch film for a design / logo AI, derived frame-by-frame from the QuiverAI Arrow 1.0 launch film (@joanrod_ai on X, 2026-02-25; 30.0s, 1920x1080 @60fps, rebuilt on a 30fps clock). Authored on the 1280x720 stage (stage px = reference px / 1.5) and rendered at device scale 1.5 for 1920x1080: render.mjs --fps 30 --scale 1.5. Placeholder product: Maple (maple.example), whose model Samara turns a sketch into a clean, editable vector mark. The hero mark (MapleMark), the brand logo (MapleLogo), cards, chrome and wordmarks are drawn; copy is role-tagged; the sketch photo and eight mockup photos are labelled image slots.",
+	"_sections": "S1 sketch photo pull-back into a canvas window, blue trace + SVG code drift, comet outline on black, ink outline on an iso grid 0-4.033 | S2 wireframe close-up with anchor dots and fillets, node mark + cursor, navy fill, hatch sweep, gradient fill + hue-slider scrub 4.033-8.967 | S3 full-bleed gradient + resize selection, shrink to an app-icon tile, typed prompt with a caret-tracking pan, send-button click and whip 8.967-13.8 | S4 white-to-black fade, gradient card rise and three rolodex flips, the mark dragged out of the card and dropped 13.8-17.033 | S5 eight-cut mockup montage, prompt card on a dot grid, outline 'lorem' wordmark, font flash 17.033-23.033 | S6 lockup grows with selection box and guides, collapses to the logo, url types on, cut to black at 29.633 23.033-30",
+	"_slots": "9 image slots: 'sketch-photo' (s1-sketch-canvas: set photo 'slot' and src, else a drawn pencil sketch stands in) and 'mockup-1'..'mockup-8' (s5-mockups: srcs {slot: path}; labels and strings per slot). The variation mark and the mockup strings are composited over each photo.",
+	"video": {
+		"width": 1920,
+		"height": 1080,
+		"fps": 30,
+		"durationMs": 30000
+	},
+	"ground": [
+		{
+			"fromMs": 0,
+			"colour": [0, 1, 0]
+		}
+	],
+	"scenes": [
+		{
+			"id": "s1-ground",
+			"preset": "maple-ground",
+			"startMs": 0,
+			"durationMs": 4033,
+			"keys": [
+				{
+					"at": 0,
+					"colour": [253, 255, 252]
+				},
+				{
+					"at": 2033,
+					"colour": [0, 1, 0],
+					"ease": "hold"
+				},
+				{
+					"at": 3033,
+					"colour": [253, 255, 252],
+					"ease": "hold"
+				}
+			]
+		},
+		{
+			"id": "s1-sketch-canvas",
+			"preset": "maple-sketch-canvas",
+			"role": "product-voice",
+			"startMs": 0,
+			"durationMs": 2033,
+			"frame0": 0,
+			"photo": "drawn",
+			"slot": "sketch-photo",
+			"label": "photo: hand sketch of your mark on paper",
+			"zoomLabel": "50%",
+			"rows": [
+				{
+					"y": 82,
+					"col": -2,
+					"alpha": 0.45,
+					"tokens": [
+						["<svg", 33, null, 44],
+						["viewBox=\"0", 33, null, 44],
+						["0", 33, null, 44],
+						["400", 33, null, 44],
+						["468\"", 33, null, 44],
+						["fill=\"none\"", 33, null, 44]
+					]
+				},
+				{
+					"y": 194.5,
+					"col": -1,
+					"tokens": [["xmlns=\"http://www.w3.org/2000/svg\">", 28, 56, 44]]
+				},
+				{
+					"y": 307,
+					"col": 0,
+					"tokens": [
+						["<path", 28, 50, 38],
+						["d=\"M200", 31, 50, 38],
+						["4L392", 22, null, 38],
+						["119L392", 22, null, 38],
+						["349L200", 32, 49, 38]
+					]
+				},
+				{
+					"y": 419.5,
+					"col": 5,
+					"tokens": [
+						["464L8", 30, 51, 41],
+						["349L8", 30, 51, 41],
+						["119Z\"", 26, 58, 41],
+						["stroke=\"#141414\"", 26, 57, 41],
+						["stroke-width=\"3\"/>", 33, 57, 41]
+					]
+				},
+				{
+					"y": 532,
+					"col": 0,
+					"tokens": [
+						["<path", 30, 51, 44],
+						["d=\"M200", 30, 51, 44],
+						["138L314", 36, 47, 44],
+						["334L200", 28, 56, 44],
+						["266L86", 33, 56, 44],
+						["334Z\"", 33, 56, 44]
+					]
+				},
+				{
+					"y": 644.5,
+					"col": 0,
+					"alpha": 0.6,
+					"tokens": [
+						["stroke=\"#141414\"", 34, null, 44],
+						["stroke-width=\"3\"/>", 34, null, 44],
+						["</svg>", 34, null, 44]
+					]
+				}
+			]
+		},
+		{
+			"id": "s1-comet-outline",
+			"preset": "maple-comet-outline",
+			"startMs": 2033,
+			"durationMs": 1000,
+			"frame0": 61
+		},
+		{
+			"id": "s1-iso-outline",
+			"preset": "maple-iso-outline",
+			"startMs": 3033,
+			"durationMs": 1000
+		},
+		{
+			"id": "s2-ground",
+			"preset": "maple-ground",
+			"startMs": 4033,
+			"durationMs": 4933,
+			"keys": [
+				{
+					"at": 0,
+					"colour": [0, 1, 0]
+				}
+			]
+		},
+		{
+			"id": "s2-wire",
+			"preset": "maple-wire-closeup",
+			"startMs": 4033,
+			"durationMs": 2000,
+			"frame0": 121
+		},
+		{
+			"id": "s2-nodes",
+			"preset": "maple-node-mark",
+			"startMs": 6033,
+			"durationMs": 2000,
+			"frame0": 181
+		},
+		{
+			"id": "s2-hue",
+			"preset": "maple-hue-scrub",
+			"startMs": 8033,
+			"durationMs": 933,
+			"frame0": 241
+		},
+		{
+			"id": "s3-ground",
+			"preset": "maple-ground",
+			"startMs": 8966,
+			"durationMs": 4834,
+			"keys": [
+				{
+					"at": 0,
+					"colour": [0, 1, 0]
+				},
+				{
+					"at": 1062.33,
+					"colour": [253, 255, 252],
+					"ease": "hold"
+				}
+			]
+		},
+		{
+			"id": "s3-icon",
+			"preset": "maple-icon-resize",
+			"startMs": 8966,
+			"durationMs": 1450
+		},
+		{
+			"id": "s3-prompt",
+			"role": "user-voice",
+			"preset": "maple-prompt-send",
+			"startMs": 10416,
+			"durationMs": 3384,
+			"text": "create variations of this mark"
+		},
+		{
+			"id": "s4-ground",
+			"preset": "maple-ground",
+			"startMs": 13800,
+			"durationMs": 3233,
+			"keys": [
+				{
+					"at": 0.0,
+					"colour": [195, 197, 194]
+				},
+				{
+					"at": 28.333,
+					"colour": [130, 132, 129],
+					"ease": "hold"
+				},
+				{
+					"at": 61.667,
+					"colour": [93, 95, 92],
+					"ease": "hold"
+				},
+				{
+					"at": 95.0,
+					"colour": [67, 69, 66],
+					"ease": "hold"
+				},
+				{
+					"at": 128.333,
+					"colour": [46, 48, 45],
+					"ease": "hold"
+				},
+				{
+					"at": 161.667,
+					"colour": [31, 33, 30],
+					"ease": "hold"
+				},
+				{
+					"at": 195.0,
+					"colour": [18, 20, 17],
+					"ease": "hold"
+				},
+				{
+					"at": 228.333,
+					"colour": [10, 12, 9],
+					"ease": "hold"
+				},
+				{
+					"at": 261.667,
+					"colour": [3, 5, 2],
+					"ease": "hold"
+				},
+				{
+					"at": 295.0,
+					"colour": [0, 2, 0],
+					"ease": "hold"
+				},
+				{
+					"at": 328.333,
+					"colour": [0, 1, 0],
+					"ease": "hold"
+				}
+			]
+		},
+		{
+			"id": "s4-rolodex",
+			"preset": "maple-rolodex",
+			"startMs": 13800,
+			"durationMs": 3233,
+			"cards": [
+				{
+					"art": "ember",
+					"variant": "main",
+					"radius": 26
+				},
+				{
+					"art": "orchid",
+					"variant": "blades",
+					"radius": 4
+				},
+				{
+					"art": "dawn",
+					"variant": "cube"
+				},
+				{
+					"art": "lagoon",
+					"variant": "blades",
+					"radius": 26
+				}
+			]
+		},
+		{
+			"id": "s5-ground",
+			"preset": "maple-ground",
+			"startMs": 17033,
+			"durationMs": 6000,
+			"keys": [
+				{
+					"at": 0,
+					"colour": [0, 1, 0]
+				},
+				{
+					"at": 1995.3,
+					"colour": [253, 255, 252],
+					"ease": "hold"
+				},
+				{
+					"at": 4062.0,
+					"colour": [251, 253, 250],
+					"ease": "hold"
+				},
+				{
+					"at": 4095.3,
+					"colour": [191, 193, 190],
+					"ease": "hold"
+				},
+				{
+					"at": 4128.7,
+					"colour": [151, 153, 150],
+					"ease": "hold"
+				},
+				{
+					"at": 4162.0,
+					"colour": [119, 121, 118],
+					"ease": "hold"
+				},
+				{
+					"at": 4195.3,
+					"colour": [94, 96, 93],
+					"ease": "hold"
+				},
+				{
+					"at": 4228.7,
+					"colour": [74, 76, 73],
+					"ease": "hold"
+				},
+				{
+					"at": 4262.0,
+					"colour": [58, 60, 57],
+					"ease": "hold"
+				},
+				{
+					"at": 4295.3,
+					"colour": [46, 48, 45],
+					"ease": "hold"
+				},
+				{
+					"at": 4328.7,
+					"colour": [36, 38, 35],
+					"ease": "hold"
+				},
+				{
+					"at": 4362.0,
+					"colour": [28, 30, 27],
+					"ease": "hold"
+				},
+				{
+					"at": 4395.3,
+					"colour": [22, 24, 21],
+					"ease": "hold"
+				},
+				{
+					"at": 4428.7,
+					"colour": [17, 19, 16],
+					"ease": "hold"
+				},
+				{
+					"at": 4462.0,
+					"colour": [13, 15, 12],
+					"ease": "hold"
+				},
+				{
+					"at": 4495.3,
+					"colour": [10, 12, 9],
+					"ease": "hold"
+				},
+				{
+					"at": 4528.7,
+					"colour": [8, 10, 7],
+					"ease": "hold"
+				},
+				{
+					"at": 4562.0,
+					"colour": [6, 8, 5],
+					"ease": "hold"
+				},
+				{
+					"at": 4595.3,
+					"colour": [5, 7, 4],
+					"ease": "hold"
+				},
+				{
+					"at": 4628.7,
+					"colour": [3, 5, 2],
+					"ease": "hold"
+				},
+				{
+					"at": 4662.0,
+					"colour": [2, 4, 1],
+					"ease": "hold"
+				},
+				{
+					"at": 4695.3,
+					"colour": [2, 4, 1],
+					"ease": "hold"
+				},
+				{
+					"at": 4728.7,
+					"colour": [1, 3, 0],
+					"ease": "hold"
+				},
+				{
+					"at": 4762.0,
+					"colour": [0, 1, 0],
+					"ease": "hold"
+				},
+				{
+					"at": 4795.3,
+					"colour": [0, 1, 0],
+					"ease": "hold"
+				}
+			]
+		},
+		{
+			"id": "s5-mockups",
+			"role": "brand",
+			"preset": "maple-mockup-montage",
+			"startMs": 17033,
+			"durationMs": 2000,
+			"slots": [
+				"mockup-1",
+				"mockup-2",
+				"mockup-3",
+				"mockup-4",
+				"mockup-5",
+				"mockup-6",
+				"mockup-7",
+				"mockup-8"
+			],
+			"labels": {
+				"mockup-1": "mockup-1: printed brochure / cover",
+				"mockup-2": "mockup-2: coffee cup",
+				"mockup-3": "mockup-3: shopfront / signage",
+				"mockup-4": "mockup-4: street poster",
+				"mockup-5": "mockup-5: framed print",
+				"mockup-6": "mockup-6: packaging",
+				"mockup-7": "mockup-7: apparel",
+				"mockup-8": "mockup-8: billboard"
+			},
+			"strings": {
+				"mockup-1": ["Lorem", "Samara · Maple", "THE…"],
+				"mockup-3": ["Lorem"],
+				"mockup-4": ["Lorem", "Samara"],
+				"mockup-6": ["Samara"],
+				"mockup-8": ["LOREM", "LOREM", "Samara · Maple"]
+			},
+			"srcs": {}
+		},
+		{
+			"id": "s5-dot-grid",
+			"preset": "maple-prompt-card",
+			"layer": "grid",
+			"startMs": 19033,
+			"durationMs": 2567
+		},
+		{
+			"id": "s5-outline-wordmark",
+			"role": "product-voice",
+			"preset": "maple-outline-wordmark",
+			"startMs": 19033,
+			"durationMs": 3033,
+			"word": "lorem"
+		},
+		{
+			"id": "s5-prompt-card",
+			"role": "user-voice",
+			"roles": {
+				"placeholder": "product-voice",
+				"prompt": "user-voice"
+			},
+			"preset": "maple-prompt-card",
+			"layer": "card",
+			"startMs": 19033,
+			"durationMs": 2567,
+			"placeholder": "What should Maple draw?",
+			"prompt": "Add a wordmark to this mark"
+		},
+		{
+			"id": "s5-font-flash",
+			"role": "product-voice",
+			"preset": "maple-font-flash",
+			"startMs": 22033,
+			"durationMs": 1000,
+			"words": [
+				"Lorem",
+				"Lorem",
+				"LOREM",
+				"lorem",
+				"LOREM",
+				"lorem",
+				"Lorem",
+				"Lorem",
+				"Lorem",
+				"LOREM"
+			]
+		},
+		{
+			"id": "s6-ground",
+			"preset": "maple-ground",
+			"startMs": 23033,
+			"durationMs": 6967,
+			"keys": [
+				{
+					"at": 0,
+					"colour": [0, 1, 0]
+				},
+				{
+					"at": 6600,
+					"colour": [0, 0, 0],
+					"ease": "hold"
+				}
+			]
+		},
+		{
+			"id": "s6-brand-close",
+			"role": "brand",
+			"preset": "maple-brand-close",
+			"startMs": 23033,
+			"durationMs": 6600,
+			"name": "Maple",
+			"suffix": "AI",
+			"url": "maple.example"
+		}
+	]
+}
