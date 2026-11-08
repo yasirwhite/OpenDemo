@@ -1,0 +1,1335 @@
+{
+	"_about": "rowan: a 79s dark canvas-editor launch film, derived frame-by-frame from a 79.1s launch film for an AI design canvas (1812x1080 @30fps). Authored in reference px inside a 1812x1080 box on the 1280x720 stage (stage px = ref px / 1.5, centred), rendered at device scale 1.5: render.mjs --fps 30 --scale 1.5. Placeholder product: Rowan (rowan.example), an AI design canvas whose agent designs a wind-farm control room, a bakery site and a design system. ONE app window lies on a black backdrop of white contour ribbons; the camera is two slow linear centred pushes that run under every cut; the interior changes by hard cuts and four dips to black; three short mono captions name the late features; a typed mono end card closes.",
+	"_sections": "S1 0-14.6 CLI on the canvas, prompt close-up, chat card, the artboard building itself | S2 14.6-46.6 six finished takes cutting under one push, dip, 2x2 and 3x3 boards, phone row, zoom onto three phones | S3 46.6-73.0 site on the canvas, dip, design-to-code terminal (x1.37 punch), dip, coded site in a browser, dip, design-system page with slots, variables, light flip, mesh gradient | S4 73.0-79.1 typed end card: claim, then url",
+	"_slots": "Every rowan-shot scene takes `src` (an .mp4 screen recording of YOUR app window, plus `clip`) and then shows it inside the window instead of the drawn stand-in; keep the camera keys. Pictures inside the drawn views are image slots under `images`: `hero` (variant/build), `cell-N` (boards), `site-1`..`site-6` (site, code, browser). Without them, drawn stand-ins.",
+	"video": {
+		"width": 1920,
+		"height": 1080,
+		"fps": 30,
+		"durationMs": 79100
+	},
+	"ground": [
+		{
+			"fromMs": 0,
+			"colour": [0, 0, 0]
+		}
+	],
+	"scenes": [
+		{
+			"id": "s1-cli",
+			"preset": "rowan-shot",
+			"startMs": 0,
+			"durationMs": 1000,
+			"view": "cli",
+			"cam": [
+				{
+					"at": 0,
+					"s": 0.9469,
+					"cx": 906,
+					"cy": 540
+				},
+				{
+					"at": 1000,
+					"s": 1.0382,
+					"cx": 906,
+					"cy": 540
+				}
+			],
+			"doc": "untitled.rowan",
+			"role": "user-voice",
+			"text": "Design a control room for a wind farm",
+			"typeAt": 167,
+			"cps": 21
+		},
+		{
+			"id": "s1-prompt",
+			"preset": "rowan-shot",
+			"startMs": 1000,
+			"durationMs": 1500,
+			"view": "prompt",
+			"cam": [
+				{
+					"at": 0,
+					"s": 1.8307,
+					"cx": 1759.1,
+					"cy": 1049.8
+				},
+				{
+					"at": 1500,
+					"s": 2.04,
+					"cx": 1958.5,
+					"cy": 1169
+				}
+			],
+			"role": "user-voice",
+			"text": "design a control room for a wind farm with moody night photos",
+			"typeAt": -650,
+			"cps": 27.75
+		},
+		{
+			"id": "s1-chat",
+			"preset": "rowan-shot",
+			"startMs": 2500,
+			"durationMs": 1466,
+			"view": "chat",
+			"cam": [
+				{
+					"at": 0,
+					"s": 0.9469,
+					"cx": 906,
+					"cy": 540
+				},
+				{
+					"at": 1466,
+					"s": 0.9556,
+					"cx": 906,
+					"cy": 540
+				}
+			],
+			"role": "user-voice",
+			"text": "design a control room for a wind farm with moody night photos",
+			"dockAt": 300
+		},
+		{
+			"id": "s1-build",
+			"preset": "rowan-shot",
+			"startMs": 3966,
+			"durationMs": 10634,
+			"view": "build",
+			"cam": [
+				{
+					"at": 0,
+					"s": 0.9556,
+					"cx": 906,
+					"cy": 540
+				},
+				{
+					"at": 10634,
+					"s": 1.0179,
+					"cx": 906,
+					"cy": 540
+				}
+			],
+			"role": "product-voice",
+			"theme": "green",
+			"buildKeys": [
+				{
+					"at": 0,
+					"build": 1
+				},
+				{
+					"at": 1034,
+					"build": 1
+				},
+				{
+					"at": 2034,
+					"build": 2
+				},
+				{
+					"at": 2867,
+					"build": 2.5
+				},
+				{
+					"at": 4034,
+					"build": 3
+				},
+				{
+					"at": 5034,
+					"build": 4
+				},
+				{
+					"at": 6034,
+					"build": 5
+				},
+				{
+					"at": 7034,
+					"build": 6
+				},
+				{
+					"at": 8034,
+					"build": 7
+				},
+				{
+					"at": 9034,
+					"build": 8
+				},
+				{
+					"at": 10034,
+					"build": 9
+				},
+				{
+					"at": 10600,
+					"build": 9.15
+				}
+			],
+			"panelKeys": [
+				{
+					"at": 0,
+					"y": 385
+				},
+				{
+					"at": 4367,
+					"y": 252
+				}
+			],
+			"talkKeys": [
+				{
+					"at": 0,
+					"n": 3
+				},
+				{
+					"at": 10600,
+					"n": 14
+				}
+			]
+		},
+		{
+			"id": "s2-take-orange",
+			"preset": "rowan-shot",
+			"startMs": 14600,
+			"durationMs": 2900,
+			"view": "variant",
+			"cam": [
+				{
+					"at": 0,
+					"s": 1.0179,
+					"cx": 906,
+					"cy": 540
+				},
+				{
+					"at": 2900,
+					"s": 1.035,
+					"cx": 906,
+					"cy": 540
+				}
+			],
+			"theme": "orange",
+			"buildKeys": [
+				{
+					"at": 0,
+					"build": 9.25
+				},
+				{
+					"at": 2800,
+					"build": 10
+				}
+			],
+			"todoDone": 3
+		},
+		{
+			"id": "s2-take-yellow",
+			"preset": "rowan-shot",
+			"startMs": 17500,
+			"durationMs": 3300,
+			"view": "variant",
+			"cam": [
+				{
+					"at": 0,
+					"s": 1.035,
+					"cx": 906,
+					"cy": 540
+				},
+				{
+					"at": 3300,
+					"s": 1.0543,
+					"cx": 906,
+					"cy": 540
+				}
+			],
+			"theme": "yellow",
+			"buildKeys": [
+				{
+					"at": 0,
+					"build": 10.15
+				},
+				{
+					"at": 3200,
+					"build": 12
+				}
+			],
+			"todoDone": 4
+		},
+		{
+			"id": "s2-take-serif",
+			"preset": "rowan-shot",
+			"startMs": 20800,
+			"durationMs": 3633,
+			"view": "variant",
+			"cam": [
+				{
+					"at": 0,
+					"s": 1.0543,
+					"cx": 906,
+					"cy": 540
+				},
+				{
+					"at": 3633,
+					"s": 1.0756,
+					"cx": 906,
+					"cy": 540
+				}
+			],
+			"theme": "serif",
+			"todoDone": 5,
+			"props": false
+		},
+		{
+			"id": "s2-take-green",
+			"preset": "rowan-shot",
+			"startMs": 24433,
+			"durationMs": 5267,
+			"view": "variant",
+			"cam": [
+				{
+					"at": 0,
+					"s": 1.0756,
+					"cx": 906,
+					"cy": 540
+				},
+				{
+					"at": 5267,
+					"s": 1.1066,
+					"cx": 906,
+					"cy": 540
+				}
+			],
+			"theme": "green",
+			"hlKeys": [
+				{
+					"at": 0,
+					"hl": 1
+				},
+				{
+					"at": 2567,
+					"hl": 2
+				},
+				{
+					"at": 4567,
+					"hl": 3
+				}
+			],
+			"todoDone": 6
+		},
+		{
+			"id": "s2-take-navy",
+			"preset": "rowan-shot",
+			"startMs": 29700,
+			"durationMs": 1700,
+			"view": "variant",
+			"cam": [
+				{
+					"at": 0,
+					"s": 1.1066,
+					"cx": 906,
+					"cy": 540
+				},
+				{
+					"at": 1700,
+					"s": 1.1165,
+					"cx": 906,
+					"cy": 540
+				}
+			],
+			"theme": "navy",
+			"todoDone": 6
+		},
+		{
+			"id": "s2-take-mono",
+			"preset": "rowan-shot",
+			"startMs": 31400,
+			"durationMs": 3300,
+			"view": "variant",
+			"cam": [
+				{
+					"at": 0,
+					"s": 1.1165,
+					"cx": 906,
+					"cy": 540
+				},
+				{
+					"at": 3300,
+					"s": 1.1359,
+					"cx": 906,
+					"cy": 540
+				}
+			],
+			"theme": "mono",
+			"todoDone": 7
+		},
+		{
+			"id": "s2-board-4",
+			"preset": "rowan-shot",
+			"startMs": 34700,
+			"durationMs": 3433,
+			"view": "board",
+			"cam": [
+				{
+					"at": 0,
+					"s": 0.9465,
+					"cx": 906,
+					"cy": 540
+				},
+				{
+					"at": 3433,
+					"s": 0.959,
+					"cx": 906,
+					"cy": 540
+				}
+			],
+			"cells": [
+				{
+					"x": 209,
+					"y": 73,
+					"w": 640,
+					"h": 400,
+					"theme": "orange"
+				},
+				{
+					"x": 893,
+					"y": 73,
+					"w": 640,
+					"h": 400,
+					"theme": "green"
+				},
+				{
+					"x": 209,
+					"y": 520,
+					"w": 640,
+					"h": 400,
+					"theme": "mono"
+				},
+				{
+					"x": 893,
+					"y": 520,
+					"w": 640,
+					"h": 400,
+					"theme": "yellow"
+				}
+			],
+			"pct": 38
+		},
+		{
+			"id": "s2-board-9",
+			"preset": "rowan-shot",
+			"startMs": 38133,
+			"durationMs": 3367,
+			"view": "board",
+			"cam": [
+				{
+					"at": 0,
+					"s": 0.959,
+					"cx": 906,
+					"cy": 540
+				},
+				{
+					"at": 3367,
+					"s": 0.9713,
+					"cx": 906,
+					"cy": 540
+				}
+			],
+			"cells": [
+				{
+					"x": 184,
+					"y": 76,
+					"w": 405,
+					"h": 266,
+					"theme": "orange"
+				},
+				{
+					"x": 659,
+					"y": 76,
+					"w": 405,
+					"h": 266,
+					"theme": "green"
+				},
+				{
+					"x": 1150,
+					"y": 76,
+					"w": 405,
+					"h": 266,
+					"theme": "mono"
+				},
+				{
+					"x": 184,
+					"y": 380,
+					"w": 405,
+					"h": 266,
+					"theme": "yellow"
+				},
+				{
+					"x": 659,
+					"y": 380,
+					"w": 405,
+					"h": 266,
+					"theme": "paper"
+				},
+				{
+					"x": 1150,
+					"y": 380,
+					"w": 405,
+					"h": 266,
+					"theme": "navy"
+				},
+				{
+					"x": 184,
+					"y": 690,
+					"w": 405,
+					"h": 266,
+					"theme": "paper"
+				},
+				{
+					"x": 659,
+					"y": 690,
+					"w": 405,
+					"h": 266,
+					"theme": "serif"
+				},
+				{
+					"x": 1150,
+					"y": 690,
+					"w": 405,
+					"h": 266,
+					"theme": "ink"
+				}
+			],
+			"pct": 24,
+			"labelSize": 8.5,
+			"selKeys": [
+				{
+					"at": 0,
+					"sel": 0
+				}
+			]
+		},
+		{
+			"id": "s2-phones",
+			"preset": "rowan-shot",
+			"startMs": 41500,
+			"durationMs": 1966,
+			"view": "phones",
+			"cam": [
+				{
+					"at": 0,
+					"s": 0.9713,
+					"cx": 906,
+					"cy": 540
+				},
+				{
+					"at": 1966,
+					"s": 0.9785,
+					"cx": 906,
+					"cy": 540
+				}
+			],
+			"count": 10,
+			"x0": 87,
+			"pitch": 182,
+			"w": 155,
+			"y": 154,
+			"h": 753,
+			"selKeys": [
+				{
+					"at": 0,
+					"sel": 7
+				}
+			]
+		},
+		{
+			"id": "s2-phone-close",
+			"preset": "rowan-shot",
+			"startMs": 43466,
+			"durationMs": 3134,
+			"view": "phone-close",
+			"cam": [
+				{
+					"at": 0,
+					"s": 0.9785,
+					"cx": 906,
+					"cy": 540
+				},
+				{
+					"at": 3134,
+					"s": 0.99,
+					"cx": 906,
+					"cy": 540
+				}
+			],
+			"zoomKeys": [
+				{
+					"at": 0,
+					"z": 0.45,
+					"x": 380,
+					"y": 60
+				},
+				{
+					"at": 134,
+					"z": 1,
+					"x": 0,
+					"y": 0,
+					"ease": "out"
+				}
+			],
+			"dragKeys": [
+				{
+					"at": 0,
+					"d": 0
+				},
+				{
+					"at": 1034,
+					"d": 0
+				},
+				{
+					"at": 1367,
+					"d": 1
+				}
+			],
+			"editAt": 2034,
+			"pointer": [
+				{
+					"at": 0,
+					"x": 1150,
+					"y": 300
+				},
+				{
+					"at": 700,
+					"x": 1120,
+					"y": 290
+				},
+				{
+					"at": 1367,
+					"x": 1060,
+					"y": 560,
+					"ease": "inout"
+				},
+				{
+					"at": 2034,
+					"x": 820,
+					"y": 470,
+					"ease": "inout"
+				},
+				{
+					"at": 3100,
+					"x": 830,
+					"y": 480
+				}
+			],
+			"pct": 110
+		},
+		{
+			"id": "s3-site",
+			"preset": "rowan-shot",
+			"startMs": 46600,
+			"durationMs": 2933,
+			"view": "site",
+			"cam": [
+				{
+					"at": 0,
+					"s": 0.99,
+					"cx": 906,
+					"cy": 540
+				},
+				{
+					"at": 2933,
+					"s": 1.0007,
+					"cx": 906,
+					"cy": 540
+				}
+			],
+			"doc": "bakery.rowan",
+			"zoomKeys": [
+				{
+					"at": 0,
+					"z": 0.198,
+					"x": 658,
+					"y": 85
+				},
+				{
+					"at": 700,
+					"z": 0.198,
+					"x": 658,
+					"y": 85
+				},
+				{
+					"at": 833,
+					"z": 0.66,
+					"x": 288,
+					"y": -448,
+					"ease": "out"
+				}
+			],
+			"selKeys": [
+				{
+					"at": 0,
+					"x": 0,
+					"y": 0,
+					"w": 0,
+					"h": 0
+				},
+				{
+					"at": 1066,
+					"x": 624.6,
+					"y": 370.4000000000001,
+					"w": 277.2,
+					"h": 217.8,
+					"ease": "hold"
+				},
+				{
+					"at": 1900,
+					"x": 334.2,
+					"y": 370.4000000000001,
+					"w": 277.2,
+					"h": 217.8,
+					"ease": "hold"
+				},
+				{
+					"at": 2466,
+					"x": 915,
+					"y": 370.4000000000001,
+					"w": 277.2,
+					"h": 217.8,
+					"ease": "hold"
+				}
+			],
+			"pointer": [
+				{
+					"at": 0,
+					"x": 1000,
+					"y": 600,
+					"hand": true
+				},
+				{
+					"at": 1066,
+					"x": 700,
+					"y": 640,
+					"hand": true,
+					"ease": "inout"
+				},
+				{
+					"at": 1900,
+					"x": 470,
+					"y": 600,
+					"hand": true,
+					"ease": "inout"
+				},
+				{
+					"at": 2466,
+					"x": 1040,
+					"y": 620,
+					"hand": true,
+					"ease": "inout"
+				},
+				{
+					"at": 2900,
+					"x": 1060,
+					"y": 640,
+					"hand": true
+				}
+			]
+		},
+		{
+			"id": "s3-site-menu",
+			"preset": "rowan-shot",
+			"startMs": 49533,
+			"durationMs": 2333,
+			"view": "site",
+			"cam": [
+				{
+					"at": 0,
+					"s": 1.0007,
+					"cx": 906,
+					"cy": 540
+				},
+				{
+					"at": 2333,
+					"s": 1.0092,
+					"cx": 906,
+					"cy": 540
+				}
+			],
+			"doc": "bakery.rowan",
+			"zoomKeys": [
+				{
+					"at": 0,
+					"z": 0.66,
+					"x": 288,
+					"y": -938
+				}
+			],
+			"selKeys": [
+				{
+					"at": 0,
+					"x": 809.4,
+					"y": 453.28,
+					"w": 382.8,
+					"h": 33
+				},
+				{
+					"at": 800,
+					"x": 809.4,
+					"y": 500.79999999999995,
+					"w": 382.8,
+					"h": 33,
+					"ease": "hold"
+				},
+				{
+					"at": 1533,
+					"x": 809.4,
+					"y": 548.3200000000002,
+					"w": 382.8,
+					"h": 33,
+					"ease": "hold"
+				}
+			],
+			"pointer": [
+				{
+					"at": 0,
+					"x": 900,
+					"y": 480
+				},
+				{
+					"at": 800,
+					"x": 930,
+					"y": 528,
+					"ease": "inout"
+				},
+				{
+					"at": 1533,
+					"x": 960,
+					"y": 576,
+					"ease": "inout"
+				},
+				{
+					"at": 2300,
+					"x": 980,
+					"y": 630
+				}
+			]
+		},
+		{
+			"id": "s3-code",
+			"preset": "rowan-shot",
+			"startMs": 51866,
+			"durationMs": 3367,
+			"view": "code",
+			"doc": "bakery.rowan",
+			"role": "user-voice",
+			"text": "turn the selected frame into a React app with an API",
+			"typeAt": 45,
+			"cps": 24.6,
+			"runAt": 2300,
+			"cam": [
+				{
+					"at": 0,
+					"s": 1.0092,
+					"cx": 906,
+					"cy": 540
+				},
+				{
+					"at": 467,
+					"s": 1.011,
+					"cx": 906,
+					"cy": 540
+				},
+				{
+					"at": 734,
+					"s": 1.3863,
+					"cx": 696.9,
+					"cy": 450.8,
+					"ease": "inout"
+				},
+				{
+					"at": 3367,
+					"s": 1.3995,
+					"cx": 696.9,
+					"cy": 450.8
+				}
+			]
+		},
+		{
+			"id": "s3-browser",
+			"preset": "rowan-shot",
+			"startMs": 55233,
+			"durationMs": 2233,
+			"view": "browser",
+			"cam": [
+				{
+					"at": 0,
+					"s": 1.0216,
+					"cx": 906,
+					"cy": 540
+				},
+				{
+					"at": 2233,
+					"s": 1.0297,
+					"cx": 906,
+					"cy": 540
+				}
+			],
+			"doc": "bakery.rowan",
+			"scrollKeys": [
+				{
+					"at": 0,
+					"y": 0
+				},
+				{
+					"at": 467,
+					"y": 0
+				},
+				{
+					"at": 1967,
+					"y": 3300,
+					"ease": "inout"
+				}
+			],
+			"pointer": [
+				{
+					"at": 0,
+					"x": 1250,
+					"y": 690
+				}
+			]
+		},
+		{
+			"id": "s3-components",
+			"preset": "rowan-shot",
+			"startMs": 57466,
+			"durationMs": 8567,
+			"view": "components",
+			"cam": [
+				{
+					"at": 0,
+					"s": 1.0297,
+					"cx": 906,
+					"cy": 540
+				},
+				{
+					"at": 8567,
+					"s": 1.0611,
+					"cx": 906,
+					"cy": 540
+				}
+			],
+			"doc": "design-system.rowan",
+			"zoomKeys": [
+				{
+					"at": 0,
+					"z": 1,
+					"x": 0,
+					"y": 0
+				},
+				{
+					"at": 467,
+					"z": 1,
+					"x": 0,
+					"y": 0
+				},
+				{
+					"at": 567,
+					"z": 1.5,
+					"x": -568,
+					"y": -35,
+					"ease": "out"
+				},
+				{
+					"at": 800,
+					"z": 1.5,
+					"x": -568,
+					"y": -35
+				},
+				{
+					"at": 900,
+					"z": 2.02,
+					"x": -1136,
+					"y": -70,
+					"ease": "out"
+				},
+				{
+					"at": 4700,
+					"z": 2.02,
+					"x": -1136,
+					"y": -70
+				},
+				{
+					"at": 4734,
+					"z": 3.78,
+					"x": -3105,
+					"y": -430,
+					"ease": "hold"
+				}
+			],
+			"fillKeys": [
+				{
+					"at": 0,
+					"f": 0
+				},
+				{
+					"at": 4700,
+					"f": 0
+				},
+				{
+					"at": 5200,
+					"f": 1
+				}
+			],
+			"pointer": [
+				{
+					"at": 0,
+					"x": 1110,
+					"y": 330
+				},
+				{
+					"at": 1200,
+					"x": 843,
+					"y": 376,
+					"ease": "inout"
+				},
+				{
+					"at": 4700,
+					"x": 850,
+					"y": 380
+				},
+				{
+					"at": 4734,
+					"x": 1690,
+					"y": 125,
+					"ease": "hold"
+				},
+				{
+					"at": 7200,
+					"x": 1600,
+					"y": 300,
+					"ease": "inout"
+				}
+			]
+		},
+		{
+			"id": "s3-variables",
+			"preset": "rowan-shot",
+			"startMs": 66033,
+			"durationMs": 2533,
+			"view": "variables",
+			"cam": [
+				{
+					"at": 0,
+					"s": 1.0611,
+					"cx": 906,
+					"cy": 540
+				},
+				{
+					"at": 2533,
+					"s": 1.0703,
+					"cx": 906,
+					"cy": 540
+				}
+			],
+			"doc": "design-system.rowan",
+			"zoomKeys": [
+				{
+					"at": 0,
+					"z": 1,
+					"x": 0,
+					"y": 0,
+					"modal": 1
+				},
+				{
+					"at": 1500,
+					"z": 1,
+					"x": 0,
+					"y": 0,
+					"modal": 1
+				},
+				{
+					"at": 1533,
+					"modal": 0,
+					"ease": "hold"
+				},
+				{
+					"at": 1967,
+					"z": 2,
+					"x": -1650,
+					"y": -990,
+					"ease": "inout"
+				}
+			],
+			"menuAt": 2133,
+			"pointer": [
+				{
+					"at": 0,
+					"x": 640,
+					"y": 60
+				},
+				{
+					"at": 1500,
+					"x": 660,
+					"y": 80
+				},
+				{
+					"at": 1967,
+					"x": 1660,
+					"y": 830,
+					"ease": "inout"
+				},
+				{
+					"at": 2500,
+					"x": 1665,
+					"y": 850
+				}
+			]
+		},
+		{
+			"id": "s3-light",
+			"preset": "rowan-shot",
+			"startMs": 68566,
+			"durationMs": 600,
+			"view": "light",
+			"cam": [
+				{
+					"at": 0,
+					"s": 1.0703,
+					"cx": 906,
+					"cy": 540
+				},
+				{
+					"at": 600,
+					"s": 1.0725,
+					"cx": 906,
+					"cy": 540
+				}
+			],
+			"doc": "design-system.rowan",
+			"zoomKeys": [
+				{
+					"at": 0,
+					"z": 2,
+					"x": -1650,
+					"y": -990,
+					"modal": 0
+				}
+			],
+			"modal": false,
+			"pointer": [
+				{
+					"at": 0,
+					"x": 1650,
+					"y": 900
+				}
+			]
+		},
+		{
+			"id": "s3-gradient",
+			"preset": "rowan-shot",
+			"startMs": 69166,
+			"durationMs": 3834,
+			"view": "gradient",
+			"cam": [
+				{
+					"at": 0,
+					"s": 1.0725,
+					"cx": 906,
+					"cy": 540
+				},
+				{
+					"at": 3834,
+					"s": 1.0865,
+					"cx": 906,
+					"cy": 540
+				}
+			],
+			"doc": "mesh.rowan",
+			"dragKeys": [
+				{
+					"at": 0,
+					"a": 0
+				},
+				{
+					"at": 3800,
+					"a": 1
+				}
+			],
+			"pointer": [
+				{
+					"at": 0,
+					"x": 790,
+					"y": 470
+				},
+				{
+					"at": 1500,
+					"x": 700,
+					"y": 420,
+					"ease": "inout"
+				},
+				{
+					"at": 2834,
+					"x": 860,
+					"y": 560,
+					"ease": "inout"
+				},
+				{
+					"at": 3800,
+					"x": 900,
+					"y": 600
+				}
+			]
+		},
+		{
+			"id": "dip-1",
+			"preset": "rowan-dip",
+			"startMs": 34566,
+			"durationMs": 267,
+			"keys": [
+				{
+					"at": 0,
+					"a": 0
+				},
+				{
+					"at": 134,
+					"a": 1
+				},
+				{
+					"at": 267,
+					"a": 0
+				}
+			]
+		},
+		{
+			"id": "dip-2",
+			"preset": "rowan-dip",
+			"startMs": 51700,
+			"durationMs": 333,
+			"keys": [
+				{
+					"at": 0,
+					"a": 0
+				},
+				{
+					"at": 166,
+					"a": 1
+				},
+				{
+					"at": 333,
+					"a": 0
+				}
+			]
+		},
+		{
+			"id": "dip-3",
+			"preset": "rowan-dip",
+			"startMs": 55066,
+			"durationMs": 334,
+			"keys": [
+				{
+					"at": 0,
+					"a": 0
+				},
+				{
+					"at": 167,
+					"a": 1
+				},
+				{
+					"at": 334,
+					"a": 0
+				}
+			]
+		},
+		{
+			"id": "dip-4",
+			"preset": "rowan-dip",
+			"startMs": 57233,
+			"durationMs": 600,
+			"keys": [
+				{
+					"at": 0,
+					"a": 0
+				},
+				{
+					"at": 233,
+					"a": 1
+				},
+				{
+					"at": 600,
+					"a": 0
+				}
+			]
+		},
+		{
+			"id": "cap-code",
+			"preset": "rowan-caption",
+			"role": "brand",
+			"startMs": 52033,
+			"durationMs": 3200,
+			"text": "Design to code",
+			"right": 1707,
+			"base": 980
+		},
+		{
+			"id": "cap-slots",
+			"preset": "rowan-caption",
+			"role": "brand",
+			"startMs": 57833,
+			"durationMs": 8200,
+			"text": "Components with slots",
+			"x": 68,
+			"base": 970
+		},
+		{
+			"id": "cap-vars",
+			"preset": "rowan-caption",
+			"role": "brand",
+			"startMs": 66033,
+			"durationMs": 2533,
+			"text": "Variables",
+			"x": 68,
+			"base": 970
+		},
+		{
+			"id": "cap-edit",
+			"preset": "rowan-caption",
+			"role": "brand",
+			"startMs": 69166,
+			"durationMs": 3834,
+			"text": "Full editing control",
+			"x": 79,
+			"base": 968
+		},
+		{
+			"id": "end-claim",
+			"preset": "rowan-typed",
+			"role": "brand",
+			"startMs": 73000,
+			"durationMs": 3000,
+			"cursorAt": 66,
+			"lines": [
+				{
+					"text": "Shape on canvas.",
+					"base": 503,
+					"at": 233,
+					"frames": 1.4
+				},
+				{
+					"text": "Ship in code.",
+					"base": 632,
+					"at": 1033,
+					"frames": 1.25
+				}
+			]
+		},
+		{
+			"id": "end-url",
+			"preset": "rowan-typed",
+			"role": "brand",
+			"startMs": 76000,
+			"durationMs": 3100,
+			"cursorAt": 166,
+			"cursorOff": 1633,
+			"lines": [
+				{
+					"text": "rowan.example",
+					"base": 575,
+					"at": 500,
+					"frames": 2.6
+				}
+			]
+		}
+	]
+}

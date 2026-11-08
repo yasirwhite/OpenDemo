@@ -81,6 +81,16 @@
 			"spec": "1920x1080, 29.97fps, 87.5s",
 			"notes": "templates/sequoia/reference-notes.md",
 			"usedBy": "templates/sequoia/ - full film rebuilt frame-by-frame on a 30fps clock; continuous-camera kinetic type, inline icons, drawn UI recreations, benchmark chart"
+		},
+		{
+			"id": "pencil",
+			"file": "pencil-launch-film.mp4",
+			"url": "https://video.twimg.com/amplify_video/2014022787955040259/vid/avc1/1812x1080/rD3Sfd-ivWo1gZfa.mp4?tag=21",
+			"md5": "368040fe8fc225120a681d266d731da3",
+			"bytes": 14532742,
+			"spec": "1812x1080, 30fps, 79.1s",
+			"notes": "templates/rowan/reference-notes.md",
+			"usedBy": "templates/rowan/ - full film rebuilt frame-by-frame on its 30fps clock; one app window on a contour-ribbon backdrop, two slow linear camera pushes, drawn editor UI, mono captions, typed end card"
 		}
 	]
 }
