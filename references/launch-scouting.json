@@ -1059,6 +1059,39 @@
 			"humans": "incidental",
 			"verdict": "reject",
 			"reason": "Mostly photoreal reconstructed-room fly-throughs with one-word captions; the product output IS the footage, so a template would be wall-to-wall slots with captions. Engagement also below tonight's standouts."
+		},
+		{
+			"dateVetted": "2026-11-08",
+			"title": "Pencil — infinite design canvas for Claude Code (re-vet, built)",
+			"videoUrl": "https://video.twimg.com/amplify_video/2014022787955040259/vid/avc1/1812x1080/rD3Sfd-ivWo1gZfa.mp4?tag=21",
+			"sourceUrl": "https://x.com/tomkrcha/status/2014028990810300498",
+			"source": "X (@tomkrcha, founder, 26,135 followers) — on file since 2026-08-05",
+			"metrics": "1,504,940 views / 8,569 likes / 918 RTs / 589 replies / 403 quotes / 10,497 bookmarks (fxtwitter API, re-checked 2026-11-08; posted 2026-01-21). ~58x the follower count, no brand halo. 79.1s, 1812x1080@30fps (the 1080 variant of the 3626x2160 master).",
+			"humans": "none",
+			"verdict": "accept",
+			"reason": "PICKED for rowan. Its look is unlike all eight templates (near-black editor window on a white contour-ribbon backdrop, mono captions, typed mono end card) and its subject (an agent designing on a canvas, then design-to-code) is exactly OpenDemo's audience. The produced layer is thin but real and measurable: one composited window, two slow linear camera pushes tracked to 0.1 px/frame that run under every cut, four dips to black, four corner captions, a typed end card. The capture-heavy interior is redrawn as editor UI, and every window beat takes the user's own recording as a slot."
+		},
+		{
+			"dateVetted": "2026-11-08",
+			"title": "QuiverAI — Introducing Arrow 2 (re-vet, not built)",
+			"videoUrl": "https://video.twimg.com/ext_tw_video/2100295069764919296/pu/vid/avc1/1280x720/AqN3yPJDeqSWxpJo.mp4?tag=12",
+			"sourceUrl": "https://x.com/QuiverAI/status/2100295136261349802",
+			"source": "X (@QuiverAI, 24,744 followers)",
+			"metrics": "2,366,087 views / 11,184 likes / 834 RTs / 173 replies / 248 quotes / 14,080 bookmarks (fxtwitter API, re-checked 2026-11-08). 43.9s, best variant 1280x720@25fps.",
+			"humans": "incidental",
+			"verdict": "accept",
+			"reason": "Re-vet only; the 2026-11-05 accept stands and its engagement is the highest of tonight's three. Not picked: same company and product family as maple (Arrow 1.0), its spine is generated illustrations and photographed mockups (phone in hand, embroidery, stamps) that would all be image slots, and the master is 720p. Still the best unbuilt light-palette candidate."
+		},
+		{
+			"dateVetted": "2026-11-08",
+			"title": "Okara — world's first AI CMO (re-vet, not built)",
+			"videoUrl": "https://video.twimg.com/amplify_video/2033550506703138816/vid/avc1/1784x1080/UBQP6ccr7mFBZOwV.mp4?tag=21",
+			"sourceUrl": "https://x.com/askOkara/status/2033562024651968657",
+			"source": "X (@askOkara, 78,551 followers)",
+			"metrics": "14,083,076 views / 27,038 likes / 2,319 RTs / 1,582 replies / 1,529 quotes / 55,016 bookmarks (fxtwitter API, re-checked 2026-11-08). 53.5s 1784x1080@60fps.",
+			"humans": "none",
+			"verdict": "accept",
+			"reason": "Re-vet only. A 24-frame contact sheet confirms ~95% of the film is one cream-backed card of raw dashboard capture; the produced layer is the card and the cut rhythm. Not picked again: thinnest produced layer of the three and overlaps aspen's media windows."
 		}
 	]
 }

@@ -198,6 +198,34 @@
 			],
 			"derivedFrom": "the Aside launch film, measured frame-by-frame on a 30fps clock",
 			"config": "sequoia/template.json"
+		},
+		{
+			"slug": "rowan",
+			"name": "Rowan",
+			"style": "dark canvas-editor launch film for an AI design or dev tool",
+			"category": "product-window-led",
+			"durationMs": 79100,
+			"aspect": "16:9",
+			"fps": 30,
+			"slots": 22,
+			"tags": [
+				"app-window-on-backdrop",
+				"contour-ribbon-backdrop",
+				"slow-linear-push",
+				"one-continuous-camera",
+				"hard-cut-content-swaps",
+				"dip-to-black",
+				"drawn-editor-ui",
+				"agent-chat-panel",
+				"artboard-build",
+				"parallel-variants",
+				"design-to-code",
+				"mono-corner-captions",
+				"typed-mono-endcard",
+				"window-recording-slots"
+			],
+			"derivedFrom": "the Pencil launch film, measured frame-by-frame on its 30fps clock",
+			"config": "rowan/template.json"
 		}
 	]
 }

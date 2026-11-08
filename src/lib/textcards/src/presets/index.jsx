@@ -24,6 +24,9 @@ import { JUNIPER_PRESETS } from "../../../../../templates/juniper/presets/index.
 // maple template presets live with the template (templates/maple/presets/) —
 // registered here so configs reach them by slug like any other preset.
 import { MAPLE_PRESETS } from "../../../../../templates/maple/presets/index.jsx";
+// rowan template presets live with the template (templates/rowan/presets/) —
+// registered here so configs reach them by slug like any other preset.
+import { ROWAN_PRESETS } from "../../../../../templates/rowan/presets/index.jsx";
 // sequoia template presets live with the template (templates/sequoia/presets/) —
 // registered here so configs reach them by slug like any other preset.
 import { SEQUOIA_PRESETS } from "../../../../../templates/sequoia/presets/index.jsx";
@@ -2610,6 +2613,8 @@ export const PRESETS = {
 	...SEQUOIA_PRESETS,
 	// ── willow template presets (templates/willow/presets/) ──
 	...WILLOW_PRESETS,
+	// ── rowan template presets (templates/rowan/presets/) ──
+	...ROWAN_PRESETS,
 };
 
 export const PRESET_NOTES = Object.fromEntries(
