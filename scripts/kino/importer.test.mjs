@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 import assert from "node:assert/strict";
-import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { link, mkdtemp, readFile, rm, symlink, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
@@ -98,4 +98,43 @@ test("oversized media is rejected with actionable instructions before upload", a
 	await writeFile(file, "123456");
 	await assert.rejects(validateUploadSizes({ screen: file }, 5), /shorter selected takes/);
 	await validateUploadSizes({ screen: file }, 6);
+});
+
+for (const name of ["handoff.motion", "import-result.json"]) {
+	test(`${name} output symlink is rejected before any server call`, async (t) => {
+		const options = await fixture(t);
+		const outside = await mkdtemp(path.join(os.tmpdir(), "kino-outside-"));
+		t.after(() => rm(outside, { recursive: true, force: true }));
+		const target = path.join(outside, "untouched.txt");
+		await writeFile(target, "do not change this");
+		await symlink(target, path.join(options.bundle, name), "file");
+		await assert.rejects(importBundle(options), /Unsafe output destination/);
+		assert.deepEqual(options.calls, []);
+		assert.equal(await readFile(target, "utf8"), "do not change this");
+	});
+}
+
+test("atomic output replacement does not truncate an external hardlink target", async (t) => {
+	const options = await fixture(t);
+	const outside = await mkdtemp(path.join(os.tmpdir(), "kino-outside-"));
+	t.after(() => rm(outside, { recursive: true, force: true }));
+	const target = path.join(outside, "untouched.txt");
+	await writeFile(target, "original contents");
+	await link(target, path.join(options.bundle, "handoff.motion"));
+	await link(target, path.join(options.bundle, "import-result.json"));
+	await importBundle(options);
+	assert.equal(await readFile(target, "utf8"), "original contents");
+});
+
+test("Windows junction output destination is rejected before server calls", {
+	skip: process.platform !== "win32",
+}, async (t) => {
+	const options = await fixture(t);
+	const outside = await mkdtemp(path.join(os.tmpdir(), "kino-outside-"));
+	t.after(() => rm(outside, { recursive: true, force: true }));
+	await writeFile(path.join(outside, "untouched.txt"), "original contents");
+	await symlink(outside, path.join(options.bundle, "handoff.motion"), "junction");
+	await assert.rejects(importBundle(options), /Unsafe output destination/);
+	assert.deepEqual(options.calls, []);
+	assert.equal(await readFile(path.join(outside, "untouched.txt"), "utf8"), "original contents");
 });

@@ -81,6 +81,9 @@ npm run test:kino
 Set `KINO_PATH` to your checkout to include the native schema compatibility test
 in `test:kino`. Without it, the portable bundle and timing tests run independently
 and the optional native test is reported as skipped.
+Set `KINO_FFMPEG_TESTS=1` to include the generated rotated-video regression
+(requires FFmpeg with `-display_rotation`, plus ffprobe). Set `TEMP`/`TMP` to the
+desired scratch drive for generated test footage.
 
 ## Conversion boundaries
 

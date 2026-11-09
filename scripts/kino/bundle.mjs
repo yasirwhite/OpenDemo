@@ -22,7 +22,7 @@ export function probe(file) {
 				"-v",
 				"error",
 				"-show_entries",
-				"format=duration:stream=codec_type,width,height,duration",
+				"format=duration:stream=codec_type,width,height,duration:stream_tags=rotate:stream_side_data=rotation",
 				"-of",
 				"json",
 				file,
@@ -44,7 +44,20 @@ export function probe(file) {
 			"Media must have a video stream and measured duration between 0 and 86400 seconds.",
 		);
 	}
-	return { duration, width: video.width, height: video.height };
+	return { duration, ...displayDimensions(video) };
+}
+
+export function displayDimensions(stream) {
+	let width = Number(stream.width);
+	let height = Number(stream.height);
+	const rotation = Number(
+		stream.side_data_list?.find((item) => item.rotation != null)?.rotation ??
+			stream.tags?.rotate ??
+			0,
+	);
+	// Match Kino/FFmpeg/browser display orientation, rather than encoded pixel order.
+	if (Math.abs(rotation) % 180 === 90) [width, height] = [height, width];
+	return { width: Math.round(width), height: Math.round(height) };
 }
 
 function sourcePath(value, directory) {
