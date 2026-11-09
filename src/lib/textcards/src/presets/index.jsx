@@ -18,6 +18,9 @@ import React from "react";
 // alder template presets live with the template (templates/alder/presets/) —
 // registered here so configs reach them by slug like any other preset.
 import { ALDER_PRESETS } from "../../../../../templates/alder/presets/index.jsx";
+// hazel template presets live with the template (templates/hazel/presets/) —
+// registered here so configs reach them by slug like any other preset.
+import { HAZEL_PRESETS } from "../../../../../templates/hazel/presets/index.jsx";
 // juniper template presets live with the template (templates/juniper/presets/) —
 // registered here so configs reach them by slug like any other preset.
 import { JUNIPER_PRESETS } from "../../../../../templates/juniper/presets/index.jsx";
@@ -2615,6 +2618,8 @@ export const PRESETS = {
 	...WILLOW_PRESETS,
 	// ── rowan template presets (templates/rowan/presets/) ──
 	...ROWAN_PRESETS,
+	// ── hazel template presets (templates/hazel/presets/) ──
+	...HAZEL_PRESETS,
 };
 
 export const PRESET_NOTES = Object.fromEntries(
