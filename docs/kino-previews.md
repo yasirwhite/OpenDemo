@@ -11,7 +11,7 @@ npm run kino:preview -- /path/to/handoff --kino /path/to/kino --scene scene-1 --
 
 The default is a fast MP4 draft at **12 fps**, capped by Kino's fast preset at a
 **640-pixel long edge**, with motion blur and dithering disabled. Use `--fps 6`
-for rough timing checks or `--fps 24` for a smoother request (Kino's fast preset
+for rough timing checks or `--fps 15` for a smoother preview (Kino's fast preset
 caps output at 15 fps). Final-quality settings and the saved project are unchanged.
 
 The running Kino server must expose `preview: "fast"`, `from`, and `to` in its
