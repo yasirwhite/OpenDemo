@@ -42,7 +42,11 @@
 		"test:browser:install": "playwright install --with-deps chromium-headless-shell",
 		"test:e2e": "playwright test",
 		"test:e2e:windows-native-checklist": "playwright test tests/e2e/windows-native-checklist.spec.ts",
-		"prepare": "husky"
+		"prepare": "husky",
+		"kino:export": "node scripts/kino/cli.mjs export",
+		"kino:open": "node scripts/kino/cli.mjs open",
+		"kino:preview": "node scripts/kino/cli.mjs preview",
+		"test:kino": "node --test scripts/kino/*.test.mjs"
 	},
 	"dependencies": {
 		"@ffmpeg-installer/ffmpeg": "^1.1.0",
@@ -124,5 +128,6 @@
 	"main": "dist-electron/main.js",
 	"lint-staged": {
 		"*.{ts,tsx,js,jsx,mts,cts,json}": "biome check --no-errors-on-unmatched"
-	}
+	},
+	"license": "AGPL-3.0-only"
 }
