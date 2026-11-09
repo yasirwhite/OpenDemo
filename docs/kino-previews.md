@@ -15,7 +15,9 @@ for rough timing checks or `--fps 15` for a smoother preview (Kino's fast preset
 caps output at 15 fps). Final-quality settings and the saved project are unchanged.
 
 The running Kino server must expose `preview: "fast"`, `from`, and `to` in its
-render tool schema. These are provided by the companion Kino fast-preview change.
+render tool schema. These are provided by the companion
+[Kino fast-preview PR #1](https://github.com/bayshores/kino/pull/1), currently on
+`yasirwhite:feat/fast-preview-ranges` pending upstream merge.
 An older server produces an actionable error **before a render request is sent**;
 the bridge never silently falls back to rendering the entire film. Restart your
 Kino server after installing a version containing that change. No source-media
