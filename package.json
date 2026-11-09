@@ -45,6 +45,7 @@
 		"prepare": "husky",
 		"kino:export": "node scripts/kino/cli.mjs export",
 		"kino:open": "node scripts/kino/cli.mjs open",
+		"kino:preview": "node scripts/kino/cli.mjs preview",
 		"test:kino": "node --test scripts/kino/*.test.mjs"
 	},
 	"dependencies": {

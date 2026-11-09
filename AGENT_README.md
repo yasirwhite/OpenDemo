@@ -18,6 +18,7 @@ one they cover:**
 | author new shot/text presets or a new template | [docs/reference-matching.md](./docs/reference-matching.md) + the engine READMEs (`src/lib/cinematic3d/`, `src/lib/textcards/`) |
 | work on the app/engine code itself | `docs/` (architecture, engineering, testing) + [docs/engineering/conventions.md](./docs/engineering/conventions.md) |
 | combine OpenDemo capture with human footage or Kino overlays | [docs/kino-handoff.md](./docs/kino-handoff.md) |
+| preview or rerender an existing Kino handoff cheaply | [docs/kino-previews.md](./docs/kino-previews.md) |
 
 ## First: ask which kind of demo
 

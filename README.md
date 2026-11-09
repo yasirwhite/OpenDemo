@@ -33,6 +33,8 @@ Your agent sets it up, records your app, edits the video and hands you an .mp4.
 **Human footage and motion graphics:** the experimental [Kino handoff](./docs/kino-handoff.md)
 exports portable media bundles and imports editable cuts, speed changes and an
 optional presenter into a native Kino timeline.
+Use [fast section previews](./docs/kino-previews.md) to rerender an existing Kino
+edit at low resolution/FPS without exporting or uploading the source again.
 
 <!-- traffic:start -->
 ## Stats

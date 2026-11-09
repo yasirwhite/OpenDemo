@@ -87,6 +87,10 @@ desired scratch drive for generated test footage.
 
 ## Conversion boundaries
 
+For low-FPS draft/section rerenders of the already imported project, see
+[Fast edit previews](./kino-previews.md). This uses the companion Kino preview API
+and does not reimport footage or rebuild the handoff.
+
 - Native Kino scenes are limited to 600 seconds. Long edits are split into scenes,
   with source offsets preserved across each split.
 - If speed regions overlap, the first matching region wins, matching OpenDemo's

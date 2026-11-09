@@ -6,6 +6,7 @@ import { parseArgs } from "node:util";
 import { buildKinoDocument } from "./bridge.mjs";
 import { exportBundle, loadBundle } from "./bundle.mjs";
 import { importBundle, validateUploadSizes } from "./importer.mjs";
+import { importedProject, previewRequest, requestPreview } from "./preview.mjs";
 
 const help = `OpenDemo + Kino
   node scripts/kino/cli.mjs export <video|project.openscreen> --out <new-folder>
@@ -13,6 +14,9 @@ const help = `OpenDemo + Kino
     [--accept-visual-loss]
   node scripts/kino/cli.mjs open <bundle-folder> --kino <kino-checkout>
     [--url <http://127.0.0.1:4781>] [--validate-only]
+  node scripts/kino/cli.mjs preview <bundle-folder> --kino <kino-checkout>
+    [--scene <scene-id>] [--from <seconds> --to <seconds>] [--fps 12]
+    [--out <preview-folder>] [--job <job-id>] [--dry-run]
 
 Export requires ffprobe on PATH (or FFPROBE_PATH). Open requires a compatible
 Kino source checkout; normal import requires its server running. Validate-only
@@ -31,6 +35,12 @@ try {
 			kino: { type: "string" },
 			url: { type: "string" },
 			"validate-only": { type: "boolean" },
+			"dry-run": { type: "boolean" },
+			scene: { type: "string" },
+			from: { type: "string" },
+			to: { type: "string" },
+			fps: { type: "string" },
+			job: { type: "string" },
 			help: { type: "boolean" },
 		},
 	});
@@ -57,6 +67,31 @@ try {
 				2,
 			),
 		);
+	} else if (positionals[0] === "preview") {
+		const bundle = path.resolve(positionals[1]);
+		const project = await importedProject(bundle);
+		const request = previewRequest({
+			project,
+			scene: values.scene,
+			job: values.job,
+			from: values.from === undefined ? undefined : Number(values.from),
+			to: values.to === undefined ? undefined : Number(values.to),
+			fps: values.fps === undefined ? 12 : Number(values.fps),
+			out: values.job ? values.out : values.out || path.join(bundle, "previews"),
+		});
+		if (values["dry-run"]) console.log(JSON.stringify({ requested: false, request }, null, 2));
+		else {
+			if (!values.kino)
+				throw new Error("--kino is required; use a checkout with fast/section preview support.");
+			const { connectAgentClient } = await import(
+				pathToFileURL(path.join(path.resolve(values.kino), "backend/agent/client.mjs")).href
+			);
+			const client = await connectAgentClient(
+				{ ...process.env, ...(values.url ? { MOTION_API_URL: values.url } : {}) },
+				{ name: "opendemo-preview" },
+			);
+			console.log(JSON.stringify(await requestPreview(client, request), null, 2));
+		}
 	} else if (positionals[0] === "open") {
 		if (!values.kino)
 			throw new Error("--kino is required; use the path to a Kino source checkout.");
