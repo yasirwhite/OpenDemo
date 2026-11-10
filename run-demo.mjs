@@ -231,7 +231,7 @@ async function executeStep(page, step, flow, zoomRegions, currentTimeMs) {
       await page.waitForTimeout(100);
 
       // Clear existing value
-      await page.keyboard.press("Control+a");
+      await page.keyboard.press("ControlOrMeta+a");
       await page.keyboard.press("Delete");
 
       // Typewriter effect — finishes text within a given window (durationMs or 1000ms default)
