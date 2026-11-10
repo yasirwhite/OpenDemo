@@ -1,6 +1,6 @@
 # OpenDemo
 
-Toolkit allowing your coding agents to make videos. Free, runs locally, no API keys.
+Make videos for your github README in a single prompt
 
 ![OpenDemo launch film](./examples/opendemo-launch.gif)
 
