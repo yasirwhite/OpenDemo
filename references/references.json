@@ -91,6 +91,16 @@
 			"spec": "1812x1080, 30fps, 79.1s",
 			"notes": "templates/rowan/reference-notes.md",
 			"usedBy": "templates/rowan/ - full film rebuilt frame-by-frame on its 30fps clock; one app window on a contour-ribbon backdrop, two slow linear camera pushes, drawn editor UI, mono captions, typed end card"
+		},
+		{
+			"id": "granola-voice",
+			"file": "granola-voice-film.mp4",
+			"url": "https://video.twimg.com/amplify_video/2115836988733706240/vid/avc1/1920x1080/wc4bjMOgVWN-OPNC.mp4?tag=16",
+			"md5": "95bc908b8e94144a79df874ac92e9c74",
+			"bytes": 2411266,
+			"spec": "1920x1080, 30fps, 21.06s",
+			"notes": "templates/laurel/reference-notes.md",
+			"usedBy": "templates/laurel/ - full film rebuilt frame-by-frame on its 30fps clock; keycap physics, persistent voice pill with glow and overshoot, torn-paper wedge onto a lilac collage ground, chat composer with typed dictation, sliding line with an accelerating icon drum, hand-lettered title stack, mark draw-on end card"
 		}
 	]
 }
