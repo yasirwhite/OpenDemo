@@ -1,6 +1,6 @@
 # OpenDemo
 
-Make videos for your github README in a single prompt
+Toolkit allowing coding agents to make videos
 
 ![OpenDemo launch film](./examples/opendemo-launch.gif)
 
