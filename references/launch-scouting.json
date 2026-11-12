@@ -1092,6 +1092,149 @@
 			"humans": "none",
 			"verdict": "accept",
 			"reason": "Re-vet only. A 24-frame contact sheet confirms ~95% of the film is one cream-backed card of raw dashboard capture; the produced layer is the card and the cut rhythm. Not picked again: thinnest produced layer of the three and overlaps aspen's media windows."
+		},
+		{
+			"dateVetted": "2026-11-12",
+			"title": "xAI — Introducing Grok Imagine 1.0",
+			"videoUrl": "https://video.twimg.com/amplify_video/2018164699200999424/vid/avc1/1920x1080/A312wDoPMxGY4KAb.mp4?tag=21",
+			"sourceUrl": "https://x.com/xai/status/2018164753810764061",
+			"source": "X (@xai, 2,088,486 followers)",
+			"metrics": "14,583,215 views / 20,614 likes / 2,816 RTs / 3,680 replies / 5,693 bookmarks (fxtwitter API, checked 2026-11-12; posted 2026-02-02). 25.0s 1920x1080@30fps.",
+			"humans": "none (the cards are generated clips, some of people; all become image slots)",
+			"verdict": "accept",
+			"reason": "PICKED for linden. Highest-engagement unvetted film on the gallery tonight (20.6k likes), only 25s, and its grammar is unlike all eleven templates: one wall of outputs on black seen by ONE continuous camera (a single card drifting in front of the dim wall, sinking into its slot, a push/roll/yaw onto a focus card, a pull back, a dive into the gutter), then three white lines on black. Big brand halo (2.1M followers, views ~7x), discounted; accepted on the craft and the fit for generative-media products. The camera is a plane homography per frame, so it could be solved and replayed exactly."
+		},
+		{
+			"dateVetted": "2026-11-12",
+			"title": "NaturaAI — Interface now live for preorder",
+			"videoUrl": "https://video.twimg.com/amplify_video/2120245859543912448/vid/avc1/1920x1080/MiocpSofRSqVKhjz.mp4?tag=29",
+			"sourceUrl": "https://x.com/carloAI/status/2120246008160637138",
+			"source": "X (@carloAI, 12,139 followers)",
+			"metrics": "1,948,501 views / 5,264 likes / 393 RTs / 406 replies / 3,746 bookmarks (fxtwitter, 2026-11-12; posted 2026-11-10). 154.7s.",
+			"humans": "dominant",
+			"verdict": "reject",
+			"reason": "Founder-to-camera film: a presenter walks through offices and landscapes in ~18 of 24 sampled frames; only two serif type cards and an icon row are produced layer. 155s."
+		},
+		{
+			"dateVetted": "2026-11-12",
+			"title": "Hedra — Model Factory",
+			"videoUrl": "https://video.twimg.com/amplify_video/2120206557262852096/vid/avc1/1692x720/XgWdVFbv98vwhO6D.mp4?tag=29",
+			"sourceUrl": "https://x.com/hedra_labs/status/2120207555263905973",
+			"source": "X (@hedra_labs, 54,426 followers)",
+			"metrics": "1,908,089 views / 3,045 likes / 160 RTs / 175 replies / 1,136 bookmarks (fxtwitter, 2026-11-12; posted 2026-11-10). 118.2s, 2.35:1.",
+			"humans": "dominant",
+			"verdict": "reject",
+			"reason": "Interview-led: one speaker in ~12 of 24 frames, between wireframe CG plates. 118s."
+		},
+		{
+			"dateVetted": "2026-11-12",
+			"title": "Coframe — $35M raise, the internet is dead",
+			"videoUrl": "https://video.twimg.com/amplify_video/2120202485403209728/vid/avc1/1920x1080/rvyY2pv2rDazb8b8.mp4?tag=29",
+			"sourceUrl": "https://x.com/joshpxyne/status/2120207063624327602",
+			"source": "X (@joshpxyne, 4,912 followers)",
+			"metrics": "305,857 views / 1,029 likes / 112 RTs / 167 replies / 990 bookmarks (fxtwitter, 2026-11-12). 83.8s.",
+			"humans": "dominant",
+			"verdict": "reject",
+			"reason": "Live-action desert film with a founder on camera; screens are composited into the landscape. Modest engagement."
+		},
+		{
+			"dateVetted": "2026-11-12",
+			"title": "Ginkgo x GPT-5 — closed-loop lab experiments",
+			"videoUrl": "https://video.twimg.com/amplify_video/2019486310004846593/vid/avc1/1280x960/j5WWbKA17exEEk9J.mp4?tag=21",
+			"sourceUrl": "https://x.com/OpenAI/status/2019488071134347605",
+			"source": "X (@OpenAI, 5.5M followers)",
+			"metrics": "3,158,685 views / 9,470 likes / 1,215 RTs / 441 replies / 2,740 bookmarks (fxtwitter, 2026-11-12). 21.1s.",
+			"humans": "none",
+			"verdict": "reject",
+			"reason": "All live-action lab footage (robot arms, plate handlers); no type or produced layer to rebuild. Brand halo."
+		},
+		{
+			"dateVetted": "2026-11-12",
+			"title": "Omi for Desktop — your AI life architect",
+			"videoUrl": "https://video.twimg.com/amplify_video/2044074677786816516/vid/avc1/1920x1080/XT-iPZ8Nt42P7otc.mp4?tag=21",
+			"sourceUrl": "https://x.com/kodjima33/status/2044078767518138555",
+			"source": "X (@kodjima33, 24,114 followers)",
+			"metrics": "1,578,429 views / 5,897 likes / 5,818 bookmarks (fxtwitter, 2026-11-12). 114.3s.",
+			"humans": "dominant",
+			"verdict": "reject",
+			"reason": "A man at his desk on a video call in every frame, with small overlay cards. People-led."
+		},
+		{
+			"dateVetted": "2026-11-12",
+			"title": "Reve — Reimagine reality",
+			"videoUrl": "https://video.twimg.com/amplify_video/1967640293689397252/vid/avc1/1620x1080/uXFUxjpow8SgNlbU.mp4?tag=21",
+			"sourceUrl": "https://x.com/reve/status/1967640858372751540",
+			"source": "X (@reve, 28,467 followers)",
+			"metrics": "1,507,403 views / 4,416 likes / 2,996 bookmarks (fxtwitter, 2026-11-12). 80.6s.",
+			"humans": "dominant",
+			"verdict": "reject",
+			"reason": "Live-action vignettes (teens at a CRT, a garage, a lamp shop) with a prompt bar overlaid."
+		},
+		{
+			"dateVetted": "2026-11-12",
+			"title": "Polymarket CLI — for AI agents",
+			"videoUrl": "https://video.twimg.com/amplify_video/2026305106740977664/vid/avc1/1650x1080/IiR917mFOQjpB5Lw.mp4?tag=21",
+			"sourceUrl": "https://x.com/SuhailKakar/status/2026305257257775524",
+			"source": "X (@SuhailKakar, 68,856 followers)",
+			"metrics": "1,741,880 views / 6,173 likes / 6,200 bookmarks (fxtwitter, 2026-11-12). 11.5s.",
+			"humans": "none",
+			"verdict": "reject",
+			"reason": "Raw terminal capture on a blue backdrop; no produced layer."
+		},
+		{
+			"dateVetted": "2026-11-12",
+			"title": "Durable — AI business builder",
+			"videoUrl": "https://video.twimg.com/amplify_video/2033956852892110848/vid/avc1/1280x720/LSHhKLs_QdKr-lcc.mp4?tag=14",
+			"sourceUrl": "https://x.com/jamesclift/status/2033957044714410368",
+			"source": "X (@jamesclift, 8,242 followers)",
+			"metrics": "3,601,839 views / 5,395 likes / 9,534 bookmarks (fxtwitter, 2026-11-12). 107.4s.",
+			"humans": "partial",
+			"verdict": "defer",
+			"reason": "Strong reach, but ~30% founder-to-camera and the rest is captioned site capture; 107s. Overlaps aspen and rowan."
+		},
+		{
+			"dateVetted": "2026-11-12",
+			"title": "Tempo — the world's first AI head of growth",
+			"videoUrl": "https://video.twimg.com/amplify_video/2056803627029745664/vid/avc1/1920x1080/3mj1nll4kDa09UwV.mp4?tag=27",
+			"sourceUrl": "https://x.com/JosephDevoy/status/2056810614505259226",
+			"source": "X (@JosephDevoy, 3,869 followers)",
+			"metrics": "2,017,085 views / 3,831 likes / 6,690 bookmarks (fxtwitter, 2026-11-12). 133.2s.",
+			"humans": "partial (founder outro)",
+			"verdict": "defer",
+			"reason": "Good produced layer (orange gradient grounds, floating UI cards, serif headlines, tag flocks) and film-borne reach, but 133s with a founder outro. Future long-form candidate."
+		},
+		{
+			"dateVetted": "2026-11-12",
+			"title": "Contra Payments — sell to AI agents",
+			"videoUrl": "https://video.twimg.com/amplify_video/2024182795237806082/vid/avc1/1280x720/Uy9aonJ3sFGk3Fyr.mp4?tag=14",
+			"sourceUrl": "https://x.com/contraben/status/2024182864506761617",
+			"source": "X (@contraben, 15,863 followers)",
+			"metrics": "2,288,400 views / 5,044 likes / 4,866 bookmarks (fxtwitter, 2026-11-12). 96.3s.",
+			"humans": "partial",
+			"verdict": "defer",
+			"reason": "Rich white-UI film (agent cursor, payout counter over a photo collage, network globe), but 96s, some people, and its agent-cursor and count-up grammar overlaps willow and sequoia."
+		},
+		{
+			"dateVetted": "2026-11-12",
+			"title": "Manus Agents — your personal Manus in chats",
+			"videoUrl": "https://video.twimg.com/amplify_video/2023412517117087744/vid/avc1/1280x720/Y-B4HuP5PtXq_kWW.mp4?tag=14",
+			"sourceUrl": "https://x.com/ManusAI/status/2023412626428932494",
+			"source": "X (@ManusAI, 257,331 followers)",
+			"metrics": "2,305,713 views / 3,611 likes / 2,290 bookmarks (fxtwitter, 2026-11-12). 37.1s.",
+			"humans": "none",
+			"verdict": "defer",
+			"reason": "Phone chat UI between serif side labels on a paper ground; clean but close to juniper's side-label device grammar, and views are ~9x a large following."
+		},
+		{
+			"dateVetted": "2026-11-12",
+			"title": "Krea 2 — foundation model for aesthetic diversity",
+			"videoUrl": "https://video.twimg.com/amplify_video/2054177498464948224/vid/avc1/1920x1080/-rC3F0Q8ThpelFBL.mp4?tag=27",
+			"sourceUrl": "https://x.com/krea_ai/status/2054207481421975829",
+			"source": "X (@krea_ai, 125,155 followers)",
+			"metrics": "2,432,693 views / 2,492 likes / 1,616 bookmarks (fxtwitter, 2026-11-12). 67.2s.",
+			"humans": "none (generated images of people)",
+			"verdict": "defer",
+			"reason": "Distinct white-canvas grammar (tiny centred type, image orbits, slider dials, a thumbnail cloud), but weaker engagement than tonight's pick and almost every beat is image slots."
 		}
 	]
 }
