@@ -30,6 +30,9 @@ import { ROWAN_PRESETS } from "../../../../../templates/rowan/presets/index.jsx"
 // sequoia template presets live with the template (templates/sequoia/presets/) —
 // registered here so configs reach them by slug like any other preset.
 import { SEQUOIA_PRESETS } from "../../../../../templates/sequoia/presets/index.jsx";
+// spruce template presets live with the template (templates/spruce/presets/) —
+// registered here so configs reach them by slug like any other preset.
+import { SPRUCE_PRESETS } from "../../../../../templates/spruce/presets/index.jsx";
 // willow template presets live with the template (templates/willow/presets/) —
 // registered here so configs reach them by slug like any other preset.
 import { WILLOW_PRESETS } from "../../../../../templates/willow/presets/index.jsx";
@@ -2615,6 +2618,8 @@ export const PRESETS = {
 	...WILLOW_PRESETS,
 	// ── rowan template presets (templates/rowan/presets/) ──
 	...ROWAN_PRESETS,
+	// ── spruce template presets (templates/spruce/presets/) ──
+	...SPRUCE_PRESETS,
 };
 
 export const PRESET_NOTES = Object.fromEntries(

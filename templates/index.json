@@ -226,6 +226,43 @@
 			],
 			"derivedFrom": "the Pencil launch film, measured frame-by-frame on its 30fps clock",
 			"config": "rowan/template.json"
+		},
+		{
+			"slug": "spruce",
+			"name": "Spruce",
+			"style": "aura-gradient launch film for an AI app builder",
+			"category": "demo-led",
+			"durationMs": 80400,
+			"aspect": "16:9",
+			"fps": 30,
+			"slots": 12,
+			"tags": [
+				"aura-grounds",
+				"film-grain",
+				"re-centring-word-lines",
+				"ghost-words",
+				"typed-hero-pullback",
+				"gradient-braces",
+				"counter-scribble",
+				"glossy-orbs",
+				"bubble-field",
+				"bloom-into-sparkle",
+				"site-wall",
+				"glow-prompt-pill",
+				"pill-to-window",
+				"hand-cursor-punch-ins",
+				"tilted-editor-window",
+				"invite-and-publish-dialogs",
+				"avatar-row",
+				"collaborator-cursors",
+				"code-toggle",
+				"mark-shaped-aura",
+				"logo-lockup",
+				"drawn-product-ui",
+				"window-recording-slots"
+			],
+			"derivedFrom": "the Lovable 2.0 launch film, measured frame-by-frame on its 30fps clock",
+			"config": "spruce/template.json"
 		}
 	]
 }

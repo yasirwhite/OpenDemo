@@ -1,0 +1,3904 @@
+{
+	"_about": "spruce: an 80.4s aura-gradient launch film for an AI app builder, derived frame-by-frame from an 80.4s launch film (1920x1080 @30fps). Authored in 1920x1080 reference px on the 1280x720 stage, rendered at device scale 1.5: render.mjs --fps 30 --scale 1.5. Placeholder product: Spruce (spruce.example), an AI app builder whose users make a yoga-studio booking app, a coffee site, a finance dashboard and an HR insights app. Grain-heavy aura grounds (cream rim, arc, dark, mark-shaped) carry word-by-word claims that re-centre as they grow; the product appears at punch-in scale, pressed by a white hand cursor.",
+	"_sections": "S1 0-8.8 bubbles, the claim, typed line + braces, Meet, lockup | S2 8.8-23 orbs, big word, counter, bloom into a wall of sites, laptop | S3 23-33 glowing prompt pill into the app window, follow-up prompt close-up, tilted result | S4 33-41 collaboration: cursors, Invite, dialog, avatars, shared dashboard | S5 41-53.6 visual edits: target, toolbar, Edit Text panel, palette | S6 53.6-63 publish: big words, Publish, domain dialog, browser, laptop | S7 63-72.2 code view toggle, code window, claims | S8 72.2-80.4 mark-shaped aura, end card",
+	"_slots": "Every spruce-window scene takes src (an .mp4 of YOUR app, ~1.54:1) + clip and keeps its glow, tilt and zoom keys. spruce-laptop takes image (a product photo replaces the drawn set) or images for its screen; spruce-wall takes images per site kind; spruce-avatars takes images avatar-1..5. Copy roles are tagged per scene; prompts are user-voice, names/emails/domains product-voice.",
+	"video": {
+		"width": 1920,
+		"height": 1080,
+		"fps": 30,
+		"durationMs": 80400
+	},
+	"ground": [
+		{
+			"fromMs": 0,
+			"colour": [
+				246,
+				243,
+				236
+			]
+		}
+	],
+	"scenes": [
+		{
+			"id": "s1-ground",
+			"preset": "spruce-ground",
+			"startMs": 0,
+			"durationMs": 6966.7,
+			"keys": [
+				{
+					"at": 0,
+					"base": [
+						246,
+						243,
+						236
+					],
+					"grain": 0.1
+				}
+			],
+			"blobs": [
+				{
+					"c": [
+						244,
+						150,
+						214
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": 960,
+							"y": -160,
+							"rx": 760,
+							"ry": 330,
+							"a": 0
+						},
+						{
+							"at": 4700,
+							"a": 0
+						},
+						{
+							"at": 5333.3,
+							"a": 0.9
+						},
+						{
+							"at": 6966.7,
+							"x": 900,
+							"a": 0.9
+						}
+					]
+				},
+				{
+					"c": [
+						240,
+						140,
+						200
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": 2080,
+							"y": 560,
+							"rx": 430,
+							"ry": 760,
+							"a": 0
+						},
+						{
+							"at": 4700,
+							"a": 0
+						},
+						{
+							"at": 5333.3,
+							"a": 0.9
+						}
+					]
+				},
+				{
+					"c": [
+						244,
+						120,
+						90
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": 1820,
+							"y": 1180,
+							"rx": 520,
+							"ry": 330,
+							"a": 0
+						},
+						{
+							"at": 4700,
+							"a": 0
+						},
+						{
+							"at": 5333.3,
+							"a": 0.75
+						}
+					]
+				},
+				{
+					"c": [
+						236,
+						150,
+						230
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": -140,
+							"y": 980,
+							"rx": 460,
+							"ry": 360,
+							"a": 0
+						},
+						{
+							"at": 4700,
+							"a": 0
+						},
+						{
+							"at": 5333.3,
+							"a": 0.6
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "s1-bubbles",
+			"preset": "spruce-bubbles",
+			"startMs": 0,
+			"durationMs": 1666.7,
+			"label": "Today",
+			"labelSize": 78,
+			"focusX": 950,
+			"focusY": 520,
+			"keys": [
+				{
+					"at": 0,
+					"s": 0.55,
+					"pale": 0,
+					"lab": 1,
+					"labA": 1,
+					"a": 1
+				},
+				{
+					"at": 400,
+					"s": 0.95,
+					"ease": "out"
+				},
+				{
+					"at": 1200,
+					"s": 1.04
+				},
+				{
+					"at": 1466.7,
+					"pale": 1,
+					"lab": 0.12,
+					"labA": 0,
+					"ease": "inout"
+				},
+				{
+					"at": 1666.7,
+					"a": 0
+				}
+			]
+		},
+		{
+			"id": "s1-fewer",
+			"preset": "spruce-line",
+			"startMs": 1533.3,
+			"durationMs": 1266.7,
+			"role": "brand",
+			"size": 112,
+			"weight": 700,
+			"words": [
+				{
+					"text": "Fewer",
+					"at": 0
+				},
+				{
+					"text": "than",
+					"at": 133.3
+				},
+				{
+					"text": "9%",
+					"at": 133.3,
+					"seq": [
+						[
+							266.7,
+							"4%"
+						],
+						[
+							400,
+							"1%"
+						]
+					]
+				},
+				{
+					"text": "",
+					"icon": "globe",
+					"at": 66.7,
+					"w": 104
+				},
+				{
+					"text": "of",
+					"at": 400
+				},
+				{
+					"text": "people",
+					"at": 466.7
+				}
+			],
+			"camera": {
+				"originX": 640,
+				"originY": 360,
+				"keys": [
+					{
+						"atMs": 0,
+						"scale": 1.08
+					},
+					{
+						"atMs": 466.7,
+						"scale": 1,
+						"ease": "out"
+					},
+					{
+						"atMs": 1266.7,
+						"scale": 0.86
+					}
+				]
+			}
+		},
+		{
+			"id": "s1-typed",
+			"preset": "spruce-line",
+			"startMs": 2800,
+			"durationMs": 1900,
+			"role": "brand",
+			"size": 112,
+			"weight": 700,
+			"type": {
+				"text": "can write code",
+				"at": 0,
+				"cps": 30,
+				"caret": {
+					"until": 800
+				}
+			},
+			"camera": {
+				"originX": 640,
+				"originY": 360,
+				"keys": [
+					{
+						"atMs": 0,
+						"scale": 3.6
+					},
+					{
+						"atMs": 800,
+						"scale": 1,
+						"ease": "out"
+					},
+					{
+						"atMs": 1900,
+						"scale": 0.78
+					}
+				]
+			}
+		},
+		{
+			"id": "s1-braces",
+			"preset": "spruce-braces",
+			"startMs": 3633.3,
+			"durationMs": 1066.6999999999998,
+			"size": 1080,
+			"keys": [
+				{
+					"at": 0,
+					"gap": 1400,
+					"a": 1
+				},
+				{
+					"at": 266.7,
+					"gap": 790,
+					"ease": "expo"
+				},
+				{
+					"at": 1066.7,
+					"gap": 740
+				}
+			],
+			"camera": {
+				"originX": 640,
+				"originY": 360,
+				"keys": [
+					{
+						"atMs": 0,
+						"scale": 1
+					},
+					{
+						"atMs": 1066.7,
+						"scale": 0.78
+					}
+				]
+			}
+		},
+		{
+			"id": "s1-but",
+			"preset": "spruce-line",
+			"startMs": 4700,
+			"durationMs": 1500,
+			"role": "brand",
+			"size": 104,
+			"weight": 700,
+			"words": [
+				{
+					"text": "but",
+					"at": 0
+				},
+				{
+					"text": "now",
+					"at": 0
+				},
+				{
+					"text": "anyone",
+					"at": 500,
+					"mode": "drop"
+				},
+				{
+					"text": "can",
+					"at": 700,
+					"mode": "ghost",
+					"colour": [
+						120,
+						112,
+						116
+					]
+				}
+			],
+			"camera": {
+				"originX": 640,
+				"originY": 360,
+				"keys": [
+					{
+						"atMs": 0,
+						"scale": 1.32
+					},
+					{
+						"atMs": 366.7,
+						"scale": 1.08,
+						"ease": "out"
+					},
+					{
+						"atMs": 1500,
+						"scale": 0.9
+					}
+				]
+			}
+		},
+		{
+			"id": "s1-meet",
+			"preset": "spruce-line",
+			"startMs": 6200,
+			"durationMs": 766.6999999999998,
+			"role": "brand",
+			"size": 400,
+			"weight": 700,
+			"words": [
+				{
+					"text": "Meet",
+					"at": 0,
+					"dur": 300
+				}
+			],
+			"fill": "linear-gradient(90deg,#7d8cf6 0%,#c27df0 30%,#ec4fae 62%,#f2875a 100%)",
+			"camera": {
+				"originX": 640,
+				"originY": 360,
+				"keys": [
+					{
+						"atMs": 0,
+						"scale": 1.12
+					},
+					{
+						"atMs": 766.7,
+						"scale": 0.94
+					}
+				]
+			}
+		},
+		{
+			"id": "s1-arc",
+			"preset": "spruce-ground",
+			"startMs": 6966.7,
+			"durationMs": 1833.3000000000002,
+			"keys": [
+				{
+					"at": 0,
+					"base": [
+						70,
+						120,
+						245
+					],
+					"set": "arc",
+					"cx": 960,
+					"cy": 1750,
+					"rx": 1380,
+					"ry": 1000,
+					"rs": 1,
+					"grain": 0.2
+				},
+				{
+					"at": 1033.3,
+					"cy": 1270,
+					"ease": "out"
+				},
+				{
+					"at": 1833.3,
+					"cy": 1250
+				}
+			]
+		},
+		{
+			"id": "s1-lockup",
+			"preset": "spruce-lockup",
+			"startMs": 6966.7,
+			"durationMs": 1833.3000000000002,
+			"role": "brand",
+			"name": "Spruce",
+			"size": 330,
+			"markAt": 0,
+			"lettersAt": 0,
+			"stepMs": 30,
+			"morphAt": 633.3,
+			"keys": [
+				{
+					"at": 0,
+					"s": 0.94
+				},
+				{
+					"at": 1833.3,
+					"s": 1.04
+				}
+			]
+		},
+		{
+			"id": "s2-orbs",
+			"preset": "spruce-orbs",
+			"startMs": 8800,
+			"durationMs": 1600,
+			"role": "brand",
+			"words": [
+				{
+					"text": "Start making",
+					"at": 0
+				},
+				{
+					"text": "apps",
+					"at": 400
+				},
+				{
+					"text": "stores",
+					"at": 600
+				},
+				{
+					"text": "games",
+					"at": 1000
+				},
+				{
+					"text": "ideas",
+					"at": 1200
+				}
+			],
+			"size": 96,
+			"orbA": [
+				{
+					"at": 0,
+					"x": 1180,
+					"y": -260,
+					"r": 540
+				},
+				{
+					"at": 1600,
+					"x": 1320,
+					"y": -190,
+					"r": 560
+				}
+			],
+			"orbB": [
+				{
+					"at": 0,
+					"x": 760,
+					"y": 1330,
+					"r": 500
+				},
+				{
+					"at": 1600,
+					"x": 560,
+					"y": 1230,
+					"r": 540
+				}
+			]
+		},
+		{
+			"id": "s2-arc",
+			"preset": "spruce-ground",
+			"startMs": 10400,
+			"durationMs": 2200,
+			"keys": [
+				{
+					"at": 0,
+					"base": [
+						100,
+						125,
+						245
+					],
+					"set": "arc2",
+					"cx": 960,
+					"cy": 1330,
+					"rx": 1380,
+					"ry": 1000,
+					"rs": 1,
+					"grain": 0.2
+				},
+				{
+					"at": 766.7,
+					"cy": 1250
+				},
+				{
+					"at": 800,
+					"base": [
+						230,
+						40,
+						170
+					],
+					"set": "arc3",
+					"cx": 900,
+					"cy": 1180,
+					"rs": 1,
+					"ease": "hold"
+				},
+				{
+					"at": 1800,
+					"cy": 1120
+				}
+			],
+			"blobs": [
+				{
+					"c": [
+						246,
+						243,
+						236
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": 960,
+							"y": 1700,
+							"rx": 1500,
+							"ry": 700,
+							"a": 0
+						},
+						{
+							"at": 1800,
+							"a": 0
+						},
+						{
+							"at": 2200,
+							"y": 600,
+							"ry": 1100,
+							"a": 1,
+							"ease": "in"
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "s2-quicker",
+			"preset": "spruce-line",
+			"startMs": 10400,
+			"durationMs": 800,
+			"role": "brand",
+			"size": 330,
+			"weight": 700,
+			"colour": [
+				250,
+				232,
+				246
+			],
+			"words": [
+				{
+					"text": "Quicker",
+					"at": 0,
+					"mode": "rise",
+					"dur": 260
+				}
+			],
+			"camera": {
+				"originX": 640,
+				"originY": 360,
+				"keys": [
+					{
+						"atMs": 0,
+						"scale": 1.14,
+						"y": 20
+					},
+					{
+						"atMs": 400,
+						"scale": 1,
+						"y": 0,
+						"ease": "out"
+					},
+					{
+						"atMs": 800,
+						"scale": 0.97,
+						"y": -14
+					}
+				]
+			}
+		},
+		{
+			"id": "s2-than",
+			"preset": "spruce-line",
+			"startMs": 11200,
+			"durationMs": 1266.7000000000007,
+			"role": "brand",
+			"size": 104,
+			"weight": 700,
+			"colour": [
+				255,
+				255,
+				255
+			],
+			"words": [
+				{
+					"text": "than",
+					"at": 0
+				},
+				{
+					"text": "you'd",
+					"at": 333.3
+				},
+				{
+					"text": "think",
+					"at": 533.3,
+					"mode": "ghost",
+					"colour": [
+						255,
+						214,
+						222
+					]
+				}
+			],
+			"out": {
+				"at": 1000,
+				"dur": 200,
+				"mode": "blur"
+			},
+			"camera": {
+				"originX": 640,
+				"originY": 360,
+				"keys": [
+					{
+						"atMs": 0,
+						"scale": 1.14
+					},
+					{
+						"atMs": 400,
+						"scale": 1,
+						"ease": "out"
+					},
+					{
+						"atMs": 1200,
+						"scale": 0.94
+					}
+				]
+			}
+		},
+		{
+			"id": "s2-cream",
+			"preset": "spruce-ground",
+			"startMs": 12600,
+			"durationMs": 5666.700000000001,
+			"keys": [
+				{
+					"at": 0,
+					"base": [
+						246,
+						243,
+						236
+					],
+					"grain": 0.1
+				}
+			],
+			"blobs": [
+				{
+					"c": [
+						244,
+						150,
+						214
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": 1000,
+							"y": -200,
+							"rx": 820,
+							"ry": 360,
+							"a": 0.85
+						},
+						{
+							"at": 5600,
+							"x": 880
+						}
+					]
+				},
+				{
+					"c": [
+						240,
+						130,
+						200
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": 2060,
+							"y": 520,
+							"rx": 420,
+							"ry": 760,
+							"a": 0.85
+						}
+					]
+				},
+				{
+					"c": [
+						244,
+						120,
+						90
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": 1760,
+							"y": 1200,
+							"rx": 560,
+							"ry": 330,
+							"a": 0.7
+						}
+					]
+				},
+				{
+					"c": [
+						236,
+						140,
+						230
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": -160,
+							"y": 760,
+							"rx": 420,
+							"ry": 600,
+							"a": 0.7
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "s2-join",
+			"preset": "spruce-line",
+			"startMs": 12600,
+			"durationMs": 1200,
+			"role": "brand",
+			"size": 104,
+			"weight": 700,
+			"shade": true,
+			"words": [
+				{
+					"text": "Join",
+					"at": 0
+				},
+				{
+					"text": "other",
+					"at": 500
+				},
+				{
+					"text": "makers",
+					"at": 600
+				}
+			],
+			"out": {
+				"at": 866.7,
+				"dur": 260,
+				"mode": "blur"
+			},
+			"camera": {
+				"originX": 640,
+				"originY": 360,
+				"keys": [
+					{
+						"atMs": 0,
+						"scale": 2.3
+					},
+					{
+						"atMs": 266.7,
+						"scale": 2.05,
+						"ease": "out"
+					},
+					{
+						"atMs": 500,
+						"scale": 1.95
+					},
+					{
+						"atMs": 733.3,
+						"scale": 1,
+						"ease": "out"
+					},
+					{
+						"atMs": 1200,
+						"scale": 0.96
+					}
+				]
+			}
+		},
+		{
+			"id": "s2-launching",
+			"preset": "spruce-letters",
+			"startMs": 13800,
+			"durationMs": 1000,
+			"role": "brand",
+			"text": "launching",
+			"size": 165,
+			"weight": 700,
+			"at": 0,
+			"stepMs": 30,
+			"camera": {
+				"originX": 640,
+				"originY": 360,
+				"keys": [
+					{
+						"atMs": 0,
+						"scale": 1
+					},
+					{
+						"atMs": 1000,
+						"scale": 1.12
+					}
+				]
+			}
+		},
+		{
+			"id": "s2-counter",
+			"preset": "spruce-counter",
+			"startMs": 14800,
+			"durationMs": 1600,
+			"role": "brand",
+			"from": 18512,
+			"to": 41206,
+			"countAt": 0,
+			"countEnd": 1466.7,
+			"drawAt": 0,
+			"drawEnd": 1533.3,
+			"size": 360,
+			"cy": 470
+		},
+		{
+			"id": "s2-new",
+			"preset": "spruce-line",
+			"startMs": 16400,
+			"durationMs": 600,
+			"role": "brand",
+			"size": 80,
+			"weight": 700,
+			"shade": true,
+			"words": [
+				{
+					"text": "new",
+					"at": 0
+				},
+				{
+					"text": "projects",
+					"at": 0
+				}
+			],
+			"camera": {
+				"originX": 640,
+				"originY": 360,
+				"keys": [
+					{
+						"atMs": 0,
+						"scale": 0.88
+					},
+					{
+						"atMs": 600,
+						"scale": 1
+					}
+				]
+			}
+		},
+		{
+			"id": "s2-every",
+			"preset": "spruce-line",
+			"startMs": 17000,
+			"durationMs": 400,
+			"role": "brand",
+			"size": 240,
+			"weight": 700,
+			"shade": true,
+			"words": [
+				{
+					"text": "every",
+					"at": 0
+				}
+			],
+			"camera": {
+				"originX": 640,
+				"originY": 360,
+				"keys": [
+					{
+						"atMs": 0,
+						"scale": 1
+					},
+					{
+						"atMs": 400,
+						"scale": 1.06
+					}
+				]
+			}
+		},
+		{
+			"id": "s2-week",
+			"preset": "spruce-line",
+			"startMs": 17400,
+			"durationMs": 633.2999999999993,
+			"role": "brand",
+			"size": 280,
+			"weight": 700,
+			"shade": true,
+			"words": [
+				{
+					"text": "week",
+					"at": 0,
+					"mode": "cut"
+				}
+			],
+			"camera": {
+				"originX": 640,
+				"originY": 360,
+				"keys": [
+					{
+						"atMs": 0,
+						"scale": 1
+					},
+					{
+						"atMs": 533.3,
+						"scale": 1.22
+					},
+					{
+						"atMs": 633.3,
+						"scale": 1.5,
+						"ease": "in"
+					}
+				]
+			}
+		},
+		{
+			"id": "s2-bloom",
+			"preset": "spruce-bloom",
+			"startMs": 18000,
+			"durationMs": 866.7000000000007,
+			"letter": "e",
+			"letterDx": 30,
+			"letterDy": -20,
+			"keys": [
+				{
+					"at": 0,
+					"letterS": 3.2,
+					"flowerA": 0,
+					"starA": 0,
+					"groundA": 0
+				},
+				{
+					"at": 200,
+					"letterS": 9,
+					"flowerA": 0,
+					"ease": "in"
+				},
+				{
+					"at": 233.3,
+					"letterS": 0,
+					"flowerA": 1,
+					"flowerR": 760,
+					"flowerBlur": 8,
+					"starA": 1,
+					"starR": 150,
+					"dark": 0,
+					"starRot": 12,
+					"groundA": 1,
+					"ease": "hold"
+				},
+				{
+					"at": 533.3,
+					"flowerR": 840,
+					"starR": 210,
+					"rot": 6,
+					"starRot": 18
+				},
+				{
+					"at": 633.3,
+					"starR": 320,
+					"dark": 0.7,
+					"ease": "in"
+				},
+				{
+					"at": 666.7,
+					"starA": 0,
+					"ease": "hold"
+				},
+				{
+					"at": 866.7,
+					"flowerA": 0.6
+				}
+			]
+		},
+		{
+			"id": "s2-wall",
+			"preset": "spruce-wall",
+			"startMs": 18666.7,
+			"durationMs": 2733.2999999999993,
+			"z": 9,
+			"keys": [
+				{
+					"at": 0,
+					"s": 1.08,
+					"x": 960,
+					"y": 540,
+					"star": 330
+				},
+				{
+					"at": 200,
+					"star": 3200,
+					"ease": "in"
+				},
+				{
+					"at": 900,
+					"s": 1
+				},
+				{
+					"at": 933.3,
+					"s": 0.44,
+					"x": 980,
+					"y": 600,
+					"ease": "hold"
+				},
+				{
+					"at": 1466.7,
+					"s": 0.46,
+					"x": 760,
+					"y": 860
+				},
+				{
+					"at": 1933.3,
+					"s": 0.78,
+					"x": 960,
+					"y": 1580,
+					"ease": "inout"
+				},
+				{
+					"at": 2200,
+					"s": 1.02,
+					"x": 960,
+					"y": 1668,
+					"ease": "out"
+				},
+				{
+					"at": 2733.3,
+					"s": 1.06,
+					"y": 1660
+				}
+			]
+		},
+		{
+			"id": "s2-laptop",
+			"preset": "spruce-laptop",
+			"startMs": 21400,
+			"durationMs": 1566.7000000000007,
+			"setting": "rock",
+			"site": "summit",
+			"keys": [
+				{
+					"at": 0,
+					"s": 1.12,
+					"x": 0,
+					"y": -20
+				},
+				{
+					"at": 1566.7,
+					"s": 1,
+					"x": 0,
+					"y": 0
+				}
+			]
+		},
+		{
+			"id": "s3-pill",
+			"preset": "spruce-pill",
+			"startMs": 22966.7,
+			"durationMs": 3466.5999999999985,
+			"role": "user-voice",
+			"placeholder": "Ask Spruce to build…",
+			"type": {
+				"text": "Build a booking app for my yoga studio",
+				"at": 366.7,
+				"cps": 30
+			},
+			"keys": [
+				{
+					"at": 0,
+					"cx": 2150,
+					"cy": 540,
+					"w": 3600,
+					"h": 480,
+					"G": 360,
+					"btn": 0,
+					"sq": 1,
+					"textA": 1
+				},
+				{
+					"at": 1700,
+					"cx": 1830
+				},
+				{
+					"at": 1833.3,
+					"cx": 1830,
+					"w": 3600,
+					"h": 480,
+					"G": 360
+				},
+				{
+					"at": 2100,
+					"cx": 960,
+					"w": 1350,
+					"h": 190,
+					"G": 230,
+					"btn": 1,
+					"ease": "out"
+				},
+				{
+					"at": 2233.3,
+					"sq": 1
+				},
+				{
+					"at": 2833.3,
+					"w": 720,
+					"h": 140,
+					"G": 190,
+					"sq": 0.42,
+					"ease": "inout"
+				},
+				{
+					"at": 3233.3,
+					"w": 460,
+					"h": 100,
+					"G": 160,
+					"sq": 0.1,
+					"textA": 0.5
+				},
+				{
+					"at": 3433.3,
+					"w": 400,
+					"h": 160,
+					"G": 170,
+					"r": 34,
+					"textA": 0,
+					"btn": 0
+				}
+			],
+			"hand": [
+				{
+					"at": 1833.3,
+					"x": 1700,
+					"y": 900,
+					"press": 0,
+					"a": 0
+				},
+				{
+					"at": 1866.7,
+					"a": 1
+				},
+				{
+					"at": 2033.3,
+					"x": 1540,
+					"y": 552,
+					"ease": "out"
+				},
+				{
+					"at": 2100,
+					"press": 1
+				},
+				{
+					"at": 2233.3,
+					"press": 0
+				},
+				{
+					"at": 2833.3,
+					"x": 1250,
+					"y": 552,
+					"ease": "inout"
+				},
+				{
+					"at": 3233.3,
+					"x": 1140,
+					"y": 552
+				},
+				{
+					"at": 3366.7,
+					"a": 0
+				}
+			]
+		},
+		{
+			"id": "s3-window",
+			"preset": "spruce-window",
+			"startMs": 26400,
+			"durationMs": 1600,
+			"view": "studio",
+			"chat": {
+				"msgs": [
+					{
+						"user": true,
+						"text": "Build a booking app for my yoga studio",
+						"w": 360,
+						"y": 20
+					},
+					{
+						"y": 90
+					},
+					{
+						"y": 230,
+						"lines": [
+							0.85,
+							0.7
+						]
+					}
+				]
+			},
+			"ground": {
+				"base": [
+					0,
+					0,
+					0
+				],
+				"grain": 0.12
+			},
+			"glowKeys": [
+				{
+					"at": 0,
+					"G": 200
+				},
+				{
+					"at": 266.7,
+					"G": 360
+				},
+				{
+					"at": 1600,
+					"G": 340
+				}
+			],
+			"keys": [
+				{
+					"at": 0,
+					"s": 0.26,
+					"ca": 0,
+					"x": 960,
+					"y": 560
+				},
+				{
+					"at": 200,
+					"s": 0.47,
+					"ca": 1,
+					"ease": "out"
+				},
+				{
+					"at": 800,
+					"s": 0.75,
+					"x": 960,
+					"y": 540,
+					"ease": "out"
+				},
+				{
+					"at": 1400,
+					"s": 0.82
+				},
+				{
+					"at": 1433.3,
+					"s": 0.98,
+					"ease": "hold"
+				},
+				{
+					"at": 1600,
+					"s": 1
+				}
+			]
+		},
+		{
+			"id": "s3-close",
+			"preset": "spruce-window",
+			"startMs": 28000,
+			"durationMs": 3400,
+			"view": "studio",
+			"chat": {
+				"msgs": [
+					{
+						"user": true,
+						"text": "Build a booking app for my yoga studio",
+						"w": 360,
+						"y": 20
+					},
+					{
+						"y": 90
+					},
+					{
+						"y": 230,
+						"lines": [
+							0.85,
+							0.7
+						]
+					}
+				]
+			},
+			"chatType": {
+				"text": "Add a weekly timetable with spots left per class",
+				"at": 600,
+				"cps": 34
+			},
+			"ground": {
+				"base": [
+					236,
+					40,
+					120
+				],
+				"blobs": [
+					{
+						"c": [
+							244,
+							100,
+							40
+						],
+						"x": 600,
+						"y": 1100,
+						"rx": 1100,
+						"ry": 600,
+						"a": 1
+					},
+					{
+						"c": [
+							200,
+							120,
+							240
+						],
+						"x": 1800,
+						"y": -100,
+						"rx": 800,
+						"ry": 500,
+						"a": 0.9
+					}
+				],
+				"grain": 0.16
+			},
+			"keys": [
+				{
+					"at": 0,
+					"s": 2.65,
+					"x": 2120,
+					"y": -380,
+					"rz": -2.5,
+					"rx": 6
+				},
+				{
+					"at": 3000,
+					"s": 2.45,
+					"x": 2010,
+					"y": -330,
+					"rz": -2
+				},
+				{
+					"at": 3400,
+					"s": 1.5,
+					"x": 1500,
+					"y": 100,
+					"ease": "in"
+				}
+			],
+			"hand": [
+				{
+					"at": 1866.7,
+					"x": 1400,
+					"y": 1000,
+					"press": 0,
+					"a": 0
+				},
+				{
+					"at": 1900,
+					"a": 1
+				},
+				{
+					"at": 2333.3,
+					"x": 1030,
+					"y": 768,
+					"ease": "out"
+				},
+				{
+					"at": 2466.7,
+					"press": 1
+				},
+				{
+					"at": 2600,
+					"press": 0
+				},
+				{
+					"at": 3200,
+					"x": 1040,
+					"y": 790,
+					"a": 1
+				},
+				{
+					"at": 3333.3,
+					"a": 0
+				}
+			]
+		},
+		{
+			"id": "s3-after",
+			"preset": "spruce-window",
+			"startMs": 31400,
+			"durationMs": 1666.699999999997,
+			"view": "studio2",
+			"chat": {
+				"msgs": [
+					{
+						"user": true,
+						"text": "Build a booking app for my yoga studio",
+						"w": 360,
+						"y": 20
+					},
+					{
+						"y": 90
+					},
+					{
+						"user": true,
+						"text": "Add a weekly timetable…",
+						"w": 260,
+						"y": 220
+					},
+					{
+						"y": 290,
+						"lines": [
+							0.85,
+							0.7,
+							0.6
+						]
+					}
+				]
+			},
+			"ground": {
+				"base": [
+					0,
+					0,
+					0
+				],
+				"grain": 0.12
+			},
+			"glowKeys": [
+				{
+					"at": 0,
+					"G": 300
+				}
+			],
+			"perspective": 1800,
+			"keys": [
+				{
+					"at": 0,
+					"s": 0.92,
+					"x": 960,
+					"y": 540,
+					"rx": 8,
+					"ry": 16,
+					"rz": -3
+				},
+				{
+					"at": 1666.7,
+					"s": 0.8,
+					"rx": 5,
+					"ry": 10,
+					"rz": -1.5
+				}
+			]
+		},
+		{
+			"id": "s4-ground",
+			"preset": "spruce-ground",
+			"startMs": 33066.7,
+			"durationMs": 7933.300000000003,
+			"keys": [
+				{
+					"at": 0,
+					"base": [
+						246,
+						243,
+						236
+					],
+					"grain": 0.1
+				}
+			],
+			"blobs": [
+				{
+					"c": [
+						244,
+						150,
+						214
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": 1100,
+							"y": -180,
+							"rx": 900,
+							"ry": 380,
+							"a": 0.85
+						}
+					]
+				},
+				{
+					"c": [
+						240,
+						130,
+						200
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": 2050,
+							"y": 420,
+							"rx": 440,
+							"ry": 760,
+							"a": 0.85
+						}
+					]
+				},
+				{
+					"c": [
+						244,
+						120,
+						70
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": 1700,
+							"y": 1180,
+							"rx": 700,
+							"ry": 360,
+							"a": 0.8
+						}
+					]
+				},
+				{
+					"c": [
+						236,
+						140,
+						230
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": -150,
+							"y": 700,
+							"rx": 420,
+							"ry": 640,
+							"a": 0.6
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "s4-now",
+			"preset": "spruce-line",
+			"startMs": 33066.7,
+			"durationMs": 1933.300000000003,
+			"role": "brand",
+			"size": 104,
+			"weight": 700,
+			"shade": true,
+			"words": [
+				{
+					"text": "Now",
+					"at": 0
+				},
+				{
+					"text": "with",
+					"at": 533.3,
+					"mode": "drop"
+				},
+				{
+					"text": "your",
+					"at": 733.3
+				},
+				{
+					"text": "team",
+					"at": 800
+				}
+			],
+			"camera": {
+				"originX": 640,
+				"originY": 360,
+				"keys": [
+					{
+						"atMs": 0,
+						"scale": 1.7
+					},
+					{
+						"atMs": 266.7,
+						"scale": 1.45,
+						"ease": "out"
+					},
+					{
+						"atMs": 533.3,
+						"scale": 1.3
+					},
+					{
+						"atMs": 933.3,
+						"scale": 1,
+						"ease": "out"
+					},
+					{
+						"atMs": 1933.3,
+						"scale": 0.86
+					}
+				]
+			}
+		},
+		{
+			"id": "s4-cursors",
+			"preset": "spruce-cursors",
+			"startMs": 33533.3,
+			"durationMs": 1466.699999999997,
+			"role": "product-voice",
+			"cursors": [
+				{
+					"name": "Maya",
+					"colour": [
+						236,
+						110,
+						200
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": 1010,
+							"y": 820,
+							"a": 0
+						},
+						{
+							"at": 66.7,
+							"a": 1
+						},
+						{
+							"at": 466.7,
+							"x": 930,
+							"y": 600,
+							"ease": "out"
+						},
+						{
+							"at": 1466.7,
+							"x": 980,
+							"y": 640
+						}
+					]
+				},
+				{
+					"name": "Theo",
+					"colour": [
+						240,
+						100,
+						40
+					],
+					"keys": [
+						{
+							"at": 233.3,
+							"x": 1700,
+							"y": 560,
+							"a": 0
+						},
+						{
+							"at": 300,
+							"a": 1
+						},
+						{
+							"at": 600,
+							"x": 1260,
+							"y": 590,
+							"ease": "out"
+						},
+						{
+							"at": 1466.7,
+							"x": 1300,
+							"y": 620
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "s4-buttons",
+			"preset": "spruce-buttons",
+			"startMs": 35000,
+			"durationMs": 1000,
+			"hot": "Invite",
+			"keys": [
+				{
+					"at": 0,
+					"x": 900,
+					"y": 470,
+					"s": 2
+				},
+				{
+					"at": 1000,
+					"x": 860,
+					"y": 430,
+					"s": 1.8
+				}
+			],
+			"hand": [
+				{
+					"at": 0,
+					"x": 1000,
+					"y": 820
+				},
+				{
+					"at": 333.3,
+					"x": 890,
+					"y": 452,
+					"ease": "out"
+				},
+				{
+					"at": 400,
+					"press": 1
+				},
+				{
+					"at": 533.3,
+					"press": 0
+				},
+				{
+					"at": 1000,
+					"x": 880,
+					"y": 440
+				}
+			]
+		},
+		{
+			"id": "s4-dialog",
+			"preset": "spruce-dialog",
+			"startMs": 36000,
+			"durationMs": 1200,
+			"kind": "invite",
+			"role": "product-voice",
+			"email": {
+				"text": "theo@studioflow.app",
+				"at": 66.7,
+				"cps": 34
+			},
+			"keys": [
+				{
+					"at": 0,
+					"x": 960,
+					"y": 540,
+					"s": 2
+				},
+				{
+					"at": 1200,
+					"s": 2.15
+				}
+			],
+			"hand": [
+				{
+					"at": 0,
+					"x": 1400,
+					"y": 820
+				},
+				{
+					"at": 533.3,
+					"x": 1356,
+					"y": 370,
+					"ease": "out"
+				},
+				{
+					"at": 666.7,
+					"press": 1
+				},
+				{
+					"at": 800,
+					"press": 0
+				},
+				{
+					"at": 1200,
+					"x": 1366,
+					"y": 372
+				}
+			]
+		},
+		{
+			"id": "s4-avatars",
+			"preset": "spruce-avatars",
+			"startMs": 37200,
+			"durationMs": 1866.699999999997,
+			"keys": [
+				{
+					"at": 0,
+					"n": 0.99,
+					"d": 120,
+					"overlap": 0.1,
+					"bar": 0,
+					"s": 1
+				},
+				{
+					"at": 200,
+					"n": 4,
+					"d": 240,
+					"ease": "out"
+				},
+				{
+					"at": 400,
+					"n": 5,
+					"d": 270
+				},
+				{
+					"at": 800,
+					"d": 270
+				},
+				{
+					"at": 1000,
+					"d": 150,
+					"overlap": 0.2,
+					"ease": "inout"
+				},
+				{
+					"at": 1200,
+					"bar": 1,
+					"s": 0.95
+				},
+				{
+					"at": 1866.7,
+					"s": 0.62,
+					"y": 470
+				}
+			]
+		},
+		{
+			"id": "s4-dash",
+			"preset": "spruce-window",
+			"startMs": 39000,
+			"durationMs": 2000,
+			"view": "dashboard",
+			"app": "Ledger Home",
+			"cursors": [
+				{
+					"name": "Maya",
+					"colour": [
+						236,
+						110,
+						200
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": 120,
+							"y": 900
+						},
+						{
+							"at": 2000,
+							"x": 220,
+							"y": 820
+						}
+					]
+				},
+				{
+					"name": "Theo",
+					"colour": [
+						240,
+						100,
+						40
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": 1100,
+							"y": 300
+						},
+						{
+							"at": 2000,
+							"x": 980,
+							"y": 380
+						}
+					]
+				}
+			],
+			"keys": [
+				{
+					"at": 0,
+					"s": 1.5,
+					"x": 960,
+					"y": 900,
+					"rx": 0
+				},
+				{
+					"at": 533.3,
+					"s": 0.96,
+					"x": 960,
+					"y": 560,
+					"ease": "out"
+				},
+				{
+					"at": 2000,
+					"s": 0.9
+				}
+			]
+		},
+		{
+			"id": "s5-ground",
+			"preset": "spruce-ground",
+			"startMs": 41000,
+			"durationMs": 2000,
+			"keys": [
+				{
+					"at": 0,
+					"base": [
+						246,
+						243,
+						236
+					],
+					"grain": 0.12
+				},
+				{
+					"at": 1200,
+					"base": [
+						246,
+						243,
+						236
+					]
+				},
+				{
+					"at": 1266.7,
+					"base": [
+						236,
+						70,
+						170
+					],
+					"ease": "hold"
+				},
+				{
+					"at": 1500,
+					"base": [
+						80,
+						112,
+						245
+					],
+					"ease": "hold"
+				}
+			],
+			"blobs": [
+				{
+					"c": [
+						244,
+						150,
+						214
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": 960,
+							"y": -200,
+							"rx": 1100,
+							"ry": 420,
+							"a": 0.9
+						},
+						{
+							"at": 1066.7,
+							"y": -60,
+							"rx": 1300,
+							"ry": 600
+						}
+					]
+				},
+				{
+					"c": [
+						240,
+						110,
+						120
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": 2100,
+							"y": 540,
+							"rx": 520,
+							"ry": 900,
+							"a": 0.9
+						},
+						{
+							"at": 1066.7,
+							"x": 1950
+						}
+					]
+				},
+				{
+					"c": [
+						244,
+						120,
+						70
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": 960,
+							"y": 1260,
+							"rx": 1100,
+							"ry": 380,
+							"a": 0.85
+						},
+						{
+							"at": 1066.7,
+							"y": 1150
+						}
+					]
+				},
+				{
+					"c": [
+						236,
+						140,
+						230
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": -180,
+							"y": 540,
+							"rx": 520,
+							"ry": 900,
+							"a": 0.85
+						},
+						{
+							"at": 1066.7,
+							"x": -60
+						},
+						{
+							"at": 1466.7,
+							"a": 0
+						},
+						{
+							"at": 1500,
+							"x": -100,
+							"y": 800,
+							"rx": 1100,
+							"ry": 900,
+							"a": 1,
+							"ease": "hold"
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "s5-tweak",
+			"preset": "spruce-line",
+			"startMs": 41000,
+			"durationMs": 1266.699999999997,
+			"role": "brand",
+			"size": 104,
+			"weight": 700,
+			"shade": true,
+			"words": [
+				{
+					"text": "Tweak",
+					"at": 0,
+					"mode": "cut"
+				},
+				{
+					"text": "it",
+					"at": 600
+				},
+				{
+					"text": "visually",
+					"at": 800,
+					"mode": "ghost",
+					"colour": [
+						130,
+						122,
+						126
+					]
+				}
+			],
+			"camera": {
+				"originX": 640,
+				"originY": 360,
+				"keys": [
+					{
+						"atMs": 0,
+						"scale": 2.5
+					},
+					{
+						"atMs": 200,
+						"scale": 1.6,
+						"ease": "out"
+					},
+					{
+						"atMs": 533.3,
+						"scale": 1.2
+					},
+					{
+						"atMs": 866.7,
+						"scale": 1,
+						"ease": "out"
+					},
+					{
+						"atMs": 1066.7,
+						"scale": 0.85
+					},
+					{
+						"atMs": 1266.7,
+						"scale": 0.4,
+						"ease": "in"
+					}
+				]
+			}
+		},
+		{
+			"id": "s5-target-pink",
+			"preset": "spruce-toggle",
+			"startMs": 42266.7,
+			"durationMs": 233.3000000000029,
+			"icon": "target",
+			"colour": [
+				236,
+				30,
+				110
+			],
+			"keys": [
+				{
+					"at": 0,
+					"s": 6,
+					"blur": 40
+				},
+				{
+					"at": 233.3,
+					"s": 3,
+					"blur": 14,
+					"ease": "out"
+				}
+			]
+		},
+		{
+			"id": "s5-target",
+			"preset": "spruce-toggle",
+			"startMs": 42500,
+			"durationMs": 500,
+			"icon": "target",
+			"colour": [
+				255,
+				255,
+				255
+			],
+			"keys": [
+				{
+					"at": 0,
+					"s": 2.2,
+					"blur": 8,
+					"a": 0.75
+				},
+				{
+					"at": 233.3,
+					"s": 1,
+					"blur": 0,
+					"a": 1,
+					"ease": "out"
+				},
+				{
+					"at": 500,
+					"s": 0.8
+				}
+			]
+		},
+		{
+			"id": "s5-toolbar-ground",
+			"preset": "spruce-ground",
+			"startMs": 43000,
+			"durationMs": 1866.699999999997,
+			"keys": [
+				{
+					"at": 0,
+					"base": [
+						246,
+						243,
+						236
+					],
+					"grain": 0.1
+				}
+			],
+			"blobs": [
+				{
+					"c": [
+						244,
+						150,
+						214
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": 1100,
+							"y": -180,
+							"rx": 900,
+							"ry": 380,
+							"a": 0.85
+						}
+					]
+				},
+				{
+					"c": [
+						240,
+						130,
+						200
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": 2050,
+							"y": 420,
+							"rx": 440,
+							"ry": 760,
+							"a": 0.85
+						}
+					]
+				},
+				{
+					"c": [
+						244,
+						120,
+						70
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": 1700,
+							"y": 1180,
+							"rx": 700,
+							"ry": 360,
+							"a": 0.8
+						}
+					]
+				},
+				{
+					"c": [
+						236,
+						140,
+						230
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": -150,
+							"y": 700,
+							"rx": 420,
+							"ry": 640,
+							"a": 0.6
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "s5-toolbar",
+			"preset": "spruce-toolbar",
+			"startMs": 43000,
+			"durationMs": 1866.699999999997,
+			"chip": "Select",
+			"placeholder": "Ask Spruce…",
+			"onAt": 900,
+			"keys": [
+				{
+					"at": 0,
+					"x": -60,
+					"y": 520,
+					"s": 3
+				},
+				{
+					"at": 333.3,
+					"x": 150,
+					"y": 560,
+					"s": 1.9,
+					"ease": "out"
+				},
+				{
+					"at": 1866.7,
+					"x": 260,
+					"y": 620,
+					"s": 1.35
+				}
+			],
+			"hand": [
+				{
+					"at": 333.3,
+					"x": 1150,
+					"y": 1000,
+					"a": 0
+				},
+				{
+					"at": 400,
+					"a": 1
+				},
+				{
+					"at": 800,
+					"x": 860,
+					"y": 680,
+					"ease": "out"
+				},
+				{
+					"at": 866.7,
+					"press": 1
+				},
+				{
+					"at": 1000,
+					"press": 0
+				},
+				{
+					"at": 1866.7,
+					"x": 760,
+					"y": 720
+				}
+			]
+		},
+		{
+			"id": "s5-editor",
+			"preset": "spruce-window",
+			"startMs": 44866.7,
+			"durationMs": 1333.300000000003,
+			"view": "site",
+			"app": "Halfmoon",
+			"chat": {
+				"msgs": [
+					{
+						"user": true,
+						"text": "Make the hero warmer",
+						"w": 230,
+						"y": 20
+					},
+					{
+						"y": 90
+					}
+				],
+				"chipOn": true
+			},
+			"heading": "Good Coffee.\nGood Mornings.",
+			"ground": {
+				"base": [
+					246,
+					243,
+					236
+				],
+				"blobs": [
+					{
+						"c": [
+							244,
+							150,
+							214
+						],
+						"x": 960,
+						"y": -160,
+						"rx": 1100,
+						"ry": 380,
+						"a": 0.8
+					},
+					{
+						"c": [
+							244,
+							120,
+							70
+						],
+						"x": 1700,
+						"y": 1180,
+						"rx": 700,
+						"ry": 360,
+						"a": 0.8
+					}
+				],
+				"grain": 0.1
+			},
+			"perspective": 2000,
+			"keys": [
+				{
+					"at": 0,
+					"s": 0.62,
+					"x": 960,
+					"y": 560,
+					"rx": 6,
+					"ry": -10,
+					"rz": 1
+				},
+				{
+					"at": 1333.3,
+					"s": 0.66,
+					"rx": 4,
+					"ry": -8
+				}
+			],
+			"hand": [
+				{
+					"at": 0,
+					"x": 1200,
+					"y": 760
+				},
+				{
+					"at": 466.7,
+					"x": 880,
+					"y": 470,
+					"ease": "out"
+				},
+				{
+					"at": 533.3,
+					"press": 1
+				},
+				{
+					"at": 666.7,
+					"press": 0
+				},
+				{
+					"at": 1333.3,
+					"x": 900,
+					"y": 470
+				}
+			]
+		},
+		{
+			"id": "s5-edit",
+			"preset": "spruce-window",
+			"startMs": 46200,
+			"durationMs": 3866.699999999997,
+			"view": "site",
+			"app": "Halfmoon",
+			"chat": {
+				"msgs": [
+					{
+						"user": true,
+						"text": "Make the hero warmer",
+						"w": 230,
+						"y": 20
+					},
+					{
+						"y": 90
+					}
+				],
+				"chipOn": true
+			},
+			"panelAt": 0,
+			"headingType": {
+				"text": "Brew Better.\nWake Happier.",
+				"at": 600,
+				"cps": 16
+			},
+			"ground": {
+				"base": [
+					246,
+					243,
+					236
+				],
+				"blobs": [
+					{
+						"c": [
+							244,
+							150,
+							214
+						],
+						"x": 960,
+						"y": -160,
+						"rx": 1100,
+						"ry": 380,
+						"a": 0.8
+					}
+				],
+				"grain": 0.1
+			},
+			"keys": [
+				{
+					"at": 0,
+					"s": 1.3,
+					"x": 660,
+					"y": 670
+				},
+				{
+					"at": 3800,
+					"s": 1.36,
+					"x": 640,
+					"y": 690
+				}
+			],
+			"hand": [
+				{
+					"at": 0,
+					"x": 1500,
+					"y": 300
+				},
+				{
+					"at": 400,
+					"x": 1420,
+					"y": 330,
+					"ease": "out"
+				},
+				{
+					"at": 466.7,
+					"press": 1
+				},
+				{
+					"at": 600,
+					"press": 0
+				},
+				{
+					"at": 2466.7,
+					"x": 1480,
+					"y": 520
+				},
+				{
+					"at": 3466.7,
+					"x": 1450,
+					"y": 700
+				}
+			]
+		},
+		{
+			"id": "s5-select",
+			"preset": "spruce-window",
+			"startMs": 50066.7,
+			"durationMs": 2333.300000000003,
+			"view": "site",
+			"app": "Halfmoon",
+			"chat": {
+				"msgs": [
+					{
+						"user": true,
+						"text": "Make the hero warmer",
+						"w": 230,
+						"y": 20
+					},
+					{
+						"y": 90
+					}
+				],
+				"chipOn": true
+			},
+			"heading": "Brew Better.\nWake Happier.",
+			"panelAt": 0,
+			"selectAt": 133.3,
+			"paletteAt": 933.3,
+			"tintAt": 1466.7,
+			"keys": [
+				{
+					"at": 0,
+					"s": 2.1,
+					"x": 960,
+					"y": 900
+				},
+				{
+					"at": 933.3,
+					"s": 1.8,
+					"x": 1240,
+					"y": 840,
+					"ease": "inout"
+				},
+				{
+					"at": 2333.3,
+					"s": 1.72,
+					"x": 1260,
+					"y": 830
+				}
+			],
+			"hand": [
+				{
+					"at": 933.3,
+					"x": 700,
+					"y": 700,
+					"a": 0
+				},
+				{
+					"at": 1000,
+					"a": 1
+				},
+				{
+					"at": 1333.3,
+					"x": 460,
+					"y": 520,
+					"ease": "out"
+				},
+				{
+					"at": 1400,
+					"press": 1
+				},
+				{
+					"at": 1533.3,
+					"press": 0
+				},
+				{
+					"at": 2333.3,
+					"x": 470,
+					"y": 530
+				}
+			]
+		},
+		{
+			"id": "s5-out",
+			"preset": "spruce-window",
+			"startMs": 52400,
+			"durationMs": 1266.699999999997,
+			"view": "site",
+			"app": "Halfmoon",
+			"chat": {
+				"msgs": [
+					{
+						"user": true,
+						"text": "Make the hero warmer",
+						"w": 230,
+						"y": 20
+					},
+					{
+						"y": 90
+					}
+				],
+				"chipOn": true
+			},
+			"heading": "Brew Better.\nWake Happier.",
+			"tintAt": 0,
+			"ground": {
+				"base": [
+					246,
+					243,
+					236
+				],
+				"blobs": [
+					{
+						"c": [
+							244,
+							150,
+							214
+						],
+						"x": 960,
+						"y": -160,
+						"rx": 1100,
+						"ry": 380,
+						"a": 0.85
+					},
+					{
+						"c": [
+							244,
+							120,
+							70
+						],
+						"x": 1700,
+						"y": 1180,
+						"rx": 800,
+						"ry": 380,
+						"a": 0.85
+					},
+					{
+						"c": [
+							236,
+							140,
+							230
+						],
+						"x": -150,
+						"y": 700,
+						"rx": 420,
+						"ry": 640,
+						"a": 0.6
+					}
+				],
+				"grain": 0.1
+			},
+			"perspective": 2000,
+			"keys": [
+				{
+					"at": 0,
+					"s": 1.1,
+					"x": 900,
+					"y": 640,
+					"rx": 3,
+					"ry": -6
+				},
+				{
+					"at": 400,
+					"s": 0.72,
+					"x": 960,
+					"y": 560,
+					"rx": 6,
+					"ry": -10,
+					"ease": "out"
+				},
+				{
+					"at": 1200,
+					"s": 0.66
+				}
+			]
+		},
+		{
+			"id": "s6-arc",
+			"preset": "spruce-ground",
+			"startMs": 53666.7,
+			"durationMs": 3100,
+			"keys": [
+				{
+					"at": 0,
+					"base": [
+						70,
+						120,
+						245
+					],
+					"set": "arc2",
+					"cx": 960,
+					"cy": 1300,
+					"rx": 1380,
+					"ry": 1000,
+					"grain": 0.2
+				},
+				{
+					"at": 733.3,
+					"cy": 1240
+				},
+				{
+					"at": 3100,
+					"cy": 1180
+				}
+			]
+		},
+		{
+			"id": "s6-publish",
+			"preset": "spruce-line",
+			"startMs": 53666.7,
+			"durationMs": 666.6000000000058,
+			"role": "brand",
+			"size": 120,
+			"weight": 700,
+			"colour": [
+				250,
+				236,
+				246
+			],
+			"words": [
+				{
+					"text": "publish",
+					"at": 0
+				},
+				{
+					"text": "instantly",
+					"at": 66.7
+				}
+			],
+			"camera": {
+				"originX": 640,
+				"originY": 360,
+				"keys": [
+					{
+						"atMs": 0,
+						"scale": 1.15,
+						"y": 20
+					},
+					{
+						"atMs": 266.7,
+						"scale": 1,
+						"y": 0,
+						"ease": "out"
+					},
+					{
+						"atMs": 666.7,
+						"scale": 0.96
+					}
+				]
+			}
+		},
+		{
+			"id": "s6-what",
+			"preset": "spruce-line",
+			"startMs": 54333.3,
+			"durationMs": 300,
+			"role": "brand",
+			"size": 320,
+			"weight": 700,
+			"colour": [
+				250,
+				228,
+				244
+			],
+			"words": [
+				{
+					"text": "what",
+					"at": 0,
+					"mode": "cut"
+				}
+			],
+			"camera": {
+				"originX": 640,
+				"originY": 360,
+				"keys": [
+					{
+						"atMs": 0,
+						"scale": 1.04
+					},
+					{
+						"atMs": 300,
+						"scale": 0.97
+					}
+				]
+			}
+		},
+		{
+			"id": "s6-you",
+			"preset": "spruce-line",
+			"startMs": 54633.3,
+			"durationMs": 300,
+			"role": "brand",
+			"size": 320,
+			"weight": 700,
+			"colour": [
+				250,
+				228,
+				244
+			],
+			"words": [
+				{
+					"text": "you",
+					"at": 0,
+					"mode": "cut"
+				}
+			],
+			"camera": {
+				"originX": 640,
+				"originY": 360,
+				"keys": [
+					{
+						"atMs": 0,
+						"scale": 1.04
+					},
+					{
+						"atMs": 300,
+						"scale": 0.97
+					}
+				]
+			}
+		},
+		{
+			"id": "s6-made",
+			"preset": "spruce-line",
+			"startMs": 54933.3,
+			"durationMs": 566.6999999999971,
+			"role": "brand",
+			"size": 320,
+			"weight": 700,
+			"colour": [
+				250,
+				228,
+				244
+			],
+			"words": [
+				{
+					"text": "made",
+					"at": 0,
+					"mode": "cut"
+				}
+			],
+			"camera": {
+				"originX": 640,
+				"originY": 360,
+				"keys": [
+					{
+						"atMs": 0,
+						"scale": 1.04
+					},
+					{
+						"atMs": 566.7,
+						"scale": 0.97
+					}
+				]
+			}
+		},
+		{
+			"id": "s6-domain",
+			"preset": "spruce-line",
+			"startMs": 55500,
+			"durationMs": 1266.699999999997,
+			"role": "brand",
+			"size": 84,
+			"weight": 700,
+			"colour": [
+				255,
+				255,
+				255
+			],
+			"type": {
+				"text": "on your own domain",
+				"at": 0,
+				"cps": 26
+			},
+			"out": {
+				"at": 1000,
+				"dur": 200,
+				"mode": "blur"
+			},
+			"camera": {
+				"originX": 640,
+				"originY": 360,
+				"keys": [
+					{
+						"atMs": 0,
+						"scale": 1
+					},
+					{
+						"atMs": 1266.7,
+						"scale": 0.94
+					}
+				]
+			}
+		},
+		{
+			"id": "s6-ground2",
+			"preset": "spruce-ground",
+			"startMs": 56766.7,
+			"durationMs": 5033.300000000003,
+			"keys": [
+				{
+					"at": 0,
+					"base": [
+						246,
+						243,
+						236
+					],
+					"grain": 0.1
+				}
+			],
+			"blobs": [
+				{
+					"c": [
+						244,
+						150,
+						214
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": 1100,
+							"y": -180,
+							"rx": 900,
+							"ry": 380,
+							"a": 0.85
+						}
+					]
+				},
+				{
+					"c": [
+						240,
+						130,
+						200
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": 2050,
+							"y": 420,
+							"rx": 440,
+							"ry": 760,
+							"a": 0.85
+						}
+					]
+				},
+				{
+					"c": [
+						244,
+						120,
+						70
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": 1700,
+							"y": 1180,
+							"rx": 700,
+							"ry": 360,
+							"a": 0.8
+						}
+					]
+				},
+				{
+					"c": [
+						236,
+						140,
+						230
+					],
+					"keys": [
+						{
+							"at": 0,
+							"x": -150,
+							"y": 700,
+							"rx": 420,
+							"ry": 640,
+							"a": 0.6
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "s6-buttons",
+			"preset": "spruce-buttons",
+			"startMs": 56766.7,
+			"durationMs": 1000,
+			"hot": "Publish",
+			"keys": [
+				{
+					"at": 0,
+					"x": 820,
+					"y": 520,
+					"s": 1.6
+				},
+				{
+					"at": 1000,
+					"x": 760,
+					"y": 470,
+					"s": 1.75
+				}
+			],
+			"hand": [
+				{
+					"at": 0,
+					"x": 1200,
+					"y": 900
+				},
+				{
+					"at": 366.7,
+					"x": 1270,
+					"y": 508,
+					"ease": "out"
+				},
+				{
+					"at": 433.3,
+					"press": 1
+				},
+				{
+					"at": 600,
+					"press": 0
+				},
+				{
+					"at": 1000,
+					"x": 1260,
+					"y": 480
+				}
+			]
+		},
+		{
+			"id": "s6-dialog",
+			"preset": "spruce-dialog",
+			"startMs": 57766.7,
+			"durationMs": 2433.300000000003,
+			"kind": "publish",
+			"role": "product-voice",
+			"domains": [
+				{
+					"text": "halfmoon.coffee",
+					"at": 100,
+					"cps": 45
+				},
+				{
+					"text": "yogawithana.com",
+					"at": 533.3,
+					"cps": 45
+				},
+				{
+					"text": "pixelgarden.io",
+					"at": 966.7,
+					"cps": 45
+				},
+				{
+					"text": "nightmarket.co",
+					"at": 1400,
+					"cps": 45
+				},
+				{
+					"text": "northpeak.app",
+					"at": 1833.3,
+					"cps": 45
+				}
+			],
+			"keys": [
+				{
+					"at": 0,
+					"x": 960,
+					"y": 540,
+					"s": 2.05,
+					"rz": -2
+				},
+				{
+					"at": 2433.3,
+					"s": 2.2,
+					"rz": -1
+				}
+			],
+			"hand": [
+				{
+					"at": 0,
+					"x": 600,
+					"y": 900
+				},
+				{
+					"at": 366.7,
+					"x": 570,
+					"y": 720,
+					"ease": "out"
+				},
+				{
+					"at": 466.7,
+					"press": 1
+				},
+				{
+					"at": 600,
+					"press": 0
+				},
+				{
+					"at": 900,
+					"press": 1
+				},
+				{
+					"at": 1033.3,
+					"press": 0
+				},
+				{
+					"at": 1333.3,
+					"press": 1
+				},
+				{
+					"at": 1466.7,
+					"press": 0
+				},
+				{
+					"at": 1766.7,
+					"press": 1
+				},
+				{
+					"at": 1900,
+					"press": 0
+				},
+				{
+					"at": 2200,
+					"press": 1
+				},
+				{
+					"at": 2333.3,
+					"press": 0
+				},
+				{
+					"at": 2433.3,
+					"x": 565,
+					"y": 735
+				}
+			]
+		},
+		{
+			"id": "s6-browser",
+			"preset": "spruce-browser",
+			"startMs": 60200,
+			"durationMs": 1600,
+			"url": "www.northpeak.app",
+			"tab": "Northpeak",
+			"keys": [
+				{
+					"at": 0,
+					"s": 2.3,
+					"x": 1650,
+					"y": 1250,
+					"rz": -4
+				},
+				{
+					"at": 800,
+					"s": 1.5,
+					"x": 1000,
+					"y": 700,
+					"rz": -1.5,
+					"ease": "out"
+				},
+				{
+					"at": 1600,
+					"s": 1.25,
+					"x": 960,
+					"y": 600,
+					"rz": -1
+				}
+			]
+		},
+		{
+			"id": "s6-laptop",
+			"preset": "spruce-laptop",
+			"startMs": 61800,
+			"durationMs": 1200,
+			"setting": "desk",
+			"site": "northpeak",
+			"yaw": 18,
+			"keys": [
+				{
+					"at": 0,
+					"s": 1.08
+				},
+				{
+					"at": 1200,
+					"s": 1
+				}
+			]
+		},
+		{
+			"id": "s7-dark",
+			"preset": "spruce-ground",
+			"startMs": 63000,
+			"durationMs": 1933.300000000003,
+			"keys": [
+				{
+					"at": 0,
+					"base": [
+						0,
+						0,
+						0
+					],
+					"set": "dark",
+					"cx": 960,
+					"cy": 1250,
+					"rx": 1500,
+					"ry": 760,
+					"grain": 0.14
+				}
+			]
+		},
+		{
+			"id": "s7-intro",
+			"preset": "spruce-line",
+			"startMs": 63000,
+			"durationMs": 733.3000000000029,
+			"role": "brand",
+			"size": 84,
+			"weight": 700,
+			"colour": [
+				255,
+				255,
+				255
+			],
+			"words": [
+				{
+					"text": "Introducing",
+					"at": 0,
+					"dur": 300
+				}
+			],
+			"camera": {
+				"originX": 640,
+				"originY": 360,
+				"keys": [
+					{
+						"atMs": 0,
+						"scale": 1.05
+					},
+					{
+						"atMs": 733.3,
+						"scale": 0.98
+					}
+				]
+			}
+		},
+		{
+			"id": "s7-codeview",
+			"preset": "spruce-line",
+			"startMs": 63733.3,
+			"durationMs": 1200,
+			"role": "brand",
+			"size": 300,
+			"weight": 700,
+			"fill": "linear-gradient(90deg,#6f7cf5 0%,#b56cf0 35%,#ec3f9a 65%,#f2643a 100%)",
+			"type": {
+				"text": "/code view",
+				"at": 0,
+				"cps": 22,
+				"caret": {
+					"until": 666.7,
+					"fill": "linear-gradient(180deg,#ec3f9a,#f2643a)"
+				}
+			},
+			"camera": {
+				"originX": 640,
+				"originY": 360,
+				"keys": [
+					{
+						"atMs": 0,
+						"scale": 1
+					},
+					{
+						"atMs": 1200,
+						"scale": 0.95
+					}
+				]
+			}
+		},
+		{
+			"id": "s7-toggle",
+			"preset": "spruce-toggle",
+			"startMs": 64933.3,
+			"durationMs": 1400,
+			"icon": "code",
+			"keys": [
+				{
+					"at": 0,
+					"s": 2.3,
+					"glow": 0
+				},
+				{
+					"at": 766.7,
+					"glow": 0,
+					"s": 2.2
+				},
+				{
+					"at": 800,
+					"glow": 1,
+					"ease": "hold"
+				},
+				{
+					"at": 1400,
+					"s": 1.7
+				}
+			],
+			"hand": [
+				{
+					"at": 66.7,
+					"x": 1250,
+					"y": 900
+				},
+				{
+					"at": 533.3,
+					"x": 1060,
+					"y": 580,
+					"ease": "out"
+				},
+				{
+					"at": 633.3,
+					"press": 1
+				},
+				{
+					"at": 800,
+					"press": 0
+				},
+				{
+					"at": 1400,
+					"x": 1040,
+					"y": 575
+				}
+			]
+		},
+		{
+			"id": "s7-insights",
+			"preset": "spruce-window",
+			"startMs": 66333.3,
+			"durationMs": 866.6999999999971,
+			"view": "insights",
+			"app": "People Ops",
+			"ground": {
+				"base": [
+					236,
+					40,
+					160
+				],
+				"blobs": [
+					{
+						"c": [
+							90,
+							110,
+							245
+						],
+						"x": 1900,
+						"y": 0,
+						"rx": 900,
+						"ry": 700,
+						"a": 1
+					},
+					{
+						"c": [
+							244,
+							100,
+							40
+						],
+						"x": 900,
+						"y": 1150,
+						"rx": 1200,
+						"ry": 420,
+						"a": 0.9
+					},
+					{
+						"c": [
+							130,
+							120,
+							245
+						],
+						"x": -100,
+						"y": 300,
+						"rx": 600,
+						"ry": 700,
+						"a": 0.8
+					}
+				],
+				"grain": 0.18
+			},
+			"keys": [
+				{
+					"at": 0,
+					"s": 2.4,
+					"x": 520,
+					"y": 1300
+				},
+				{
+					"at": 466.7,
+					"s": 1.4,
+					"x": 900,
+					"y": 640,
+					"ease": "out"
+				},
+				{
+					"at": 866.7,
+					"s": 1.25,
+					"rx": 4,
+					"ry": -6
+				}
+			]
+		},
+		{
+			"id": "s7-code",
+			"preset": "spruce-window",
+			"startMs": 67200,
+			"durationMs": 2000,
+			"view": "code",
+			"app": "People Ops",
+			"ground": {
+				"base": [
+					236,
+					40,
+					160
+				],
+				"blobs": [
+					{
+						"c": [
+							90,
+							110,
+							245
+						],
+						"x": 1900,
+						"y": 0,
+						"rx": 900,
+						"ry": 700,
+						"a": 1
+					},
+					{
+						"c": [
+							244,
+							100,
+							40
+						],
+						"x": 900,
+						"y": 1150,
+						"rx": 1200,
+						"ry": 420,
+						"a": 0.9
+					},
+					{
+						"c": [
+							130,
+							120,
+							245
+						],
+						"x": -100,
+						"y": 300,
+						"rx": 600,
+						"ry": 700,
+						"a": 0.8
+					}
+				],
+				"grain": 0.18
+			},
+			"perspective": 1900,
+			"keys": [
+				{
+					"at": 0,
+					"s": 0.94,
+					"x": 960,
+					"y": 540,
+					"rx": 6,
+					"ry": -14,
+					"rz": 2
+				},
+				{
+					"at": 2000,
+					"s": 0.88,
+					"rx": 5,
+					"ry": -10,
+					"rz": 1.5
+				}
+			]
+		},
+		{
+			"id": "s7-dark2",
+			"preset": "spruce-ground",
+			"startMs": 69200,
+			"durationMs": 3033.300000000003,
+			"keys": [
+				{
+					"at": 0,
+					"base": [
+						0,
+						0,
+						0
+					],
+					"set": "dark",
+					"cx": 960,
+					"cy": 1250,
+					"rx": 1500,
+					"ry": 760,
+					"grain": 0.14
+				}
+			]
+		},
+		{
+			"id": "s7-edit",
+			"preset": "spruce-line",
+			"startMs": 69200,
+			"durationMs": 933.3000000000029,
+			"role": "brand",
+			"size": 130,
+			"weight": 700,
+			"colour": [
+				255,
+				255,
+				255
+			],
+			"words": [
+				{
+					"text": "Edit",
+					"at": 0
+				},
+				{
+					"text": "the",
+					"at": 266.7
+				},
+				{
+					"text": "code",
+					"at": 366.7
+				}
+			],
+			"camera": {
+				"originX": 640,
+				"originY": 360,
+				"keys": [
+					{
+						"atMs": 0,
+						"scale": 1.12
+					},
+					{
+						"atMs": 400,
+						"scale": 1,
+						"ease": "out"
+					},
+					{
+						"atMs": 933.3,
+						"scale": 0.96
+					}
+				]
+			}
+		},
+		{
+			"id": "s7-right",
+			"preset": "spruce-line",
+			"startMs": 70133.3,
+			"durationMs": 1066.699999999997,
+			"role": "brand",
+			"size": 104,
+			"weight": 700,
+			"colour": [
+				255,
+				255,
+				255
+			],
+			"words": [
+				{
+					"text": "right",
+					"at": 0
+				},
+				{
+					"text": "where",
+					"at": 200,
+					"mode": "ghost",
+					"colour": [
+						200,
+						190,
+						220
+					]
+				},
+				{
+					"text": "it",
+					"at": 266.7,
+					"mode": "ghost",
+					"colour": [
+						200,
+						190,
+						220
+					]
+				},
+				{
+					"text": "lives",
+					"at": 333.3,
+					"mode": "ghost",
+					"colour": [
+						200,
+						190,
+						220
+					]
+				}
+			],
+			"camera": {
+				"originX": 640,
+				"originY": 360,
+				"keys": [
+					{
+						"atMs": 0,
+						"scale": 1
+					},
+					{
+						"atMs": 1066.7,
+						"scale": 0.95
+					}
+				]
+			}
+		},
+		{
+			"id": "s7-repo",
+			"preset": "spruce-line",
+			"startMs": 71200,
+			"durationMs": 1033.300000000003,
+			"role": "brand",
+			"size": 104,
+			"weight": 700,
+			"colour": [
+				255,
+				255,
+				255
+			],
+			"words": [
+				{
+					"text": "or",
+					"at": 0
+				},
+				{
+					"text": "sync",
+					"at": 0
+				},
+				{
+					"text": "to",
+					"at": 0
+				},
+				{
+					"text": "",
+					"icon": "branch",
+					"at": 66.7,
+					"w": 76
+				},
+				{
+					"text": "your",
+					"at": 66.7
+				},
+				{
+					"text": "repo",
+					"at": 66.7
+				}
+			],
+			"camera": {
+				"originX": 640,
+				"originY": 360,
+				"keys": [
+					{
+						"atMs": 0,
+						"scale": 1.04
+					},
+					{
+						"atMs": 1033.3,
+						"scale": 0.98
+					}
+				]
+			}
+		},
+		{
+			"id": "s8-aura",
+			"preset": "spruce-endaura",
+			"startMs": 72233.3,
+			"durationMs": 3766.699999999997,
+			"keys": [
+				{
+					"at": 0,
+					"y": 1500,
+					"s": 1500,
+					"sky": 0,
+					"core": 0.3
+				},
+				{
+					"at": 433.3,
+					"y": 760,
+					"s": 1600,
+					"sky": 0.55,
+					"ease": "out"
+				},
+				{
+					"at": 833.3,
+					"y": 680,
+					"sky": 1
+				},
+				{
+					"at": 2100,
+					"core": 0.45
+				},
+				{
+					"at": 3300,
+					"core": 1,
+					"s": 1750
+				},
+				{
+					"at": 3766.7,
+					"s": 1250,
+					"y": 620,
+					"ease": "in"
+				}
+			]
+		},
+		{
+			"id": "s8-now",
+			"preset": "spruce-line",
+			"startMs": 72233.3,
+			"durationMs": 1900,
+			"role": "brand",
+			"size": 104,
+			"weight": 700,
+			"colour": [
+				255,
+				255,
+				255
+			],
+			"words": [
+				{
+					"text": "Now",
+					"at": 0
+				},
+				{
+					"text": "it's",
+					"at": 766.7
+				},
+				{
+					"text": "your",
+					"at": 766.7
+				},
+				{
+					"text": "move",
+					"at": 833.3
+				}
+			],
+			"out": {
+				"at": 1700,
+				"dur": 200,
+				"mode": "blur"
+			},
+			"camera": {
+				"originX": 640,
+				"originY": 360,
+				"keys": [
+					{
+						"atMs": 0,
+						"scale": 1.9,
+						"y": 0
+					},
+					{
+						"atMs": 566.7,
+						"scale": 1.6
+					},
+					{
+						"atMs": 766.7,
+						"scale": 1,
+						"ease": "out"
+					},
+					{
+						"atMs": 1900,
+						"scale": 0.95
+					}
+				]
+			}
+		},
+		{
+			"id": "s8-what",
+			"preset": "spruce-line",
+			"startMs": 74133.3,
+			"durationMs": 1866.699999999997,
+			"role": "brand",
+			"size": 104,
+			"weight": 700,
+			"colour": [
+				255,
+				255,
+				255
+			],
+			"words": [
+				{
+					"text": "What",
+					"at": 66.7
+				},
+				{
+					"text": "will",
+					"at": 66.7
+				},
+				{
+					"text": "you",
+					"at": 66.7
+				},
+				{
+					"text": "make?",
+					"at": 166.7,
+					"mode": "drop"
+				}
+			],
+			"camera": {
+				"originX": 640,
+				"originY": 360,
+				"keys": [
+					{
+						"atMs": 0,
+						"scale": 1
+					},
+					{
+						"atMs": 1533.3,
+						"scale": 0.98
+					},
+					{
+						"atMs": 1866.7,
+						"scale": 0.8,
+						"ease": "in"
+					}
+				]
+			}
+		},
+		{
+			"id": "s8-end",
+			"preset": "spruce-endcard",
+			"startMs": 76000,
+			"durationMs": 4400,
+			"role": "brand",
+			"name": "Spruce",
+			"url": "spruce.example",
+			"size": 210,
+			"urlSize": 64,
+			"lettersAt": 800,
+			"urlAt": 2400,
+			"keys": [
+				{
+					"at": 0,
+					"ms": 420,
+					"mb": 30
+				},
+				{
+					"at": 600,
+					"ms": 190,
+					"mb": 0,
+					"ease": "out"
+				}
+			]
+		}
+	]
+}
