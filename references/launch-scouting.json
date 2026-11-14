@@ -1092,6 +1092,18 @@
 			"humans": "none",
 			"verdict": "accept",
 			"reason": "Re-vet only. A 24-frame contact sheet confirms ~95% of the film is one cream-backed card of raw dashboard capture; the produced layer is the card and the cut rhythm. Not picked again: thinnest produced layer of the three and overlaps aspen's media windows."
+		},
+		{
+			"dateVetted": "2026-11-09",
+			"title": "QuiverAI — Introducing Arrow 2 (re-vet, built)",
+			"videoUrl": "https://video.twimg.com/ext_tw_video/2100295069764919296/pu/vid/avc1/1280x720/AqN3yPJDeqSWxpJo.mp4?tag=12",
+			"sourceUrl": "https://x.com/QuiverAI/status/2100295136261349802",
+			"source": "X (@QuiverAI, 24,745 followers)",
+			"metrics": "2,366,346 views / 11,184 likes / 834 RTs / 173 replies / 248 quotes / 14,079 bookmarks (fxtwitter API, re-checked 2026-11-09). 43.8s, best variant 1280x720@25fps.",
+			"humans": "incidental",
+			"producedLayer": "Almost the whole film is motion-designed: line art stroking on, a halftone mark, a rolling word column under a selection box, an easing curve on a sky field, letterforms and an outline drawn point by point, a prompt loop, four-frame mockup and stamp montages, a blur-in claim with a font swap.",
+			"verdict": "accept",
+			"reason": "PICKED for hazel. Highest engagement of the accepted, unbuilt films and the most drawn. Rowan's weakness was stand-ins for screen recordings, and this film's spine can be redrawn in code. Its look (paper white, pale cyan line art, one sky field) is unlike the nine existing templates, including maple, which is black-and-white hard cuts on one mark. The master is 720p/25fps, so the rebuild runs on its 25fps clock."
 		}
 	]
 }

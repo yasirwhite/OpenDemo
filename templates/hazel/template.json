@@ -1,0 +1,1058 @@
+{
+	"_about": "hazel: a 43.8s vector-construction launch film for a graphics or illustration model, derived frame-by-frame from a 43.8s launch film (1280x720 @25fps). Authored directly in reference px on the 1280x720 stage, rendered at device scale 1.5: render.mjs --fps 25 --scale 1.5. Placeholder product: Filbert 2.0 (a fictional vector-graphics model). Everything is drawn in code: pale line art stroking on, halftone marks, an easing curve on a sky field, a word drum, code over an illustration, letterforms and outlines built point by point, four-frame mockup and stamp montages, a prompt loop, and a wordmark close.",
+	"_sections": "S1 0-7.52 sky pill, panel-wipe line, three split screens | S2 7.52-15.68 word drum with tiles, sky and easing curve | S3 15.68-23.24 code over illustration, letterforms, outline, frame strip | S4 23.24-28.60 mockup montage, table of work | S5 28.60-33.84 prompt, generation, stamps | S6 33.84-43.84 loader, two claims, wordmark",
+	"_slots": "Image slots: `src` on any tile, mockup or stamp entry replaces the drawn stand-in (mockup items in s4-mockups, stamp items in s5-stamps, tiles in s1-live, s2-drum, s4-table, s6-claim, plus `src` on s1-split-camera and s3-code). Without a src, the drawn art renders.",
+	"video": {
+		"width": 1920,
+		"height": 1080,
+		"fps": 25,
+		"durationMs": 43840
+	},
+	"ground": [
+		{
+			"fromMs": 0,
+			"colour": [253, 253, 253]
+		}
+	],
+	"scenes": [
+		{
+			"id": "s1-sky-open",
+			"preset": "hazel-sky-pill",
+			"startMs": 0,
+			"durationMs": 240,
+			"leadMs": 1,
+			"role": "brand",
+			"label": "Filbert 2.0",
+			"curve": "bracket",
+			"keys": [
+				{
+					"at": 0,
+					"a": 1,
+					"s": 1
+				}
+			]
+		},
+		{
+			"id": "s1-live",
+			"preset": "hazel-live-line",
+			"startMs": 240,
+			"durationMs": 2440,
+			"leadMs": 1,
+			"role": "brand",
+			"text": "Filbert 2.0 is live",
+			"tiles": [
+				{
+					"at": 4,
+					"x": 954,
+					"y": 40,
+					"w": 180,
+					"h": 200,
+					"art": "cameraLine"
+				},
+				{
+					"at": 10,
+					"x": 850,
+					"y": 480,
+					"w": 116,
+					"h": 88,
+					"art": "landscape"
+				}
+			]
+		},
+		{
+			"id": "s1-split-icons",
+			"preset": "hazel-split",
+			"startMs": 2680,
+			"durationMs": 1640,
+			"leadMs": 1,
+			"name": "Filbert 2.0",
+			"left": "icons",
+			"right": "window"
+		},
+		{
+			"id": "s1-split-halftone",
+			"preset": "hazel-split",
+			"startMs": 4320,
+			"durationMs": 1480,
+			"leadMs": 1,
+			"name": "Filbert 2.0",
+			"left": "halftone",
+			"right": "dock"
+		},
+		{
+			"id": "s1-split-camera",
+			"preset": "hazel-split",
+			"startMs": 5800,
+			"durationMs": 1720,
+			"leadMs": 1,
+			"name": "Filbert 2.0",
+			"left": "camera",
+			"right": "sheet"
+		},
+		{
+			"id": "s2-drum",
+			"preset": "hazel-drum",
+			"startMs": 7520,
+			"durationMs": 5920,
+			"leadMs": 1,
+			"role": "feature",
+			"words": [
+				"Marks",
+				"Badges",
+				"Logos",
+				"Pictograms",
+				"Labels",
+				"Wordmarks",
+				"Assembly Diagrams",
+				"Illustrations",
+				"Icons",
+				"Technical Drawings",
+				"Typography",
+				"Pictograms",
+				"Patterns"
+			],
+			"rollKeys": [
+				{
+					"at": 0,
+					"i": 3.1
+				},
+				{
+					"at": 4,
+					"i": 3.9,
+					"ease": "linear"
+				},
+				{
+					"at": 8,
+					"i": 5,
+					"ease": "linear"
+				},
+				{
+					"at": 13,
+					"i": 5.5,
+					"ease": "linear"
+				},
+				{
+					"at": 16,
+					"i": 6,
+					"ease": "linear"
+				},
+				{
+					"at": 27,
+					"i": 7,
+					"ease": "out",
+					"pow": 2.4
+				},
+				{
+					"at": 62,
+					"i": 7
+				},
+				{
+					"at": 67,
+					"i": 8,
+					"ease": "out",
+					"pow": 3
+				},
+				{
+					"at": 90,
+					"i": 8
+				},
+				{
+					"at": 95,
+					"i": 9,
+					"ease": "out",
+					"pow": 3
+				},
+				{
+					"at": 140,
+					"i": 9
+				},
+				{
+					"at": 148,
+					"i": 11,
+					"ease": "in"
+				}
+			],
+			"stops": [
+				{
+					"at": 22,
+					"out": 62,
+					"word": "Illustrations",
+					"boxW": 500,
+					"tiles": [
+						{
+							"at": 27,
+							"x": 26,
+							"y": 32,
+							"w": 228,
+							"h": 228,
+							"art": "plant"
+						},
+						{
+							"at": 36,
+							"x": 1148,
+							"y": 70,
+							"w": 178,
+							"h": 154,
+							"art": "lock"
+						},
+						{
+							"at": 28,
+							"x": 200,
+							"y": 490,
+							"w": 116,
+							"h": 116,
+							"art": "kite"
+						},
+						{
+							"at": 22,
+							"x": 1112,
+							"y": 440,
+							"w": 180,
+							"h": 278,
+							"art": "chair"
+						}
+					]
+				},
+				{
+					"at": 62,
+					"out": 90,
+					"word": "Icons",
+					"boxW": 286,
+					"tiles": []
+				},
+				{
+					"at": 90,
+					"out": 140,
+					"word": "Technical Drawings",
+					"boxW": 756,
+					"tiles": [
+						{
+							"at": 96,
+							"x": 40,
+							"y": 60,
+							"w": 278,
+							"h": 216,
+							"art": "cabin"
+						},
+						{
+							"at": 96,
+							"x": 996,
+							"y": 24,
+							"w": 284,
+							"h": 196,
+							"art": "watch"
+						},
+						{
+							"at": 100,
+							"x": 142,
+							"y": 488,
+							"w": 252,
+							"h": 166,
+							"art": "phoneIso"
+						}
+					]
+				}
+			],
+			"iconRows": [
+				{
+					"at": 64,
+					"out": 90,
+					"y": 354,
+					"size": 96,
+					"width": 4.6,
+					"xs": [90, 243, 410, 883, 1011, 1150],
+					"names": ["flask", "lantern", "tent", "pin", "compass", "boot"]
+				},
+				{
+					"at": 64,
+					"out": 90,
+					"y": 70,
+					"size": 36,
+					"width": 1.6,
+					"colour": [52, 120, 150],
+					"xs": [840, 916, 992, 1068, 1144, 1220],
+					"names": ["bike", "pin", "tent", "lantern", "flask", "compass"]
+				},
+				{
+					"at": 66,
+					"out": 90,
+					"y": 640,
+					"size": 30,
+					"width": 1.4,
+					"colour": [86, 88, 96],
+					"xs": [50, 114, 178, 242, 306],
+					"names": ["compass", "tent", "pin", "lantern", "boot"]
+				}
+			]
+		},
+		{
+			"id": "s2-sky-curve",
+			"preset": "hazel-sky-pill",
+			"startMs": 13120,
+			"durationMs": 2560,
+			"leadMs": 1,
+			"role": "brand",
+			"label": "Filbert 2.0",
+			"curve": "scurve",
+			"fadeIn": 7,
+			"skyOffset": 60,
+			"drawFrames": 30,
+			"z": 3,
+			"keys": [
+				{
+					"at": 0,
+					"a": 0,
+					"s": 1
+				},
+				{
+					"at": 12,
+					"a": 0,
+					"s": 1
+				},
+				{
+					"at": 20,
+					"a": 0.9,
+					"s": 1,
+					"ease": "out"
+				},
+				{
+					"at": 64,
+					"a": 0.9,
+					"s": 1.14
+				}
+			]
+		},
+		{
+			"id": "s3-code",
+			"preset": "hazel-code-reveal",
+			"startMs": 15680,
+			"durationMs": 2000,
+			"leadMs": 1,
+			"colourAt": 22,
+			"colourFrames": 22
+		},
+		{
+			"id": "s3-letters",
+			"preset": "hazel-letter-draw",
+			"startMs": 17680,
+			"durationMs": 2240,
+			"leadMs": 1,
+			"role": "product-voice",
+			"caption": "Set this word as one long flourish with a soft italic.",
+			"captionAt": 52
+		},
+		{
+			"id": "s3-outline",
+			"preset": "hazel-outline-draw",
+			"startMs": 19920,
+			"durationMs": 1600,
+			"leadMs": 1
+		},
+		{
+			"id": "s3-strip",
+			"preset": "hazel-frame-strip",
+			"startMs": 21520,
+			"durationMs": 1720,
+			"leadMs": 1,
+			"role": "user-voice",
+			"prompt": "Next three wingbeats, same style. Keep the loop seamless.",
+			"frames": [0, 8, 16, 25]
+		},
+		{
+			"id": "s4-mockups",
+			"preset": "hazel-mockups",
+			"startMs": 23240,
+			"durationMs": 2360,
+			"leadMs": 1,
+			"role": "brand",
+			"items": [
+				{
+					"at": 0,
+					"kind": "card"
+				},
+				{
+					"at": 4,
+					"kind": "fibre"
+				},
+				{
+					"at": 8,
+					"kind": "shoe"
+				},
+				{
+					"at": 12,
+					"kind": "tag",
+					"pose": "level"
+				},
+				{
+					"at": 16,
+					"kind": "pocket"
+				},
+				{
+					"at": 20,
+					"kind": "card",
+					"tint": [84, 76, 104]
+				},
+				{
+					"at": 24,
+					"kind": "kraft"
+				},
+				{
+					"at": 28,
+					"kind": "mug",
+					"pose": "level"
+				},
+				{
+					"at": 32,
+					"kind": "cap",
+					"pose": "up"
+				},
+				{
+					"at": 36,
+					"kind": "cap",
+					"pose": "mid",
+					"tint": [32, 66, 206]
+				},
+				{
+					"at": 40,
+					"kind": "phone"
+				},
+				{
+					"at": 42,
+					"kind": "knit",
+					"pose": "up"
+				}
+			],
+			"outKeys": [
+				{
+					"at": 42,
+					"s": 1.06
+				},
+				{
+					"at": 59,
+					"s": 0.86,
+					"ease": "out"
+				}
+			]
+		},
+		{
+			"id": "s4-table",
+			"preset": "hazel-table",
+			"startMs": 25600,
+			"durationMs": 3000,
+			"leadMs": 1,
+			"role": "brand",
+			"flicker": {
+				"from": 0,
+				"to": 17,
+				"x": 558,
+				"y": 97,
+				"w": 338,
+				"h": 388,
+				"art": "lighthouse",
+				"period": 4
+			},
+			"label": {
+				"at": 7,
+				"out": 43,
+				"x": 138,
+				"y": 470,
+				"name": "FILBERT 2.0",
+				"sub": "Shape your work",
+				"size": 44
+			},
+			"markAt": 17,
+			"markOut": 25,
+			"tiles": [
+				{
+					"at": 25,
+					"out": 43,
+					"title": "Typography",
+					"block": "Filbert sets custom letterforms, from body type to one-off display glyphs. Adjust weight, contrast and character.",
+					"x": 366,
+					"y": 30,
+					"w": 330,
+					"size": 19,
+					"titleSize": 36
+				},
+				{
+					"at": 25,
+					"out": 43,
+					"x": 30,
+					"y": 170,
+					"w": 186,
+					"h": 124,
+					"art": "watch"
+				},
+				{
+					"at": 25,
+					"out": 43,
+					"x": 1010,
+					"y": 188,
+					"w": 150,
+					"h": 120,
+					"art": "gear"
+				},
+				{
+					"at": 25,
+					"out": 43,
+					"x": 30,
+					"y": 650,
+					"w": 176,
+					"h": 70,
+					"art": "lighthouse"
+				},
+				{
+					"at": 25,
+					"out": 43,
+					"x": 910,
+					"y": 610,
+					"w": 110,
+					"h": 110,
+					"art": "badge"
+				},
+				{
+					"at": 43,
+					"out": 52,
+					"title": "Illustrations",
+					"block": "Flat colour or fine line, consistent across a whole set.",
+					"x": 880,
+					"y": 150,
+					"w": 340,
+					"size": 14
+				},
+				{
+					"at": 43,
+					"out": 52,
+					"x": 760,
+					"y": 150,
+					"w": 110,
+					"h": 80,
+					"art": "badge"
+				},
+				{
+					"at": 43,
+					"out": 52,
+					"x": 260,
+					"y": 360,
+					"w": 150,
+					"h": 120,
+					"art": "gear"
+				},
+				{
+					"at": 43,
+					"out": 52,
+					"x": 890,
+					"y": 330,
+					"w": 170,
+					"h": 130,
+					"art": "cameraLine"
+				},
+				{
+					"at": 52,
+					"x": 13,
+					"y": 138,
+					"w": 84,
+					"h": 108,
+					"art": "sign"
+				},
+				{
+					"at": 52,
+					"x": 302,
+					"y": 143,
+					"w": 82,
+					"h": 97,
+					"art": "plant"
+				},
+				{
+					"at": 52,
+					"x": 609,
+					"y": 170,
+					"w": 90,
+					"h": 42,
+					"art": "wordmark",
+					"label": "ORCHARD"
+				},
+				{
+					"at": 52,
+					"x": 916,
+					"y": 180,
+					"w": 62,
+					"h": 62,
+					"art": "badge"
+				},
+				{
+					"at": 52,
+					"title": "Illustrations",
+					"block": "Flat colour or fine line, consistent across a whole set.",
+					"x": 984,
+					"y": 182,
+					"w": 130,
+					"size": 9
+				},
+				{
+					"at": 52,
+					"title": "Typography",
+					"block": "Custom letterforms from body type to one-off display glyphs.",
+					"x": 394,
+					"y": 266,
+					"w": 140,
+					"size": 9
+				},
+				{
+					"at": 52,
+					"x": 287,
+					"y": 333,
+					"w": 92,
+					"h": 56,
+					"art": "watch"
+				},
+				{
+					"at": 52,
+					"x": 448,
+					"y": 333,
+					"w": 78,
+					"h": 52,
+					"art": "gear"
+				},
+				{
+					"at": 52,
+					"x": 614,
+					"y": 333,
+					"w": 64,
+					"h": 76,
+					"art": "cameraLine"
+				},
+				{
+					"at": 52,
+					"x": 1062,
+					"y": 307,
+					"w": 90,
+					"h": 90,
+					"art": "gear"
+				},
+				{
+					"at": 52,
+					"x": 276,
+					"y": 481,
+					"w": 93,
+					"h": 103,
+					"art": "lighthouse"
+				},
+				{
+					"at": 52,
+					"x": 604,
+					"y": 491,
+					"w": 92,
+					"h": 85,
+					"art": "badge"
+				},
+				{
+					"at": 52,
+					"x": 940,
+					"y": 494,
+					"w": 71,
+					"h": 82,
+					"art": "night"
+				},
+				{
+					"at": 52,
+					"x": 1178,
+					"y": 0,
+					"w": 92,
+					"h": 78,
+					"art": "night"
+				},
+				{
+					"at": 52,
+					"x": 746,
+					"y": 0,
+					"w": 82,
+					"h": 62,
+					"art": "sign"
+				},
+				{
+					"at": 52,
+					"x": 930,
+					"y": 0,
+					"w": 70,
+					"h": 54,
+					"art": "iconSheet"
+				},
+				{
+					"at": 52,
+					"x": 486,
+					"y": 678,
+					"w": 96,
+					"h": 50,
+					"art": "iconSheet"
+				},
+				{
+					"at": 52,
+					"x": 280,
+					"y": 688,
+					"w": 110,
+					"h": 30,
+					"art": "wordmark",
+					"label": "COPPER"
+				},
+				{
+					"at": 52,
+					"x": 796,
+					"y": 682,
+					"w": 76,
+					"h": 34,
+					"art": "wordmark",
+					"label": "TERN"
+				},
+				{
+					"at": 52,
+					"x": 8,
+					"y": 640,
+					"w": 72,
+					"h": 80,
+					"art": "lock"
+				},
+				{
+					"at": 52,
+					"x": 1216,
+					"y": 482,
+					"w": 60,
+					"h": 60,
+					"art": "chair"
+				},
+				{
+					"at": 58,
+					"x": 120,
+					"y": 42,
+					"w": 60,
+					"h": 60,
+					"art": "kite"
+				},
+				{
+					"at": 52,
+					"title": "FILBERT 2.0",
+					"block": "Shape your work",
+					"x": 184,
+					"y": 570,
+					"w": 150,
+					"size": 10
+				}
+			],
+			"arrows": [
+				{
+					"at": 43,
+					"out": 52,
+					"x": 700,
+					"y": 420
+				},
+				{
+					"at": 52,
+					"x": 921,
+					"y": 345
+				}
+			],
+			"digit": {
+				"at": 58,
+				"dur": 12,
+				"text": "2",
+				"x": 640,
+				"y": 660,
+				"size": 900
+			},
+			"camKeys": [
+				{
+					"at": 0,
+					"s": 1
+				},
+				{
+					"at": 25,
+					"s": 1
+				},
+				{
+					"at": 42,
+					"s": 0.97
+				},
+				{
+					"at": 52,
+					"s": 1,
+					"ease": "hold"
+				},
+				{
+					"at": 75,
+					"s": 0.97
+				}
+			]
+		},
+		{
+			"id": "s5-composer",
+			"preset": "hazel-composer",
+			"startMs": 28600,
+			"durationMs": 1680,
+			"leadMs": 1,
+			"role": "user-voice",
+			"text": "try this motif with different flowers",
+			"brand": "Filbert 2.0",
+			"artVase": 1,
+			"lastTurn": "…limited pastel palette, on a coloured ground."
+		},
+		{
+			"id": "s5-generate",
+			"preset": "hazel-generate",
+			"startMs": 30280,
+			"durationMs": 2280,
+			"leadMs": 1,
+			"role": "product-voice",
+			"prompt": "try this motif with different flowers",
+			"brand": "Filbert 2.0",
+			"status": [
+				"Sketching the curves…",
+				"Snapping the anchors…",
+				"Inking the outlines…",
+				"Sketching the curves…",
+				"Snapping the anchors…",
+				"Inking the outlines…",
+				"Sketching the curves…"
+			],
+			"period": 8,
+			"variants": [
+				{
+					"at": 2,
+					"vase": 2
+				},
+				{
+					"at": 34,
+					"vase": 3
+				},
+				{
+					"at": 42,
+					"vase": 4
+				},
+				{
+					"at": 51,
+					"vase": 5
+				}
+			]
+		},
+		{
+			"id": "s5-stamps",
+			"preset": "hazel-stamps",
+			"startMs": 32560,
+			"durationMs": 1280,
+			"leadMs": 1,
+			"role": "brand",
+			"caption": "Filbert Collectors",
+			"tag": "forma",
+			"price": "85¢",
+			"items": [
+				{
+					"at": 0,
+					"vase": 5,
+					"paper": "kraft2",
+					"x": 412,
+					"y": 22,
+					"w": 466
+				},
+				{
+					"at": 4,
+					"vase": 4,
+					"paper": "white",
+					"x": 442,
+					"y": 52,
+					"w": 430
+				},
+				{
+					"at": 8,
+					"vase": 7,
+					"paper": "kraft",
+					"x": 410,
+					"y": 38,
+					"w": 470,
+					"postmark": true
+				},
+				{
+					"at": 12,
+					"vase": 6,
+					"paper": "white",
+					"x": 400,
+					"y": 36,
+					"w": 470,
+					"fold": true
+				},
+				{
+					"at": 16,
+					"vase": 2,
+					"paper": "kraft2",
+					"x": 420,
+					"y": 30,
+					"w": 466
+				},
+				{
+					"at": 20,
+					"vase": 6,
+					"paper": "white",
+					"x": 394,
+					"y": 26,
+					"w": 480,
+					"fold": true
+				},
+				{
+					"at": 24,
+					"vase": 3,
+					"paper": "white",
+					"x": 412,
+					"y": 40,
+					"w": 464
+				},
+				{
+					"at": 28,
+					"vase": 8,
+					"paper": "wood",
+					"x": 366,
+					"y": 20,
+					"w": 500
+				}
+			]
+		},
+		{
+			"id": "s6-loader",
+			"preset": "hazel-loader",
+			"startMs": 33840,
+			"durationMs": 1760,
+			"leadMs": 1,
+			"role": "product-voice",
+			"items": ["Sketching the curves…", "Snapping the anchors…", "Inking the outlines…"],
+			"period": 14,
+			"fadeOutAt": 36
+		},
+		{
+			"id": "s6-claim",
+			"preset": "hazel-claim",
+			"startMs": 35600,
+			"durationMs": 2640,
+			"leadMs": 1,
+			"role": "brand",
+			"text": "The ideas were always yours",
+			"tiles": [
+				{
+					"at": 30,
+					"out": 60,
+					"x": 1150,
+					"y": 130,
+					"w": 74,
+					"h": 60,
+					"art": "night"
+				},
+				{
+					"at": 34,
+					"out": 60,
+					"x": 875,
+					"y": 192,
+					"w": 85,
+					"h": 60,
+					"art": "cameraLine"
+				},
+				{
+					"at": 37,
+					"out": 58,
+					"x": 82,
+					"y": 174,
+					"w": 78,
+					"h": 96,
+					"art": "sign"
+				},
+				{
+					"at": 33,
+					"out": 58,
+					"x": 262,
+					"y": 425,
+					"w": 76,
+					"h": 70,
+					"art": "lighthouse"
+				},
+				{
+					"at": 40,
+					"out": 58,
+					"x": 747,
+					"y": 31,
+					"w": 80,
+					"h": 84,
+					"art": "sign"
+				},
+				{
+					"at": 44,
+					"out": 58,
+					"x": 77,
+					"y": 481,
+					"w": 72,
+					"h": 62,
+					"art": "badge"
+				},
+				{
+					"at": 44,
+					"out": 58,
+					"x": 82,
+					"y": 609,
+					"w": 58,
+					"h": 76,
+					"art": "plant"
+				},
+				{
+					"at": 48,
+					"out": 58,
+					"x": 476,
+					"y": 609,
+					"w": 78,
+					"h": 88,
+					"art": "iconSheet"
+				},
+				{
+					"at": 50,
+					"out": 58,
+					"x": 750,
+					"y": 614,
+					"w": 70,
+					"h": 70,
+					"art": "wordmark",
+					"label": "TERN"
+				}
+			]
+		},
+		{
+			"id": "s6-swap",
+			"preset": "hazel-swap-line",
+			"startMs": 38240,
+			"durationMs": 2560,
+			"leadMs": 1,
+			"role": "brand",
+			"lead": "We just draw the ",
+			"tail": "lines",
+			"swaps": [
+				{
+					"from": 26,
+					"to": 31,
+					"face": "italic"
+				},
+				{
+					"from": 31,
+					"to": 36,
+					"face": "heavy"
+				},
+				{
+					"from": 36,
+					"to": 42,
+					"face": "condensed"
+				}
+			]
+		},
+		{
+			"id": "s6-wordmark",
+			"preset": "hazel-wordmark",
+			"startMs": 40800,
+			"durationMs": 3040,
+			"leadMs": 1,
+			"role": "brand",
+			"name": "Filbert",
+			"fadeFrames": 4
+		}
+	]
+}

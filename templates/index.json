@@ -226,6 +226,39 @@
 			],
 			"derivedFrom": "the Pencil launch film, measured frame-by-frame on its 30fps clock",
 			"config": "rowan/template.json"
+		},
+		{
+			"slug": "hazel",
+			"name": "Hazel",
+			"style": "line-art vector-construction launch film for a graphics or illustration model",
+			"category": "motion-graphics-led",
+			"durationMs": 43840,
+			"aspect": "16:9",
+			"fps": 25,
+			"slots": 22,
+			"tags": [
+				"paper-white-ground",
+				"cyan-line-art",
+				"stroke-on-drawings",
+				"panel-wipe-type",
+				"split-screen-beats",
+				"halftone-mark",
+				"word-drum-selection-box",
+				"sky-gradient-field",
+				"easing-curve",
+				"code-over-illustration",
+				"colour-bloom-reveal",
+				"pen-tool-letterforms",
+				"frame-strip",
+				"four-frame-mockup-montage",
+				"table-mosaic",
+				"prompt-loop",
+				"stamp-montage",
+				"font-swap-claim",
+				"wordmark-close"
+			],
+			"derivedFrom": "the QuiverAI Arrow 2 launch film, measured frame-by-frame on its 25fps clock",
+			"config": "hazel/template.json"
 		}
 	]
 }

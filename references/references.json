@@ -91,6 +91,16 @@
 			"spec": "1812x1080, 30fps, 79.1s",
 			"notes": "templates/rowan/reference-notes.md",
 			"usedBy": "templates/rowan/ - full film rebuilt frame-by-frame on its 30fps clock; one app window on a contour-ribbon backdrop, two slow linear camera pushes, drawn editor UI, mono captions, typed end card"
+		},
+		{
+			"id": "quiver-arrow2",
+			"file": "quiver-arrow2-launch-film.mp4",
+			"url": "https://video.twimg.com/ext_tw_video/2100295069764919296/pu/vid/avc1/1280x720/AqN3yPJDeqSWxpJo.mp4?tag=12",
+			"md5": "eb25289d4a50d57915966471623b80c6",
+			"bytes": 4455756,
+			"spec": "1280x720, 25fps, 43.8s",
+			"notes": "templates/hazel/reference-notes.md",
+			"usedBy": "templates/hazel/ - full film rebuilt frame-by-frame on its 25fps clock; line-art strokes, halftone marks, word drum, letterforms and outlines drawn point by point, four-frame mockup and stamp montages, prompt loop"
 		}
 	]
 }
