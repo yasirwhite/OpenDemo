@@ -1092,6 +1092,248 @@
 			"humans": "none",
 			"verdict": "accept",
 			"reason": "Re-vet only. A 24-frame contact sheet confirms ~95% of the film is one cream-backed card of raw dashboard capture; the produced layer is the card and the cut rhythm. Not picked again: thinnest produced layer of the three and overlaps aspen's media windows."
+		},
+		{
+			"dateVetted": "2026-11-13",
+			"title": "Lovable 2.0 — multiplayer vibe coding (built)",
+			"videoUrl": "https://video.twimg.com/amplify_video/1915454148566294528/vid/avc1/1280x720/dZ2zTS9TzuvGOxb2.mp4?tag=16",
+			"sourceUrl": "https://x.com/antonosika/status/1915482887618465995",
+			"source": "X (@antonosika, 85,682 followers) via launchgallery.video",
+			"metrics": "379,092 views / 4,485 likes / 221 RTs / 165 replies / 2,237 bookmarks (fxtwitter API, checked 2026-11-13). 80.4s 2560x1440.",
+			"humans": "none (one laptop-on-desk photo)",
+			"verdict": "accept",
+			"reason": "Built as the spruce template (2026-11-13). 4,485 likes on 379k views is a 1.18% like rate, the strongest of the night, from an 85.7k-follower founder account (5.2% of followers liked it). A fully produced 80s film with no people: grain-heavy aura gradients (arc, rim and mark-shaped), word-by-word claims that re-centre as they grow, a glowing prompt pill that becomes the app window, hand-cursor punch-ins on buttons and dialogs, tilted editor windows, and a brand end card. No shipped or open template uses aura grounds with punch-in UI."
+		},
+		{
+			"dateVetted": "2026-11-13",
+			"title": "Lightreel — largest Meta ads dataset",
+			"videoUrl": "https://video.twimg.com/amplify_video/2097701658146799616/vid/avc1/1280x720/3nLNgybKBYyDi1rS.mp4?tag=29",
+			"sourceUrl": "https://x.com/lightreelai/status/2097701733812023728",
+			"source": "X (@lightreelai, 8,879 followers) via launchgallery.video",
+			"metrics": "1,813,421 views / 3,188 likes / 271 RTs / 101 replies / 6,177 bookmarks (fxtwitter API, checked 2026-11-13). 24.6s 3840x2160.",
+			"humans": "incidental (creator cards)",
+			"verdict": "defer",
+			"reason": "Best film-borne reach of the night (1.8M views, 6.2k bookmarks, ~204x the follower count) and only 24.6s. Not picked: the spine is animated painterly art grounds (starry sky, waves, flower fields) that cannot be drawn procedurally, and the ad/creator card rows overlap linden (gallery wall) and willow (prompt composer). Candidate if a painted-ground engine lands."
+		},
+		{
+			"dateVetted": "2026-11-13",
+			"title": "Skiper UI v2 — stacked components",
+			"videoUrl": "https://video.twimg.com/amplify_video/1964668493519093760/vid/avc1/1280x720/UoeO0k92P6XwaIwE.mp4?tag=21",
+			"sourceUrl": "https://x.com/Gur__vi/status/1964669596247678980",
+			"source": "X (@Gur__vi, 3,716 followers) via launchgallery.video",
+			"metrics": "166,023 views / 1,617 likes / 82 RTs / 61 replies / 1,582 bookmarks (fxtwitter API, checked 2026-11-13). 21.4s 3840x2160.",
+			"humans": "none",
+			"verdict": "defer",
+			"reason": "Produced 21s film (crosshair registration lines, small centred type, a blue orb, tilted devices with oversized red type). Good ratio (1.6k likes, 1.6k bookmarks on 3.7k followers) but small absolute reach (166k views). Short-film candidate for another night."
+		},
+		{
+			"dateVetted": "2026-11-13",
+			"title": "Mirage — Tesseract: Claude/ChatGPT make Premiere and After Effects files",
+			"videoUrl": "https://video.twimg.com/amplify_video/2107503746913652736/vid/avc1/1280x720/lrsBEpOeOiHjzR39.mp4?tag=29",
+			"sourceUrl": "https://x.com/trymirage/status/2107504042205139269",
+			"source": "X (@trymirage, 26,988 followers) via launchgallery.video",
+			"metrics": "397,587 views / 2,139 likes / 171 RTs / 113 replies / 2,892 bookmarks (fxtwitter API, checked 2026-11-13). 77.9s 1920x1080.",
+			"humans": "none",
+			"verdict": "defer",
+			"reason": "Distinct retro-CRT terminal grammar (phosphor UI, pixel-glitch titles, wireframe cube, CRT end card), 2.1k likes / 2.9k bookmarks. Not picked: the middle is generated 3D horse renders (the product output), which would all be image slots, and reach is modest (398k views on 27k followers)."
+		},
+		{
+			"dateVetted": "2026-11-13",
+			"title": "Prime Intellect — Introducing Lab",
+			"videoUrl": "https://video.twimg.com/amplify_video/2021396122875592709/vid/avc1/1280x720/C3I57R4K70fEKqU9.mp4?tag=21",
+			"sourceUrl": "https://x.com/PrimeIntellect/status/2021403222502670765",
+			"source": "X (@PrimeIntellect, 88,434 followers) via launchgallery.video",
+			"metrics": "3,156,557 views / 2,865 likes / 293 RTs / 140 replies / 1,841 bookmarks (fxtwitter API, checked 2026-11-13). 83.3s 2560x1440.",
+			"humans": "none",
+			"verdict": "reject",
+			"reason": "Cinematic CG landscapes (monolith in deserts, ruins, nebula, jungle lake) with tiny spaced caps. Nothing to rebuild with the engines: the film is its renders."
+		},
+		{
+			"dateVetted": "2026-11-13",
+			"title": "Lovable — aesthetics update",
+			"videoUrl": "https://video.twimg.com/amplify_video/2053874315893030920/vid/avc1/1280x720/VJAqX9KpX1p7hmqF.mp4?tag=27",
+			"sourceUrl": "https://x.com/Lovable/status/2053874566460752191",
+			"source": "X (@Lovable, 159,902 followers) via launchgallery.video",
+			"metrics": "407,515 views / 2,258 likes / 147 RTs / 127 replies / 1,142 bookmarks (fxtwitter API, checked 2026-11-13). 54.2s 1920x1080.",
+			"humans": "some (editorial portraits)",
+			"verdict": "reject",
+			"reason": "Same brand as the night's pick, from the 160k brand account (2.3k likes, brand halo). Photo- and poster-led design collage; its reusable grammar is already covered by the Lovable 2.0 film."
+		},
+		{
+			"dateVetted": "2026-11-13",
+			"title": "Kylon — company harness for humans, agents and tools",
+			"videoUrl": "https://video.twimg.com/amplify_video/2110034785376911360/vid/avc1/1280x720/M0mhFII5ofbps0rs.mp4?tag=29",
+			"sourceUrl": "https://x.com/quinn_leng/status/2110036327286886731",
+			"source": "X (@quinn_leng, 7,808 followers) via launchgallery.video",
+			"metrics": "1,555,619 views / 1,124 likes / 117 RTs / 306 replies / 982 bookmarks (fxtwitter API, checked 2026-11-13). 67.4s 1920x1080.",
+			"humans": "dominant",
+			"verdict": "reject",
+			"reason": "Live-action jazz-band film (conductor, musicians) with a two-frame logo card. Humans are the spine."
+		},
+		{
+			"dateVetted": "2026-11-13",
+			"title": "Clicky — screen-aware dictation (re-vet, watched)",
+			"videoUrl": "https://video.twimg.com/amplify_video/2077129836481613824/vid/avc1/1280x720/9hf7BVgeAhXklPR2.mp4?tag=28",
+			"sourceUrl": "https://x.com/FarzaTV/status/2077130366230639022",
+			"source": "X (@FarzaTV, 133,595 followers) via launchgallery.video",
+			"metrics": "2,948,890 views / 10,677 likes / 467 RTs / 551 replies / 8,717 bookmarks (fxtwitter API, checked 2026-11-13). 120.1s 3840x2160.",
+			"humans": "dominant",
+			"verdict": "reject",
+			"reason": "Watched this time (deferred unwatched earlier). Founder to camera with subtitles in ~60% of the film, the rest raw desktop capture. Strong engagement (10.7k likes) but humans plus raw capture."
+		},
+		{
+			"dateVetted": "2026-11-13",
+			"title": "ai.com — reserve your @handle",
+			"videoUrl": "https://video.twimg.com/amplify_video/2020663943576899586/vid/avc1/1280x720/7aBK1m4qc14Rwcel.mp4?tag=21",
+			"sourceUrl": "https://x.com/aidotcom/status/2020664043590090820",
+			"source": "X (@aidotcom, 18,602 followers) via launchgallery.video",
+			"metrics": "1,241,561 views / 2,482 likes / 276 RTs / 486 replies / 762 bookmarks (fxtwitter API, checked 2026-11-13). 30.1s 1280x720.",
+			"humans": "none",
+			"verdict": "reject",
+			"reason": "30s: CG light-streak orbs, a logo, 'AGI is coming' and a handle typed into a field. The light-streak CG carries half the film and the rest is thin; domain/brand halo on the numbers."
+		},
+		{
+			"dateVetted": "2026-11-13",
+			"title": "Inflight — feedback layer for prototypes",
+			"videoUrl": "https://video.twimg.com/amplify_video/2110744555825827840/vid/avc1/1280x720/_pj_C5XOXBFcjwqD.mp4?tag=29",
+			"sourceUrl": "https://x.com/ridd_design/status/2110748819847630872",
+			"source": "X (@ridd_design, 77,505 followers) via launchgallery.video",
+			"metrics": "699,113 views / 1,117 likes / 89 RTs / 220 replies / 802 bookmarks (fxtwitter API, checked 2026-11-13). 82.1s 1920x1080.",
+			"humans": "dominant",
+			"verdict": "reject",
+			"reason": "Two founders talking to camera with glassy UI cards composited over them for the whole film."
+		},
+		{
+			"dateVetted": "2026-11-13",
+			"title": "Magic Patterns — MagicOS",
+			"videoUrl": "https://video.twimg.com/amplify_video/2110030139962847232/vid/avc1/1280x720/gvCD81KpLhnQzIm_.mp4?tag=29",
+			"sourceUrl": "https://x.com/alexdanilowicz/status/2110030443466940671",
+			"source": "X (@alexdanilowicz, 8,879 followers) via launchgallery.video",
+			"metrics": "466,105 views / 1,049 likes / 190 RTs / 158 replies / 834 bookmarks (fxtwitter API, checked 2026-11-13). 72.1s 1920x1080.",
+			"humans": "dominant",
+			"verdict": "reject",
+			"reason": "Live-action office skit (CRT, Rubik's cube, team around a laptop) with short canvas captures."
+		},
+		{
+			"dateVetted": "2026-11-13",
+			"title": "OpenClaw (usebits) — viral virtual assistant set up in 5 minutes",
+			"videoUrl": "https://video.twimg.com/amplify_video/2020245012437692419/vid/avc1/1280x720/4Mv3MqvKerlPsryS.mp4?tag=21",
+			"sourceUrl": "https://x.com/ycombinator/status/2020256254732693672",
+			"source": "X (@ycombinator, 1,666,730 followers) via launchgallery.video",
+			"metrics": "1,597,489 views / 3,136 likes / 258 RTs / 405 replies / 4,515 bookmarks (fxtwitter API, checked 2026-11-13). 55.8s 3840x2160.",
+			"humans": "none",
+			"verdict": "reject",
+			"reason": "Raw screen capture beside a timer on a forest photo for 56s. No produced layer; YC brand halo."
+		},
+		{
+			"dateVetted": "2026-11-13",
+			"title": "Commas (FanBasis) — make money on the internet",
+			"videoUrl": "https://video.twimg.com/amplify_video/2077065220279656448/vid/avc1/1280x720/Gs7QG4_bSl-y9LdO.mp4?tag=28",
+			"sourceUrl": "https://x.com/YDaftary/status/2077065390295769103",
+			"source": "X (@YDaftary, 5,339 followers) via launchgallery.video",
+			"metrics": "2,512,191 views / 3,290 likes / 406 RTs / 663 replies / 2,974 bookmarks (fxtwitter API, checked 2026-11-13). 146.0s 1920x1080.",
+			"humans": "unknown (not watched)",
+			"verdict": "reject",
+			"reason": "Not watched: 146s rebrand film; 3.3k likes on 2.5M views (0.13%)."
+		},
+		{
+			"dateVetted": "2026-11-13",
+			"title": "Clueso — $10M Series A",
+			"videoUrl": "https://video.twimg.com/amplify_video/2110002367869693953/vid/avc1/1280x720/B9U06sB0yPN2h9ae.mp4?tag=29",
+			"sourceUrl": "https://x.com/realAkashAnand/status/2110007145639072128",
+			"source": "X (@realAkashAnand, 6,854 followers) via launchgallery.video",
+			"metrics": "1,360,222 views / 2,478 likes / 216 RTs / 397 replies / 1,550 bookmarks (fxtwitter API, checked 2026-11-13). 185.6s 3840x2160.",
+			"humans": "unknown (not watched)",
+			"verdict": "reject",
+			"reason": "Not watched: 186s fundraise film, 2.5k likes on 1.36M views."
+		},
+		{
+			"dateVetted": "2026-11-13",
+			"title": "Runable — the general AI agent for every task",
+			"videoUrl": "https://video.twimg.com/amplify_video/1986090875949309952/vid/avc1/2880x2160/TZOk0jKsudTJUgVV.mp4?tag=21",
+			"sourceUrl": "https://x.com/runable_hq/status/1986092697464234053",
+			"source": "X (@runable_hq, 9,397 followers) via launchgallery.video",
+			"metrics": "1,064,827 views / 1,992 likes / 326 RTs / 351 replies / 773 bookmarks (fxtwitter API, checked 2026-11-13). 100.3s 2880x2160.",
+			"humans": "unknown (not watched)",
+			"verdict": "reject",
+			"reason": "Not watched: 100s, 2.0k likes on 1.06M views (0.19%)."
+		},
+		{
+			"dateVetted": "2026-11-13",
+			"title": "Boardy Pro — AI that makes deals happen",
+			"videoUrl": "https://video.twimg.com/amplify_video/2066537570910003200/vid/avc1/1280x720/mVpAMbmVYV70U3wM.mp4?tag=28",
+			"sourceUrl": "https://x.com/boardyai/status/2066539651502895129",
+			"source": "X (@boardyai, 52,796 followers) via launchgallery.video",
+			"metrics": "1,755,184 views / 2,102 likes / 134 RTs / 5,162 replies / 817 bookmarks (fxtwitter API, checked 2026-11-13). 89.9s 3840x2160.",
+			"humans": "unknown (not watched)",
+			"verdict": "reject",
+			"reason": "Not watched: 90s, 2.1k likes on 1.76M views (0.12%)."
+		},
+		{
+			"dateVetted": "2026-11-13",
+			"title": "Oasis — virtual office for humans and agents",
+			"videoUrl": "https://video.twimg.com/amplify_video/2078178461336645632/vid/avc1/1280x720/UvVEUTfaEgawv0AL.mp4?tag=29",
+			"sourceUrl": "https://x.com/stedelmanto/status/2078180286441955781",
+			"source": "X (@stedelmanto, 1,736 followers) via launchgallery.video",
+			"metrics": "2,321,449 views / 2,538 likes / 355 RTs / 646 replies / 2,061 bookmarks (fxtwitter API, checked 2026-11-13). 119.2s 1920x1080.",
+			"humans": "unknown (not watched)",
+			"verdict": "reject",
+			"reason": "Not watched: 119s, 2.5k likes on 2.3M views from a 1.7k-follower account (promoted reach likely)."
+		},
+		{
+			"dateVetted": "2026-11-13",
+			"title": "Blueberry — commerce agent that sells for you",
+			"videoUrl": "https://video.twimg.com/amplify_video/2066912249231650816/vid/avc1/1280x720/Nonpy7G-3E59ztCw.mp4?tag=28",
+			"sourceUrl": "https://x.com/TheSeanRich/status/2066913744886878685",
+			"source": "X (@TheSeanRich, 2,494 followers) via launchgallery.video",
+			"metrics": "3,474,398 views / 1,516 likes / 98 RTs / 128 replies / 2,273 bookmarks (fxtwitter API, checked 2026-11-13). 70.1s 3840x2160.",
+			"humans": "unknown (not watched)",
+			"verdict": "reject",
+			"reason": "Not watched: 3.5M views but 1.5k likes (0.04%), paid-reach signature."
+		},
+		{
+			"dateVetted": "2026-11-13",
+			"title": "Libra AI — super agent",
+			"videoUrl": "https://video.twimg.com/amplify_video/2054942021736157184/vid/avc1/1280x720/oUkK5a6TWBvHXQxg.mp4?tag=27",
+			"sourceUrl": "https://x.com/CholagharGokul/status/2054944141726073190",
+			"source": "X (@CholagharGokul, 1,593 followers) via launchgallery.video",
+			"metrics": "1,947,767 views / 742 likes / 143 RTs / 302 replies / 294 bookmarks (fxtwitter API, checked 2026-11-13). 93.3s 3840x2160.",
+			"humans": "unknown (not watched)",
+			"verdict": "reject",
+			"reason": "Not watched: 1.9M views, 742 likes (0.04%), paid-reach signature."
+		},
+		{
+			"dateVetted": "2026-11-13",
+			"title": "supermemory — learner-1",
+			"videoUrl": "https://video.twimg.com/amplify_video/2097032596891004928/vid/avc1/1280x720/0GNpbUBmVpr1HSIy.mp4?tag=29",
+			"sourceUrl": "https://x.com/supermemory/status/2097035274094272935",
+			"source": "X (@supermemory, 30,550 followers) via launchgallery.video",
+			"metrics": "1,869,282 views / 771 likes / 34 RTs / 51 replies / 444 bookmarks (fxtwitter API, checked 2026-11-13). 79.8s 1920x1080.",
+			"humans": "unknown (not watched)",
+			"verdict": "reject",
+			"reason": "Not watched: 1.9M views, 771 likes (0.04%)."
+		},
+		{
+			"dateVetted": "2026-11-13",
+			"title": "Silvia — personal AI CFO",
+			"videoUrl": "https://video.twimg.com/amplify_video/1924230058614427648/vid/avc1/1280x720/DMvUyCGkuBtawN0E.mp4?tag=21",
+			"sourceUrl": "https://x.com/APompliano/status/1924231653259354316",
+			"source": "X (@APompliano, 2,439,751 followers) via launchgallery.video",
+			"metrics": "1,807,831 views / 2,674 likes / 339 RTs / 979 replies / 1,480 bookmarks (fxtwitter API, checked 2026-11-13). 224.7s 1920x1080.",
+			"humans": "unknown (not watched)",
+			"verdict": "reject",
+			"reason": "Not watched: 225s, posted by a 2.4M-follower investor account (halo)."
+		},
+		{
+			"dateVetted": "2026-11-13",
+			"title": "Typeless 1.0 — voice notes to prose",
+			"videoUrl": "https://video.twimg.com/amplify_video/2026673541371002880/vid/avc1/1280x1080/Zbr2zkqqLv0PnwF9.mp4?tag=21",
+			"sourceUrl": "https://x.com/huang_song_/status/2026674136521834512",
+			"source": "X (@huang_song_, 7,360 followers) via launchgallery.video",
+			"metrics": "1,051,718 views / 561 likes / 98 RTs / 206 replies / 412 bookmarks (fxtwitter API, checked 2026-11-13). 224.3s 1280x1080.",
+			"humans": "unknown (not watched)",
+			"verdict": "reject",
+			"reason": "Not watched: 224s, 561 likes."
 		}
 	]
 }

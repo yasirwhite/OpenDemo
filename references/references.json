@@ -91,6 +91,16 @@
 			"spec": "1812x1080, 30fps, 79.1s",
 			"notes": "templates/rowan/reference-notes.md",
 			"usedBy": "templates/rowan/ - full film rebuilt frame-by-frame on its 30fps clock; one app window on a contour-ribbon backdrop, two slow linear camera pushes, drawn editor UI, mono captions, typed end card"
+		},
+		{
+			"id": "lovable-2",
+			"file": "lovable2-launch-film.mp4",
+			"url": "https://video.twimg.com/amplify_video/1915454148566294528/vid/avc1/1920x1080/jASYki3xRsXoNbQ4.mp4?tag=16",
+			"md5": "a4f5a852c680a95395af9549625e3720",
+			"bytes": 21294394,
+			"spec": "1920x1080, 30fps, 80.4s",
+			"notes": "templates/spruce/reference-notes.md",
+			"usedBy": "templates/spruce/ - full film rebuilt frame-by-frame on its 30fps clock; grain aura grounds, re-centring word lines, glowing prompt pill into the app window, hand-cursor punch-ins, tilted editor windows, mark-shaped closing aura"
 		}
 	]
 }
