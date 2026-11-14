@@ -226,6 +226,35 @@
 			],
 			"derivedFrom": "the Pencil launch film, measured frame-by-frame on its 30fps clock",
 			"config": "rowan/template.json"
+		},
+		{
+			"slug": "linden",
+			"name": "Linden",
+			"style": "gallery-wall launch film for an image or video model",
+			"category": "camera-led",
+			"durationMs": 25000,
+			"aspect": "16:9",
+			"fps": 30,
+			"slots": 34,
+			"tags": [
+				"wall-of-outputs",
+				"black-ground",
+				"one-continuous-camera",
+				"solved-camera-path",
+				"hero-card-open",
+				"pool-of-light-reveal",
+				"card-sinks-into-wall",
+				"push-roll-yaw",
+				"focus-card-landing",
+				"dive-into-gutter",
+				"white-lines-on-black",
+				"fade-in-hard-out",
+				"mark-and-address-close",
+				"image-slots",
+				"drawn-placeholder-art"
+			],
+			"derivedFrom": "the Grok Imagine 1.0 launch film, measured frame-by-frame on its 30fps clock",
+			"config": "linden/template.json"
 		}
 	]
 }
