@@ -1,0 +1,85 @@
+{
+	"_about": "laurel: a 21s feature-drop launch film for a voice / input feature, derived frame-by-frame from a 21.0s motion-designed feature launch (1920x1080 @30fps). Authored on the 1280x720 stage, rendered at device scale 1.5: render.mjs --fps 30 --scale 1.5. Placeholder product: Laurel, adding hands-free dictation. ONE object carries the film: a dark voice pill with live green level bars. A lime brand keycap rises, three grey keys fall in to spell the shortcut, the pill rises in a green glow and knocks them off, drops to the bottom of the frame and stays there while what it hears is TYPED above it: into a chat composer on a torn-paper lilac ground, then as a line beside a rolling app-icon drum, then as a hand-lettered title stack. A hard cut to a lime card draws the mark and types the wordmark.",
+	"_sections": "S1 0-5.0 keycaps: lime key rises and draws its mark, three grey keys fall and land, pill knocks them off, lime key drops out | S2 2.6-17.3 the voice pill (rise with overshoot and glow, drop and shrink to the bottom at 5.2-6.4, bars live to the end) plus the sound ribbon | S3 4.9-10.2 thread tears open into a lilac wedge, composer pops in, the sentence types, holds, deletes, lilac fades | S4 9.8-14.0 the line slides to centre beside a white tile; app icons roll through it, accelerating; both rise out | S5 14.0-17.3 hand title, serif claim, availability and fine print type in as the stack rises | S6 17.3-21.0 hard cut to lime: mark draws on large, shrinks, wordmark types, lockup centres",
+	"_slots": "11 image slots in s4-line `icons` ({src, label} per arrival, a square app icon, png/svg) and the mark slot `markSrc` on s1-keys and s6-endcard (your brand mark, square svg/png). Without them, neutral drawn glyphs and a drawn laurel leaf stand in. Every piece of copy is a field: keys[].word, composer greeting/placeholder/text ([fn] makes a key chip)/chips, line text, title/claim/available/fine, endcard word and colour.",
+	"video": { "width": 1280, "height": 720, "fps": 30, "durationMs": 21000 },
+	"ground": [
+		{ "fromMs": 0, "colour": [245, 246, 242] },
+		{ "fromMs": 17333, "colour": [176, 203, 75] }
+	],
+	"scenes": [
+		{
+			"id": "s1-keys",
+			"role": "feature",
+			"preset": "laurel-keys",
+			"startMs": 0,
+			"durationMs": 5067,
+			"keys": [
+				{ "glyph": "⌃", "word": "Laurel" },
+				{ "glyph": "⌥", "word": "voice" },
+				{ "glyph": "⌘", "word": "dictation" }
+			],
+			"fnLabel": "fn"
+		},
+		{
+			"id": "s2-pill",
+			"role": "product",
+			"preset": "laurel-pill",
+			"startMs": 2566,
+			"durationMs": 14967
+		},
+		{
+			"id": "s3-composer",
+			"role": "user-voice",
+			"preset": "laurel-composer",
+			"startMs": 4899,
+			"durationMs": 5334,
+			"greeting": "Good morning",
+			"placeholder": "Ask anything",
+			"text": "Hold [fn] and just talk, and Laurel writes down every word you say as clean text",
+			"chipsLeft": ["Chat", "Notes"],
+			"chipsRight": ["Fast", "Auto"]
+		},
+		{
+			"id": "s4-line",
+			"role": "claim",
+			"preset": "laurel-line",
+			"startMs": 9766,
+			"durationMs": 4267,
+			"text": "Types into any app",
+			"icons": [
+				{ "label": "mail app" },
+				{ "label": "chat app" },
+				{ "label": "docs app" },
+				{ "label": "dev tool" },
+				{ "label": "calendar" },
+				{ "label": "assistant" },
+				{ "label": "design tool" },
+				{ "label": "notes" },
+				{ "label": "terminal" },
+				{ "label": "browser" },
+				{ "label": "music app" }
+			]
+		},
+		{
+			"id": "s5-title",
+			"role": "brand-feature",
+			"preset": "laurel-title",
+			"startMs": 13999,
+			"durationMs": 3334,
+			"title": "DICTATION",
+			"claim": "Every word, typed for you.",
+			"available": "Out now on desktop.",
+			"fine": "Phone apps are on the way."
+		},
+		{
+			"id": "s6-endcard",
+			"role": "brand",
+			"preset": "laurel-endcard",
+			"startMs": 17333,
+			"durationMs": 3667,
+			"word": "laurel",
+			"colour": [176, 203, 75]
+		}
+	]
+}
