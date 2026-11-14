@@ -30,6 +30,12 @@ Your agent sets it up, records your app, edits the video and hands you an .mp4.
 
 **For AI agents:** read [AGENT_README.md](./AGENT_README.md).
 
+**Human footage and motion graphics:** the experimental [Kino handoff](./docs/kino-handoff.md)
+exports portable media bundles and imports editable cuts, speed changes and an
+optional presenter into a native Kino timeline.
+Use [fast section previews](./docs/kino-previews.md) to rerender an existing Kino
+edit at low resolution/FPS without exporting or uploading the source again.
+
 <!-- traffic:start -->
 ## Stats
 
@@ -41,4 +47,13 @@ Your agent sets it up, records your app, edits the video and hands you an .mp4.
 
 ## Acknowledgements
 
-OpenDemo builds on the archived OpenScreen project. Thank you to its creator, Siddarth Vaddem, for the foundation of the rendering pipeline.
+OpenDemo builds on the archived OpenScreen project. Thank you to its creator, Siddharth Vaddem, for the foundation of the rendering pipeline.
+
+The experimental editing integration uses [Kino](https://github.com/bayshores/kino),
+created by bayshores and the Kino contributors.
+
+## License
+
+This integration branch is distributed under [AGPL-3.0-only](./LICENSE).
+The original OpenDemo MIT notice and applicable upstream rights are preserved in
+[LICENSES](./LICENSES/README.md). Earlier MIT releases retain their MIT grant.

@@ -22,12 +22,13 @@
   "files": [
     "dist",
     "dist-electron",
+    "LICENSE",
+    "LICENSES/OpenDemo-MIT.txt",
     "!*.png",
     "!preview*.png",
     "!*.md",
     "!README.md",
-    "!CONTRIBUTING.md",
-    "!LICENSE"
+    "!CONTRIBUTING.md"
   ],
   // Asset layout contract: "wallpapers/" and "cursors/" under resourcesPath must
   // align with assetBaseDir in electron/preload.ts (packaged branch).
