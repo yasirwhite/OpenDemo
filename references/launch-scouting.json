@@ -1092,6 +1092,30 @@
 			"humans": "none",
 			"verdict": "accept",
 			"reason": "Re-vet only. A 24-frame contact sheet confirms ~95% of the film is one cream-backed card of raw dashboard capture; the produced layer is the card and the cut rhythm. Not picked again: thinnest produced layer of the three and overlaps aspen's media windows."
+		},
+		{
+			"dateVetted": "2026-11-10",
+			"title": "Granola — unlimited free voice typing (re-vet, built)",
+			"videoUrl": "https://video.twimg.com/amplify_video/2115836988733706240/vid/avc1/1920x1080/wc4bjMOgVWN-OPNC.mp4?tag=16",
+			"sourceUrl": "https://x.com/meetgranola/status/2115837013975081208",
+			"source": "X (@meetgranola, 27,624 followers) via launchgallery.video — on file since 2026-10-30 (parked)",
+			"metrics": "1,865,067 views / 7,448 likes / 292 RTs / 530 replies / 583 quotes / 5,680 bookmarks (fxtwitter API, re-checked 2026-11-10; posted 2026-10-29). About 67x the follower count; 2.3x the views and 1.7x the likes it had when first vetted on 2026-10-30. 21.06s, 1920x1080@30fps.",
+			"humans": "none",
+			"producedLayer": "Entirely motion-designed, no capture: keycap physics (a lime brand key rises, grey shortcut keys fall and land, are knocked off), one persistent voice pill with live level bars and a green glow that carries every beat, a thread that tears open into a torn-paper wedge onto a lilac collage ground, a chat composer with typed dictation in a tinted tail, a line sliding beside an accelerating app-icon drum, a hand-lettered title stack, a hard cut to a lime card where the mark draws on and the wordmark types.",
+			"reusability": "High for any single feature, shortcut or input-mode launch: everything is drawn, the pill is the product stand-in, the app icons and mark become image slots and all copy is fields.",
+			"verdict": "accept",
+			"reason": "PICKED for laurel. Re-vetted because the two unbuilt accepts were weak picks for a drawn template (Okara is ~95% raw dashboard capture; Endex is 128.8s with ~30% founder footage, checked tonight via fxtwitter), and QuiverAI Arrow 2 was excluded (hazel). The 2026-10-30 deferral reasons no longer hold: engagement has more than doubled since (now the strongest short film among recent launches on the gallery after brand-halo discount: 27.6k-follower account), 21s is the right length for a tight template (alder is 20s), and the keycap/collage art is replaceable with drawn presets. Its grammar (one hero object persisting through every beat, keycap physics, typed dictation) is unlike all ten existing templates. Some brand halo discounted."
+		},
+		{
+			"dateVetted": "2026-11-10",
+			"title": "Endex — AI agent inside Excel (re-check, not built)",
+			"videoUrl": "https://video.twimg.com/amplify_video/1953129119891202048/vid/avc1/1920x1080/kRvvfpB7AA9lonp1.mp4?tag=21",
+			"sourceUrl": "https://x.com/TarunAmasa/status/1953130965355905140",
+			"source": "X (@TarunAmasa, 6,998 followers) — on file since 2026-08-05",
+			"metrics": "10,839,286 views / 7,959 likes / 435 RTs / 2,048 replies / 4,917 bookmarks (fxtwitter API, re-checked 2026-11-10). 128.84s, 3840x2160 master.",
+			"humans": "incidental",
+			"verdict": "accept",
+			"reason": "Re-check only; the accept stands but it was not picked: 128.8s is far too long for a tight template, about 30% is founder interview footage, and the spine is a desk-composited spreadsheet window (mostly capture). The 1920x1080 variant URL logged on 2026-08-05 now 404s; the current one is recorded here."
 		}
 	]
 }

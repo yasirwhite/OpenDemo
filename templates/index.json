@@ -226,6 +226,35 @@
 			],
 			"derivedFrom": "the Pencil launch film, measured frame-by-frame on its 30fps clock",
 			"config": "rowan/template.json"
+		},
+		{
+			"slug": "laurel",
+			"name": "Laurel",
+			"style": "voice-pill feature-drop launch film for an input or shortcut feature",
+			"category": "object-led",
+			"durationMs": 21000,
+			"aspect": "16:9",
+			"fps": 30,
+			"slots": 12,
+			"tags": [
+				"persistent-hero-object",
+				"voice-pill",
+				"keycap-physics",
+				"shortcut-keys",
+				"glow-entry",
+				"torn-paper-wipe",
+				"lilac-collage-ground",
+				"chat-composer",
+				"dictation-type-on",
+				"tinted-type-tail",
+				"icon-drum",
+				"hand-lettered-title",
+				"drawn-mark-endcard",
+				"image-slots",
+				"fully-drawn"
+			],
+			"derivedFrom": "the Granola voice-typing launch film, measured frame-by-frame on its 30fps clock",
+			"config": "laurel/template.json"
 		}
 	]
 }
