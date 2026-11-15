@@ -1,0 +1,607 @@
+{
+	"_about": "cypress: a 62.5s launch film for an AI teammate that joins a video call and builds things while the team talks, derived frame-by-frame from a 62.5s feature launch film (1920x1080 @24fps). Authored on the 1280x720 stage, rendered at device scale 1.5: render.mjs --fps 24 --scale 1.5. Placeholder product: Cypress, an AI teammate added to a call; placeholder team: Little Ember Coffee picking its winter special. It cuts between two worlds on hard frames: a near-black CALL world (tile grid, the agent's coral blob tile with a hand-drawn line and a status) and a warm CREAM world (serif claims, voice-transcript and reply bubbles, a gridded whiteboard with sticky notes and multiplayer name-tag cursors, a chat feed, a meeting-notes doc with a Gantt plan, a word-swap tagline and a mark + wordmark end card).",
+	"_sections": "S1 0-14.8 call grid fills and reflows, the agent tile joins; close-up 'Hey team' sunrise; cream title with a voice request transcribed word by word and the agent's reply | S2 14.8-29.5 full-frame agent tile 'Taking notes... / Starting whiteboard', pixel iris into the whiteboard: claim, docked call window, sticker, heading typed, 17 notes typed by named cursors; cream claim 2 + second voice request | S3 29.5-47.4 'Organizing ideas' tile; notes dragged into three column panels, votes stamped; whip up to the chat feed: thread, request, 'On it.' | S4 47.4-62.5 meeting-notes doc grows a Gantt launch plan card; whip to the word-swap tagline; mark blooms and the wordmark types",
+	"_slots": "Image slots: people[].photo / avatarSrc (call-grid, agent-hello: webcam tiles and cam-off avatars; drawn stand-ins without them), participants[].src (s2-whiteboard docked window), stickerSrc (s2-whiteboard, s3-board: the team's sticker), markSrc (reply-1, s3-chat, endcard: your mark; a drawn six-petal bloom stands in). Every piece of copy is a scene field.",
+	"video": {
+		"width": 1280,
+		"height": 720,
+		"fps": 24,
+		"durationMs": 62542
+	},
+	"ground": [
+		{
+			"fromMs": 0,
+			"colour": [250, 249, 244]
+		}
+	],
+	"scenes": [
+		{
+			"id": "call-grid",
+			"role": "product",
+			"preset": "cypress-call-grid",
+			"startMs": 0,
+			"durationMs": 7458.333,
+			"f0": 0,
+			"agentName": "Cypress",
+			"controls": ["Mute", "Off", "Share", "Chat", "Settings", "End"],
+			"people": [
+				{
+					"name": "You",
+					"photo": ""
+				},
+				{
+					"name": "Priya",
+					"camOff": true,
+					"muted": true,
+					"avatarSrc": ""
+				},
+				{
+					"name": "Jonah",
+					"photo": ""
+				},
+				{
+					"name": "Luis",
+					"camOff": true,
+					"avatarSrc": ""
+				},
+				{
+					"name": "Dee",
+					"photo": ""
+				},
+				{
+					"name": "Sam",
+					"photo": ""
+				}
+			]
+		},
+		{
+			"id": "agent-hello",
+			"role": "product-voice",
+			"preset": "cypress-agent-hello",
+			"startMs": 7458.333,
+			"durationMs": 1958.334,
+			"f0": 179,
+			"agentName": "Cypress",
+			"status": "Hey team",
+			"people": [
+				{
+					"name": "You",
+					"photo": ""
+				},
+				{
+					"name": "Priya",
+					"camOff": true,
+					"muted": true,
+					"avatarSrc": ""
+				},
+				{
+					"name": "Jonah",
+					"photo": ""
+				},
+				{
+					"name": "Luis",
+					"camOff": true,
+					"avatarSrc": ""
+				},
+				{
+					"name": "Dee",
+					"photo": ""
+				},
+				{
+					"name": "Sam",
+					"photo": ""
+				}
+			]
+		},
+		{
+			"id": "title-card",
+			"role": "brand",
+			"preset": "cypress-title-card",
+			"startMs": 9416.667,
+			"durationMs": 5375,
+			"f0": 226,
+			"title": "Cypress Meetings"
+		},
+		{
+			"id": "voice-1",
+			"role": "user-voice",
+			"preset": "cypress-voice-bubble",
+			"startMs": 9416.667,
+			"durationMs": 5375,
+			"f0": 226,
+			"text": "Hey Cypress, can you start a whiteboard please?",
+			"accent": [1]
+		},
+		{
+			"id": "reply-1",
+			"role": "product-voice",
+			"preset": "cypress-reply-bubble",
+			"startMs": 9416.667,
+			"durationMs": 5375,
+			"f0": 226,
+			"name": "Cypress",
+			"text": "Let’s get this brainstorm brewing.",
+			"markSrc": ""
+		},
+		{
+			"id": "s2-tile-iris",
+			"preset": "cypress-tile-iris",
+			"startMs": 14791.667,
+			"durationMs": 2708.333,
+			"f0": 355,
+			"agentName": "Cypress",
+			"status1": "Taking notes...",
+			"status2": "Starting whiteboard",
+			"role": "product-voice"
+		},
+		{
+			"id": "s2-whiteboard",
+			"preset": "cypress-whiteboard",
+			"startMs": 16875,
+			"durationMs": 8958.333,
+			"f0": 405,
+			"agentName": "Cypress",
+			"claim1": ["Cypress joins your call", "and builds alongside you"],
+			"heading": "What’s our winter special this year?",
+			"people": {
+				"maya": "Maya",
+				"sam": "Sam",
+				"jonah": "Jonah",
+				"priya": "Priya",
+				"luis": "Luis",
+				"dee": "Dee"
+			},
+			"stickerSrc": null,
+			"stickerTop": "LITTLE EMBER",
+			"stickerBottom": "COFFEE",
+			"stickerTagline": "small batch, big heart",
+			"othersLabel": "6 others",
+			"participants": [
+				{
+					"name": "Jonah",
+					"src": null,
+					"tone": [150, 112, 92]
+				},
+				{
+					"name": "Priya",
+					"src": null,
+					"tone": [92, 78, 70]
+				},
+				{
+					"name": "Luis",
+					"src": null,
+					"tone": [70, 72, 70],
+					"camOff": true
+				},
+				{
+					"name": "Sam",
+					"src": null,
+					"tone": [120, 70, 60]
+				},
+				{
+					"name": "Dee",
+					"src": null,
+					"tone": [196, 160, 128]
+				},
+				{
+					"name": "Maya",
+					"src": null,
+					"tone": [214, 178, 112]
+				}
+			],
+			"notes": [
+				{
+					"id": "y1",
+					"text": "Toasted marshmallow mocha"
+				},
+				{
+					"id": "p1",
+					"text": "Gingerbread everything!!!"
+				},
+				{
+					"id": "b1",
+					"text": "Maple oat latte"
+				},
+				{
+					"id": "l2",
+					"text": "French vanilla please"
+				},
+				{
+					"id": "k1",
+					"text": "Spiced mocha?"
+				},
+				{
+					"id": "g1",
+					"text": "CHURRO LATTE"
+				},
+				{
+					"id": "b3",
+					"text": "Fig & cinnamon"
+				},
+				{
+					"id": "p2",
+					"text": "Eggnog cortado!!"
+				},
+				{
+					"id": "y3",
+					"text": "Lingonberry tonic"
+				},
+				{
+					"id": "k2",
+					"text": "Mint mocha?"
+				},
+				{
+					"id": "b2",
+					"text": "Honey cardamom"
+				},
+				{
+					"id": "p3",
+					"text": "Pumpkin bread latte!!!"
+				},
+				{
+					"id": "b4",
+					"text": "Cinnamon cold foam"
+				},
+				{
+					"id": "y2",
+					"text": "Brown butter, but make it brûlée"
+				},
+				{
+					"id": "l1",
+					"text": "Grandma's chai"
+				},
+				{
+					"id": "k3",
+					"text": "Matcha mocha?"
+				},
+				{
+					"id": "g2",
+					"text": "BLACK SESAME BLIZZARD"
+				}
+			],
+			"role": "feature"
+		},
+		{
+			"id": "s2-claim-voice",
+			"preset": "cypress-claim-voice",
+			"startMs": 25833.333,
+			"durationMs": 3708.334,
+			"f0": 620,
+			"claim2": ["So the work starts", "before the meeting ends"],
+			"voice": "Cypress, sort these from easiest to hardest to make.",
+			"role": "brand"
+		},
+		{
+			"id": "s3-tile",
+			"role": "product-voice",
+			"preset": "cypress-organize-tile",
+			"startMs": 29541.667,
+			"durationMs": 2000,
+			"status": "Organizing ideas",
+			"agentName": "Cypress"
+		},
+		{
+			"id": "s3-board",
+			"role": "feature",
+			"preset": "cypress-sort-board",
+			"startMs": 31541.667,
+			"durationMs": 7791.667,
+			"agentName": "Cypress",
+			"heading": "What’s our winter special this year?",
+			"columns": [
+				{
+					"title": "1  Easiest",
+					"sub": "Builds on drinks we already make"
+				},
+				{
+					"title": "2  Medium",
+					"sub": "One new syrup or technique"
+				},
+				{
+					"title": "3  Hardest",
+					"sub": "Tricky sourcing or new equipment"
+				}
+			],
+			"stickerSrc": null,
+			"notes": [
+				{
+					"colour": "pink",
+					"author": "Luis",
+					"text": "Spiced mocha?"
+				},
+				{
+					"colour": "pink",
+					"author": "Luis",
+					"text": "Mint mocha?"
+				},
+				{
+					"colour": "blue",
+					"author": "Jonah",
+					"text": "Maple oat latte"
+				},
+				{
+					"colour": "blue",
+					"author": "Jonah",
+					"text": "Honey cardamom"
+				},
+				{
+					"colour": "blue",
+					"author": "Jonah",
+					"text": "Cinnamon cold foam"
+				},
+				{
+					"colour": "yellow",
+					"author": "Maya",
+					"text": "Toasted marshmallow mocha"
+				},
+				{
+					"colour": "pink",
+					"author": "Luis",
+					"text": "Matcha mocha?"
+				},
+				{
+					"colour": "green",
+					"author": "Dee",
+					"text": "BLACK SESAME BLIZZARD"
+				},
+				{
+					"colour": "green",
+					"author": "Dee",
+					"text": "CHURRO LATTE"
+				},
+				{
+					"colour": "lilac",
+					"author": "Priya",
+					"text": "French vanilla please"
+				},
+				{
+					"colour": "lilac",
+					"author": "Priya",
+					"text": "Grandma's chai"
+				},
+				{
+					"colour": "yellow",
+					"author": "Maya",
+					"text": "Lingonberry tonic"
+				},
+				{
+					"colour": "blue",
+					"author": "Jonah",
+					"text": "Fig & cinnamon"
+				},
+				{
+					"colour": "yellow",
+					"author": "Maya",
+					"text": "Brown butter, but make it brûlée"
+				},
+				{
+					"colour": "peach",
+					"author": "Sam",
+					"text": "Gingerbread everything!!!"
+				},
+				{
+					"colour": "peach",
+					"author": "Sam",
+					"text": "Eggnog cortado!!"
+				},
+				{
+					"colour": "peach",
+					"author": "Sam",
+					"text": "Pumpkin bread latte!!!"
+				}
+			]
+		},
+		{
+			"id": "s3-chat",
+			"role": "product-voice",
+			"preset": "cypress-chat-stack",
+			"startMs": 39166.667,
+			"durationMs": 8208.333,
+			"f0": 940,
+			"agentName": "Cypress",
+			"history": [
+				{
+					"text": "Sorted all 17 ideas from easiest to hardest to make."
+				},
+				{
+					"text": "Easiest builds on drinks we already make. Hardest needs tricky sourcing or new equipment."
+				},
+				{
+					"text": "Stamp your votes on the board and I'll tally them."
+				}
+			],
+			"linkCard": {
+				"text": "The roaster notes say black sesame ships in 10-14 days.",
+				"linkLabel": "Source: ",
+				"link": "notes.example.com/\n.../ember-winter-sourcing"
+			},
+			"thread": [
+				{
+					"name": "Luis",
+					"text": "Looks like we have a winner. Black sesame it is!"
+				},
+				{
+					"name": "Dee",
+					"text": "YESSS!!!"
+				},
+				{
+					"name": "Sam",
+					"text": "My espresso machine approves"
+				},
+				{
+					"agent": true,
+					"text": "Brew-tiful choice"
+				}
+			],
+			"request": {
+				"name": "You",
+				"text": "Ok Cypress, plan next steps so we can launch by December"
+			},
+			"reply": {
+				"text": "On it."
+			}
+		},
+		{
+			"id": "notes-doc",
+			"role": "product",
+			"preset": "cypress-notes-doc",
+			"startMs": 47375,
+			"durationMs": 4500,
+			"docTitle": "Winter special brainstorm | Meeting notes",
+			"tabTitle": "Winter special brainstorm | Meeting notes",
+			"boardTab": "Winter special whiteboard",
+			"date": "Nov 10, 2026",
+			"author": "@Maya",
+			"agentName": "Cypress",
+			"heading": "Next steps",
+			"cardEyebrow": "LITTLE EMBER COFFEE",
+			"cardTitle": "Black Sesame Blizzard Launch Plan",
+			"sections": [
+				{
+					"h1": "Summary",
+					"body": "The team brainstormed 17 ideas for this year’s winter special. Cypress sorted them from easiest to hardest to make, and the vote went to Black Sesame Blizzard from the Medium column. Its one new ingredient is black sesame paste, which comes from one small-batch supplier, so locking in supply comes first."
+				},
+				{
+					"h1": "Agenda",
+					"bullets": [
+						"Pick this year’s winter special",
+						"Sort the ideas from easiest to hardest, then vote",
+						"Plan the launch"
+					]
+				},
+				{
+					"h1": "Cypress’s notes"
+				},
+				{
+					"h2": "Decisions",
+					"bullets": [
+						"Black Sesame Blizzard is this year’s winter special.",
+						"Churro Latte is the backup if the sesame order falls through.",
+						"Lingonberry Tonic is out: lingonberries ship in 10–14 days, too late for the holiday."
+					]
+				},
+				{
+					"h2": "Open questions",
+					"bullets": [
+						"How many cups for the first week? Priya’s pre-order forecast lands Thu Nov 12.",
+						"Same cup sleeve as last year, or new art?"
+					]
+				},
+				{
+					"h2": "Parked for next year",
+					"bullets": [
+						"A savory line: toast specials, brown butter, brûlée",
+						"Matcha mocha, once we can keep the foam stable"
+					]
+				}
+			],
+			"cardNote": "Everything from Nov 16 on waits on the black sesame. The syrup and the menu card run side by side, and both must finish before launch on Nov 20.",
+			"month": "NOVEMBER 2026",
+			"firstDay": 10,
+			"firstWeekday": 2,
+			"todayLabel": "Today",
+			"prepDays": 3,
+			"waitDay": 6,
+			"rows": [
+				{
+					"section": "PREP",
+					"colour": [178, 75, 110]
+				},
+				{
+					"task": "Lock flavor",
+					"owner": "Maya",
+					"tone": [169, 116, 36],
+					"decided": 0,
+					"label": "Decided today"
+				},
+				{
+					"task": "Lock pricing",
+					"owner": "Jonah",
+					"tone": [53, 99, 187],
+					"bar": [0, 1]
+				},
+				{
+					"task": "Pre-order forecast",
+					"owner": "Priya",
+					"tone": [133, 113, 200],
+					"bar": [1, 2]
+				},
+				{
+					"task": "Recipe test",
+					"owner": "Noor",
+					"tone": [85, 112, 157],
+					"bar": [1, 2]
+				},
+				{
+					"task": "Place sesame order",
+					"owner": "Dee",
+					"tone": [26, 135, 104],
+					"bar": [2, 2]
+				},
+				{
+					"section": "ON THE ROAD",
+					"colour": [110, 110, 104]
+				},
+				{
+					"task": "Sesame in transit",
+					"owner": "Supplier",
+					"tone": [136, 137, 132],
+					"bar": [2, 5],
+					"kind": "transit"
+				},
+				{
+					"section": "ROAST AND SHIP",
+					"colour": [40, 110, 75]
+				},
+				{
+					"task": "Sesame arrives",
+					"owner": "Dee",
+					"tone": [32, 132, 106],
+					"milestone": 6,
+					"label": "Portland"
+				},
+				{
+					"task": "Batch syrup",
+					"owner": "Sam",
+					"tone": [179, 80, 51],
+					"bar": [7, 9],
+					"kind": "ship"
+				},
+				{
+					"task": "Menu card",
+					"owner": "Luis",
+					"tone": [180, 53, 120],
+					"bar": [7, 8],
+					"kind": "ship"
+				},
+				{
+					"task": "Launch in cafés",
+					"owner": "Kit",
+					"tone": [78, 134, 73],
+					"bar": [10, 11],
+					"kind": "launch"
+				}
+			]
+		},
+		{
+			"id": "swap-line",
+			"role": "brand",
+			"preset": "cypress-swap-line",
+			"startMs": 51875,
+			"durationMs": 6958,
+			"words": ["Plan", "Sketch", "Sort", "Work"],
+			"rest": "as fast as you talk",
+			"agentName": "Cypress",
+			"reaction": "👏"
+		},
+		{
+			"id": "endcard",
+			"role": "brand",
+			"preset": "cypress-endcard",
+			"startMs": 58833,
+			"durationMs": 3709,
+			"word": "Cypress",
+			"markSrc": ""
+		}
+	]
+}

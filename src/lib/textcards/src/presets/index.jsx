@@ -18,6 +18,9 @@ import React from "react";
 // alder template presets live with the template (templates/alder/presets/) —
 // registered here so configs reach them by slug like any other preset.
 import { ALDER_PRESETS } from "../../../../../templates/alder/presets/index.jsx";
+// cypress template presets live with the template (templates/cypress/presets/) —
+// registered here so configs reach them by slug like any other preset.
+import { CYPRESS_PRESETS } from "../../../../../templates/cypress/presets/index.jsx";
 // juniper template presets live with the template (templates/juniper/presets/) —
 // registered here so configs reach them by slug like any other preset.
 import { JUNIPER_PRESETS } from "../../../../../templates/juniper/presets/index.jsx";
@@ -2620,6 +2623,8 @@ export const PRESETS = {
 	...ROWAN_PRESETS,
 	// ── laurel template presets (templates/laurel/presets/) ──
 	...LAUREL_PRESETS,
+	// ── cypress template presets (templates/cypress/presets/) ──
+	...CYPRESS_PRESETS,
 };
 
 export const PRESET_NOTES = Object.fromEntries(

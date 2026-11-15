@@ -101,6 +101,16 @@
 			"spec": "1920x1080, 30fps, 21.06s",
 			"notes": "templates/laurel/reference-notes.md",
 			"usedBy": "templates/laurel/ - full film rebuilt frame-by-frame on its 30fps clock; keycap physics, persistent voice pill with glow and overshoot, torn-paper wedge onto a lilac collage ground, chat composer with typed dictation, sliding line with an accelerating icon drum, hand-lettered title stack, mark draw-on end card"
+		},
+		{
+			"id": "claude-meetings",
+			"file": "claude-meetings.mp4",
+			"url": "https://video.twimg.com/amplify_video/2120970641876586497/vid/avc1/1920x1080/GSxy8WyJp7bII_Zl.mp4?tag=29",
+			"md5": "09bb3acdcf6b93afc38e94f0221fc230",
+			"bytes": 16219305,
+			"spec": "1920x1080, 24fps, 62.54s",
+			"notes": "templates/cypress/reference-notes.md",
+			"usedBy": "templates/cypress/ - full film rebuilt frame-by-frame on its 24fps clock; call grid that fills and reflows, the agent's coral blob tile with hand-drawn sunrise and loop lines, voice requests transcribed word by word with a reply bubble, pixel-block iris into a gridded whiteboard (claim, docked call window, sticker, typed heading, 17 notes typed by named cursors), sort into three column panels with vote stamps, whip-blur cuts to a chat stack and a notes doc that grows a Gantt card, word-swap tagline, mark bloom and typed wordmark end card"
 		}
 	]
 }

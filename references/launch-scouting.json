@@ -1116,6 +1116,127 @@
 			"humans": "incidental",
 			"verdict": "accept",
 			"reason": "Re-check only; the accept stands but it was not picked: 128.8s is far too long for a tight template, about 30% is founder interview footage, and the spine is a desk-composited spreadsheet window (mostly capture). The 1920x1080 variant URL logged on 2026-08-05 now 404s; the current one is recorded here."
+		},
+		{
+			"dateVetted": "2026-11-14",
+			"title": "Claude Meetings — an AI that joins your video call and builds docs and whiteboards (built)",
+			"videoUrl": "https://video.twimg.com/amplify_video/2120970641876586497/vid/avc1/1280x720/pbR605XOH3K6XtF1.mp4?tag=29",
+			"sourceUrl": "https://x.com/claudeai/status/2120973994191094179",
+			"source": "X (@claudeai, 2,083,908 followers) via launchgallery.video",
+			"metrics": "9,851,535 views / 80,935 likes / 5,124 RTs / 2,252 replies / 20,464 bookmarks (fxtwitter API, checked 2026-11-14). 62.5s 1920x1080.",
+			"humans": "incidental (webcam tiles in the first 7.5s)",
+			"verdict": "accept",
+			"reason": "PICKED for cypress. The night's clear standout: 81k likes and 20k bookmarks three days after posting. The account is large (2.1M followers), but a 0.8% like rate on 9.9M views says the film carried it. It has a real produced layer and a grammar no template has: a call grid that fills and reflows, the agent as a tile with a coral blob and a hand-drawn line, voice requests transcribed word by word, a pixel-iris cut into a multiplayer whiteboard (named cursors, notes, a docked call window, a sort into columns, vote stamps), whip-blur cuts to a chat and a notes doc with a Gantt card, and a word-swap tagline. The webcam people are confined to the opening grid and become image slots."
+		},
+		{
+			"dateVetted": "2026-11-14",
+			"title": "Freewrite — distraction-free Mac writing app (re-vet, watched)",
+			"videoUrl": "https://video.twimg.com/amplify_video/1910788817247961088/vid/avc1/1280x720/JAu8kDq3isYStU2J.mp4?tag=14",
+			"sourceUrl": "https://x.com/FarzaTV/status/1910789505722036357",
+			"source": "X (@FarzaTV, 133,785 followers) via launchgallery.video",
+			"metrics": "2,249,389 views / 10,563 likes / 346 RTs / 414 replies / 6,899 bookmarks (fxtwitter API, checked 2026-11-14). 22.4s 3840x2160.",
+			"humans": "partial (hands, founder at the end)",
+			"verdict": "reject",
+			"reason": "Watched this time (deferred unwatched on 2026-11-05). It is a laptop screen filmed with a camera: macro shots, shallow focus, hands, and the founder closing the lid. There is no designed layer to rebuild, only a typed-text app filmed in a room."
+		},
+		{
+			"dateVetted": "2026-11-14",
+			"title": "Essential Apps — AI builds apps shaped around your needs (re-vet, watched)",
+			"videoUrl": "https://video.twimg.com/amplify_video/2021208342572478464/vid/avc1/1280x720/9LLh-Uy_L_H6R6MO.mp4?tag=21",
+			"sourceUrl": "https://x.com/essential/status/2021208879921611079",
+			"source": "X (@essential, 60,539 followers) via launchgallery.video",
+			"metrics": "2,383,160 views / 5,465 likes / 493 RTs / 112 replies / 3,443 bookmarks (fxtwitter API, checked 2026-11-14). 68.0s 1920x1080.",
+			"humans": "dominant",
+			"verdict": "reject",
+			"reason": "Watched this time. A live-action actress in a styled room carries about 70% of the frames; the UI cards (prompt box, deploy card) are short inserts between her shots."
+		},
+		{
+			"dateVetted": "2026-11-14",
+			"title": "Tuyo — Buy Now, Pay Maybe",
+			"videoUrl": "https://video.twimg.com/amplify_video/2052404881923649538/vid/avc1/2160x2700/nFc1Z6vO_-UY-gpx.mp4?tag=27",
+			"sourceUrl": "https://x.com/itstuyo/status/2052404971979550871",
+			"source": "X (@itstuyo, 14,496 followers) via launchgallery.video",
+			"metrics": "16,082,845 views / 6,215 likes / 233 RTs / 731 replies / 4,355 bookmarks (fxtwitter API, checked 2026-11-14). 43.2s 2160x2700.",
+			"humans": "partial (POV hands with a phone in real shops)",
+			"verdict": "reject",
+			"reason": "16.1M views but 6.2k likes (0.04%) and a 2160x2700 portrait master. About half the film is handheld POV footage of a phone being tapped in shops; the drawn layer (3D phones, notification cards, logo drum) is thin."
+		},
+		{
+			"dateVetted": "2026-11-14",
+			"title": "Matic — Cues: voice and gesture control for a home robot",
+			"videoUrl": "https://video.twimg.com/amplify_video/2087962757044015104/vid/avc1/1280x720/9u6NpT8MCGwHOqUV.mp4?tag=14",
+			"sourceUrl": "https://x.com/maticrobots/status/2087962897267990915",
+			"source": "X (@maticrobots, 29,375 followers) via launchgallery.video",
+			"metrics": "11,082,206 views / 6,412 likes / 625 RTs / 1,057 replies / 3,256 bookmarks (fxtwitter API, checked 2026-11-14). 124.6s 3840x2160.",
+			"humans": "unknown",
+			"verdict": "reject",
+			"reason": "Not watched: a 124.6s hardware film about a physical robot (6.4k likes on 11.1M views, 0.06%)."
+		},
+		{
+			"dateVetted": "2026-11-14",
+			"title": "Google AI — Genie 3 now available for AI Ultra subscribers",
+			"videoUrl": "https://video.twimg.com/amplify_video/2016927574975516672/vid/avc1/1280x720/ezTlBrVhWaOUomfl.mp4?tag=21",
+			"sourceUrl": "https://x.com/GoogleAI/status/2016929427784122627",
+			"source": "X (@GoogleAI, 2,490,260 followers) via launchgallery.video",
+			"metrics": "10,068,225 views / 4,582 likes / 510 RTs / 298 replies / 2,248 bookmarks (fxtwitter API, checked 2026-11-14). 138.9s 1920x1080.",
+			"humans": "unknown",
+			"verdict": "reject",
+			"reason": "Not watched: 138.9s, brand halo (2.5M followers) and 4.6k likes on 10.1M views (0.05%)."
+		},
+		{
+			"dateVetted": "2026-11-14",
+			"title": "Aurora — the search engine for IRL",
+			"videoUrl": "https://video.twimg.com/amplify_video/2120920938376310787/vid/avc1/1280x720/Nrs1qzG7-H5-DgGe.mp4?tag=29",
+			"sourceUrl": "https://x.com/mehuljindal18/status/2120927102946202029",
+			"source": "X (@mehuljindal18, 4,169 followers) via launchgallery.video",
+			"metrics": "3,577,375 views / 3,076 likes / 208 RTs / 184 replies / 985 bookmarks (fxtwitter API, checked 2026-11-14). 97.3s 1920x1080.",
+			"humans": "unknown",
+			"verdict": "reject",
+			"reason": "Not watched: 97.3s, and 3.1k likes on 3.6M views (0.09%) reads as paid reach."
+		},
+		{
+			"dateVetted": "2026-11-14",
+			"title": "HappyOyster 1.0 — real-time open-world creation",
+			"videoUrl": "https://video.twimg.com/amplify_video/2067170688126025728/vid/avc1/1280x720/AUtuE8_lFN8E2M8t.mp4?tag=28",
+			"sourceUrl": "https://x.com/HappyOysterAI/status/2067172393202983023",
+			"source": "X (@HappyOysterAI, 3,668 followers) via launchgallery.video",
+			"metrics": "7,596,594 views / 4,151 likes / 263 RTs / 215 replies / 2,070 bookmarks (fxtwitter API, checked 2026-11-14). 134.6s 3840x2160.",
+			"humans": "unknown",
+			"verdict": "reject",
+			"reason": "Not watched: 134.6s, and 4.2k likes on 7.6M views from a 3.7k-follower account (0.05%, paid-reach signature)."
+		},
+		{
+			"dateVetted": "2026-11-14",
+			"title": "CRSHMARKET — livestreams become prediction markets",
+			"videoUrl": "https://video.twimg.com/amplify_video/2090067224614543360/vid/avc1/3200x2132/3Y1bV0BMQ-TCB-DO.mp4?tag=29",
+			"sourceUrl": "https://x.com/crshmarket/status/2090068799504490794",
+			"source": "X (@crshmarket, 7,524 followers) via launchgallery.video",
+			"metrics": "7,068,758 views / 3,275 likes / 253 RTs / 723 replies / 2,036 bookmarks (fxtwitter API, checked 2026-11-14). 98.0s 3200x2132.",
+			"humans": "unknown",
+			"verdict": "reject",
+			"reason": "Not watched: 98.0s, 3.3k likes on 7.1M views (0.05%), and a crypto betting product."
+		},
+		{
+			"dateVetted": "2026-11-14",
+			"title": "ElevenLabs — raises $500M at an $11B valuation",
+			"videoUrl": "https://video.twimg.com/amplify_video/2019040324606107648/vid/avc1/1280x720/eBw5gLWUHTnK8zMw.mp4?tag=21",
+			"sourceUrl": "https://x.com/ElevenLabs/status/2019048384011854087",
+			"source": "X (@ElevenLabs, 211,658 followers) via launchgallery.video",
+			"metrics": "15,154,309 views / 4,169 likes / 383 RTs / 1,166 replies / 1,288 bookmarks (fxtwitter API, checked 2026-11-14). 105.5s 1920x1080.",
+			"humans": "unknown",
+			"verdict": "reject",
+			"reason": "Not watched: a 105.5s fundraise film with 4.2k likes on 15.2M views (0.03%)."
+		},
+		{
+			"dateVetted": "2026-11-14",
+			"title": "Kosmos — AI agent compresses drug development from months to weeks",
+			"videoUrl": "https://video.twimg.com/amplify_video/2056731703297896448/vid/avc1/1280x720/tSamRodm-mAZlayu.mp4?tag=27",
+			"sourceUrl": "https://x.com/SGRodriques/status/2056736646176129311",
+			"source": "X (@SGRodriques, 22,644 followers) via launchgallery.video",
+			"metrics": "7,043,006 views / 1,896 likes / 433 RTs / 120 replies / 1,094 bookmarks (fxtwitter API, checked 2026-11-14). 81.9s 3840x2160.",
+			"humans": "unknown",
+			"verdict": "reject",
+			"reason": "Not watched: 81.9s, 1.9k likes on 7.0M views (0.03%)."
 		}
 	]
 }

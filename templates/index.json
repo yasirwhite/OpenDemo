@@ -255,6 +255,39 @@
 			],
 			"derivedFrom": "the Granola voice-typing launch film, measured frame-by-frame on its 30fps clock",
 			"config": "laurel/template.json"
+		},
+		{
+			"slug": "cypress",
+			"name": "Cypress",
+			"style": "two-world feature launch film for an AI teammate that joins your calls",
+			"category": "ui-led",
+			"durationMs": 62542,
+			"aspect": "16:9",
+			"fps": 24,
+			"slots": 8,
+			"tags": [
+				"call-grid",
+				"agent-tile",
+				"drawn-agent-glyph",
+				"voice-transcript-bubble",
+				"reply-bubble",
+				"cream-and-black-hard-cuts",
+				"pixel-iris",
+				"whiteboard-world",
+				"multiplayer-cursors",
+				"sticky-notes",
+				"column-sort",
+				"vote-stamps",
+				"whip-blur",
+				"chat-stack",
+				"doc-with-gantt-card",
+				"word-swap-tagline",
+				"mark-bloom-endcard",
+				"fully-drawn",
+				"image-slots"
+			],
+			"derivedFrom": "the Claude Meetings launch film, measured frame-by-frame on its 24fps clock",
+			"config": "cypress/template.json"
 		}
 	]
 }
