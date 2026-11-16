@@ -74,19 +74,32 @@ f108, 0.70 f110, 0.90 f112, 1.0 f114.
   blending); f361-f545 direct against f114; f546-f557 chained from f530.
 - Checked against the gutter beside the hero, measured from dark columns:
 
-  | frame | measured gutter (stage x) | solved |
-  |---|---|---|
-  | f540 | 697-759 | 700-762 |
-  | f550 | 653-783 | 657-783 |
-  | f555 | 579-845 | 586-844 |
-  | f557 | 513-901 | 520-884 |
+  | frame | measured gutter (stage x) | solved | replayed (calmed) |
+  |---|---|---|---|
+  | f540 | 697-759 | 700-762 | 684-749 |
+  | f550 | 653-783 | 657-783 | 615-764 |
+  | f555 | 579-845 | 586-844 | 547-839 |
+  | f557 | 513-901 | 520-884 | 521-896 |
 
 - f558: only the hero card's edge (stage x 472) is left; the neighbour has
   passed the right edge. Rebuilt as a x2.4 push about (560, 400) from f557.
-- Encoded per frame as hero-centre position, log zoom, roll, a unit stretch
-  and the perspective row; gaussian-smoothed (sigma 1.5 frames), sampled
-  every 3 frames, replayed with Catmull-Rom. p95 interpolation error 3.7
-  stage px against the per-frame solve.
+- Replayed as a physical lens (focal 1200 stage px, centred): aim point on
+  the wall, distance, roll, pitch and yaw, decomposed from the solve.
+- Calmed on 2026-11-16 (review: "too much wobbling"). Decomposed, the raw
+  solve's angles ran back and forth: yaw +10 (f165) -> -33 (f252) -> +12
+  (f330) -> about -3, pitch -10 -> +1.5 -> -6.6 -> 0 with 8-degree jumps
+  in 9 frames, and roll, pitch and yaw reversing direction 31, 57 and 43
+  times on solve noise. Now:
+  - aim and distance are monotone moves between their turning points, each
+    following the reference's own speed profile with reversals clipped, so
+    the whips keep their timing. The table is replayed through a monotone
+    (no-overshoot) cubic.
+  - roll 0 -> -7 (f246) -> 0 (f330), pitch 0 -> -8 (f195) -> 0 (f350),
+    yaw 0 -> -24 (f252) -> 0 (f330): single smoothstep moves, landing
+    square on the focus card, and square through the pull back and dive.
+  - the opening's hero width, wall scale and position are single
+    ease-in-out moves (the raw tracks dipped and rebounded), ending on the
+    camera's own f114 pose.
 - Motion peaks: f190 (diff 44.7), f265 (57.3), f366 (63.1): fast whips with
   motion blur in the reference.
 

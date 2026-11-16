@@ -46,8 +46,12 @@ It was rebuilt on 2026-11-12 on the film's own 30fps clock (stage px =
 reference px / 1.5). The camera was **solved, not eyeballed**: the wall is a
 plane, so every frame is a plane-to-screen homography. They were found with
 SIFT matches and RANSAC, chained frame to frame and re-anchored on direct
-matches against three keyframes, then smoothed and sampled every 3 frames.
-The preset replays those samples through a spline (p95 error 3.7 stage px).
+matches against three keyframes. The preset replays it as a physical lens
+(where it aims, how far away it is, and its roll, pitch and yaw). Every move
+is one monotone, eased motion: aim and distance keep the reference's own
+speed inside each move, so the whips land on the same frames, and the angles
+make one turn in and one turn back. The raw solve rocked back and forth on
+noise; that is gone.
 The card layout was read off the frame where the wall faces the camera
 square, plus a mosaic of the whole wall stitched with the same homographies.
 The opening card, the wall behind it and the pool of light were tracked

@@ -22,7 +22,7 @@
  *                its right-hand neighbour: gutter 697-759 stage px at f540,
  *                653-783 at f550, 513-901 at f557; at f558 only the hero's
  *                edge is left, and from f559 the frame is the black gutter.
- * C, D and E are the homography table CAM in linden-shared.jsx.
+ * C, D and E are the camera (CAM, ROLL, PITCH, YAW) in linden-shared.jsx.
  */
 import React from "react";
 import {
@@ -43,87 +43,40 @@ import {
 
 const K = 4 / 3; // ref 960-px units -> stage px
 
-// A/B: the hero card's width (ref px) and centre.
+// A/B: the hero card's width (ref px) and centre, and the wall behind it (scale, and where the
+// hero's slot centre lands). Measured: 196.5 px wide at f1, 276 at f94, sinking to ~80 at f110;
+// wall scale 0.92 f1 -> 1.0 f96. The raw tracks overshoot (the card dips to 80 and rebounds to 85;
+// the wall bumps to 1.006, dips to 0.976 and climbs again; piecewise-linear velocity jumps), so
+// each is ONE monotone ease-in-out between the measured start and end. The end values are the
+// camera's own f114 pose, so the hand-off from the opening to the camera has no jump.
 const HERO_W = [
 	[1, 196.5],
-	[20, 211.2],
-	[40, 231.2],
-	[60, 252.5],
-	[80, 267.0],
-	[94, 276.0],
-	[97, 274.0],
-	[100, 267.5],
-	[101, 256.4],
-	[102, 245.8],
-	[103, 228.4],
-	[104, 205.6],
-	[105, 182.3],
-	[106, 159.1],
-	[107, 136.7],
-	[108, 117.5],
-	[109, 96.3],
-	[110, 80.2],
-	[111, 80.6],
-	[112, 82.2],
-	[113, 85.2],
+	[94, 276.0, "io"],
+	[113, 84.91, "io"],
 ];
 const HERO_X = [
 	[1, 480],
-	[100, 480],
-	[104, 478.6],
-	[106, 477.2],
-	[108, 475.6],
-	[110, 473.9],
-	[112, 471.7],
-	[113, 471.0],
+	[97, 480],
+	[113, 468.94, "io"],
 ];
 const HERO_Y = [
 	[1, 262.6],
-	[100, 263.5],
-	[104, 263.1],
-	[106, 261.4],
-	[108, 259.9],
-	[110, 258.1],
-	[112, 257.4],
-	[113, 256.3],
+	[97, 262.6],
+	[113, 255.19, "io"],
 ];
-// A/B: the wall behind it (scale, and where the hero's slot centre lands).
 const WALL_S = [
 	[1, 0.92],
-	[30, 0.935],
-	[50, 0.955],
-	[60, 0.973],
-	[70, 0.982],
-	[80, 0.99],
-	[90, 0.996],
-	[96, 1.0],
-	[101, 1.006],
-	[104, 0.999],
-	[106, 0.99],
-	[108, 0.984],
-	[110, 0.978],
-	[112, 0.976],
-	[113, 0.987],
+	[113, 1.0081, "io"],
 ];
 const WALL_X = [
 	[1, 478],
-	[100, 478],
-	[104, 476.3],
-	[106, 476.2],
-	[108, 474.5],
-	[110, 473],
-	[112, 471.5],
-	[113, 470.5],
+	[97, 478],
+	[113, 468.94, "io"],
 ];
 const WALL_Y = [
 	[1, 262.6],
-	[100, 262.6],
-	[104, 262.1],
-	[106, 260.7],
-	[108, 259.9],
-	[110, 258.7],
-	[112, 257.3],
-	[113, 256.5],
+	[97, 262.6],
+	[113, 255.19, "io"],
 ];
 // The pool of light: level and edge radius (ref px from the hero centre).
 const POOL_G = [
