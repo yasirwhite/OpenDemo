@@ -36,7 +36,7 @@ Your agent sets it up, records your app, edits the video and hands you an .mp4.
 | | |
 |---|---|
 | **Unique cloners** | 589 |
-| **Last updated** | 2026-11-15 |
+| **Last updated** | 2026-11-16 |
 <!-- traffic:end -->
 
 ## Acknowledgements
