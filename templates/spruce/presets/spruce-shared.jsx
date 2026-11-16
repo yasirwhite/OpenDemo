@@ -472,19 +472,48 @@ export function lineLayout(words, size, weight, ms, recentreMs = 320, tracking =
 		xs.push({ x, w: ww });
 		const p = expo(prog(ms, wd.at, wd.at + recentreMs));
 		const prevRight = i > 0 ? xs[i - 1].x + xs[i - 1].w : 0;
-		w += (x + ww - prevRight) * (i === 0 ? p || (ms >= wd.at ? 1 : 0) : p);
+		// the first word is the line: it lands centred, nothing to re-centre from
+		w += (x + ww - prevRight) * (i === 0 ? (ms >= wd.at ? 1 : 0) : p);
 		x += ww;
 	}
 	return { xs, width: w, full: x };
 }
 
-/** One word's entry state at ms (scene-relative): opacity, blur, dy, scale. */
-export function wordIn(mode, ms, at, dur = 220) {
+/**
+ * One word's entry state at ms (scene-relative): opacity, blur, dy, scale.
+ * `rise` (lift/liftghost) is the travel in line heights from below.
+ *
+ * A word that opens a shot on a hard cut is already on screen in its first
+ * frame in the reference (sharp, the camera doing the settle), so `settle`
+ * and `lift` start at full opacity; the fades (`blur`, `drop`, `ghost`) are
+ * for words that join a line already on screen.
+ */
+export function wordIn(mode, ms, at, dur = 220, rise = 0.45) {
 	const p = prog(ms, at, at + dur);
 	if (ms < at) return { o: 0, blur: 0, dy: 0, sc: 1 };
 	switch (mode) {
 		case "cut":
 			return { o: 1, blur: 0, dy: 0, sc: 1 };
+		case "settle": {
+			// on screen from its first frame, a touch soft, sharpening fast
+			const e = expo(p);
+			return { o: 1, blur: (1 - e) * 5, dy: 0, sc: 1 };
+		}
+		case "lift": {
+			// on screen from its first frame, rising into place on an expo settle
+			const e = expo(p);
+			return { o: 1, blur: (1 - e) * 4, dy: (1 - e) * rise, sc: 1 };
+		}
+		case "liftS": {
+			// rises from far below on an S: slow out, fast through, settling in
+			const e = E("inout", p, 2.2);
+			return { o: 1, blur: 0, dy: (1 - e) * rise, sc: 1 };
+		}
+		case "liftghost": {
+			// rises in pale (out of a white bloom) and darkens as it lands
+			const e = expo(p);
+			return { o: 0.3 + 0.7 * smooth(p), blur: (1 - e) * 6, dy: (1 - e) * rise, sc: 1 };
+		}
 		case "drop": {
 			const e = expo(p);
 			return { o: clamp01(p * 2.5), blur: (1 - e) * 6, dy: (1 - e) * 0.35, sc: 1 };

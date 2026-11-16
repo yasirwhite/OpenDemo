@@ -160,16 +160,26 @@ function Line(c, t) {
 	}
 	const tracking = c.tracking ?? -0.035;
 	const lay = lineLayout(words, size, weight, ms, c.recentreMs ?? 320, tracking);
-	const width = c.type ? lay.full : lay.width;
+	// `fixed`: the line is laid out at its full width from the first word (no
+	// re-centring), so a word can hold its place while the line builds round it
+	const width = c.type || c.fixed ? lay.full : lay.width;
 	const left =
 		c.align === "left" ? cx : cx - width / 2 - (c.type && c.type.caret ? (size * 0.16) / 2 : 0);
 	const out = c.out;
 	let outO = 1;
 	let outBlur = 0;
+	let outMask;
 	if (out && ms >= out.at) {
 		const p = prog(ms, out.at, out.at + (out.dur ?? 200));
 		if (out.mode === "cut") outO = 0;
-		else {
+		else if (out.mode === "pinch") {
+			// letters drop away from both ends toward the middle (the reference
+			// takes "Join other builders" apart from the outside in)
+			const hw = (width / 2 + size * 0.2) * (1 - E("inout", p, 1.6));
+			const f = size * 0.55;
+			const mid = left + width / 2;
+			outMask = `linear-gradient(90deg, transparent ${(mid - hw - f).toFixed(1)}px, #000 ${(mid - hw).toFixed(1)}px, #000 ${(mid + hw).toFixed(1)}px, transparent ${(mid + hw + f).toFixed(1)}px)`;
+		} else {
 			outO = 1 - smooth(p);
 			outBlur = out.mode === "blur" ? p * 16 : 0;
 		}
@@ -187,7 +197,13 @@ function Line(c, t) {
 		if (!c.type && ms < wd.at) return null;
 		const st = c.type
 			? { o: 1, blur: 0, dy: 0, sc: 1 }
-			: wordIn(wd.mode ?? c.mode ?? "blur", ms, wd.at, wd.dur ?? 220);
+			: wordIn(
+					wd.mode ?? c.mode ?? (wd.at <= 0.5 ? "settle" : "blur"),
+					ms,
+					wd.at,
+					wd.dur ?? 220,
+					wd.rise,
+				);
 		let o = st.o;
 		let blur = st.blur;
 		if (wd.outAt != null && ms >= wd.outAt) {
@@ -236,6 +252,10 @@ function Line(c, t) {
 					...(wd.fill || fillStyle
 						? {
 								backgroundImage: wd.fill ?? c.fill,
+								// one gradient across the whole line, not one per word
+								backgroundSize: `${lay.full.toFixed(1)}px 100%`,
+								backgroundPosition: `${(-lay.xs[i].x).toFixed(1)}px 0`,
+								backgroundRepeat: "no-repeat",
 								WebkitBackgroundClip: "text",
 								backgroundClip: "text",
 								color: "transparent",
@@ -277,6 +297,8 @@ function Line(c, t) {
 					inset: 0,
 					opacity: outO,
 					filter: outBlur > 0.3 ? `blur(${outBlur.toFixed(1)}px)` : undefined,
+					WebkitMaskImage: outMask,
+					maskImage: outMask,
 				}}
 			>
 				{nodes}
@@ -367,8 +389,8 @@ function Bubbles(c, t) {
 			const r0 =
 				(isLabel ? 208 : 186 + hash(row * 5 + col * 11) * 36) * (isLabel ? (k.lab ?? 1) : 1);
 			// camera about the focus point
-			const x = fx + (bx - fx) * s;
-			const y = fy + (by - fy) * s;
+			const x = fx + (bx - fx) * s + (isLabel ? (k.lx ?? 0) : 0);
+			const y = fy + (by - fy) * s + (isLabel ? (k.ly ?? 0) : 0);
 			const r = r0 * s;
 			if (x + r < -40 || x - r > W + 40 || y + r < -40 || y - r > H + 40) continue;
 			let col0 = fieldColour(x, y);
@@ -463,7 +485,8 @@ function Counter(c, t) {
 	const p = E("out", prog(ms, c.countAt ?? 0, c.countEnd ?? 1500), 3);
 	const v = lerp(c.from ?? 20000, c.to ?? 50000, p);
 	const size = c.size ?? 300;
-	const draw = smooth(prog(ms, c.drawAt ?? 0, c.drawEnd ?? 1500));
+	// the scribble's head leaves fast and slows as it reaches the right edge
+	const draw = E("out", prog(ms, c.drawAt ?? 0, c.drawEnd ?? 1500));
 	const path =
 		c.path ??
 		"M -40 960 C 160 880, 330 840, 470 900 S 650 1060, 760 990 S 900 700, 1000 640 S 1090 600, 1120 610";
@@ -479,7 +502,10 @@ function Counter(c, t) {
 	}
 	const blur = (1 - expo(prog(ms, c.countAt ?? 0, (c.countAt ?? 0) + 260))) * 10;
 	return (
-		<RefBox z={c.z ?? 10}>
+		<RefBox
+			z={c.z ?? 10}
+			style={{ opacity: c.outAt != null ? 1 - prog(ms, c.outAt, c.outAt + (c.outDur ?? 100)) : 1 }}
+		>
 			<svg width={W} height={H} style={{ position: "absolute", left: 0, top: 0 }}>
 				<defs>
 					<linearGradient id="sp-scr" x1="0" y1="0" x2="1" y2="0">
@@ -520,7 +546,7 @@ function Counter(c, t) {
 					WebkitBackgroundClip: "text",
 					backgroundClip: "text",
 					color: "transparent",
-					opacity: clamp01(prog(ms, c.countAt ?? 0, (c.countAt ?? 0) + 120)),
+					opacity: ms >= (c.countAt ?? 0) ? 1 : 0,
 					filter: blur > 0.3 ? `blur(${blur.toFixed(1)}px)` : undefined,
 				}}
 			>
@@ -539,55 +565,95 @@ function Orbs(c, t) {
 	const words = c.words ?? [];
 	let cur = null;
 	for (const w of words) if (ms >= w.at) cur = w;
+	// fx keys {at, a (ground + orbs), sx, sy, sr, sa, rot, pinch}: the 4-point
+	// spark that flares where the orbs touch and opens onto the next shot
+	const fx = kf(c.fx ?? [{ at: 0 }], ms);
+	const sa = fx.sa ?? 0;
 	return (
 		<RefBox z={c.z ?? 6}>
-			<Aura
-				base={[2, 2, 6]}
-				ring={{ cx: 960, cy: 1250, rx: 1300, ry: 700, rings: RINGS.dark }}
-				blobs={[{ c: [60, 40, 140], x: 1500, y: 1100, rx: 700, ry: 420, a: 0.55 }]}
-				grain={0.12}
-				t={t}
-			/>
-			<Sphere
-				x={a.x}
-				y={a.y}
-				r={a.r}
-				top={[130, 160, 250]}
-				bottom={[58, 66, 236]}
-				rim={[210, 220, 255]}
-				rimA={0.6}
-				soft={0.012}
-			/>
-			<Sphere
-				x={b.x}
-				y={b.y}
-				r={b.r}
-				top={[240, 28, 64]}
-				bottom={[232, 80, 180]}
-				rim={[255, 190, 210]}
-				rimA={0.7}
-				soft={0.012}
-			/>
-			{cur ? (
-				<div
+			<div style={{ position: "absolute", inset: 0, opacity: fx.a ?? 1 }}>
+				<Aura
+					base={[2, 2, 6]}
+					ring={{ cx: 960, cy: 1250, rx: 1300, ry: 700, rings: RINGS.dark }}
+					blobs={[{ c: [60, 40, 140], x: 1500, y: 1100, rx: 700, ry: 420, a: 0.55 }]}
+					grain={0.12}
+					t={t}
+				/>
+				<Sphere
+					x={a.x}
+					y={a.y}
+					r={a.r}
+					top={[130, 160, 250]}
+					bottom={[58, 66, 236]}
+					rim={[210, 220, 255]}
+					rimA={0.6}
+					soft={0.012}
+				/>
+				<Sphere
+					x={b.x}
+					y={b.y}
+					r={b.r}
+					top={[240, 28, 64]}
+					bottom={[232, 80, 180]}
+					rim={[255, 190, 210]}
+					rimA={0.7}
+					soft={0.012}
+				/>
+				{cur ? (
+					<div
+						style={{
+							position: "absolute",
+							left: 0,
+							width: W,
+							top: (c.cy ?? 540) - 44,
+							textAlign: "center",
+							fontWeight: 600,
+							fontSize: cur.size ?? c.size ?? 60,
+							fontFamily: SANS,
+							color: "#fff",
+							lineHeight: 1.3,
+							letterSpacing: "-0.01em",
+							transform: `scale(${(fx.ts ?? 1).toFixed(4)})`,
+							filter: (fx.tb ?? 0) > 0.3 ? `blur(${fx.tb.toFixed(1)}px)` : undefined,
+						}}
+					>
+						{cur.text}
+					</div>
+				) : null}
+				<Grain t={t} alpha={0.1} />
+			</div>
+			{sa > 0.001 ? (
+				<svg
+					width={W}
+					height={H}
 					style={{
 						position: "absolute",
 						left: 0,
-						width: W,
-						top: (c.cy ?? 540) - 44,
-						textAlign: "center",
-						fontWeight: 600,
-						fontSize: cur.size ?? c.size ?? 60,
-						fontFamily: SANS,
-						color: "#fff",
-						lineHeight: 1.3,
-						letterSpacing: "-0.01em",
+						top: 0,
+						overflow: "visible",
+						opacity: sa,
+						filter: `drop-shadow(0 0 ${(18 + (fx.sr ?? 100) * 0.05).toFixed(1)}px rgba(255,236,246,0.95))`,
 					}}
 				>
-					{cur.text}
-				</div>
+					<defs>
+						<radialGradient id="sp-spark" cx="0.5" cy="0.5" r="0.5">
+							<stop offset="0" stopColor="#ffffff" />
+							<stop offset="0.5" stopColor="#fff6fb" />
+							<stop offset="1" stopColor="#f6c4e4" />
+						</radialGradient>
+					</defs>
+					<path
+						d={starPath(
+							fx.sx ?? 960,
+							fx.sy ?? 540,
+							fx.sr ?? 100,
+							fx.pinch ?? 0.2,
+							((fx.rot ?? 20) * Math.PI) / 180,
+						)}
+						fill="url(#sp-spark)"
+					/>
+				</svg>
 			) : null}
-			<Grain t={t} alpha={0.1} />
 		</RefBox>
 	);
 }
@@ -632,68 +698,106 @@ function Bloom(c, t) {
 	const letterS = k.letterS ?? 0;
 	const dark = k.dark ?? 0;
 	const starC = mixC([236, 30, 140], [40, 12, 70], dark);
+	// The fall into the letter: while the line above is still zooming (its
+	// camera keys mirrored here as `zoom` {at, z}), everything this preset
+	// draws is seen only through the letter's counter, an ellipse `hole`
+	// {x, y, r, asp} (ref px at zoom 1, centred on the camera origin) that
+	// grows with the zoom; the bloom inside grows with it until, at `zEnd`,
+	// the counter is past the frame edges and the bloom is full frame.
+	let holeClip;
+	let holeT;
+	if (c.zoom && c.hole) {
+		const z = kf(c.zoom, ms).z ?? 1;
+		const zEnd = c.zEnd ?? 30;
+		if (z < zEnd) {
+			const hx = c.hole.x;
+			const hy = c.hole.y;
+			const r = c.hole.r * z;
+			holeClip = `ellipse(${(r * (c.hole.asp ?? 1)).toFixed(1)}px ${r.toFixed(1)}px at ${hx}px ${hy}px)`;
+			holeT = {
+				transform: `scale(${(z / zEnd).toFixed(5)})`,
+				transformOrigin: `${hx}px ${hy}px`,
+			};
+		}
+	}
 	return (
 		<RefBox z={c.z ?? 8}>
-			{(k.groundA ?? 1) > 0 ? (
-				<Aura
-					base={P.cream}
-					ring={{
-						cx: 960,
-						cy: 600,
-						rx: 1100,
-						ry: 800,
-						rings: [
-							[[245, 160, 225], 0],
-							[[238, 40, 150], 620],
-							[[240, 100, 60], 1000],
-						],
-					}}
-					grain={0.14}
-					t={t}
-				/>
-			) : null}
-			{letterS > 0 ? (
-				<div
-					style={{
-						position: "absolute",
-						left: 960 + (c.letterDx ?? 40) * letterS,
-						top: 540 + (c.letterDy ?? -40) * letterS,
-						transform: `translate(-50%,-62%) scale(${letterS.toFixed(4)})`,
-						fontWeight: 600,
-						fontSize: 400,
-						fontFamily: SANS,
-						color: rgbs(P.grey),
-						lineHeight: 1.3,
-					}}
-				>
-					{c.letter ?? "a"}
+			<div
+				style={{
+					position: "absolute",
+					inset: 0,
+					clipPath: holeClip,
+					WebkitClipPath: holeClip,
+				}}
+			>
+				{/* the ground fills the counter at frame scale; only the bloom grows */}
+				{(k.groundA ?? 1) > 0 ? (
+					<Aura
+						base={P.cream}
+						ring={{
+							cx: 960,
+							cy: 600,
+							rx: 1100,
+							ry: 800,
+							rings: [
+								[[245, 160, 225], 0],
+								[[238, 40, 150], 620],
+								[[240, 100, 60], 1000],
+							],
+						}}
+						grain={0.14}
+						t={t}
+					/>
+				) : null}
+				<div style={{ position: "absolute", inset: 0, ...holeT }}>
+					{letterS > 0 ? (
+						<div
+							style={{
+								position: "absolute",
+								left: 960 + (c.letterDx ?? 40) * letterS,
+								top: 540 + (c.letterDy ?? -40) * letterS,
+								transform: `translate(-50%,-62%) scale(${letterS.toFixed(4)})`,
+								fontWeight: 600,
+								fontSize: 400,
+								fontFamily: SANS,
+								color: rgbs(P.grey),
+								lineHeight: 1.3,
+							}}
+						>
+							{c.letter ?? "a"}
+						</div>
+					) : null}
+					<svg
+						width={W}
+						height={H}
+						style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}
+					>
+						<defs>
+							<radialGradient id="sp-flw" cx="0.5" cy="0.5" r="0.5">
+								<stop offset="0" stopColor="#fbeef6" />
+								<stop offset="0.55" stopColor="#f6cfe9" />
+								<stop offset="0.85" stopColor="#f08fd0" />
+								<stop offset="1" stopColor="#ec5bb8" />
+							</radialGradient>
+						</defs>
+						{(k.flowerA ?? 0) > 0 ? (
+							<path
+								d={flowerPath(960, 540, k.flowerR ?? 500, 9, 0.18, (k.rot ?? 0) * 0.0174)}
+								fill="url(#sp-flw)"
+								opacity={k.flowerA}
+								style={{ filter: `blur(${(k.flowerBlur ?? 18).toFixed(1)}px)` }}
+							/>
+						) : null}
+						{(k.starA ?? 0) > 0 ? (
+							<path
+								d={starPath(960, 540, k.starR ?? 120, k.pinch ?? 0.16, (k.starRot ?? 0) * 0.0174)}
+								fill={rgbs(starC)}
+								opacity={k.starA}
+							/>
+						) : null}
+					</svg>
 				</div>
-			) : null}
-			<svg width={W} height={H} style={{ position: "absolute", left: 0, top: 0 }}>
-				<defs>
-					<radialGradient id="sp-flw" cx="0.5" cy="0.5" r="0.5">
-						<stop offset="0" stopColor="#fbeef6" />
-						<stop offset="0.55" stopColor="#f6cfe9" />
-						<stop offset="0.85" stopColor="#f08fd0" />
-						<stop offset="1" stopColor="#ec5bb8" />
-					</radialGradient>
-				</defs>
-				{(k.flowerA ?? 0) > 0 ? (
-					<path
-						d={flowerPath(960, 540, k.flowerR ?? 500, 9, 0.18, (k.rot ?? 0) * 0.0174)}
-						fill="url(#sp-flw)"
-						opacity={k.flowerA}
-						style={{ filter: `blur(${(k.flowerBlur ?? 18).toFixed(1)}px)` }}
-					/>
-				) : null}
-				{(k.starA ?? 0) > 0 ? (
-					<path
-						d={starPath(960, 540, k.starR ?? 120, k.pinch ?? 0.16, (k.starRot ?? 0) * 0.0174)}
-						fill={rgbs(starC)}
-						opacity={k.starA}
-					/>
-				) : null}
-			</svg>
+			</div>
 		</RefBox>
 	);
 }

@@ -61,7 +61,9 @@ function EndAura(c, t) {
 		[246, 243, 236],
 		[150, 150, 245],
 	];
-	const base = field[0].map((v, i) => v + (field[1][i] - v) * sky);
+	// `dark` (0..1) takes the field to black as the aura closes into the mark
+	const dark = k.dark ?? 0;
+	const base = field[0].map((v, i) => (v + (field[1][i] - v) * sky) * (1 - dark));
 	return (
 		<RefBox z={c.z ?? 0}>
 			<div style={{ position: "absolute", inset: 0, background: rgbs(base) }} />
@@ -106,7 +108,11 @@ function EndCard(c, t) {
 	const gap = size * 0.2;
 	const lettersOn = c.lettersAt != null && ms >= c.lettersAt;
 	const total = lettersOn ? msz * 0.9 + gap + nameW : 0;
-	const lp = expo(prog(ms, c.lettersAt ?? 0, (c.lettersAt ?? 0) + 260));
+	// the mark slides aside on a quadratic ease-out over ~8 frames, as measured
+	// (17/31/46/69/85% of the travel on its first five frames), not on an expo
+	// whose first frame would jump half the distance
+	const lq = prog(ms, c.lettersAt ?? 0, (c.lettersAt ?? 0) + (c.shiftMs ?? 280));
+	const lp = 1 - (1 - lq) * (1 - lq);
 	const shift = (total / 2) * lp;
 	const urlOn = c.urlAt != null && ms >= c.urlAt;
 	let x = 0;

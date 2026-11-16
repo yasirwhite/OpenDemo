@@ -28,6 +28,7 @@ import { videoRef } from "../../../src/lib/textcards/src/video-sources.js";
 import {
 	Aura,
 	blinkOn,
+	E,
 	expo,
 	Grain,
 	H,
@@ -37,6 +38,7 @@ import {
 	localMs,
 	MONO,
 	NamedCursor,
+	prog,
 	RefBox,
 	rgbs,
 	SANS,
@@ -803,6 +805,8 @@ function Pill(c, t) {
 // ── the app window ────────────────────────────────────────────────────────
 
 export const WIN = { w: 1540, h: 1000 };
+/** Avatar slot in the window bar (window px): centre x, diameter, step. */
+export const BAR_AV = { x: 1250, d: 26, step: 20.8 };
 
 function ChatPanel({
 	w,
@@ -1167,7 +1171,14 @@ function Preview({ view, w, h, ms, c }) {
 					</div>
 				) : null}
 				{c.paletteAt != null && ms >= c.paletteAt ? (
-					<div style={box(w * 0.015, h * 0.2, 170, 300, "#1c1c1f", 12)}>
+					// the palette pops open over ~4 frames (scale + fade), not in one
+					<div
+						style={box(w * 0.015, h * 0.2, 170, 300, "#1c1c1f", 12, {
+							opacity: E("out", prog(ms, c.paletteAt, c.paletteAt + 130)),
+							transform: `scale(${(0.85 + 0.15 * E("out", prog(ms, c.paletteAt, c.paletteAt + 160))).toFixed(4)})`,
+							transformOrigin: "0 0",
+						})}
+					>
 						{["#6366f1", "#22c55e", "#ec4899", "#f97316"].map((col, r) =>
 							[0, 1, 2, 3, 4].map((i) => (
 								<div
@@ -1265,7 +1276,7 @@ function Window(c, t) {
 	const ww = c.w ?? WIN.w;
 	const wh = c.h ?? WIN.h;
 	const s = k.s ?? 1;
-	const chatW = c.view === "code" ? 0 : (c.chatW ?? 420);
+	const chatW = c.view === "code" && !c.keepChat ? 0 : (c.chatW ?? 420);
 	const bar = 46;
 	const gk = c.glowKeys ? kf(c.glowKeys, ms) : null;
 	const chatIn = c.chatType
@@ -1280,11 +1291,24 @@ function Window(c, t) {
 		/>
 	) : (
 		<>
-			<div style={box(0, 0, ww, bar, "#141416")}>
-				{T(18, 13, `◆ ${c.app ?? "Studio Flow"}  ⌄`, 16, "#eee", 600)}
-				{T(ww * 0.5 - 30, 14, "▭ Home ⌄", 15, "#bbb", 500)}
-				<div style={box(ww - 190, 9, 80, 28, "#2c2c30", 7)}>
-					{T(18, 6, "Invite", 14, "#eee", 500)}
+			<div style={box(0, 0, ww, bar, c.lightBar ? "#fbfaf8" : "#141416")}>
+				{T(18, 13, `◆ ${c.app ?? "Studio Flow"}  ⌄`, 16, c.lightBar ? "#222" : "#eee", 600)}
+				{T(ww * 0.5 - 30, 14, "▭ Home ⌄", 15, c.lightBar ? "#666" : "#bbb", 500)}
+				{/* the collaborators' avatars, where the avatar row lands (barAvatars) */}
+				{c.barAvatars
+					? [0, 1, 2, 3, 4].map((i) => (
+							<Avatar
+								key={i}
+								x={BAR_AV.x + (i - 2) * BAR_AV.step}
+								y={bar / 2}
+								d={BAR_AV.d}
+								i={i}
+								images={c.images}
+							/>
+						))
+					: null}
+				<div style={box(ww - 190, 9, 80, 28, c.lightBar ? "#f1f1f3" : "#2c2c30", 7)}>
+					{T(18, 6, "Invite", 14, c.lightBar ? "#222" : "#eee", 500)}
 				</div>
 				<div style={box(ww - 100, 9, 86, 28, "#2563eb", 7)}>
 					{T(14, 6, "Publish", 14, "#fff", 600)}
@@ -1320,7 +1344,7 @@ function Window(c, t) {
 				)}
 			>
 				{c.view === "code" ? (
-					<CodeView w={ww} h={wh - bar} />
+					<CodeView w={chatW ? ww - chatW - 20 : ww} h={wh - bar} />
 				) : (
 					<Preview
 						view={c.view ?? "studio"}
@@ -1336,13 +1360,17 @@ function Window(c, t) {
 	return (
 		<RefBox z={c.z ?? 10}>
 			{c.ground ? (
-				<Aura
-					base={c.ground.base ?? [0, 0, 0]}
-					ring={c.ground.ring}
-					blobs={c.ground.blobs ?? []}
-					grain={c.ground.grain ?? 0.14}
-					t={t}
-				/>
+				// `ga` keys the ground's opacity, so a window can dissolve in over
+				// another scene that shares its ground
+				<div style={{ position: "absolute", inset: 0, opacity: k.ga ?? 1 }}>
+					<Aura
+						base={c.ground.base ?? [0, 0, 0]}
+						ring={c.ground.ring}
+						blobs={c.ground.blobs ?? []}
+						grain={c.ground.grain ?? 0.14}
+						t={t}
+					/>
+				</div>
 			) : null}
 			<div
 				style={{
@@ -1570,7 +1598,7 @@ function Avatar({ x, y, d, i, images }) {
 		<div
 			style={box(x - d / 2, y - d / 2, d, d, "#fff", "50%", {
 				overflow: "hidden",
-				boxShadow: "0 0 0 4px #fbfaf8",
+				boxShadow: `0 0 0 ${Math.max(1, d * 0.027).toFixed(2)}px #fbfaf8`,
 			})}
 		>
 			{images?.[`avatar-${i + 1}`] ? (
@@ -1638,6 +1666,7 @@ function Avatars(c, t) {
 					inset: 0,
 					transform: `scale(${s.toFixed(4)})`,
 					transformOrigin: `${k.x ?? 960}px ${k.y ?? 540}px`,
+					opacity: k.a ?? 1,
 				}}
 			>
 				{(k.bar ?? 0) > 0 ? (
@@ -1677,6 +1706,33 @@ function Avatars(c, t) {
 	);
 }
 
+/** The select target (ring, dot, four tabs) as an inline icon, top-left at x, y. */
+function TargetIcon({ x, y, size, colour }) {
+	return (
+		<svg
+			width={size}
+			height={size}
+			viewBox="0 0 100 100"
+			style={{ position: "absolute", left: x, top: y, display: "block" }}
+		>
+			<circle cx="50" cy="50" r="30" fill="none" stroke={colour} strokeWidth="9" />
+			<circle cx="50" cy="50" r="11" fill={colour} />
+			{[0, 1, 2, 3].map((i) => (
+				<rect
+					key={i}
+					x="45"
+					y="2"
+					width="10"
+					height="16"
+					rx="3"
+					fill={colour}
+					transform={`rotate(${i * 90} 50 50)`}
+				/>
+			))}
+		</svg>
+	);
+}
+
 /** The composer toolbar at punch-in scale: placeholder, Attach, the mode chip, Mode. keys {at, x, y, s, rz}; hand. */
 function Toolbar(c, t) {
 	const ms = localMs(c, t);
@@ -1707,7 +1763,8 @@ function Toolbar(c, t) {
 				{T(0, 30, "+", 52, "#aaa", 300)}
 				{T(70, 36, "▣ Attach", 40, "#d4d4d8", 500)}
 				<div style={box(270, 22, 210, 70, on ? "#2563eb" : "transparent", 14)}>
-					{T(20, 13, `◎ ${c.chip ?? "Select"}`, 40, on ? "#fff" : "#d4d4d8", 500)}
+					<TargetIcon x={12} y={15} size={40} colour={on ? "#fff" : "#d4d4d8"} />
+					{T(60, 13, c.chip ?? "Select", 40, on ? "#fff" : "#d4d4d8", 500)}
 				</div>
 				{T(510, 36, "⇄ Mode ⌄", 40, "#d4d4d8", 500)}
 			</div>
@@ -1726,7 +1783,7 @@ function Toggle(c, t) {
 	const g = k.glow ?? 0;
 	const hand = c.hand ? kf(c.hand, ms) : null;
 	const target = c.icon === "target";
-	const col = rgbs(c.colour ?? [255, 255, 255]);
+	const col = rgbs(k.col ?? c.colour ?? [255, 255, 255]);
 	return (
 		<RefBox z={c.z ?? 10}>
 			{target ? null : (
@@ -1754,7 +1811,7 @@ function Toggle(c, t) {
 					position: "absolute",
 					left: k.x ?? 960,
 					top: k.y ?? 540,
-					transform: `translate(-50%,-50%) scale(${s.toFixed(4)})`,
+					transform: `translate(-50%,-50%) scale(${s.toFixed(4)}) rotate(${(k.rot ?? 0).toFixed(2)}deg)`,
 					opacity: k.a ?? 1,
 					filter: (k.blur ?? 0) > 0.3 ? `blur(${k.blur.toFixed(1)}px)` : undefined,
 				}}

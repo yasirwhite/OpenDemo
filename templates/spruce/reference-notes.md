@@ -118,3 +118,40 @@ Sampled every 60 px down the centre column (RGB):
   is pulled in (-0.035em) and sizes were fitted by line width.
 - The reference's glow and auras are slightly softer than the rebuilt
   gradients, and its grain is coarser on the darkest grounds.
+
+## Transitions (audit 2026-11-16)
+
+A frame-by-frame pass (every frame for ~0.5 s around each of the 69 scene
+boundaries, reference above rebuild) found the reference moving through
+most boundaries the first rebuild cut or held. What the reference does, and
+what the rebuild now does on the same frames:
+
+- **Words on a cut are on screen in the cut frame.** Sharp, the camera doing
+  the settle (`settle`/`lift` modes); only words joining a line already on
+  screen fade in blurred. The first word of a line no longer slides in from
+  a half-width re-centre.
+- **Camera moves run through the cut.** f586-595 the site pulls back into the
+  wall (one S); f604-630 one eased punch-in; f830-840 the window pushes into
+  the composer close-up and f930-951 pulls back out to the tilted window;
+  f1170-1186 the avatar strip rides its slot in the dashboard bar while the
+  camera pulls back; f1374-1386 push-in on the Edit Text panel; f1572-1586
+  pull-back from the palette close-up; f1990-2021 insights flips to code in
+  place (5-frame dissolve on one camera).
+- **Morphs.** f530-547 the fall into the counter of the "e" (the bloom is seen
+  through the counter and grows with it); f786-792 the pill ends as the
+  window's own rect with its glow carried over; f1250-1290 the aura closes to
+  a red dot, a target focuses out of it, zooms out turning upright and lands
+  as the toolbar chip's icon at the same size; f2266-2280 the closing aura
+  shrinks into a blurred mark the end card takes over.
+- **Blooms and sparks.** f309-315 the orbs touch and a white spark opens onto
+  the big word; f366-378 and f1688-1703 the warm core floods white into the
+  cream cut; f403-416 "Join other makers" comes apart from both ends.
+- **Entries.** Orbs swing in (f264-276); the pill rushes in from the right
+  (f689-697, ease-out); "with" rises in on an S (f1006-1018); Invite/Publish
+  cards rise (f1050-1060, f1703-1712); dialogs rise and punch in (f1080-1116)
+  or grow in (f1733-1741); laptops land close and pull back (f642-652,
+  f1854-1863).
+- **Velocity.** No segment now starts on an ease-out whose first frame jumps
+  (the pill pull-back, the end card's mark slide are S/quadratic), and no
+  move stops dead into a cut. A channel first keyed mid-list snaps for the
+  whole segment before it, so first keys carry every channel.
