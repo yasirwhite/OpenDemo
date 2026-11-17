@@ -21,6 +21,9 @@ import { ALDER_PRESETS } from "../../../../../templates/alder/presets/index.jsx"
 // juniper template presets live with the template (templates/juniper/presets/) —
 // registered here so configs reach them by slug like any other preset.
 import { JUNIPER_PRESETS } from "../../../../../templates/juniper/presets/index.jsx";
+// laurel template presets live with the template (templates/laurel/presets/) —
+// registered here so configs reach them by slug like any other preset.
+import { LAUREL_PRESETS } from "../../../../../templates/laurel/presets/index.jsx";
 // linden template presets live with the template (templates/linden/presets/) —
 // registered here so configs reach them by slug like any other preset.
 import { LINDEN_PRESETS } from "../../../../../templates/linden/presets/index.jsx";
@@ -2618,6 +2621,8 @@ export const PRESETS = {
 	...WILLOW_PRESETS,
 	// ── rowan template presets (templates/rowan/presets/) ──
 	...ROWAN_PRESETS,
+	// ── laurel template presets (templates/laurel/presets/) ──
+	...LAUREL_PRESETS,
 	// ── linden template presets (templates/linden/presets/) ──
 	...LINDEN_PRESETS,
 };
