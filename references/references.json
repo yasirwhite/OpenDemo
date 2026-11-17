@@ -101,6 +101,16 @@
 			"spec": "1920x1080, 30fps, 21.06s",
 			"notes": "templates/laurel/reference-notes.md",
 			"usedBy": "templates/laurel/ - full film rebuilt frame-by-frame on its 30fps clock; keycap physics, persistent voice pill with glow and overshoot, torn-paper wedge onto a lilac collage ground, chat composer with typed dictation, sliding line with an accelerating icon drum, hand-lettered title stack, mark draw-on end card"
+		},
+		{
+			"id": "grok-imagine-1",
+			"file": "grok-imagine-1.mp4",
+			"url": "https://video.twimg.com/amplify_video/2018164699200999424/vid/avc1/1920x1080/A312wDoPMxGY4KAb.mp4?tag=21",
+			"md5": "b610c7cba10e485b27b2f648b3ee8292",
+			"bytes": 8155760,
+			"spec": "1920x1080, 30fps, 25.03s",
+			"notes": "templates/linden/reference-notes.md",
+			"usedBy": "templates/linden/ - full film rebuilt frame-by-frame on its 30fps clock; one wall of outputs on black, a single card in front of a dim wall sinking into its slot, one continuous camera solved as per-frame plane homographies (push/roll/yaw, pull back, dive into a gutter), three white lines on black"
 		}
 	]
 }

@@ -1,0 +1,57 @@
+{
+	"_about": "linden: a 25s gallery-wall launch film for a generative media product, derived frame-by-frame from a 25.0s model launch film (1920x1080 @30fps). Authored on the 1280x720 stage, rendered at device scale 1.5: render.mjs --fps 30 --scale 1.5. Placeholder product: Linden Studio 1.0, a fictional model that makes pictures and short clips from a line of text. ONE wall of outputs on black and ONE continuous camera: the film opens on a single card drifting toward you while the wall fades up behind it, the card sinks back into its place, then the camera pushes, rolls and yaws across the wall onto a focus card, pulls back over the whole wall and dives into the gutter beside the first card. Three white lines follow on black: the name, a claim, and the mark with the address.",
+	"_sections": "S1 0-18.6 the wall (linden-wall): A 0-3.3 one card alone, wall fading up in a pool of light | B 3.3-3.8 the card sinks into its slot, wall to full | C 3.8-11.0 push, roll and yaw onto the focus card | D 11.0-16.6 pull back and slide across the wall | E 16.6-18.6 accelerating dive into the gutter beside the hero card, ending on black | S2 18.67-20.23 name line | S3 20.27-21.8 claim line | S4 21.87-25.0 mark and address",
+	"_slots": "33 image slots on linden-wall: `hero` (the opening card, 2:3 portrait), `focus` (the card the camera lands on at ~11s, 2:3 portrait) and `media` (31 more, {src, label} each, filled nearest the hero first and cycled if shorter). Cards are 2:3, 3:4 and a few landscape; pictures are cropped to cover. Without them, drawn placeholder art (vistas, figure studies, glossy objects, bands, arcades) stands in. Plus `markSrc` on the last line for your own mark. Every piece of copy is a field: lead + text on each linden-line.",
+	"video": { "width": 1280, "height": 720, "fps": 30, "durationMs": 25000 },
+	"ground": [{ "fromMs": 0, "colour": [0, 0, 0] }],
+	"scenes": [
+		{
+			"id": "s1-wall",
+			"role": "product",
+			"preset": "linden-wall",
+			"startMs": 0,
+			"durationMs": 18600,
+			"hero": { "label": "your best output, 2:3 portrait" },
+			"focus": { "label": "a second standout output, 2:3 portrait" },
+			"media": [
+				{ "label": "output" },
+				{ "label": "output" },
+				{ "label": "output" },
+				{ "label": "output" },
+				{ "label": "output" },
+				{ "label": "output" },
+				{ "label": "output" },
+				{ "label": "output" }
+			]
+		},
+		{
+			"id": "s2-name",
+			"role": "brand",
+			"preset": "linden-line",
+			"startMs": 18667,
+			"durationMs": 1566,
+			"lead": "Linden",
+			"text": "Studio 1.0",
+			"weight": 300
+		},
+		{
+			"id": "s3-claim",
+			"role": "claim",
+			"preset": "linden-line",
+			"startMs": 20267,
+			"durationMs": 1533,
+			"text": "Type a line, get a film",
+			"weight": 600
+		},
+		{
+			"id": "s4-address",
+			"role": "brand",
+			"preset": "linden-line",
+			"startMs": 21867,
+			"durationMs": 3133,
+			"text": "linden.studio",
+			"weight": 400,
+			"mark": true
+		}
+	]
+}

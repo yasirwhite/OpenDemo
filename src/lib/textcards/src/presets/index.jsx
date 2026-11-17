@@ -24,6 +24,9 @@ import { JUNIPER_PRESETS } from "../../../../../templates/juniper/presets/index.
 // laurel template presets live with the template (templates/laurel/presets/) —
 // registered here so configs reach them by slug like any other preset.
 import { LAUREL_PRESETS } from "../../../../../templates/laurel/presets/index.jsx";
+// linden template presets live with the template (templates/linden/presets/) —
+// registered here so configs reach them by slug like any other preset.
+import { LINDEN_PRESETS } from "../../../../../templates/linden/presets/index.jsx";
 // maple template presets live with the template (templates/maple/presets/) —
 // registered here so configs reach them by slug like any other preset.
 import { MAPLE_PRESETS } from "../../../../../templates/maple/presets/index.jsx";
@@ -2620,6 +2623,8 @@ export const PRESETS = {
 	...ROWAN_PRESETS,
 	// ── laurel template presets (templates/laurel/presets/) ──
 	...LAUREL_PRESETS,
+	// ── linden template presets (templates/linden/presets/) ──
+	...LINDEN_PRESETS,
 };
 
 export const PRESET_NOTES = Object.fromEntries(
